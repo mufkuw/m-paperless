@@ -41,20 +41,3 @@ sudo chown paperless:paperless /opt/paperless/consume
 
 docker run -d --restart=always -p 9998:9998 apache/tika:latest
 docker run -d --restart=always -p 3000:3000 gotenberg/gotenberg:latest
-
-cd /opt/paperless
-cp paperless.conf.example paperless.conf
-pyenv global 3.9.18
-pyenv local 3.9.18
-pipenv requirements > req.txt
-pip install -r req.txt
-
-cd /opt/paperless/src
-python3 manage.py migrate
-python3 manage.py createsuperuser
-
-cd /opt/paperless/src-ui
-npm i -g npm@latest --force
-npm install -g @angular/cli
-npm install
-ng build --configuration production
