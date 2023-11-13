@@ -1000,19 +1000,8 @@ def _get_nltk_language_setting(ocr_lang: str) -> Optional[str]:
     """
     ocr_lang = ocr_lang.split("+")[0]
     iso_code_to_nltk = {
-        "dan": "danish",
-        "nld": "dutch",
         "eng": "english",
-        "fin": "finnish",
-        "fra": "french",
-        "deu": "german",
-        "ita": "italian",
-        "nor": "norwegian",
-        "por": "portuguese",
-        "rus": "russian",
-        "spa": "spanish",
-        "swe": "swedish",
-        "tur": "turkish",
+        "ara": "arabic",
     }
 
     return iso_code_to_nltk.get(ocr_lang, None)

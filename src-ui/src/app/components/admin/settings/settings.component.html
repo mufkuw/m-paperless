@@ -1,13 +1,6 @@
 <pngx-page-header title="Settings" i18n-title>
   <button class="btn btn-sm btn-outline-primary" (click)="tourService.start()"><ng-container i18n>Start
       tour</ng-container></button>
-  <a *pngxIfPermissions="{ action: PermissionAction.View, type: PermissionType.Admin }"
-    class="btn btn-sm btn-primary ms-3" href="admin/" target="_blank">
-    <ng-container i18n>Open Django Admin</ng-container>
-    <svg class="sidebaricon ms-1" fill="currentColor">
-      <use xlink:href="assets/bootstrap-icons.svg#arrow-up-right" />
-    </svg>
-  </a>
 </pngx-page-header>
 
 <form [formGroup]="settingsForm" (ngSubmit)="saveSettings()">
