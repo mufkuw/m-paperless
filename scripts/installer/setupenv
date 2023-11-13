@@ -1,4 +1,4 @@
-cd /opt/paperless
+﻿cd /opt/paperless
 cp paperless.conf.example paperless.conf
 pyenv global 3.9.18
 pyenv local 3.9.18
@@ -14,3 +14,9 @@ npm i -g npm@latest --force
 npm install -g @angular/cli
 npm install
 ng build --configuration production
+
+
+cd /opt/paperless
+git config --global --add safe.directory /opt/paperless
+git config --global --add user.name "Muffaddal Kall"a
+git config --global --add user.email "muf@bqa.la"
