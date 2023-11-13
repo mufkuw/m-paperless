@@ -1,5 +1,5 @@
 ﻿cd /opt/paperless
-cp paperless.conf.example paperless.conf
+#cp paperless.conf.example paperless.conf
 pyenv global 3.9.18
 pyenv local 3.9.18
 pipenv requirements > req.txt
@@ -18,5 +18,5 @@ ng build --configuration production
 
 cd /opt/paperless
 git config --global --add safe.directory /opt/paperless
-git config --global --add user.name "Muffaddal Kall"a
+git config --global --add user.name "Muffaddal Kalla"
 git config --global --add user.email "muf@bqa.la"
