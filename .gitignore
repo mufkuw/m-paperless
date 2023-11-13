@@ -85,7 +85,6 @@ scripts/nuke
 # Stored PDFs
 /media/
 /data/
-/paperless.conf
 /consume/
 /export/
 
