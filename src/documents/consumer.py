@@ -373,7 +373,7 @@ class Consumer(LoggingMixin):
         # For the actual work, copy the file into a tempdir
         self.original_path = self.path
         tempdir = tempfile.TemporaryDirectory(
-            prefix="paperless-ngx",
+            prefix="m-paperless",
             dir=settings.SCRATCH_DIR,
         )
         self.path = Path(tempdir.name) / Path(self.filename)
