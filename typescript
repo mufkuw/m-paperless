@@ -886,4 +886,144 @@ drwxr-xr-x 18 root root 4096 Nov 13 17:16 ..
 -rw-r--r--  1 root root  694 Nov 13 17:12 .bashrc
 drwxr-xr-x  3 root root 4096 Nov 13 17:17 .cache
 -rw-r--r--  1 root root   86 Nov 13 17:21 .gitconfig
--rw
+-rw-------  1 root root   20 Nov 13 20:51 .lesshst
+drwxr-xr-x  3 root root 4096 Nov 13 17:03 .local
+drwxr-xr-x  4 root root 4096 Nov 13 17:19 .npm
+-rw-r--r--  1 root root  161 Jul  9  2019 .profile
+drwxr-xr-x 14 root root 4096 Nov 13 17:17 .pyenv
+drwx------  2 root root 4096 Jun 15 13:59 .ssh
+drwxr-xr-x  5 root root 4096 Nov 13 20:17 .vscode-server
+-rw-r--r--  1 root root  268 Nov 13 20:17 .wget-hsts
+-rwxrwxrwx  1 root root 1571 Nov 13 17:05 setup.sh
+-rwxrwxrwx  1 root root  545 Nov 13 17:16 setupenv.sh
+[?2004hroot@paperless-hakimi:~# cd .pyenv  nv
+[?2004l[?2004hroot@paperless-hakimi:~/.pyenv# ls
+[?2004lCHANGELOG.md  CONTRIBUTING.md  MAINTENANCE.md  bin	    man      shims		  test
+COMMANDS.md   Dockerfile       Makefile        completions  plugins  src		  version
+CONDUCT.md    LICENSE	       README.md       libexec	    pyenv.d  terminal_output.png  versions
+[?2004hroot@paperless-hakimi:~/.pyenv# cd..
+[?2004lbash: cd..: command not found
+[?2004hroot@paperless-hakimi:~/.pyenv# cd ..
+[?2004l[?2004hroot@paperless-hakimi:~# ls
+[?2004lsetup.sh  setupenv.sh
+[?2004hroot@paperless-hakimi:~# mv .pye       
+[?2004l[?2004hroot@paperless-hakimi:~# 
+[?2004l[?2004hroot@paperless-hakimi:~# clear
+[?2004l[H[J[3J[?2004hroot@paperless-hakimi:~# 
+[?2004l[?2004hroot@paperless-hakimi:~# 
+[?2004l[?2004hroot@paperless-hakimi:~# 
+[?2004l[?2004hroot@paperless-hakimi:~# cd
+[?2004l[?2004hroot@paperless-hakimi:~# clear
+[?2004l[H[J[3J[?2004hroot@paperless-hakimi:~# ls
+[?2004lsetup.sh  setupenv.sh
+[?2004hroot@paperless-hakimi:~# cd . /opt
+[?2004l[?2004hroot@paperless-hakimi:/opt# cd paperl ess
+[?2004lbash: cd: paperess: No such file or directory
+[?2004hroot@paperless-hakimi:/opt# ls
+[?2004lcontainerd  paperless
+[?2004hroot@paperless-hakimi:/opt# cd paperless
+[?2004l[?2004hroot@paperless-hakimi:/opt/paperless# ls
+[?2004lCODEOWNERS	    LICENSE	  consume	    install-paperless-ngx.sh  paperless.conf.example  src
+CODE_OF_CONDUCT.md  Pipfile	  crowdin.yml	    media		      req.txt		      src-ui
+CONTRIBUTING.md     Pipfile.lock  data		    mkdocs.yml		      resources		      typescript
+Dockerfile	    __pycache__   gunicorn.conf.py  paperless.conf	      scripts
+[?2004hroot@paperless-hakimi:/opt/paperless# ls
+[?2004lCODEOWNERS	    LICENSE	  consume	    install-paperless-ngx.sh  paperless.conf.example  src
+CODE_OF_CONDUCT.md  Pipfile	  crowdin.yml	    media		      req.txt		      src-ui
+CONTRIBUTING.md     Pipfile.lock  data		    mkdocs.yml		      resources		      typescript
+Dockerfile	    __pycache__   gunicorn.conf.py  paperless.conf	      scripts
+[?2004hroot@paperless-hakimi:/opt/paperless# systemctl start m-*
+[?2004l[0;1;38;5;185mWarning: [0;1;31msystemctl start called with a glob pattern.[0m[0m
+[0;1;39mHint: unit globs expand to loaded units, so start will usually have no effect.[0m
+[0;1;39m      Passing --all will also load units which are pulled in by other units.[0m
+[0;1;39m      See systemctl(1) for more details.[0m
+[?2004hroot@paperless-hakimi:/opt/paperless# systemctl start m-*t m-*rt[1P[1P[1P[1P[1P[1@s[1@t[1@a[1@t[1@u[1@s
+[?2004l[0;1;31mx[0m m-scheduler.service - Paperless Celery Beat[m
+     Loaded: loaded (]8;;file://paperless-hakimi/etc/systemd/system/m-scheduler.service/etc/systemd/system/m-scheduler.service]8;;; [0;1;32menabled[0m; preset: [0;1;32menabled[0m)[m
+     Active: [0;1;31mfailed[0m (Result: exit-code) since Mon 2023-11-13 20:58:32 UTC; 20s ago[m
+   Duration: 1ms[m
+    Process: 4374 ExecStart=celery --app paperless beat --loglevel INFO [0;1;31m(code=exited, status=203/EXEC)[0m[m
+   Main PID: 4374 (code=exited, status=203/EXEC)[m
+        CPU: 458us[m
+[m
+Nov 13 20:58:32 paperless-hakimi systemd[1]: Started m-scheduler.service - Paperless Celery Beat.[m
+Nov 13 20:58:32 paperless-hakimi systemd[1]: [0;1;39m[0;1;31m[0;1;39mm-scheduler.service: Main process exited, code=exited, status=203/EXEC[0m[m
+Nov 13 20:58:32 paperless-hakimi systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mm-scheduler.service: Failed with result 'exit-code'.[0m[m
+[m
+[0;1;31mx[0m m-consumer.service - M-Paperless Consumer[m
+     Loaded: loaded (]8;;file://paperless-hakimi/etc/systemd/system/m-consumer.service/etc/systemd/system/m-consumer.service]8;;; [0;1;32menabled[0m; preset: [0;1;32menabled[0m)[m
+     Active: [0;1;31mfailed[0m (Result: exit-code) since Mon 2023-11-13 20:58:32 UTC; 20s ago[m
+   Duration: 14ms[m
+    Process: 4375 ExecStart=python3 manage.py document_consumer [0;1;31m(code=exited, status=1/FAILURE)[0m[m
+   Main PID: 4375 (code=exited, status=1/FAILURE)[m
+        CPU: 8ms[m
+[m
+Nov 13 20:58:32 paperless-hakimi systemd[1]: Started m-consumer.service - M-Paperless Consumer.[m
+Nov 13 20:58:32 paperless-hakimi python3[4375]: Traceback (most recent call last):[m
+Nov 13 20:58:32 paperless-hakimi python3[4375]:   File "/opt/paperless/src/manage.py", line 8, in <module>[m
+Nov 13 20:58:32 paperless-hakimi python3[4375]:     from django.core.management import execute_from_command_line[m
+Nov 13 20:58:32 paperless-hakimi python3[4375]: ModuleNotFoundError: No module named 'django'[m
+Nov 13 20:58:32 paperless-hakimi systemd[1]: [0;1;39m[0;1;31m[0;1;39mm-consumer.service: Main process exited, code=exited, status=1/FAILURE[0m[m
+Nov 13 20:58:32 paperless-hakimi systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mm-consumer.service: Failed with result 'exit-code'.[0m[m
+[m
+[7mlines 1-28[27m[K[K[0;1;31mx[0m m-webserver.service - M-Paperless Webserver[m
+[7mlines 2-29[27m[K
+[?2004hroot@paperless-hakimi:/opt/paperless# [K
+[?2004l[?2004hroot@paperless-hakimi:/opt/paperless# 
+[?2004l[?2004hroot@paperless-hakimi:/opt/paperless# service         systemctl start m-*
+[?2004l[0;1;38;5;185mWarning: [0;1;31msystemctl start called with a glob pattern.[0m[0m
+[0;1;39mHint: unit globs expand to loaded units, so start will usually have no effect.[0m
+[0;1;39m      Passing --all will also load units which are pulled in by other units.[0m
+[0;1;39m      See systemctl(1) for more details.[0m
+[?2004hroot@paperless-hakimi:/opt/paperless# systemctl start m-*rt[1P[1P[1P[1P[1P[1@e[1@n[1@a[1@b[1@l[1@e
+[?2004l[0;1;39mGlob pattern passed to enable, but globs are not supported for this.[0m
+[0;1;39mInvalid unit name "m-*" escaped as "m-\x2a".[0m
+[0;1;31mFailed to enable unit: Unit file m-\x2a.service does not exist.[0m
+[?2004hroot@paperless-hakimi:/opt/paperless# systemctl enable m-* queue
+[?2004l[?2004hroot@paperless-hakimi:/opt/paperless# systemctl enable m-queue     scheduler
+[?2004l[?2004hroot@paperless-hakimi:/opt/paperless# systemctl enable m-scheduler         webserver
+[?2004l[?2004hroot@paperless-hakimi:/opt/paperless# systemctl enable m-webserver         consumer
+[?2004l[?2004hroot@paperless-hakimi:/opt/paperless# systemctl enable m-consumere[Ksystemctl start m-*
+[?2004l[0;1;38;5;185mWarning: [0;1;31msystemctl start called with a glob pattern.[0m[0m
+[0;1;39mHint: unit globs expand to loaded units, so start will usually have no effect.[0m
+[0;1;39m      Passing --all will also load units which are pulled in by other units.[0m
+[0;1;39m      See systemctl(1) for more details.[0m
+[?2004hroot@paperless-hakimi:/opt/paperless# systemctl start m-* *
+[?2004l[0;1;38;5;185mWarning: [0;1;31msystemctl start called with a glob pattern.[0m[0m
+[0;1;39mHint: unit globs expand to loaded units, so start will usually have no effect.[0m
+[0;1;39m      Passing --all will also load units which are pulled in by other units.[0m
+[0;1;39m      See systemctl(1) for more details.[0m
+[?2004hroot@paperless-hakimi:/opt/paperless# systemctl
+[?2004l[0m [0m[0m UNIT                                                                                                 [0m[0m LOAD  [0m[0m ACTIVE[0m[0m SUB  [m[7m>[27m
+  -.mount                                                                                               loaded active mount[m[7m>[27m
+  dev-.lxc-proc.mount                                                                                   loaded active mount[m[7m>[27m
+  dev-.lxc-sys.mount                                                                                    loaded active mount[m[7m>[27m
+  dev-full.mount                                                                                        loaded active mount[m[7m>[27m
+  dev-fuse.mount                                                                                        loaded active mount[m[7m>[27m
+  dev-mqueue.mount                                                                                      loaded active mount[m[7m>[27m
+  dev-null.mount                                                                                        loaded active mount[m[7m>[27m
+  dev-ptmx.mount                                                                                        loaded active mount[m[7m>[27m
+  dev-random.mount                                                                                      loaded active mount[m[7m>[27m
+  dev-tty.mount                                                                                         loaded active mount[m[7m>[27m
+  dev-tty1.mount                                                                                        loaded active mount[m[7m>[27m
+  dev-tty2.mount                                                                                        loaded active mount[m[7m>[27m
+  dev-urandom.mount                                                                                     loaded active mount[m[7m>[27m
+  dev-zero.mount                                                                                        loaded active mount[m[7m>[27m
+  proc-cpuinfo.mount                                                                                    loaded active mount[m[7m>[27m
+  proc-diskstats.mount                                                                                  loaded active mount[m[7m>[27m
+  proc-loadavg.mount                                                                                    loaded active mount[m[7m>[27m
+  proc-meminfo.mount                                                                                    loaded active mount[m[7m>[27m
+  proc-slabinfo.mount                                                                                   loaded active mount[m[7m>[27m
+  proc-stat.mount                                                                                       loaded active mount[m[7m>[27m
+  proc-swaps.mount                                                                                      loaded active mount[m[7m>[27m
+  proc-sys-net.mount                                                                                    loaded active mount[m[7m>[27m
+  proc-sysrq\x2dtrigger.mount                                                                           loaded active mount[m[7m>[27m
+  proc-uptime.mount                                                                                     loaded active mount[m[7m>[27m
+  run-credentials-systemd\x2dsysctl.service.mount                                                       loaded active mount[m[7m>[27m
+  run-credentials-systemd\x2dsysusers.service.mount                                                     loaded active mount[m[7m>[27m
+  run-credentials-systemd\x2dtmpfiles\x2dsetup.service.mount                                            loaded active mount[m[7m>[27m
+[7mlines 1-28[27m[K[K[?2004hroot@paperless-hakimi:/opt/paperless# 
+[?2004l[?2004hroot@paperless-hakimi:/opt/paperless# 
+[?2004l[?2004hroot@paperless-hakimi:/opt/paperless# 
+[?2004l[?2004hroot@paperless-hakimi:/opt/paperless# clear
+[?2004l[H[J[3J[?2004hroot@paperless-hakimi:/opt/paperless# server m-quer st    y ue start                 
