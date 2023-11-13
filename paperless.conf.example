@@ -1,5 +1,4 @@
 # Have a look at the docs for documentation.
-# https://docs.paperless-ngx.com/configuration/
 
 # Debug. Only enable this for development.
 
@@ -92,3 +91,8 @@ PAPERLESS_TIKA_GOTENBERG_ENDPOINT=http://127.0.0.1:3000
 
 #PAPERLESS_CONVERT_BINARY=/usr/bin/convert
 #PAPERLESS_GS_BINARY=/usr/bin/gs
+
+
+
+PAPERLESS_TASK_WORKERS = 2
+PAPERLESS_THREADS_PER_WORKER = 4
