@@ -1,10 +1,10 @@
 [Unit]
-Description=Paperless consumer
+Description=M-Paperless Consumer
 Requires=redis.service
 
 [Service]
-User=paperless
-Group=paperless
+#User=paperless
+#Group=paperless
 WorkingDirectory=/opt/paperless/src
 ExecStart=python3 manage.py document_consumer
 

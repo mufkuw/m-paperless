@@ -1,0 +1,889 @@
+Script started on 2023-11-13 20:23:24+00:00 [TERM="linux" TTY="/dev/tty1" COLUMNS="124" LINES="29"]
+[?2004hroot@paperless-hakimi:/opt/paperless# sl  ls
+[?2004lCODEOWNERS	    LICENSE	  consume	    install-paperless-ngx.sh  paperless.conf.example  src
+CODE_OF_CONDUCT.md  Pipfile	  crowdin.yml	    media		      req.txt		      src-ui
+CONTRIBUTING.md     Pipfile.lock  data		    mkdocs.yml		      resources		      typescript
+Dockerfile	    __pycache__   gunicorn.conf.py  paperless.conf	      scripts
+[?2004hroot@paperless-hakimi:/opt/paperless# cd sc    cd   cd scritps
+[?2004lbash: cd: scritps: No such file or directory
+[?2004hroot@paperless-hakimi:/opt/paperless# ls
+[?2004lCODEOWNERS	    LICENSE	  consume	    install-paperless-ngx.sh  paperless.conf.example  src
+CODE_OF_CONDUCT.md  Pipfile	  crowdin.yml	    media		      req.txt		      src-ui
+CONTRIBUTING.md     Pipfile.lock  data		    mkdocs.yml		      resources		      typescript
+Dockerfile	    __pycache__   gunicorn.conf.py  paperless.conf	      scripts
+[?2004hroot@paperless-hakimi:/opt/paperless# cd scripts
+[?2004l[?2004hroot@paperless-hakimi:/opt/paperless/scripts# ls
+[?2004linstaller	    m-queue.service	 m-webserver.service	     post-consumption-example.sh
+m-consumer.service  m-scheduler.service  paperless-webserver.socket  start_services.sh
+[?2004hroot@paperless-hakimi:/opt/paperless/scripts# an  nano m-webserver.service
+[?2004l[?2004h)0[1;29r[m[4l[?7h[39;49m[?25l[?1c[39;49m[m[H[J[27;56H[0;10;7m[ Reading... ][m[27;54H[0;10;7m[ Read 15 lines ][m[H[0;10;7m  GNU nano 7.2                                         m-webserver.service                                                  [1;123H[m[28d[0;10;7m^G[m Help[28;16H[0;10;7m^O[m Write Out   [0;10;7m^W[m Where Is    [0;10;7m^K[m Cut[28;61H[0;10;7m^T[m Execute     [0;10;7m^C[m Location    [0;10;7mM-U[m Undo[106G[0;10;7mM-A[m Set Mark[29d[0;10;7m^X[m Exit[29;16H[0;10;7m^R[m Read File   [0;10;7m^\[m Replace     [0;10;7m^U[m Paste[61G[0;10;7m^J[m Justify     [0;10;7m^/[m Go To Line  [0;10;7mM-E[m Redo[106G[0;10;7mM-6[m Copy[2d[0;10;1m[32m[Unit][3d[39m[mDescription=Paperless webserver[4dAfter=network.target[5dWants=network.target[6dRequires=redis.service[7d[36m#Requires=paperless-webserver.socket[9d[0;10;1m[32m[Service][10d[39m[mUser=paperless[11dGroup=paperless[12dWorkingDirectory=/opt/paperless/src[13dExecStart=/opt/paperless/.local/bin/gunicorn -c /opt/paperless/gunicorn.conf.py paperless.asgi:application[15d[0;10;1m[32m[Install][16d[39m[mWantedBy=multi-user.target[2d[?25h[?0c[?25l[?1c[?25h[?0c[3d[?25l[?1c[?25h[?0c[4d[?25l[?1c[?25h[?0c[5d[?25l[?1c[?25h[?0c[6d[?25l[?1c[?25h[?0c[7d[?25l[?1c[?25h[?0c[C[?25l[?1c[?25h[?0c[A[?25l[?1c[?25h[?0c[7d[?25l[?1c[?25h[?0c[C[?25l[?1c[?25h[?0c[C[?25l[?1c[?25h[?0c[C[?25l[?1c[?25h[?0c[C[?25l[?1c[?25h[?0c[C[?25l[?1c[?25h[?0c[C[?25l[?1c[?25h[?0c[C[?25l[?1c[?25h[?0c[C[?25l[?1c[?25h[?0c[C[?25l[?1c[?25h[?0c[C[?25l[?1c[?25h[?0c[C[?25l[?1c[27d[K[?25h[?0c[7;14H[?25l[?1c[?25h[?0c[C[?25l[?1c[?25h[?0c[C[?25l[?1c[?25h[?0c[C[?25l[?1c[?25h[?0c[C[?25l[?1c[?25h[?0c[C[?25l[?1c[?25h[?0c[C[?25l[?1c[1;76H[0;10;7m*[123G[m[?25h[?0c[7;18H[1P[C[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[36mm-webserver.socket[7;12H[39m[m[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0cRequires=m-webserver.socket[K[?25l[?1c[?25h[?0c[A[?25l[?1c[?25h[?0c[A[?25l[?1c[?25h[?0c[A[?25l[?1c[?25h[?0c[A[?25l[?1c[?25h[?0cD[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0cs[?25l[?1c[?25h[?0cc[?25l[?1c[?25h[?0cr[?25l[?1c[?25h[?0ci[?25l[?1c[?25h[?0cp[?25l[?1c[?25h[?0ct[?25l[?1c[?25h[?0ci[?25l[?1c[?25h[?0co[?25l[?1c[?25h[?0cn[?25l[?1c[?25h[?0c=[?25l[?1c[?25h[?0cMPaperless webserver[3;14H[?25l[?1c[?25h[?0c-Paperless webserver[3;15H[?25l[?1c[?25h[?0cP[?25l[?1c[?25h[?0ca[?25l[?1c[?25h[?0cp[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0cr[?25l[?1c[?25h[?0cl[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0cs[?25l[?1c[?25h[?0cs[?25l[?1c[?25h[?0c [?25l[?1c[?25h[?0cw[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0cb[?25l[?1c[?25h[?0cs[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0cr[?25l[?1c[?25h[?0cv[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0cr[?25l[?1c[?25h[?0c [?25l[?1c[?25h[?0c [?25l[?1c[?25h[?0c [?25l[?1c[?25h[?0c [?25l[?1c[?25h[?0c [?25l[?1c[?25h[?0c [?25l[?1c[?25h[?0c [?25l[?1c[?25h[?0c [?25l[?1c[?25h[?0c [?25l[?1c[?25h[?0cW[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0cb[?25l[?1c[?25h[?0cs[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0cr[?25l[?1c[?25h[?0cv[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0cr[?25l[?1c[?25h[?0c[4;21H[?25l[?1c[?25h[?0c[5d[?25l[?1c[?25h[?0c[6dce[?25l[?1c[?25h[?0c[7;28H[?25l[?1c[?25h[?0c[8d[?25l[?1c[?25h[?0c[9;10H[?25l[?1c[?25h[?0c[10;15H[?25l[?1c[?25h[?0c[11ds[?25l[?1c[?25h[?0c[12;34H[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0cs[?25l[?1c[?25h[?0c/[?25l[?1c[?25h[?0cs[?25l[?1c[?25h[?0cr[?25l[?1c[?25h[?0cc[?25l[?1c[?25h[?0c[13d[?25l[?1c[?25h[?0cE[?25l[?1c[?25h[?0cx[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0cc[?25l[?1c[?25h[?0cS[?25l[?1c[?25h[?0ct[?25l[?1c[?25h[?0ca[?25l[?1c[?25h[?0cr[?25l[?1c[?25h[?0ct[?25l[?1c[?25h[?0c=[?25l[?1c[?25h[?0c/[?25l[?1c[?25h[?0co[?25l[?1c[?25h[?0cp[?25l[?1c[?25h[?0ct[?25l[?1c[?25h[?0c/[?25l[?1c[?25h[?0cp[?25l[?1c[?25h[?0ca[?25l[?1c[?25h[?0cp[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0cr[?25l[?1c[?25h[?0cl[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0cs[?25l[?1c[?25h[?0cs[?25l[?1c[?25h[?0c/[?25l[?1c[?25h[?0c.[?25l[?1c[?25h[?0cl[?25l[?1c[?25h[?0co[?25l[?1c[?25h[?0cc[?25l[?1c[?25h[?0ca[?25l[?1c[?25h[?0cl[?25l[?1c[?25h[?0c/[?25l[?1c[?25h[?0cb[?25l[?1c[?25h[?0ci[?25l[?1c[?25h[?0cn[?25l[?1c[?25h[?0c/[?25l[?1c[?25h[?0cg[?25l[?1c[?25h[?0cu[?25l[?1c[?25h[?0cn[?25l[?1c[?25h[?0ci[?25l[?1c[?25h[?0cc[?25l[?1c[?25h[?0co[?25l[?1c[?25h[?0cr[?25l[?1c[?25h[?0cn[?25l[?1c[?25h[?0c [?25l[?1c[?25h[?0c-[?25l[?1c[?25h[?0cc[?25l[?1c[?25h[?0c [?25l[?1c[?25h[?0c/[?25l[?1c[?25h[?0co[?25l[?1c[?25h[?0cp[?25l[?1c[?25h[?0ct[?25l[?1c[?25h[?0c/[?25l[?1c[?25h[?0cp[?25l[?1c[?25h[?0ca[?25l[?1c[?25h[?0cp[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0cr[?25l[?1c[?25h[?0cl[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0cs[?25l[?1c[?25h[?0cs[?25l[?1c[?25h[?0c/[?25l[?1c[?25h[?0cg[?25l[?1c[?25h[?0cu[?25l[?1c[?25h[?0cn[?25l[?1c[?25h[?0ci[?25l[?1c[?25h[?0cc[?25l[?1c[?25h[?0co[?25l[?1c[?25h[?0cr[?25l[?1c[?25h[?0cn[?25l[?1c[?25h[?0c.[?25l[?1c[?25h[?0cc[?25l[?1c[?25h[?0co[?25l[?1c[?25h[?0cn[?25l[?1c[?25h[?0cf[?25l[?1c[?25h[?0c.[?25l[?1c[?25h[?0cp[?25l[?1c[?25h[?0cy[?25l[?1c[?25h[?0c [?25l[?1c[?25h[?0cp[?25l[?1c[?25h[?0ca[?25l[?1c[?25h[?0cp[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0cr[?25l[?1c[?25h[?0cl[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0cs[?25l[?1c[?25h[?0cs[?25l[?1c[?25h[?0c.[?25l[?1c[?25h[?0ca[?25l[?1c[?25h[?0cs[?25l[?1c[?25h[?0cg[?25l[?1c[?25h[?0ci[?25l[?1c[?25h[?0c:[?25l[?1c[?25h[?0ca[?25l[?1c[?25h[?0cp[?25l[?1c[?25h[?0cp[?25l[?1c[?25h[?0cl[?25l[?1c[?25h[?0ci[?25l[?1c[?25h[?0cc[?25l[?1c[?25h[?0ca[?25l[?1c[?25h[?0ct[?25l[?1c[?25h[?0ci[?25l[?1c[?25h[?0con[?25l[?1c[?25h[?0c[14d[?25l[?1c[?25h[?0c[15d[?25l[?1c[?25h[?0c[C[?25l[?1c[?25h[?0c[C[?25l[?1c[?25h[?0c[C[?25l[?1c[?25h[?0c[C[?25l[?1c[?25h[?0c[C[?25l[?1c[?25h[?0c[C[?25l[?1c[?25h[?0c[C[?25l[?1c[?25h[?0c[C[?25l[?1c[?25h[?0c[C[?25l[?1c[?25h[?0c[16d[?25l[?1c[27;56H[0;10;7m[ Writing... ][m[1;76H[0;10;7m [123G[m[27;54H[0;10;7m[ Wrote 15 lines ][m[?25h[?0c[16d[?25l[?1c[27d[J[29d[?25h[?0c[29;1H[?2004l[?2004hroot@paperless-hakimi:/opt/paperless/scripts# ls
+[?2004linstaller	    m-queue.service	 m-webserver.service	     post-consumption-example.sh
+m-consumer.service  m-scheduler.service  paperless-webserver.socket  start_services.sh
+[?2004hroot@paperless-hakimi:/opt/paperless/scripts# nano m      mv paperless-s webservc     server.socker m-paperless.c socker ter[1P[1@t m-paperless.socket
+[?2004l[?2004hroot@paperless-hakimi:/opt/paperless/scripts# ls
+[?2004linstaller	    m-paperless.socket	m-scheduler.service  post-consumption-example.sh
+m-consumer.service  m-queue.service	m-webserver.service  start_services.sh
+[?2004hroot@paperless-hakimi:/opt/paperless/scripts# cd /system.       etc/systemd/system
+[?2004l[?2004hroot@paperless-hakimi:/etc/systemd/system# s ls
+[?2004lctrl-alt-del.target			m-scheduler.service	     sockets.target.wants     systemd-journald-audit.socket
+dbus-org.freedesktop.timesync1.service	m-webserver.service	     sshd.service	      timers.target.wants
+getty.target.wants			multi-user.target.wants      sys-kernel-config.mount
+m-consumer.service			network-online.target.wants  sys-kernel-debug.mount
+m-queue.service				redis.service		     sysinit.target.wants
+[?2004hroot@paperless-hakimi:/etc/systemd/system# nano      lscd /etc/systemd/systemls[Kmv paperless-webserver.socket m-paperless.socketroot@paperless-hakimi:/etc/systemd/system# ls[Knano m-webserver.servicels[K[8@cd scriptsls[K[8@cd scritpsls[Kreboot./setup.sh[8@chmod 777 setup.shlear[Knano setup.sh[8Pclearhmod 777 setup.sh[8P./setup.sh[4Preboot[4Pls[8@cd scritpsls[K[8@cd scriptsls[Knano m-webserver.servicels[Kmv paperless-webserver.socket m-paperless.socketroot@paperless-hakimi:/etc/systemd/system# ls[Kcd /etc/systemd/systemls[K[Klscd /etc/systemd/systemls[Kmv paperless-webserver.socket m-paperless.socketroot@paperless-hakimi:/etc/systemd/system# ls[Knano m-webserver.servicels[K[8@cd scriptsls[K[8@cd scriptsls[K[8@cd scritpsls[Kreboot./setup.sh[8@chmod 777 setup.shlear[Knano setup.shls[Kwget https://raw.githubusercontent.com/mufkuw/m-paperless/base/scripts/installer/ssetup.sh[Aerless-hakimi:/etc/systemd/system# rm setup.sh[K
+[K[Aroot@paperless-hakimi:/etc/systemd/system# rm setup.shwget https://raw.githubusercontent.com/mufkuw/m-paperless/base/scripts/installer/ssetup.sh[A@paperless-hakimi:/etc/systemd/system# rm setup.sh[K
+[K[Aroot@paperless-hakimi:/etc/systemd/system# rm setup.sh[2@nano setup.sh[3P./setup.sh[3@nano setup.sh[2Prm setup.shwget https://raw.githubusercontent.com/mufkuw/m-paperless/base/scripts/installer/ssetup.sh[Aerless-hakimi:/etc/systemd/system# ls[K
+[K[Aroot@paperless-hakimi:/etc/systemd/system# lsnano setup.sh[8Pclearhmod 777 setup.sh[8P./setup.sh[4Preboot[4Pls[8@cd scritpsls[K[8@cd scriptsls[Knano m-webserver.servicels[Kmv paperless-webserver.socket m-paperless.socketroot@paperless-hakimi:/etc/systemd/system# ls[Kcd /etc/systemd/systemls[K[Kln-  -s /opt/paperlss   less/scripts/m-webserver.socket m-webserver.soket   cket. 
+[?2004l[?2004hroot@paperless-hakimi:/etc/systemd/system# cd
+[?2004l[?2004hroot@paperless-hakimi:~# cd /opt/p apper     paperless/
+[?2004l[?2004hroot@paperless-hakimi:/opt/paperless# ls
+[?2004lCODEOWNERS	    LICENSE	  consume	    install-paperless-ngx.sh  paperless.conf.example  src
+CODE_OF_CONDUCT.md  Pipfile	  crowdin.yml	    media		      req.txt		      src-ui
+CONTRIBUTING.md     Pipfile.lock  data		    mkdocs.yml		      resources		      typescript
+Dockerfile	    __pycache__   gunicorn.conf.py  paperless.conf	      scripts
+[?2004hroot@paperless-hakimi:/opt/paperless# nano paperlr            cd script
+[?2004lbash: cd: script: No such file or directory
+[?2004hroot@paperless-hakimi:/opt/paperless# ls
+[?2004lCODEOWNERS	    LICENSE	  consume	    install-paperless-ngx.sh  paperless.conf.example  src
+CODE_OF_CONDUCT.md  Pipfile	  crowdin.yml	    media		      req.txt		      src-ui
+CONTRIBUTING.md     Pipfile.lock  data		    mkdocs.yml		      resources		      typescript
+Dockerfile	    __pycache__   gunicorn.conf.py  paperless.conf	      scripts
+[?2004hroot@paperless-hakimi:/opt/paperless# cd scir    script
+[?2004lbash: cd: script: No such file or directory
+[?2004hroot@paperless-hakimi:/opt/paperless# ls
+[?2004lCODEOWNERS	    LICENSE	  consume	    install-paperless-ngx.sh  paperless.conf.example  src
+CODE_OF_CONDUCT.md  Pipfile	  crowdin.yml	    media		      req.txt		      src-ui
+CONTRIBUTING.md     Pipfile.lock  data		    mkdocs.yml		      resources		      typescript
+Dockerfile	    __pycache__   gunicorn.conf.py  paperless.conf	      scripts
+[?2004hroot@paperless-hakimi:/opt/paperless# cd scrip        clear
+[?2004l[H[J[3J[?2004hroot@paperless-hakimi:/opt/paperless# ls
+[?2004lCODEOWNERS	    LICENSE	  consume	    install-paperless-ngx.sh  paperless.conf.example  src
+CODE_OF_CONDUCT.md  Pipfile	  crowdin.yml	    media		      req.txt		      src-ui
+CONTRIBUTING.md     Pipfile.lock  data		    mkdocs.yml		      resources		      typescript
+Dockerfile	    __pycache__   gunicorn.conf.py  paperless.conf	      scripts
+[?2004hroot@paperless-hakimi:/opt/paperless# cd scripts
+[?2004l[?2004hroot@paperless-hakimi:/opt/paperless/scripts# ls
+[?2004linstaller	    m-paperless.socket	m-scheduler.service  post-consumption-example.sh
+m-consumer.service  m-queue.service	m-webserver.service  start_services.sh
+[?2004hroot@paperless-hakimi:/opt/paperless/scripts# nano m-web          mv m-paperless.socket m-webserver.socket    cket
+[?2004l[?2004hroot@paperless-hakimi:/opt/paperless/scripts# ls
+[?2004linstaller	    m-queue.service	 m-webserver.service  post-consumption-example.sh
+m-consumer.service  m-scheduler.service  m-webserver.socket   start_services.sh
+[?2004hroot@paperless-hakimi:/opt/paperless/scripts# nano m-webserver.socket
+[?2004l[?2004h)0[1;29r[m[4l[?7h[39;49m[?25l[?1c[39;49m[m[H[J[27;56H[0;10;7m[ Reading... ][m[27;55H[0;10;7m[ Read 9 lines ][m[H[0;10;7m  GNU nano 7.2                                         m-webserver.socket                                                   [1;123H[m[28d[0;10;7m^G[m Help[28;16H[0;10;7m^O[m Write Out   [0;10;7m^W[m Where Is    [0;10;7m^K[m Cut[28;61H[0;10;7m^T[m Execute     [0;10;7m^C[m Location    [0;10;7mM-U[m Undo[106G[0;10;7mM-A[m Set Mark[29d[0;10;7m^X[m Exit[29;16H[0;10;7m^R[m Read File   [0;10;7m^\[m Replace     [0;10;7m^U[m Paste[61G[0;10;7m^J[m Justify     [0;10;7m^/[m Go To Line  [0;10;7mM-E[m Redo[106G[0;10;7mM-6[m Copy[2d[0;10;1m[32m[Unit][3d[39m[mDescription=Paperless Webserver Socket[5d[0;10;1m[32m[Socket][6d[39m[mListenStream=80[7dNoDelay=true[9d[0;10;1m[32m[Install][10d[39m[mWantedBy=sockets.target[2d[?25h[?0c[?25l[?1c[?25h[?0c[3d[?25l[?1c[?25h[?0c[4d[?25l[?1c[?25h[?0c[5d[?25l[?1c[?25h[?0c[6d[?25l[?1c[?25h[?0c[7d[?25l[?1c[?25h[?0c[8d[?25l[?1c[?25h[?0c[9d[?25l[?1c[?25h[?0c[10d[?25l[?1c[27;55H [0;10;7m[ Writing... ][m[K[1;123H[27;54H[0;10;7m[ Wrote 9 lines ][m[?25h[?0c[10d[?25l[?1c[27d[J[29d[?25h[?0c[29;1H[?2004l[?2004hroot@paperless-hakimi:/opt/paperless/scripts# ls
+[?2004linstaller	    m-queue.service	 m-webserver.service  post-consumption-example.sh
+m-consumer.service  m-scheduler.service  m-webserver.socket   start_services.sh
+[?2004hroot@paperless-hakimi:/opt/paperless/scripts# nano m-seb          nano m-que.se   ue.service
+[?2004l[?2004h)0[1;29r[m[4l[?7h[39;49m[?25l[?1c[39;49m[m[H[J[27;56H[0;10;7m[ Reading... ][m[27;54H[0;10;7m[ Read 12 lines ][m[H[0;10;7m  GNU nano 7.2                                           m-queue.service                                                    [1;123H[m[28d[0;10;7m^G[m Help[28;16H[0;10;7m^O[m Write Out   [0;10;7m^W[m Where Is    [0;10;7m^K[m Cut[28;61H[0;10;7m^T[m Execute     [0;10;7m^C[m Location    [0;10;7mM-U[m Undo[106G[0;10;7mM-A[m Set Mark[29d[0;10;7m^X[m Exit[29;16H[0;10;7m^R[m Read File   [0;10;7m^\[m Replace     [0;10;7m^U[m Paste[61G[0;10;7m^J[m Justify     [0;10;7m^/[m Go To Line  [0;10;7mM-E[m Redo[106G[0;10;7mM-6[m Copy[2d[0;10;1m[32m[Unit][3d[39m[mDescription=Paperless Celery Workers[4dRequires=redis.service[6d[0;10;1m[32m[Service][7d[39m[mUser=paperless[8dGroup=paperless[9dWorkingDirectory=/opt/paperless/src[10dExecStart=celery --app paperless worker --loglevel INFO[12d[0;10;1m[32m[Install][13d[39m[mWantedBy=multi-user.target[2d[?25h[?0c[?25l[?1c[?25h[?0c[3d[?25l[?1c[?25h[?0c[4d[?25l[?1c[?25h[?0c[A[?25l[?1c[?25h[?0cD[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0cs[?25l[?1c[?25h[?0cc[?25l[?1c[?25h[?0cr[?25l[?1c[?25h[?0ci[?25l[?1c[?25h[?0cp[?25l[?1c[?25h[?0ct[?25l[?1c[?25h[?0ci[?25l[?1c[?25h[?0co[?25l[?1c[?25h[?0c[4d[?25l[?1c[?25h[?0c[5d[?25l[?1c[?25h[?0c[6;10H[?25l[?1c[?25h[?0c[7dr[?25l[?1c[?25h[?0c[8d[?25l[?1c[?25h[?0c[9d[?25l[?1c[27d[K[?25h[?0c[10;11H[?25l[?1c[?25h[?0cc[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0cl[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0cr[?25l[?1c[?25h[?0cy[?25l[?1c[?25h[?0c [?25l[?1c[?25h[?0c-[?25l[?1c[?25h[?0c-[?25l[?1c[?25h[?0ca[?25l[?1c[?25h[?0cp[?25l[?1c[?25h[?0cp[?25l[?1c[?25h[?0c [?25l[?1c[?25h[?0cp[?25l[?1c[?25h[?0ca[?25l[?1c[?25h[?0cp[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0cr[?25l[?1c[?25h[?0cl[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0cs[?25l[?1c[?25h[?0cs[?25l[?1c[?25h[?0c [?25l[?1c[?25h[?0cw[?25l[?1c[?25h[?0co[?25l[?1c[?25h[?0cr[?25l[?1c[?25h[?0ck[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0cr[?25l[?1c[?25h[?0c [?25l[?1c[?25h[?0c-[?25l[?1c[?25h[?0c-[?25l[?1c[?25h[?0cl[?25l[?1c[?25h[?0co[?25l[?1c[27;56H[0;10;7m[ Writing... ][m[1;123H[27;54H[0;10;7m[ Wrote 12 lines ][m[?25h[?0c[10;45H[?25l[?1c[27d[J[29d[?25h[?0c[29;1H[?2004l[?2004hroot@paperless-hakimi:/opt/paperless/scripts# nano m-queue.service[1P[1P[1P[1P[1P[1@s[1@c[1@h[1@e[1@d[1@u[1@l[1@e[1@r
+[?2004l[?2004h)0[1;29r[m[4l[?7h[39;49m[?25l[?1c[39;49m[m[H[J[27;56H[0;10;7m[ Reading... ][m[27;54H[0;10;7m[ Read 12 lines ][m[H[0;10;7m  GNU nano 7.2                                         m-scheduler.service                                                  [1;123H[m[28d[0;10;7m^G[m Help[28;16H[0;10;7m^O[m Write Out   [0;10;7m^W[m Where Is    [0;10;7m^K[m Cut[28;61H[0;10;7m^T[m Execute     [0;10;7m^C[m Location    [0;10;7mM-U[m Undo[106G[0;10;7mM-A[m Set Mark[29d[0;10;7m^X[m Exit[29;16H[0;10;7m^R[m Read File   [0;10;7m^\[m Replace     [0;10;7m^U[m Paste[61G[0;10;7m^J[m Justify     [0;10;7m^/[m Go To Line  [0;10;7mM-E[m Redo[106G[0;10;7mM-6[m Copy[2d[0;10;1m[32m[Unit][3d[39m[mDescription=Paperless Celery Beat[4dRequires=redis.service[6d[0;10;1m[32m[Service][7d[39m[mUser=paperless[8dGroup=paperless[9dWorkingDirectory=/opt/paperless/src[10dExecStart=celery --app paperless beat --loglevel INFO[12d[0;10;1m[32m[Install][13d[39m[mWantedBy=multi-user.target[2d[?25h[?0c[?25l[?1c[?25h[?0c[3d[?25l[?1c[?25h[?0c[4d[?25l[?1c[?25h[?0c[5d[?25l[?1c[?25h[?0c[6d[?25l[?1c[?25h[?0c[7d[?25l[?1c[?25h[?0c[8d[?25l[?1c[?25h[?0c[9d[?25l[?1c[?25h[?0c[10d[?25l[?1c[?25h[?0cE[?25l[?1c[?25h[?0cx[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0cc[?25l[?1c[?25h[?0cS[?25l[?1c[?25h[?0ct[?25l[?1c[?25h[?0ca[?25l[?1c[?25h[?0cr[?25l[?1c[27d[J[29d[?25h[?0c[29;1H[?2004l[?2004hroot@paperless-hakimi:/opt/paperless/scripts# nano m-scheduler.service[1P[1P[1P[1P[1P[1P[1P[1P[1P[1@c[1@o[1@n[1@s[1@u[1@m[1@e[1@r
+[?2004l[?2004h)0[1;29r[m[4l[?7h[39;49m[?25l[?1c[39;49m[m[H[J[27;56H[0;10;7m[ Reading... ][m[27;54H[0;10;7m[ Read 12 lines ][m[H[0;10;7m  GNU nano 7.2                                         m-consumer.service                                                   [1;123H[m[28d[0;10;7m^G[m Help[28;16H[0;10;7m^O[m Write Out   [0;10;7m^W[m Where Is    [0;10;7m^K[m Cut[28;61H[0;10;7m^T[m Execute     [0;10;7m^C[m Location    [0;10;7mM-U[m Undo[106G[0;10;7mM-A[m Set Mark[29d[0;10;7m^X[m Exit[29;16H[0;10;7m^R[m Read File   [0;10;7m^\[m Replace     [0;10;7m^U[m Paste[61G[0;10;7m^J[m Justify     [0;10;7m^/[m Go To Line  [0;10;7mM-E[m Redo[106G[0;10;7mM-6[m Copy[2d[0;10;1m[32m[Unit][3d[39m[mDescription=Paperless consumer[4dRequires=redis.service[6d[0;10;1m[32m[Service][7d[39m[mUser=paperless[8dGroup=paperless[9dWorkingDirectory=/opt/paperless/src[10dExecStart=python3 manage.py document_consumer[12d[0;10;1m[32m[Install][13d[39m[mWantedBy=multi-user.target[2d[?25h[?0c[?25l[?1c[?25h[?0c[3d[?25l[?1c[?25h[?0c[4d[?25l[?1c[?25h[?0c[5d[?25l[?1c[?25h[?0c[6d[?25l[?1c[?25h[?0c[7d[?25l[?1c[?25h[?0c[8d[?25l[?1c[?25h[?0cG[?25l[?1c[?25h[?0c[9d[?25l[?1c[?25h[?0c[10d[?25l[?1c[?25h[?0c[11d[?25l[?1c[?25h[?0c[12d[?25l[?1c[?25h[?0c[A[?25l[?1c[?25h[?0c[A[?25l[?1c[?25h[?0c[A[?25l[?1c[?25h[?0c[A[?25l[?1c[?25h[?0c[A[?25l[?1c[?25h[?0c[A[?25l[?1c[?25h[?0c[A[?25l[?1c[?25h[?0c[A[?25l[?1c[27d[K[?25h[?0c[3d[?25l[?1c[?25h[?0c[A[?25l[?1c[?25h[?0c[C[?25l[?1c[?25h[?0c[3d[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0cs[?25l[?1c[?25h[?0cc[?25l[?1c[?25h[?0cr[?25l[?1c[?25h[?0ci[?25l[?1c[?25h[?0cp[?25l[?1c[?25h[?0ct[?25l[?1c[?25h[?0ci[?25l[?1c[?25h[?0co[?25l[?1c[?25h[?0cn[?25l[?1c[?25h[?0c=[?25l[?1c[?25h[?0cP[?25l[?1c[?25h[?0ca[?25l[?1c[?25h[?0cp[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0cr[?25l[?1c[?25h[?0cl[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0cs[?25l[?1c[?25h[?0cs[?25l[?1c[?25h[?0c [?25l[?1c[?25h[?0cc[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[3;13H[?25l[?1c[1;75H[0;10;7m*[123G[m[?25h[?0c[3;13HMPaperless consumer[3;14H[?25l[?1c[?25h[?0c-Paperless consumer[3;15H[?25l[?1c[?25h[?0c[3;25H[?25l[?1c[?25h[?0cc[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0cConsumer[26G[?25l[?1c[27;56H[0;10;7m[ Writing... ][m[1;75H[0;10;7m [123G[m[27;54H[0;10;7m[ Wrote 12 lines ][m[?25h[?0c[3;26H[?25l[?1c[27d[J[29d[?25h[?0c[29;1H[?2004l[?2004hroot@paperless-hakimi:/opt/paperless/scripts# ls
+[?2004linstaller	    m-queue.service	 m-webserver.service  post-consumption-example.sh
+m-consumer.service  m-scheduler.service  m-webserver.socket   start_services.sh
+[?2004hroot@paperless-hakimi:/opt/paperless/scripts# serv    systemctl enable m-*
+[?2004lCreated symlink /etc/systemd/system/sockets.target.wants/m-webserver.socket -> /opt/paperless/scripts/m-webserver.socket.
+[?2004hroot@paperless-hakimi:/opt/paperless/scripts# clear     clear
+[?2004l[H[J[3J[?2004hroot@paperless-hakimi:/opt/paperless/scripts# ls
+[?2004linstaller	    m-queue.service	 m-webserver.service  post-consumption-example.sh
+m-consumer.service  m-scheduler.service  m-webserver.socket   start_services.sh
+[?2004hroot@paperless-hakimi:/opt/paperless/scripts# m systemctl m-  start m-server      *
+[?2004l[?2004hroot@paperless-hakimi:/opt/paperless/scripts# netsta      systemctl start m-*[1P[1P[1P[1P[1P[1@s[1@t[1@a[1@u[1@t[1P[1P[1@t[1@u[1@s
+[?2004l[0;1;31mx[0m m-consumer.service - M-Paperless Consumer[m
+     Loaded: loaded (]8;;file://paperless-hakimi/etc/systemd/system/m-consumer.service/etc/systemd/system/m-consumer.service]8;;; [0;1;32menabled[0m; preset: [0;1;32menabled[0m)[m
+     Active: [0;1;31mfailed[0m (Result: exit-code) since Mon 2023-11-13 20:28:52 UTC; 8s ago[m
+   Duration: 35ms[m
+    Process: 2947 ExecStart=python3 manage.py document_consumer [0;1;31m(code=exited, status=1/FAILURE)[0m[m
+   Main PID: 2947 (code=exited, status=1/FAILURE)[m
+        CPU: 10ms[m
+[m
+Nov 13 20:28:52 paperless-hakimi systemd[1]: Started m-consumer.service - M-Paperless Consumer.[m
+Nov 13 20:28:52 paperless-hakimi python3[2947]: Traceback (most recent call last):[m
+Nov 13 20:28:52 paperless-hakimi python3[2947]:   File "/opt/paperless/src/manage.py", line 8, in <module>[m
+Nov 13 20:28:52 paperless-hakimi python3[2947]:     from django.core.management import execute_from_command_line[m
+Nov 13 20:28:52 paperless-hakimi python3[2947]: ModuleNotFoundError: No module named 'django'[m
+Nov 13 20:28:52 paperless-hakimi systemd[1]: [0;1;39m[0;1;31m[0;1;39mm-consumer.service: Main process exited, code=exited, status=1/FAILURE[0m[m
+Nov 13 20:28:52 paperless-hakimi systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mm-consumer.service: Failed with result 'exit-code'.[0m[m
+[m
+[0;1;31mx[0m m-queue.service - Paperless Celery Workers[m
+     Loaded: loaded (]8;;file://paperless-hakimi/etc/systemd/system/m-queue.service/etc/systemd/system/m-queue.service]8;;; [0;1;32menabled[0m; preset: [0;1;32menabled[0m)[m
+     Active: [0;1;31mfailed[0m (Result: exit-code) since Mon 2023-11-13 20:28:52 UTC; 9s ago[m
+   Duration: 1ms[m
+    Process: 2948 ExecStart=celery --app paperless worker --loglevel INFO [0;1;31m(code=exited, status=203/EXEC)[0m[m
+   Main PID: 2948 (code=exited, status=203/EXEC)[m
+        CPU: 751us[m
+[m
+Nov 13 20:28:52 paperless-hakimi systemd[1]: Started m-queue.service - Paperless Celery Workers.[m
+Nov 13 20:28:52 paperless-hakimi systemd[1]: [0;1;39m[0;1;31m[0;1;39mm-queue.service: Main process exited, code=exited, status=203/EXEC[0m[m
+Nov 13 20:28:52 paperless-hakimi systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mm-queue.service: Failed with result 'exit-code'.[0m[m
+[m
+[7mlines 1-28[27m[K[K [KESCESC[K[[[KBB[K[0;1;31mx[0m m-scheduler.service - Paperless Celery Beat[m
+[7mlines 2-29[27m[K[K [KESCESC[K[[[KBB[K     Loaded: loaded (]8;;file://paperless-hakimi/etc/systemd/system/m-scheduler.service/etc/systemd/system/m-scheduler.service]8;;; [0;1;32menabled[0m; preset: [0;1;32menabled[0m)[m
+[7mlines 3-30[27m[K[K [KESCESC[K[[[KBB[K     Active: [0;1;31mfailed[0m (Result: exit-code) since Mon 2023-11-13 20:28:52 UTC; 9s ago[m
+[7mlines 4-31[27m[K[K [KESCESC[K[[[KBB[K   Duration: 1ms[m
+[7mlines 5-32[27m[K[K [KESCESC[K[[[KBB[K    Process: 2949 ExecStart=celery --app paperless beat --loglevel INFO [0;1;31m(code=exited, status=203/EXEC)[0m[m
+[7mlines 6-33[27m[K[K [KESCESC[K[[[KBB[K   Main PID: 2949 (code=exited, status=203/EXEC)[m
+[7mlines 7-34[27m[K[K [KESCESC[K[[[KBB[K        CPU: 857us[m
+[7mlines 8-35[27m[K[K [KESCESC[K[[[KBB[K[m
+[7mlines 9-36[27m[K[K [KESCESC[K[[[KBB[KNov 13 20:28:52 paperless-hakimi systemd[1]: Started m-scheduler.service - Paperless Celery Beat.[m
+[7mlines 10-37[27m[K[K [KESCESC[K[[[KBB[KNov 13 20:28:52 paperless-hakimi systemd[1]: [0;1;39m[0;1;31m[0;1;39mm-scheduler.service: Main process exited, code=exited, status=203/EXEC[0m[m
+[7mlines 11-38[27m[K[K [KESCESC[K[[[KBB[KNov 13 20:28:52 paperless-hakimi systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mm-scheduler.service: Failed with result 'exit-code'.[0m[m
+[7mlines 12-39[27m[K[K [KESCESC[K[[[KBB[K[m
+[7mlines 13-40[27m[K[K [KESCESC[K[[[KBB[K[0;1;31mx[0m m-webserver.service - M-Paperless Webserver[m
+[7mlines 14-41[27m[K[K [KESCESC[K[[[KBB[K     Loaded: loaded (]8;;file://paperless-hakimi/etc/systemd/system/m-webserver.service/etc/systemd/system/m-webserver.service]8;;; [0;1;32menabled[0m; preset: [0;1;32menabled[0m)[m
+[7mlines 15-42[27m[K[K [KESCESC[K[[[KBB[K     Active: [0;1;31mfailed[0m (Result: exit-code) since Mon 2023-11-13 20:28:52 UTC; 9s ago[m
+[7mlines 16-43[27m[K[K [KESCESC[K[[[KBB[K   Duration: 1ms[m
+[7mlines 17-44[27m[K[K [KESCESC[K[[[KBB[KTriggeredBy: [0;1;32m*[0m m-webserver.socket[m
+[7mlines 18-45[27m[K[K [KESCESC[K[[[KBB[K    Process: 2950 ExecStart=/opt/paperless/.local/bin/gunicorn -c /opt/paperless/gunicorn.conf.py paperless.asgi:applicatio[m[7m>[27m
+[7mlines 19-46[27m[K[K [KESCESC[K[[[KBB[K   Main PID: 2950 (code=exited, status=203/EXEC)[m
+[7mlines 20-47[27m[K[K [KESCESC[K[[[KBB[K        CPU: 739us[m
+[7mlines 21-48[27m[K[K [KESCESC[K[[[KBB[K[m
+[7mlines 22-49[27m[K[K [KESCESC[K[[[KBB[KNov 13 20:28:52 paperless-hakimi systemd[1]: Started m-webserver.service - M-Paperless Webserver.[m
+[7mlines 23-50[27m[K[K [KESCESC[K[[[KBB[KNov 13 20:28:52 paperless-hakimi systemd[1]: [0;1;39m[0;1;31m[0;1;39mm-webserver.service: Main process exited, code=exited, status=203/EXEC[0m[m
+[7mlines 24-51[27m[K[K [KESCESC[K[[[KBB[KNov 13 20:28:52 paperless-hakimi systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mm-webserver.service: Failed with result 'exit-code'.[0m[m
+[7mlines 25-52[27m[K[K [KESCESC[K[[[KBB[K[m
+[7mlines 26-53[27m[K[K [KESCESC[K[[[KBB[K[0;1;32m*[0m m-webserver.socket - Paperless Webserver Socket[m
+[7mlines 27-54[27m[K[K [KESCESC[K[[[KBB[K     Loaded: loaded (]8;;file://paperless-hakimi/etc/systemd/system/m-webserver.socket/etc/systemd/system/m-webserver.socket]8;;; [0;1;32menabled[0m; preset: [0;1;32menabled[0m)[m
+[7mlines 28-55[27m[K[K [KESCESC[K[[[KBB[K     Active: [0;1;32mactive (listening)[0m since Mon 2023-11-13 20:28:52 UTC; 9s ago[m
+[7mlines 29-56[27m[K[K [KESCESC[K[[[KBB[K   Triggers: [0;1;31m*[0m m-webserver.service[m
+[7mlines 30-57[27m[K[K [KESCESC[K[[[KBB[K     Listen: [::]:80 (Stream)[m
+[7mlines 31-58[27m[K[K [KESCESC[K[[[KBB[K     CGroup: /system.slice/m-webserver.socket[m
+[7mlines 32-59[27m[K[K [KESCESC[K[[[KBB[K[m
+[7mlines 33-60[27m[K[K [KESCESC[K[[[KBB[KNov 13 20:28:52 paperless-hakimi systemd[1]: Listening on m-webserver.socket - Paperless Webserver Socket.[m
+[7mlines 34-61[27m[K[K [KESCESC[K[[[KBB[K[K[7mlines 34-61/61 (END)[27m[K[K [KESCESC[K[[[KBB[K[K[7mlines 34-61/61 (END)[27m[K[K [KESCESC[K[[[KBB[K[K[7mlines 34-61/61 (END)[27m[K[K [KESCESC[K[[[KBB[K[K[7mlines 34-61/61 (END)[27m[K[K [KESCESC[K[[[KBB[K[K[7mlines 34-61/61 (END)[27m[K
+[?2004hroot@paperless-hakimi:/opt/paperless/scripts# [K
+[?2004l[?2004hroot@paperless-hakimi:/opt/paperless/scripts# service m-          systemctl m stop m-*
+[?2004l[?2004hroot@paperless-hakimi:/opt/paperless/scripts# systemctl stop m-*[2@atus m-*
+[?2004l[0;1;31mx[0m m-consumer.service - M-Paperless Consumer[m
+     Loaded: loaded (]8;;file://paperless-hakimi/etc/systemd/system/m-consumer.service/etc/systemd/system/m-consumer.service]8;;; [0;1;32menabled[0m; preset: [0;1;32menabled[0m)[m
+     Active: [0;1;31mfailed[0m (Result: exit-code) since Mon 2023-11-13 20:28:52 UTC; 2min 0s ago[m
+   Duration: 35ms[m
+    Process: 2947 ExecStart=python3 manage.py document_consumer [0;1;31m(code=exited, status=1/FAILURE)[0m[m
+   Main PID: 2947 (code=exited, status=1/FAILURE)[m
+        CPU: 10ms[m
+[m
+Nov 13 20:28:52 paperless-hakimi systemd[1]: Started m-consumer.service - M-Paperless Consumer.[m
+Nov 13 20:28:52 paperless-hakimi python3[2947]: Traceback (most recent call last):[m
+Nov 13 20:28:52 paperless-hakimi python3[2947]:   File "/opt/paperless/src/manage.py", line 8, in <module>[m
+Nov 13 20:28:52 paperless-hakimi python3[2947]:     from django.core.management import execute_from_command_line[m
+Nov 13 20:28:52 paperless-hakimi python3[2947]: ModuleNotFoundError: No module named 'django'[m
+Nov 13 20:28:52 paperless-hakimi systemd[1]: [0;1;39m[0;1;31m[0;1;39mm-consumer.service: Main process exited, code=exited, status=1/FAILURE[0m[m
+Nov 13 20:28:52 paperless-hakimi systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mm-consumer.service: Failed with result 'exit-code'.[0m[m
+[m
+[0;1;31mx[0m m-queue.service - Paperless Celery Workers[m
+     Loaded: loaded (]8;;file://paperless-hakimi/etc/systemd/system/m-queue.service/etc/systemd/system/m-queue.service]8;;; [0;1;32menabled[0m; preset: [0;1;32menabled[0m)[m
+     Active: [0;1;31mfailed[0m (Result: exit-code) since Mon 2023-11-13 20:28:52 UTC; 2min 0s ago[m
+   Duration: 1ms[m
+    Process: 2948 ExecStart=celery --app paperless worker --loglevel INFO [0;1;31m(code=exited, status=203/EXEC)[0m[m
+   Main PID: 2948 (code=exited, status=203/EXEC)[m
+        CPU: 751us[m
+[m
+Nov 13 20:28:52 paperless-hakimi systemd[1]: Started m-queue.service - Paperless Celery Workers.[m
+Nov 13 20:28:52 paperless-hakimi systemd[1]: [0;1;39m[0;1;31m[0;1;39mm-queue.service: Main process exited, code=exited, status=203/EXEC[0m[m
+Nov 13 20:28:52 paperless-hakimi systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mm-queue.service: Failed with result 'exit-code'.[0m[m
+[m
+[7mlines 1-28[27m[K
+[?2004hroot@paperless-hakimi:/opt/paperless/scripts# [K^C[?2004l[?2004h[?2004l
+[?2004hroot@paperless-hakimi:/opt/paperless/scripts# 
+[?2004l[?2004hroot@paperless-hakimi:/opt/paperless/scripts# 
+[?2004l[?2004hroot@paperless-hakimi:/opt/paperless/scripts# 
+[?2004l[?2004hroot@paperless-hakimi:/opt/paperless/scripts# ls
+[?2004linstaller	    m-queue.service	 m-webserver.service  post-consumption-example.sh
+m-consumer.service  m-scheduler.service  m-webserver.socket   start_services.sh
+[?2004hroot@paperless-hakimi:/opt/paperless/scripts# cd ..     export      show env
+[?2004lbash: show: command not found
+[?2004hroot@paperless-hakimi:/opt/paperless/scripts# env
+[?2004lSHELL=/bin/bash
+PYENV_SHELL=bash
+PWD=/opt/paperless/scripts
+LOGNAME=root
+SYSTEMD_EXEC_PID=139
+MOTD_SHOWN=pam
+HOME=/root
+LANG=C
+INVOCATION_ID=a339bd0d9fb94d658a95a06716e56bfe
+TERM=linux
+USER=root
+SHLVL=2
+PYENV_ROOT=/root/.pyenv
+HUSHLOGIN=FALSE
+PATH=/root/.pyenv/shims:/root/.pyenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+MAIL=/var/mail/root
+OLDPWD=/opt/paperless
+_=/usr/bin/env
+[?2004hroot@paperless-hakimi:/opt/paperless/scripts# ls
+[?2004linstaller	    m-queue.service	 m-webserver.service  post-consumption-example.sh
+m-consumer.service  m-scheduler.service  m-webserver.socket   start_services.sh
+[?2004hroot@paperless-hakimi:/opt/paperless/scripts# nano m-queue.service
+[?2004l[?2004h)0[1;29r[m[4l[?7h[39;49m[?25l[?1c[39;49m[m[H[J[27;56H[0;10;7m[ Reading... ][m[27;54H[0;10;7m[ Read 12 lines ][m[H[0;10;7m  GNU nano 7.2                                           m-queue.service                                                    [1;123H[m[28d[0;10;7m^G[m Help[28;16H[0;10;7m^O[m Write Out   [0;10;7m^W[m Where Is    [0;10;7m^K[m Cut[28;61H[0;10;7m^T[m Execute     [0;10;7m^C[m Location    [0;10;7mM-U[m Undo[106G[0;10;7mM-A[m Set Mark[29d[0;10;7m^X[m Exit[29;16H[0;10;7m^R[m Read File   [0;10;7m^\[m Replace     [0;10;7m^U[m Paste[61G[0;10;7m^J[m Justify     [0;10;7m^/[m Go To Line  [0;10;7mM-E[m Redo[106G[0;10;7mM-6[m Copy[2d[0;10;1m[32m[Unit][3d[39m[mDescription=Paperless Celery Workers[4dRequires=redis.service[6d[0;10;1m[32m[Service][7d[39m[mUser=paperless[8dGroup=paperless[9dWorkingDirectory=/opt/paperless/src[10dExecStart=celery --app paperless worker --loglevel INFO[12d[0;10;1m[32m[Install][13d[39m[mWantedBy=multi-user.target[2d[?25h[?0c[?25l[?1c[?25h[?0c[3d[?25l[?1c[?25h[?0c[4d[?25l[?1c[?25h[?0c[5d[?25l[?1c[?25h[?0c[6d[?25l[?1c[?25h[?0c[7d[?25l[?1c[?25h[?0c[8d[?25l[?1c[?25h[?0c[9d[?25l[?1c[1;74H[0;10;7m*[123G[m[9;26r[9;1HM[1;29r[10;1H[?25h[?0c[?25l[?1c[?25h[?0c[A[?25l[?1c[?25h[?0cE[?25l[?1c[?25h[?0cn[?25l[?1c[?25h[?0cv[?25l[?1c[?25h[?0ci[?25l[?1c[?25h[?0c [?25l[?1c[?25h[?0ci[?25l[?1c[?25h[?0cr[?25l[?1c[?25h[?0co[?25l[?1c[?25h[?0cm[?25l[?1c[?25h[?0ce[?25l[?1c[27d[K[?25h[?0c[9;9Hn[?25l[?1c[?25h[?0ct[?25l[?1c[?25h[?0c [?25l[?1c[?25h[?0c=[?25l[?1c[?25h[?0c [?25l[?1c[?25h[?0c"[?25l[?1c[?25h[?0c"[?25l[?1c[?25h[?0c[?25l[?1c[27;56H[0;10;7m[ Writing... ][m[1;74H[0;10;7m [123G[m[27;54H[0;10;7m[ Wrote 13 lines ][m[?25h[?0c[9;15H[?25l[?1c[27d[J[29d[?25h[?0c[29;1H[?2004l[?2004hroot@paperless-hakimi:/opt/paperless/scripts# env
+[?2004lSHELL=/bin/bash
+PYENV_SHELL=bash
+PWD=/opt/paperless/scripts
+LOGNAME=root
+SYSTEMD_EXEC_PID=139
+MOTD_SHOWN=pam
+HOME=/root
+LANG=C
+INVOCATION_ID=a339bd0d9fb94d658a95a06716e56bfe
+TERM=linux
+USER=root
+SHLVL=2
+PYENV_ROOT=/root/.pyenv
+HUSHLOGIN=FALSE
+PATH=/root/.pyenv/shims:/root/.pyenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+MAIL=/var/mail/root
+OLDPWD=/opt/paperless
+_=/usr/bin/env
+[?2004hroot@paperless-hakimi:/opt/paperless/scripts# envnano m-queue.serviceenv[K   nano m-queue.service[Knano m-queue.servicels[Knano m-queue.service
+[?2004l[?2004h)0[1;29r[m[4l[?7h[39;49m[?25l[?1c[39;49m[m[H[J[27;56H[0;10;7m[ Reading... ][m[27;54H[0;10;7m[ Read 13 lines ][m[H[0;10;7m  GNU nano 7.2                                           m-queue.service                                                    [1;123H[m[28d[0;10;7m^G[m Help[28;16H[0;10;7m^O[m Write Out   [0;10;7m^W[m Where Is    [0;10;7m^K[m Cut[28;61H[0;10;7m^T[m Execute     [0;10;7m^C[m Location    [0;10;7mM-U[m Undo[106G[0;10;7mM-A[m Set Mark[29d[0;10;7m^X[m Exit[29;16H[0;10;7m^R[m Read File   [0;10;7m^\[m Replace     [0;10;7m^U[m Paste[61G[0;10;7m^J[m Justify     [0;10;7m^/[m Go To Line  [0;10;7mM-E[m Redo[106G[0;10;7mM-6[m Copy[2d[0;10;1m[32m[Unit][3d[39m[mDescription=Paperless Celery Workers[4dRequires=redis.service[6d[0;10;1m[32m[Service][7d[39m[mUser=paperless[8dGroup=paperless[9dEnviroment = ""[10dWorkingDirectory=/opt/paperless/src[11dExecStart=celery --app paperless worker --loglevel INFO[13d[0;10;1m[32m[Install][14d[39m[mWantedBy=multi-user.target[2d[?25h[?0c[?25l[?1c[?25h[?0c[3d[?25l[?1c[?25h[?0c[4d[?25l[?1c[?25h[?0c[5d[?25l[?1c[?25h[?0c[6d[?25l[?1c[?25h[?0c[7d[?25l[?1c[?25h[?0c[8d[?25l[?1c[?25h[?0c[9d[?25l[?1c[?25h[?0cE[?25l[?1c[?25h[?0cn[?25l[?1c[?25h[?0cv[?25l[?1c[?25h[?0ci[?25l[?1c[?25h[?0cr[?25l[?1c[?25h[?0co[?25l[?1c[?25h[?0cm[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0cn[?25l[?1c[?25h[?0ct[?25l[?1c[?25h[?0c [?25l[?1c[?25h[?0c=[?25l[?1c[27d[K[?25h[?0c[9;14H[?25l[?1c[?25h[?0c"[?25l[?1c[?25h[?0c"[?25l[?1c[1;74H[0;10;7m*[123G[m[?25h[?0c[9;15H [?25l[?1c[?25h[?0c [?25l[?1c7[10;27r8[10dM[1;29r[9;14H"PYENV_SHELL=bash" "PYENV_ROOT=/root/.pyenv" "PATH=/root/.pyenv/shims:/root/.pyenv/bin:$PATH"[10d[?25h[?0c[?25l[?1c[10;27r[27;1H
+[1;29r[9;107H[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[27;56H[0;10;7m[ Writing... ][m[1;74H[0;10;7m [123G[m[27;54H[0;10;7m[ Wrote 13 lines ][m[?25h[?0c[9;50H[?25l[?1c[27d[J[29d[?25h[?0c[29;1H[?2004l[?2004hroot@paperless-hakimi:/opt/paperless/scripts# systemctl enable m-queue
+[?2004l[?2004hroot@paperless-hakimi:/opt/paperless/scripts# systemctl enable m-queue[1P[1P[1P[1P[1P[1P[1@s[1@t[1@a[1@r[1@t
+[?2004l[?2004hroot@paperless-hakimi:/opt/paperless/scripts# systemctl start m-queue[1P[1P[1P[1P[1@t[1@a[1@t[1@u[1@s
+[?2004l[0;1;31mx[0m m-queue.service - Paperless Celery Workers[m
+     Loaded: loaded (]8;;file://paperless-hakimi/etc/systemd/system/m-queue.service/etc/systemd/system/m-queue.service]8;;; [0;1;32menabled[0m; preset: [0;1;32menabled[0m)[m
+     Active: [0;1;31mfailed[0m (Result: exit-code) since Mon 2023-11-13 20:37:27 UTC; 4s ago[m
+   Duration: 2ms[m
+    Process: 3004 ExecStart=celery --app paperless worker --loglevel INFO [0;1;31m(code=exited, status=203/EXEC)[0m[m
+   Main PID: 3004 (code=exited, status=203/EXEC)[m
+        CPU: 954us[m
+[m
+Nov 13 20:37:27 paperless-hakimi systemd[1]: Started m-queue.service - Paperless Celery Workers.[m
+Nov 13 20:37:27 paperless-hakimi systemd[1]: [0;1;39m[0;1;31m[0;1;39mm-queue.service: Main process exited, code=exited, status=203/EXEC[0m[m
+Nov 13 20:37:27 paperless-hakimi systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mm-queue.service: Failed with result 'exit-code'.[0m[m
+[K[?2004hroot@paperless-hakimi:/opt/paperless/scripts# systemctl status m-queue[Kwhere celery
+[?2004lbash: where: command not found
+[?2004hroot@paperless-hakimi:/opt/paperless/scripts# celery
+[?2004lUsage: celery [OPTIONS] COMMAND [ARGS]...
+
+  Celery command entrypoint.
+
+Options:
+  -A, --app APPLICATION
+  -b, --broker TEXT
+  --result-backend TEXT
+  --loader TEXT
+  --config TEXT
+  --workdir PATH
+  -C, --no-color
+  -q, --quiet
+  --version
+  --skip-checks          Skip Django core checks on startup. Setting the
+                         SKIP_CHECKS environment variable to any non-empty
+                         string will have the same effect.
+  --help                 Show this message and exit.
+
+Commands:
+  amqp     AMQP Administration Shell.
+  beat     Start the beat periodic task scheduler.
+  call     Call a task by name.
+  control  Workers remote control.
+  events   Event-stream utilities.
+  flower   Web based tool for monitoring and administrating Celery clusters.
+  graph    The ``celery graph`` command.
+  inspect  Inspect the worker at runtime.
+  list     Get info from broker.
+  logtool  The ``celery logtool`` command.
+  migrate  Migrate tasks from one broker to another.
+  multi    Start multiple worker instances.
+  purge    Erase all messages from all known task queues.
+  report   Shows information useful to include in bug-reports.
+  result   Print the return value for a given task id.
+  shell    Start shell session with convenient access to celery symbols.
+  status   Show list of workers that are online.
+  upgrade  Perform upgrade between versions.
+  worker   Start worker instance.
+[?2004hroot@paperless-hakimi:/opt/paperless/scripts# celery[Kcelery[6@where celerysystemctl status m-queue[1Prt m-queue[1@enable m-queue[4Pnano m-queue.service
+[?2004l[?2004h)0[1;29r[m[4l[?7h[39;49m[?25l[?1c[39;49m[m[H[J[27;56H[0;10;7m[ Reading... ][m[27;54H[0;10;7m[ Read 13 lines ][m[H[0;10;7m  GNU nano 7.2                                           m-queue.service                                                    [1;123H[m[28d[0;10;7m^G[m Help[28;16H[0;10;7m^O[m Write Out   [0;10;7m^W[m Where Is    [0;10;7m^K[m Cut[28;61H[0;10;7m^T[m Execute     [0;10;7m^C[m Location    [0;10;7mM-U[m Undo[106G[0;10;7mM-A[m Set Mark[29d[0;10;7m^X[m Exit[29;16H[0;10;7m^R[m Read File   [0;10;7m^\[m Replace     [0;10;7m^U[m Paste[61G[0;10;7m^J[m Justify     [0;10;7m^/[m Go To Line  [0;10;7mM-E[m Redo[106G[0;10;7mM-6[m Copy[2d[0;10;1m[32m[Unit][3d[39m[mDescription=Paperless Celery Workers[4dRequires=redis.service[6d[0;10;1m[32m[Service][7d[39m[mUser=paperless[8dGroup=paperless[9dEnviroment = "PYENV_SHELL=bash" "PYENV_ROOT=/root/.pyenv" "PATH=/root/.pyenv/shims:/root/.pyenv/bin:$PATH"[10dWorkingDirectory=/opt/paperless/src[11dExecStart=celery --app paperless worker --loglevel INFO[13d[0;10;1m[32m[Install][14d[39m[mWantedBy=multi-user.target[2d[?25h[?0c[?25l[?1c[?25h[?0c[3d[?25l[?1c[?25h[?0c[4d[?25l[?1c[?25h[?0c[5d[?25l[?1c[?25h[?0c[6d[?25l[?1c[?25h[?0c[7d[?25l[?1c[?25h[?0c[8d[?25l[?1c[?25h[?0c[9d[?25l[?1c[?25h[?0c[10d[?25l[?1c[?25h[?0cW[?25l[?1c[?25h[?0c[11d[?25l[?1c[?25h[?0cx[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0cc[?25l[?1c[?25h[?0cS[?25l[?1c[?25h[?0ct[?25l[?1c[?25h[?0c[A[?25l[?1c[?25h[?0cg[?25l[?1c[?25h[?0cD[?25l[?1c[?25h[?0ci[?25l[?1c[27d[K[?25h[?0c[10;11H[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0cc[?25l[?1c[?25h[?0ct[?25l[?1c[?25h[?0co[?25l[?1c[?25h[?0cr[?25l[?1c[?25h[?0cy[?25l[?1c[?25h[?0c[11d[?25l[?1c[?25h[?0c [?25l[?1c[?25h[?0c-[?25l[?1c[?25h[?0c-[?25l[?1c[?25h[?0ca[?25l[?1c[?25h[?0cp[?25l[?1c[?25h[?0cp[?25l[?1c[?25h[?0c [?25l[?1c[?25h[?0cp[?25l[?1c[?25h[?0ca[?25l[?1c[?25h[?0cp[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0cr[?25l[?1c[?25h[?0cl[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0cs[?25l[?1c[?25h[?0cs[?25l[?1c[?25h[?0c [?25l[?1c[?25h[?0cw[?25l[?1c[?25h[?0co[?25l[?1c[?25h[?0cr[?25l[?1c[?25h[?0ck[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0cr[?25l[?1c[?25h[?0c [?25l[?1c[?25h[?0c-[?25l[?1c[?25h[?0c-[?25l[?1c[?25h[?0c[10;36H[?25l[?1c[?25h[?0c[9;43H[?25l[?1c[27;56H[0;10;7m[ Writing... ][m[1;123H[27;54H[0;10;7m[ Wrote 13 lines ][m[?25h[?0c[9;43H[?25l[?1c[27d[J[29d[?25h[?0c[29;1H[?2004l[?2004hroot@paperless-hakimi:/opt/paperless/scripts# nano m-queue.servicecelery[K[6@where celerysystemctl status m-queue
+[?2004l[0;1;38;5;185mWarning: The unit file, source configuration file or drop-ins of m-queue.service changed on disk. Run 'systemctl daemon-rel[m[7m>[27m
+[0;1;31mx[0m m-queue.service - Paperless Celery Workers[m
+     Loaded: loaded (]8;;file://paperless-hakimi/etc/systemd/system/m-queue.service/etc/systemd/system/m-queue.service]8;;; [0;1;32menabled[0m; preset: [0;1;32menabled[0m)[m
+     Active: [0;1;31mfailed[0m (Result: exit-code) since Mon 2023-11-13 20:37:27 UTC; 1min 0s ago[m
+   Duration: 2ms[m
+    Process: 3004 ExecStart=celery --app paperless worker --loglevel INFO [0;1;31m(code=exited, status=203/EXEC)[0m[m
+   Main PID: 3004 (code=exited, status=203/EXEC)[m
+        CPU: 954us[m
+[m
+Nov 13 20:37:27 paperless-hakimi systemd[1]: Started m-queue.service - Paperless Celery Workers.[m
+Nov 13 20:37:27 paperless-hakimi systemd[1]: [0;1;39m[0;1;31m[0;1;39mm-queue.service: Main process exited, code=exited, status=203/EXEC[0m[m
+Nov 13 20:37:27 paperless-hakimi systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mm-queue.service: Failed with result 'exit-code'.[0m[m
+[7mlines 1-12/12 (END)[27m[K[K [KESCESC[K[[[KAA[K...skipping...
+[0;1;38;5;185mWarning: The unit file, source configuration file or drop-ins of m-queue.service changed on disk. Run 'systemctl daemon-rel[m[7m>[27m
+[0;1;31mx[0m m-queue.service - Paperless Celery Workers[m
+     Loaded: loaded (]8;;file://paperless-hakimi/etc/systemd/system/m-queue.service/etc/systemd/system/m-queue.service]8;;; [0;1;32menabled[0m; preset: [0;1;32menabled[0m)[m
+     Active: [0;1;31mfailed[0m (Result: exit-code) since Mon 2023-11-13 20:37:27 UTC; 1min 0s ago[m
+   Duration: 2ms[m
+    Process: 3004 ExecStart=celery --app paperless worker --loglevel INFO [0;1;31m(code=exited, status=203/EXEC)[0m[m
+   Main PID: 3004 (code=exited, status=203/EXEC)[m
+        CPU: 954us[m
+[m
+Nov 13 20:37:27 paperless-hakimi systemd[1]: Started m-queue.service - Paperless Celery Workers.[m
+Nov 13 20:37:27 paperless-hakimi systemd[1]: [0;1;39m[0;1;31m[0;1;39mm-queue.service: Main process exited, code=exited, status=203/EXEC[0m[m
+Nov 13 20:37:27 paperless-hakimi systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mm-queue.service: Failed with result 'exit-code'.[0m[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[7mlines 1-12/12 (END)[27m[K
+[?2004hroot@paperless-hakimi:/opt/paperless/scripts# [Ksystemctl status m-queue[4Pnano m-queue.servicecelery[K^C[?2004l[?2004h[?2004l
+[?2004hroot@paperless-hakimi:/opt/paperless/scripts# systemctl status m-queue[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1Pe[Kdemain     eamon reload       -realod
+[?2004l[0;1;31mUnknown command verb deamon-realod.[0m
+[?2004hroot@paperless-hakimi:/opt/paperless/scripts# systemctl deamon-realod[1P[1@ 
+[?2004l[0;1;31mUnknown command verb deamon.[0m
+[?2004hroot@paperless-hakimi:/opt/paperless/scripts# systemctl deamon realod              
+[?2004l[0m [0m[0m UNIT                                                                                                 [0m[0m LOAD  [0m[0m ACTIVE[0m[0m SUB  [m[7m>[27m
+  -.mount                                                                                               loaded active mount[m[7m>[27m
+  dev-.lxc-proc.mount                                                                                   loaded active mount[m[7m>[27m
+  dev-.lxc-sys.mount                                                                                    loaded active mount[m[7m>[27m
+  dev-full.mount                                                                                        loaded active mount[m[7m>[27m
+  dev-fuse.mount                                                                                        loaded active mount[m[7m>[27m
+  dev-mqueue.mount                                                                                      loaded active mount[m[7m>[27m
+  dev-null.mount                                                                                        loaded active mount[m[7m>[27m
+  dev-ptmx.mount                                                                                        loaded active mount[m[7m>[27m
+  dev-random.mount                                                                                      loaded active mount[m[7m>[27m
+  dev-tty.mount                                                                                         loaded active mount[m[7m>[27m
+  dev-tty1.mount                                                                                        loaded active mount[m[7m>[27m
+  dev-tty2.mount                                                                                        loaded active mount[m[7m>[27m
+  dev-urandom.mount                                                                                     loaded active mount[m[7m>[27m
+  dev-zero.mount                                                                                        loaded active mount[m[7m>[27m
+  proc-cpuinfo.mount                                                                                    loaded active mount[m[7m>[27m
+  proc-diskstats.mount                                                                                  loaded active mount[m[7m>[27m
+  proc-loadavg.mount                                                                                    loaded active mount[m[7m>[27m
+  proc-meminfo.mount                                                                                    loaded active mount[m[7m>[27m
+  proc-slabinfo.mount                                                                                   loaded active mount[m[7m>[27m
+  proc-stat.mount                                                                                       loaded active mount[m[7m>[27m
+  proc-swaps.mount                                                                                      loaded active mount[m[7m>[27m
+  proc-sys-net.mount                                                                                    loaded active mount[m[7m>[27m
+  proc-sysrq\x2dtrigger.mount                                                                           loaded active mount[m[7m>[27m
+  proc-uptime.mount                                                                                     loaded active mount[m[7m>[27m
+  run-credentials-systemd\x2dsysctl.service.mount                                                       loaded active mount[m[7m>[27m
+  run-credentials-systemd\x2dsysusers.service.mount                                                     loaded active mount[m[7m>[27m
+  run-credentials-systemd\x2dtmpfiles\x2dsetup.service.mount                                            loaded active mount[m[7m>[27m
+[7mlines 1-28[27m[K
+[?2004hroot@paperless-hakimi:/opt/paperless/scripts# [Ksystemctlq
+[?2004lbash: systemctlq: command not found
+[?2004hroot@paperless-hakimi:/opt/paperless/scripts# systemctlq[K
+[?2004l[0m [0m[0m UNIT                                                                                                 [0m[0m LOAD  [0m[0m ACTIVE[0m[0m SUB  [m[7m>[27m
+  -.mount                                                                                               loaded active mount[m[7m>[27m
+  dev-.lxc-proc.mount                                                                                   loaded active mount[m[7m>[27m
+  dev-.lxc-sys.mount                                                                                    loaded active mount[m[7m>[27m
+  dev-full.mount                                                                                        loaded active mount[m[7m>[27m
+  dev-fuse.mount                                                                                        loaded active mount[m[7m>[27m
+  dev-mqueue.mount                                                                                      loaded active mount[m[7m>[27m
+  dev-null.mount                                                                                        loaded active mount[m[7m>[27m
+  dev-ptmx.mount                                                                                        loaded active mount[m[7m>[27m
+  dev-random.mount                                                                                      loaded active mount[m[7m>[27m
+  dev-tty.mount                                                                                         loaded active mount[m[7m>[27m
+  dev-tty1.mount                                                                                        loaded active mount[m[7m>[27m
+  dev-tty2.mount                                                                                        loaded active mount[m[7m>[27m
+  dev-urandom.mount                                                                                     loaded active mount[m[7m>[27m
+  dev-zero.mount                                                                                        loaded active mount[m[7m>[27m
+  proc-cpuinfo.mount                                                                                    loaded active mount[m[7m>[27m
+  proc-diskstats.mount                                                                                  loaded active mount[m[7m>[27m
+  proc-loadavg.mount                                                                                    loaded active mount[m[7m>[27m
+  proc-meminfo.mount                                                                                    loaded active mount[m[7m>[27m
+  proc-slabinfo.mount                                                                                   loaded active mount[m[7m>[27m
+  proc-stat.mount                                                                                       loaded active mount[m[7m>[27m
+  proc-swaps.mount                                                                                      loaded active mount[m[7m>[27m
+  proc-sys-net.mount                                                                                    loaded active mount[m[7m>[27m
+  proc-sysrq\x2dtrigger.mount                                                                           loaded active mount[m[7m>[27m
+  proc-uptime.mount                                                                                     loaded active mount[m[7m>[27m
+  run-credentials-systemd\x2dsysctl.service.mount                                                       loaded active mount[m[7m>[27m
+  run-credentials-systemd\x2dsysusers.service.mount                                                     loaded active mount[m[7m>[27m
+  run-credentials-systemd\x2dtmpfiles\x2dsetup.service.mount                                            loaded active mount[m[7m>[27m
+[7mlines 1-28[27m[K[K[?2004hroot@paperless-hakimi:/opt/paperless/scripts# systemctlq[K deamon realod-realodstatus m-queue
+[?2004l[0;1;38;5;185mWarning: The unit file, source configuration file or drop-ins of m-queue.service changed on disk. Run 'systemctl daemon-rel[m[7m>[27m
+[0;1;31mx[0m m-queue.service - Paperless Celery Workers[m
+     Loaded: loaded (]8;;file://paperless-hakimi/etc/systemd/system/m-queue.service/etc/systemd/system/m-queue.service]8;;; [0;1;32menabled[0m; preset: [0;1;32menabled[0m)[m
+     Active: [0;1;31mfailed[0m (Result: exit-code) since Mon 2023-11-13 20:37:27 UTC; 1min 52s ago[m
+   Duration: 2ms[m
+    Process: 3004 ExecStart=celery --app paperless worker --loglevel INFO [0;1;31m(code=exited, status=203/EXEC)[0m[m
+   Main PID: 3004 (code=exited, status=203/EXEC)[m
+        CPU: 954us[m
+[m
+Nov 13 20:37:27 paperless-hakimi systemd[1]: Started m-queue.service - Paperless Celery Workers.[m
+Nov 13 20:37:27 paperless-hakimi systemd[1]: [0;1;39m[0;1;31m[0;1;39mm-queue.service: Main process exited, code=exited, status=203/EXEC[0m[m
+Nov 13 20:37:27 paperless-hakimi systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mm-queue.service: Failed with result 'exit-code'.[0m[m
+[7mlines 1-12/12 (END)[27m[K[K [KESCESC[K[[[KCC[H[J[H[H[J[H[0;1;38;5;185mof m-queue.service changed on disk. Run 'systemctl daemon-reload' to reload units.[0m[m
+[m
+]8;;file://paperless-hakimi/etc/systemd/system/m-queue.service]8;;[0;1;32mled[0m; preset: [0;1;32menabled[0m)[m
+[0;1;31m[0m0:37:27 UTC; 1min 52s ago[m
+[m
+glevel INFO [0;1;31m(code=exited, status=203/EXEC)[0m[m
+[m
+[m
+[m
+ervice - Paperless Celery Workers.[m
+[0;1;39m[0;1;31m[0;1;39mMain process exited, code=exited, status=203/EXEC[0m[m
+[0;1;38;5;185m[0;1;39m[0;1;38;5;185mFailed with result 'exit-code'.[0m[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[7mlines 1-12/12 (END)[27m[K[K [KESCESC[K[[[KDD[H[J[H[H[J[H[0;1;38;5;185mWarning: The unit file, source configuration file or drop-ins of m-queue.service changed on disk. Run 'systemctl daemon-rel[m[7m>[27m
+[0;1;31mx[0m m-queue.service - Paperless Celery Workers[m
+     Loaded: loaded (]8;;file://paperless-hakimi/etc/systemd/system/m-queue.service/etc/systemd/system/m-queue.service]8;;; [0;1;32menabled[0m; preset: [0;1;32menabled[0m)[m
+     Active: [0;1;31mfailed[0m (Result: exit-code) since Mon 2023-11-13 20:37:27 UTC; 1min 52s ago[m
+   Duration: 2ms[m
+    Process: 3004 ExecStart=celery --app paperless worker --loglevel INFO [0;1;31m(code=exited, status=203/EXEC)[0m[m
+   Main PID: 3004 (code=exited, status=203/EXEC)[m
+        CPU: 954us[m
+[m
+Nov 13 20:37:27 paperless-hakimi systemd[1]: Started m-queue.service - Paperless Celery Workers.[m
+Nov 13 20:37:27 paperless-hakimi systemd[1]: [0;1;39m[0;1;31m[0;1;39mm-queue.service: Main process exited, code=exited, status=203/EXEC[0m[m
+Nov 13 20:37:27 paperless-hakimi systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mm-queue.service: Failed with result 'exit-code'.[0m[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[7mlines 1-12/12 (END)[27m[K[K[?2004hroot@paperless-hakimi:/opt/paperless/scripts# systemctl status m-queue[K daemon-reload
+[?2004l[?2004hroot@paperless-hakimi:/opt/paperless/scripts# systemctl daemon-reloadstatus m-queue[K status m-queue
+[?2004l[0;1;31mx[0m m-queue.service - Paperless Celery Workers[m
+     Loaded: loaded (]8;;file://paperless-hakimi/etc/systemd/system/m-queue.service/etc/systemd/system/m-queue.service]8;;; [0;1;32menabled[0m; preset: [0;1;32menabled[0m)[m
+     Active: [0;1;31mfailed[0m (Result: exit-code) since Mon 2023-11-13 20:37:27 UTC; 2min 18s ago[m
+   Duration: 2ms[m
+   Main PID: 3004 (code=exited, status=203/EXEC)[m
+        CPU: 954us[m
+[m
+Nov 13 20:37:27 paperless-hakimi systemd[1]: Started m-queue.service - Paperless Celery Workers.[m
+Nov 13 20:37:27 paperless-hakimi systemd[1]: [0;1;39m[0;1;31m[0;1;39mm-queue.service: Main process exited, code=exited, status=203/EXEC[0m[m
+Nov 13 20:37:27 paperless-hakimi systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mm-queue.service: Failed with result 'exit-code'.[0m[m
+Nov 13 20:39:43 paperless-hakimi systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185m]8;;file://paperless-hakimi/etc/systemd/system/m-queue.service/etc/systemd/system/m-queue.service]8;;:8: Unknown key name 'Enviroment' in sectio[m[7m>[27m
+[7mlines 1-11/11 (END)[27m[K[K [KESCESC[K[[[KAA[K...skipping...
+[0;1;31mx[0m m-queue.service - Paperless Celery Workers[m
+     Loaded: loaded (]8;;file://paperless-hakimi/etc/systemd/system/m-queue.service/etc/systemd/system/m-queue.service]8;;; [0;1;32menabled[0m; preset: [0;1;32menabled[0m)[m
+     Active: [0;1;31mfailed[0m (Result: exit-code) since Mon 2023-11-13 20:37:27 UTC; 2min 18s ago[m
+   Duration: 2ms[m
+   Main PID: 3004 (code=exited, status=203/EXEC)[m
+        CPU: 954us[m
+[m
+Nov 13 20:37:27 paperless-hakimi systemd[1]: Started m-queue.service - Paperless Celery Workers.[m
+Nov 13 20:37:27 paperless-hakimi systemd[1]: [0;1;39m[0;1;31m[0;1;39mm-queue.service: Main process exited, code=exited, status=203/EXEC[0m[m
+Nov 13 20:37:27 paperless-hakimi systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mm-queue.service: Failed with result 'exit-code'.[0m[m
+Nov 13 20:39:43 paperless-hakimi systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185m]8;;file://paperless-hakimi/etc/systemd/system/m-queue.service/etc/systemd/system/m-queue.service]8;;:8: Unknown key name 'Enviroment' in sectio[m[7m>[27m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[1m~[m
+[7mlines 1-11/11 (END)[27m[K[K[?2004hroot@paperless-hakimi:/opt/paperless/scripts# systemctl status m-queue              start m-queu
+[?2004l[0;1;31mFailed to start m-queu.service: Unit m-queu.service not found.[0m
+[?2004hroot@paperless-hakimi:/opt/paperless/scripts# systemctl start m-queue
+[?2004l[?2004hroot@paperless-hakimi:/opt/paperless/scripts# systemctl start m-queue[Ktus m-queue
+[?2004l[0;1;31mx[0m m-queue.service - Paperless Celery Workers[m
+     Loaded: loaded (]8;;file://paperless-hakimi/etc/systemd/system/m-queue.service/etc/systemd/system/m-queue.service]8;;; [0;1;32menabled[0m; preset: [0;1;32menabled[0m)[m
+     Active: [0;1;31mfailed[0m (Result: exit-code) since Mon 2023-11-13 20:39:57 UTC; 1s ago[m
+   Duration: 2ms[m
+    Process: 3101 ExecStart=celery --app paperless worker --loglevel INFO [0;1;31m(code=exited, status=203/EXEC)[0m[m
+   Main PID: 3101 (code=exited, status=203/EXEC)[m
+        CPU: 957us[m
+[m
+Nov 13 20:39:57 paperless-hakimi systemd[1]: Started m-queue.service - Paperless Celery Workers.[m
+Nov 13 20:39:57 paperless-hakimi systemd[1]: [0;1;39m[0;1;31m[0;1;39mm-queue.service: Main process exited, code=exited, status=203/EXEC[0m[m
+Nov 13 20:39:57 paperless-hakimi systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mm-queue.service: Failed with result 'exit-code'.[0m[m
+[K[?2004hroot@paperless-hakimi:/opt/paperless/scripts# tail -f /var/log/syslog
+[?2004l^C
+[?2004hroot@paperless-hakimi:/opt/paperless/scripts# journalctl -xe
+[?2004l[K[0;38;5;245m--[0m [0;32mDefined-By: systemd[0m[m
+[0;38;5;245m--[0m [0;32mSupport: https://www.debian.org/support[0m[m
+[0;38;5;245m--[0m [0;32m[0m[m
+[0;38;5;245m--[0m [0;32mThe process celery could not be executed and failed.[0m[m
+[0;38;5;245m--[0m [0;32m[0m[m
+[0;38;5;245m--[0m [0;32mThe error number returned by this process is ERRNO.[0m[m
+Nov 13 20:39:57 paperless-hakimi (celery)[3101]: [0;1;31m[0;1;39m[0;1;31mm-queue.service: Failed at step EXEC spawning celery: No such file or dire[m[7m>[27m
+[0;38;5;245m-- [0m[0;32mSubject: Process celery could not be executed[0m[m
+[0;38;5;245m--[0m [0;32mDefined-By: systemd[0m[m
+[0;38;5;245m--[0m [0;32mSupport: https://www.debian.org/support[0m[m
+[0;38;5;245m--[0m [0;32m[0m[m
+[0;38;5;245m--[0m [0;32mThe process celery could not be executed and failed.[0m[m
+[0;38;5;245m--[0m [0;32m[0m[m
+[0;38;5;245m--[0m [0;32mThe error number returned by this process is ERRNO.[0m[m
+Nov 13 20:39:57 paperless-hakimi systemd[1]: [0;1;39m[0;1;31m[0;1;39mm-queue.service: Main process exited, code=exited, status=203/EXEC[0m[m
+[0;38;5;245m-- [0m[0;32mSubject: Unit process exited[0m[m
+[0;38;5;245m--[0m [0;32mDefined-By: systemd[0m[m
+[0;38;5;245m--[0m [0;32mSupport: https://www.debian.org/support[0m[m
+[0;38;5;245m--[0m [0;32m[0m[m
+[0;38;5;245m--[0m [0;32mAn ExecStart= process belonging to unit m-queue.service has exited.[0m[m
+[0;38;5;245m--[0m [0;32m[0m[m
+[0;38;5;245m--[0m [0;32mThe process' exit code is 'exited' and its exit status is 203.[0m[m
+Nov 13 20:39:57 paperless-hakimi systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mm-queue.service: Failed with result 'exit-code'.[0m[m
+[0;38;5;245m-- [0m[0;32mSubject: Unit failed[0m[m
+[0;38;5;245m--[0m [0;32mDefined-By: systemd[0m[m
+[0;38;5;245m--[0m [0;32mSupport: https://www.debian.org/support[0m[m
+[0;38;5;245m--[0m [0;32m[0m[m
+[0;38;5;245m--[0m [0;32mThe unit m-queue.service has entered the 'failed' state with result 'exit-code'.[0m[m
+[7mlines 1391-1418/1418 (END)[27m[K[K [KESCESC[K[[[KCC[H[J[H[m
+[m
+[m
+[m
+[m
+[m
+[0;1;31m[0;1;39m[0;1;31mce: Failed at step EXEC spawning celery: No such file or directory[0m[m
+[m
+[m
+[m
+[m
+[m
+[m
+[m
+[0;1;39m[0;1;31m[0;1;39mMain process exited, code=exited, status=203/EXEC[0m[m
+[m
+[m
+[m
+[m
+[0;38;5;245m[0m[0;32m exited.[0m[m
+[m
+[0;38;5;245m[0m[0;32m03.[0m[m
+[0;1;38;5;185m[0;1;39m[0;1;38;5;185mFailed with result 'exit-code'.[0m[m
+[m
+[m
+[m
+[m
+[0;38;5;245m[0m[0;32mh result 'exit-code'.[0m[m
+[7mlines 1391-1418/1418 (END)[27m[K[K [KESCESC[K[[[KDD[H[J[H[0;38;5;245m--[0m [0;32mDefined-By: systemd[0m[m
+[0;38;5;245m--[0m [0;32mSupport: https://www.debian.org/support[0m[m
+[0;38;5;245m--[0m [0;32m[0m[m
+[0;38;5;245m--[0m [0;32mThe process celery could not be executed and failed.[0m[m
+[0;38;5;245m--[0m [0;32m[0m[m
+[0;38;5;245m--[0m [0;32mThe error number returned by this process is ERRNO.[0m[m
+Nov 13 20:39:57 paperless-hakimi (celery)[3101]: [0;1;31m[0;1;39m[0;1;31mm-queue.service: Failed at step EXEC spawning celery: No such file or dire[m[7m>[27m
+[0;38;5;245m-- [0m[0;32mSubject: Process celery could not be executed[0m[m
+[0;38;5;245m--[0m [0;32mDefined-By: systemd[0m[m
+[0;38;5;245m--[0m [0;32mSupport: https://www.debian.org/support[0m[m
+[0;38;5;245m--[0m [0;32m[0m[m
+[0;38;5;245m--[0m [0;32mThe process celery could not be executed and failed.[0m[m
+[0;38;5;245m--[0m [0;32m[0m[m
+[0;38;5;245m--[0m [0;32mThe error number returned by this process is ERRNO.[0m[m
+Nov 13 20:39:57 paperless-hakimi systemd[1]: [0;1;39m[0;1;31m[0;1;39mm-queue.service: Main process exited, code=exited, status=203/EXEC[0m[m
+[0;38;5;245m-- [0m[0;32mSubject: Unit process exited[0m[m
+[0;38;5;245m--[0m [0;32mDefined-By: systemd[0m[m
+[0;38;5;245m--[0m [0;32mSupport: https://www.debian.org/support[0m[m
+[0;38;5;245m--[0m [0;32m[0m[m
+[0;38;5;245m--[0m [0;32mAn ExecStart= process belonging to unit m-queue.service has exited.[0m[m
+[0;38;5;245m--[0m [0;32m[0m[m
+[0;38;5;245m--[0m [0;32mThe process' exit code is 'exited' and its exit status is 203.[0m[m
+Nov 13 20:39:57 paperless-hakimi systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mm-queue.service: Failed with result 'exit-code'.[0m[m
+[0;38;5;245m-- [0m[0;32mSubject: Unit failed[0m[m
+[0;38;5;245m--[0m [0;32mDefined-By: systemd[0m[m
+[0;38;5;245m--[0m [0;32mSupport: https://www.debian.org/support[0m[m
+[0;38;5;245m--[0m [0;32m[0m[m
+[0;38;5;245m--[0m [0;32mThe unit m-queue.service has entered the 'failed' state with result 'exit-code'.[0m[m
+[7mlines 1391-1418/1418 (END)[27m[K[K [K^X^X[KESCESC[K[7mlines 1391-1418/1418 (END)[27m[K[KBrackets: [K[[[K]][K[K[7mNo matching bracket  (press RETURN)[27m[29;1H[K[K[7mlines 1391-1418/1418 (END)[27m[K[K [KESCESC[K[[[KAA[K[HM[0;38;5;245m-- [0m[0;32mSubject: Process celery could not be executed[0m[m
+[29;1H[K[7mlines 1390-1417/1418 100%[27m[K[K[?2004hroot@paperless-hakimi:/opt/paperless/scripts# journalctl -xetail -f /var/log/syslogsystemctl status m-queue[1Prt m-queue[Ktus m-queue[1Pdaemon-reloadstatus m-queue[Kq[K deamon realod-realodstatus m-queue[4Pnano m-queue.service
+[?2004l[?2004h)0[1;29r[m[4l[?7h[39;49m[?25l[?1c[39;49m[m[H[J[27;56H[0;10;7m[ Reading... ][m[27;54H[0;10;7m[ Read 13 lines ][m[H[0;10;7m  GNU nano 7.2                                           m-queue.service                                                    [1;123H[m[28d[0;10;7m^G[m Help[28;16H[0;10;7m^O[m Write Out   [0;10;7m^W[m Where Is    [0;10;7m^K[m Cut[28;61H[0;10;7m^T[m Execute     [0;10;7m^C[m Location    [0;10;7mM-U[m Undo[106G[0;10;7mM-A[m Set Mark[29d[0;10;7m^X[m Exit[29;16H[0;10;7m^R[m Read File   [0;10;7m^\[m Replace     [0;10;7m^U[m Paste[61G[0;10;7m^J[m Justify     [0;10;7m^/[m Go To Line  [0;10;7mM-E[m Redo[106G[0;10;7mM-6[m Copy[2d[0;10;1m[32m[Unit][3d[39m[mDescription=Paperless Celery Workers[4dRequires=redis.service[6d[0;10;1m[32m[Service][7d[39m[mUser=paperless[8dGroup=paperless[9dEnviroment = "PYENV_SHELL=bash" "PYENV_ROOT=/root/.pyenv" "PATH=/root/.pyenv/shims:/root/.pyenv/bin:$PATH"[10dWorkingDirectory=/opt/paperless/src[11dExecStart=celery --app paperless worker --loglevel INFO[13d[0;10;1m[32m[Install][14d[39m[mWantedBy=multi-user.target[2d[?25h[?0c[?25l[?1c[?25h[?0c[3d[?25l[?1c[?25h[?0c[4d[?25l[?1c[?25h[?0c[5d[?25l[?1c[?25h[?0c[6d[?25l[?1c[?25h[?0c[7d[?25l[?1c[?25h[?0c[8d[?25l[?1c[?25h[?0c[9d[?25l[?1c[?25h[?0c[10d[?25l[?1c[?25h[?0cW[?25l[?1c[?25h[?0co[?25l[?1c[?25h[?0cr[?25l[?1c[?25h[?0ck[?25l[?1c[?25h[?0ci[?25l[?1c[?25h[?0cn[?25l[?1c[?25h[?0cg[?25l[?1c[?25h[?0cD[?25l[?1c[?25h[?0ci[?25l[?1c[?25h[?0cr[?25l[?1c[?25h[?0ce[?25l[?1c[27d[K[?25h[?0c[10;13H[?25l[?1c[?25h[?0ct[?25l[?1c[?25h[?0co[?25l[?1c[?25h[?0cr[?25l[?1c[?25h[?0cy[?25l[?1c[?25h[?0c=[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0cn[?25l[?1c[?25h[?0cg[?25l[?1c[?25h[?0cD[?25l[?1c[?25h[?0ci[?25l[?1c[?25h[?0cr[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0cc[?25l[?1c[?25h[?0ct[?25l[?1c[?25h[?0co[?25l[?1c[?25h[?0cr[?25l[?1c[?25h[?0cy[?25l[?1c[?25h[?0c=[?25l[?1c[?25h[?0c/[?25l[?1c[?25h[?0co[?25l[?1c[?25h[?0cp[?25l[?1c[?25h[?0ct[?25l[?1c[?25h[?0c/[?25l[?1c[?25h[?0cp[?25l[?1c[?25h[?0ca[?25l[?1c[?25h[?0cp[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0cr[?25l[?1c[?25h[?0cl[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0c[11d[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0cp[?25l[?1c[?25h[?0cp[?25l[?1c[?25h[?0c [?25l[?1c[?25h[?0cp[?25l[?1c[?25h[?0ca[?25l[?1c[?25h[?0cp[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0cr[?25l[?1c[?25h[?0cl[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0cs[?25l[?1c[?25h[?0cs[?25l[?1c[?25h[?0c [?25l[?1c[?25h[?0cw[?25l[?1c[?25h[?0co[?25l[?1c[27;56H[0;10;7m[ Writing... ][m[1;123H[27;54H[0;10;7m[ Wrote 13 lines ][m[?25h[?0c[11;36H[?25l[?1c[27d[J[29d[?25h[?0c[29;1H[?2004l[?2004hroot@paperless-hakimi:/opt/paperless/scripts# apt ins       cell ary
+[?2004lbash: celary: command not found
+[?2004hroot@paperless-hakimi:/opt/paperless/scripts# cc elery
+[?2004lUsage: celery [OPTIONS] COMMAND [ARGS]...
+
+  Celery command entrypoint.
+
+Options:
+  -A, --app APPLICATION
+  -b, --broker TEXT
+  --result-backend TEXT
+  --loader TEXT
+  --config TEXT
+  --workdir PATH
+  -C, --no-color
+  -q, --quiet
+  --version
+  --skip-checks          Skip Django core checks on startup. Setting the
+                         SKIP_CHECKS environment variable to any non-empty
+                         string will have the same effect.
+  --help                 Show this message and exit.
+
+Commands:
+  amqp     AMQP Administration Shell.
+  beat     Start the beat periodic task scheduler.
+  call     Call a task by name.
+  control  Workers remote control.
+  events   Event-stream utilities.
+  flower   Web based tool for monitoring and administrating Celery clusters.
+  graph    The ``celery graph`` command.
+  inspect  Inspect the worker at runtime.
+  list     Get info from broker.
+  logtool  The ``celery logtool`` command.
+  migrate  Migrate tasks from one broker to another.
+  multi    Start multiple worker instances.
+  purge    Erase all messages from all known task queues.
+  report   Shows information useful to include in bug-reports.
+  result   Print the return value for a given task id.
+  shell    Start shell session with convenient access to celery symbols.
+  status   Show list of workers that are online.
+  upgrade  Perform upgrade between versions.
+  worker   Start worker instance.
+[?2004hroot@paperless-hakimi:/opt/paperless/scripts# celery stau  atus
+[?2004l
+^C
+Aborted!
+[?2004hroot@paperless-hakimi:/opt/paperless/scripts# clear
+[?2004l[H[J[3J[?2004hroot@paperless-hakimi:/opt/paperless/scripts# ls
+[?2004linstaller	    m-queue.service	 m-webserver.service  post-consumption-example.sh
+m-consumer.service  m-scheduler.service  m-webserver.socket   start_services.sh
+[?2004hroot@paperless-hakimi:/opt/paperless/scripts# nano m-queye.   ue.service
+[?2004l[?2004h)0[1;29r[m[4l[?7h[39;49m[?25l[?1c[39;49m[m[H[J[27;56H[0;10;7m[ Reading... ][m[27;54H[0;10;7m[ Read 13 lines ][m[H[0;10;7m  GNU nano 7.2                                           m-queue.service                                                    [1;123H[m[28d[0;10;7m^G[m Help[28;16H[0;10;7m^O[m Write Out   [0;10;7m^W[m Where Is    [0;10;7m^K[m Cut[28;61H[0;10;7m^T[m Execute     [0;10;7m^C[m Location    [0;10;7mM-U[m Undo[106G[0;10;7mM-A[m Set Mark[29d[0;10;7m^X[m Exit[29;16H[0;10;7m^R[m Read File   [0;10;7m^\[m Replace     [0;10;7m^U[m Paste[61G[0;10;7m^J[m Justify     [0;10;7m^/[m Go To Line  [0;10;7mM-E[m Redo[106G[0;10;7mM-6[m Copy[2d[0;10;1m[32m[Unit][3d[39m[mDescription=Paperless Celery Workers[4dRequires=redis.service[6d[0;10;1m[32m[Service][7d[39m[mUser=paperless[8dGroup=paperless[9dEnviroment = "PYENV_SHELL=bash" "PYENV_ROOT=/root/.pyenv" "PATH=/root/.pyenv/shims:/root/.pyenv/bin:$PATH"[10dWorkingDirectory=/opt/paperless/src[11dExecStart=celery --app paperless worker --loglevel INFO[13d[0;10;1m[32m[Install][14d[39m[mWantedBy=multi-user.target[2d[?25h[?0c[?25l[?1c[27d[J[29d[?25h[?0c[29;1H[?2004l[?2004hroot@paperless-hakimi:/opt/paperless/scripts# s ssy  ystemct  l rel   daemon-reload
+[?2004l[?2004hroot@paperless-hakimi:/opt/paperless/scripts# systemctl daemon-reload             stat rt m-queye  iue   ue
+[?2004l[?2004hroot@paperless-hakimi:/opt/paperless/scripts# systemctl start m-queuedaemon-reload[3Pnano m-queue.servicesystemctl daemon-reloadstart m-queue[1P[1P[1P[1P[1@t[1@a[1@t[1@u[1@s
+[?2004l[0;1;31mx[0m m-queue.service - Paperless Celery Workers[m
+     Loaded: loaded (]8;;file://paperless-hakimi/etc/systemd/system/m-queue.service/etc/systemd/system/m-queue.service]8;;; [0;1;32menabled[0m; preset: [0;1;32menabled[0m)[m
+     Active: [0;1;31mfailed[0m (Result: exit-code) since Mon 2023-11-13 20:43:01 UTC; 7s ago[m
+   Duration: 2ms[m
+    Process: 3238 ExecStart=celery --app paperless worker --loglevel INFO [0;1;31m(code=exited, status=203/EXEC)[0m[m
+   Main PID: 3238 (code=exited, status=203/EXEC)[m
+        CPU: 980us[m
+[m
+Nov 13 20:43:01 paperless-hakimi systemd[1]: Started m-queue.service - Paperless Celery Workers.[m
+Nov 13 20:43:01 paperless-hakimi systemd[1]: [0;1;39m[0;1;31m[0;1;39mm-queue.service: Main process exited, code=exited, status=203/EXEC[0m[m
+Nov 13 20:43:01 paperless-hakimi systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mm-queue.service: Failed with result 'exit-code'.[0m[m
+[K[?2004hroot@paperless-hakimi:/opt/paperless/scripts# find s celery
+[?2004lfind: 'celery': No such file or directory
+[?2004hroot@paperless-hakimi:/opt/paperless/scripts# where celery
+[?2004lbash: where: command not found
+[?2004hroot@paperless-hakimi:/opt/paperless/scripts# apt install where
+[?2004lReading package lists... 0%Reading package lists... 100%Reading package lists... Done
+Building dependency tree... 0%Building dependency tree... 0%Building dependency tree... 50%Building dependency tree... 50%Building dependency tree... Done
+Reading state information... 0% Reading state information... 0%Reading state information... Done
+[1;31mE: [0mUnable to locate package where[0m
+[?2004hroot@paperless-hakimi:/opt/paperless/scripts# whereis celery
+[?2004lcelery: /root/.pyenv/shims/celery
+[?2004hroot@paperless-hakimi:/opt/paperless/scripts# whereis celeryapt install where[5Pwhere celery[1Pfind celerysystemctl status m-queue[1Prt m-queuedaemon-reload[3Pnano m-queue.service
+[?2004l[?2004h)0[1;29r[m[4l[?7h[39;49m[?25l[?1c[39;49m[m[H[J[27;56H[0;10;7m[ Reading... ][m[27;54H[0;10;7m[ Read 13 lines ][m[H[0;10;7m  GNU nano 7.2                                           m-queue.service                                                    [1;123H[m[28d[0;10;7m^G[m Help[28;16H[0;10;7m^O[m Write Out   [0;10;7m^W[m Where Is    [0;10;7m^K[m Cut[28;61H[0;10;7m^T[m Execute     [0;10;7m^C[m Location    [0;10;7mM-U[m Undo[106G[0;10;7mM-A[m Set Mark[29d[0;10;7m^X[m Exit[29;16H[0;10;7m^R[m Read File   [0;10;7m^\[m Replace     [0;10;7m^U[m Paste[61G[0;10;7m^J[m Justify     [0;10;7m^/[m Go To Line  [0;10;7mM-E[m Redo[106G[0;10;7mM-6[m Copy[2d[0;10;1m[32m[Unit][3d[39m[mDescription=Paperless Celery Workers[4dRequires=redis.service[6d[0;10;1m[32m[Service][7d[39m[mUser=paperless[8dGroup=paperless[9dEnviroment = "PYENV_SHELL=bash" "PYENV_ROOT=/root/.pyenv" "PATH=/root/.pyenv/shims:/root/.pyenv/bin:$PATH"[10dWorkingDirectory=/opt/paperless/src[11dExecStart=celery --app paperless worker --loglevel INFO[13d[0;10;1m[32m[Install][14d[39m[mWantedBy=multi-user.target[2d[?25h[?0c[?25l[?1c[?25h[?0c[3d[?25l[?1c[?25h[?0c[4d[?25l[?1c[?25h[?0c[5d[?25l[?1c[?25h[?0c[6d[?25l[?1c[?25h[?0c[7d[?25l[?1c[?25h[?0c[8d[?25l[?1c[?25h[?0c[9d[?25l[?1c[?25h[?0c[A[?25l[?1c[?25h[?0cG[?25l[?1c[?25h[?0cr[?25l[?1c[?25h[?0co[?25l[?1c[?25h[?0cu[?25l[?1c[?25h[?0cp[?25l[?1c[?25h[?0c=[?25l[?1c[?25h[?0cp[?25l[?1c[?25h[?0ca[?25l[?1c[?25h[?0c[9d[?25l[?1c[?25h[?0cn[?25l[?1c[?25h[?0ct[?25l[?1c[27d[K[?25h[?0c[9;12H[?25l[?1c[?25h[?0c=[?25l[?1c[?25h[?0c [?25l[?1c[?25h[?0c"[?25l[?1c[?25h[?0cP[?25l[?1c[?25h[?0cY[?25l[?1c[?25h[?0cE[?25l[?1c[?25h[?0cN[?25l[?1c[?25h[?0cV[?25l[?1c[?25h[?0c_[?25l[?1c[?25h[?0cS[?25l[?1c[?25h[?0cH[?25l[?1c[?25h[?0cE[?25l[?1c[?25h[?0cL[?25l[?1c[?25h[?0cL[?25l[?1c[?25h[?0c=[?25l[?1c[?25h[?0cb[?25l[?1c[?25h[?0ca[?25l[?1c[?25h[?0cs[?25l[?1c[?25h[?0ch[?25l[?1c[?25h[?0c"[?25l[?1c[?25h[?0c [?25l[?1c[?25h[?0c"[?25l[?1c[?25h[?0cP[?25l[?1c[?25h[?0cY[?25l[?1c[?25h[?0cE[?25l[?1c[?25h[?0cN[?25l[?1c[?25h[?0cV[?25l[?1c[?25h[?0c_[?25l[?1c[?25h[?0cR[?25l[?1c[?25h[?0cO[?25l[?1c[?25h[?0cO[?25l[?1c[?25h[?0cT[?25l[?1c[?25h[?0c=[?25l[?1c[?25h[?0c/[?25l[?1c[?25h[?0cr[?25l[?1c[?25h[?0co[?25l[?1c[?25h[?0co[?25l[?1c[?25h[?0ct[?25l[?1c[?25h[?0c/[?25l[?1c[?25h[?0c.[?25l[?1c[?25h[?0cp[?25l[?1c[?25h[?0cy[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0cn[?25l[?1c[?25h[?0cv[?25l[?1c[?25h[?0c"[?25l[?1c[?25h[?0c [?25l[?1c[?25h[?0c"[?25l[?1c[?25h[?0cP[?25l[?1c[?25h[?0cA[?25l[?1c[?25h[?0cT[?25l[?1c[?25h[?0cH[?25l[?1c[?25h[?0c=[?25l[?1c[?25h[?0c/[?25l[?1c[?25h[?0cr[?25l[?1c[?25h[?0co[?25l[?1c[?25h[?0co[?25l[?1c[?25h[?0ct[?25l[?1c[?25h[?0c/[?25l[?1c[?25h[?0c.[?25l[?1c[?25h[?0cp[?25l[?1c[?25h[?0cy[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0cn[?25l[?1c[?25h[?0cv[?25l[?1c[?25h[?0c/[?25l[?1c[?25h[?0cs[?25l[?1c[?25h[?0ch[?25l[?1c[?25h[?0ci[?25l[?1c[?25h[?0cm[?25l[?1c[?25h[?0cs[?25l[?1c[?25h[?0c:[?25l[?1c[?25h[?0c/[?25l[?1c[?25h[?0cr[?25l[?1c[?25h[?0co[?25l[?1c[?25h[?0co[?25l[?1c[?25h[?0ct[?25l[?1c[?25h[?0c/[?25l[?1c[?25h[?0c.[?25l[?1c[?25h[?0cp[?25l[?1c[?25h[?0cy[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0cn[?25l[?1c[?25h[?0cv[?25l[?1c[?25h[?0c/[?25l[?1c[?25h[?0cb[?25l[?1c[?25h[?0ci[?25l[?1c[?25h[?0cn[?25l[?1c[?25h[?0c:[?25l[?1c[?25h[?0c$[?25l[?1c[?25h[?0cP[?25l[?1c[?25h[?0cA[?25l[?1c[?25h[?0cT[?25l[?1c[?25h[?0cH[?25l[?1c[1;74H[0;10;7m*[123G[m[?25h[?0c[9;105H"[K[?25l[?1c[?25h[?0c"[K[?25l[?1c[?25h[?0c"[K[?25l[?1c[?25h[?0c"[K[?25l[?1c[?25h[?0c"[K[?25l[?1c[?25h[?0c"[K[?25l[?1c[27;56H[0;10;7m[ Writing... ][m[1;74H[0;10;7m [123G[m[27;54H[0;10;7m[ Wrote 13 lines ][m[?25h[?0c[9;100H[?25l[?1c[27d[J[29d[?25h[?0c[29;1H[?2004l[?2004hroot@paperless-hakimi:/opt/paperless/scripts# env
+[?2004lSHELL=/bin/bash
+PYENV_SHELL=bash
+PWD=/opt/paperless/scripts
+LOGNAME=root
+SYSTEMD_EXEC_PID=139
+MOTD_SHOWN=pam
+HOME=/root
+LANG=C
+INVOCATION_ID=a339bd0d9fb94d658a95a06716e56bfe
+TERM=linux
+USER=root
+SHLVL=2
+PYENV_ROOT=/root/.pyenv
+HUSHLOGIN=FALSE
+PATH=/root/.pyenv/shims:/root/.pyenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+MAIL=/var/mail/root
+OLDPWD=/opt/paperless
+_=/usr/bin/env
+[?2004hroot@paperless-hakimi:/opt/paperless/scripts# nano [2Penvnano m-queue.service
+[?2004l[?2004h)0[1;29r[m[4l[?7h[39;49m[?25l[?1c[39;49m[m[H[J[27;56H[0;10;7m[ Reading... ][m[27;54H[0;10;7m[ Read 13 lines ][m[H[0;10;7m  GNU nano 7.2                                           m-queue.service                                                    [1;123H[m[28d[0;10;7m^G[m Help[28;16H[0;10;7m^O[m Write Out   [0;10;7m^W[m Where Is    [0;10;7m^K[m Cut[28;61H[0;10;7m^T[m Execute     [0;10;7m^C[m Location    [0;10;7mM-U[m Undo[106G[0;10;7mM-A[m Set Mark[29d[0;10;7m^X[m Exit[29;16H[0;10;7m^R[m Read File   [0;10;7m^\[m Replace     [0;10;7m^U[m Paste[61G[0;10;7m^J[m Justify     [0;10;7m^/[m Go To Line  [0;10;7mM-E[m Redo[106G[0;10;7mM-6[m Copy[2d[0;10;1m[32m[Unit][3d[39m[mDescription=Paperless Celery Workers[4dRequires=redis.service[6d[0;10;1m[32m[Service][7d[39m[mUser=paperless[8dGroup=paperless[9dEnviroment = "PYENV_SHELL=bash" "PYENV_ROOT=/root/.pyenv" "PATH=/root/.pyenv/shims:/root/.pyenv/bin"[10dWorkingDirectory=/opt/paperless/src[11dExecStart=celery --app paperless worker --loglevel INFO[13d[0;10;1m[32m[Install][14d[39m[mWantedBy=multi-user.target[2d[?25h[?0c[?25l[?1c[?25h[?0c[3d[?25l[?1c[?25h[?0c[4d[?25l[?1c[?25h[?0c[5d[?25l[?1c[?25h[?0c[6d[?25l[?1c[?25h[?0c[7d[?25l[?1c[?25h[?0c[8d[?25l[?1c[?25h[?0c[9d[?25l[?1c[?25h[?0cE[?25l[?1c[?25h[?0cn[?25l[?1c[?25h[?0cv[?25l[?1c[?25h[?0ci[?25l[?1c[?25h[?0cr[?25l[?1c[?25h[?0co[?25l[?1c[?25h[?0cm[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0cn[?25l[?1c[?25h[?0ct[?25l[?1c[?25h[?0c [?25l[?1c[?25h[?0c=[?25l[?1c[27d[K[?25h[?0c[9;14H[?25l[?1c[?25h[?0c"[?25l[?1c[?25h[?0cP[?25l[?1c[?25h[?0cY[?25l[?1c[?25h[?0cE[?25l[?1c[?25h[?0cN[?25l[?1c[?25h[?0cV[?25l[?1c[?25h[?0c_[?25l[?1c[?25h[?0cS[?25l[?1c[?25h[?0cH[?25l[?1c[?25h[?0cE[?25l[?1c[?25h[?0cL[?25l[?1c[?25h[?0cL[?25l[?1c[?25h[?0c=[?25l[?1c[?25h[?0cb[?25l[?1c[?25h[?0ca[?25l[?1c[?25h[?0cs[?25l[?1c[?25h[?0ch[?25l[?1c[?25h[?0c"[?25l[?1c[?25h[?0c [?25l[?1c[?25h[?0c"[?25l[?1c[?25h[?0cP[?25l[?1c[?25h[?0cY[?25l[?1c[?25h[?0cE[?25l[?1c[?25h[?0cN[?25l[?1c[?25h[?0cV[?25l[?1c[?25h[?0c_[?25l[?1c[?25h[?0cR[?25l[?1c[?25h[?0cO[?25l[?1c[?25h[?0cO[?25l[?1c[?25h[?0cT[?25l[?1c[?25h[?0c=[?25l[?1c[?25h[?0c/[?25l[?1c[?25h[?0cr[?25l[?1c[?25h[?0co[?25l[?1c[?25h[?0co[?25l[?1c[?25h[?0ct[?25l[?1c[?25h[?0c/[?25l[?1c[?25h[?0c.[?25l[?1c[?25h[?0cp[?25l[?1c[?25h[?0cy[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0cn[?25l[?1c[?25h[?0cv[?25l[?1c[?25h[?0c"[?25l[?1c[?25h[?0c [?25l[?1c[?25h[?0c"[?25l[?1c[?25h[?0cP[?25l[?1c[?25h[?0cA[?25l[?1c[?25h[?0cT[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[1;74H[0;10;7m*[123G[m[?25h[?0c[9;60H[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c/bin"[K[60G[?25l[?1c[?25h[?0cbin"[K[?25l[?1c[?25h[?0cin"[K[?25l[?1c[?25h[?0cn"[K[?25l[?1c[?25h[?0c"[K[?25l[?1c[0;10;7m<[musr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"[K[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0cEnviroment = "PYENV_SHELL=bash" "PYENV_ROOT=/root/.pyenv" "PATH=/root/.pyenv/shims:/root/.pyenv/bin:/usr/local/sbin:/usr/lo[0;10;7m>[9;122H[m[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c7[10;27r8[10dM[1;29r[9;59H[K[10d"PATH=/root/.pyenv/shims:/root/.pyenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"[?25h[?0c[?25l[?1c[?25h[?0cE"PATH=/root/.pyenv/shims:/root/.pyenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"E[?25l[?1c[?25h[?0cn"PATH=/root/.pyenv/shims:/root/.pyenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"En[?25l[?1c[?25h[?0cv"PATH=/root/.pyenv/shims:/root/.pyenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"Env[?25l[?1c[?25h[?0ci"PATH=/root/.pyenv/shims:/root/.pyenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"[5G[?25l[?1c[?25h[?0cr"PATH=/root/.pyenv/shims:/root/.pyenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"[6G[?25l[?1c[?25h[?0co"PATH=/root/.pyenv/shims:/root/.pyenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"[7G[?25l[?1c[?25h[?0cm"PATH=/root/.pyenv/shims:/root/.pyenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"[8G[?25l[?1c[?25h[?0ce"PATH=/root/.pyenv/shims:/root/.pyenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"[10;9H[?25l[?1c[?25h[?0cn"PATH=/root/.pyenv/shims:/root/.pyenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"[10;10H[?25l[?1c[?25h[?0ct"PATH=/root/.pyenv/shims:/root/.pyenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"[10;11H[?25l[?1c[?25h[?0c "PATH=/root/.pyenv/shims:/root/.pyenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"[10;12H[?25l[?1c[?25h[?0c="PATH=/root/.pyenv/shims:/root/.pyenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"[10;13H[?25l[?1c[?25h[?0c "PATH=/root/.pyenv/shims:/root/.pyenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"[10;14H[?25l[?1c[?25h[?0c[A[?25l[?1c[?25h[?0c"[?25l[?1c[?25h[?0cP[?25l[?1c[?25h[?0cY[?25l[?1c[?25h[?0cE[?25l[?1c[?25h[?0cN[?25l[?1c[?25h[?0cV[?25l[?1c[?25h[?0c_[?25l[?1c[?25h[?0cS[?25l[?1c[?25h[?0cH[?25l[?1c[27;56H[0;10;7m[ Writing... ][m[1;74H[0;10;7m [123G[m[27;54H[0;10;7m[ Wrote 14 lines ][m[?25h[?0c[9;23H[?25l[?1c[27d[J[29d[?25h[?0c[29;1H[?2004l[?2004hroot@paperless-hakimi:/opt/paperless/scripts# system daemon-reload
+[?2004lbash: system: command not found
+[?2004hroot@paperless-hakimi:/opt/paperless/scripts# system daemon-reload[1@c[1@t[1@l
+[?2004l[?2004hroot@paperless-hakimi:/opt/paperless/scripts# systemctl start m-queue
+[?2004l[?2004hroot@paperless-hakimi:/opt/paperless/scripts# systemctl start m-queue            tatus m-queue
+[?2004l[0;1;31mx[0m m-queue.service - Paperless Celery Workers[m
+     Loaded: loaded (]8;;file://paperless-hakimi/etc/systemd/system/m-queue.service/etc/systemd/system/m-queue.service]8;;; [0;1;32menabled[0m; preset: [0;1;32menabled[0m)[m
+     Active: [0;1;31mfailed[0m (Result: exit-code) since Mon 2023-11-13 20:47:55 UTC; 6s ago[m
+   Duration: 1ms[m
+    Process: 3285 ExecStart=celery --app paperless worker --loglevel INFO [0;1;31m(code=exited, status=203/EXEC)[0m[m
+   Main PID: 3285 (code=exited, status=203/EXEC)[m
+        CPU: 978us[m
+[m
+Nov 13 20:47:55 paperless-hakimi systemd[1]: Started m-queue.service - Paperless Celery Workers.[m
+Nov 13 20:47:55 paperless-hakimi systemd[1]: [0;1;39m[0;1;31m[0;1;39mm-queue.service: Main process exited, code=exited, status=203/EXEC[0m[m
+Nov 13 20:47:55 paperless-hakimi systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mm-queue.service: Failed with result 'exit-code'.[0m[m
+[K[?2004hroot@paperless-hakimi:/opt/paperless/scripts# systemctl status m-queue[1Prt m-queuedaemon-reload[3P daemon-reload[3@ctl daemon-reloadstart m-queuedaemon-reload[3P daemon-reloadnano m-queue.serviceenv[Knano m-queue.service                    journalctl -xe
+[?2004l[K[0;38;5;245m--[0m [0;32mThe process celery could not be executed and failed.[0m[m
+[0;38;5;245m--[0m [0;32m[0m[m
+[0;38;5;245m--[0m [0;32mThe error number returned by this process is ERRNO.[0m[m
+Nov 13 20:47:55 paperless-hakimi (celery)[3285]: [0;1;31m[0;1;39m[0;1;31mm-queue.service: Failed at step EXEC spawning celery: No such file or dire[m[7m>[27m
+[0;38;5;245m-- [0m[0;32mSubject: Process celery could not be executed[0m[m
+[0;38;5;245m--[0m [0;32mDefined-By: systemd[0m[m
+[0;38;5;245m--[0m [0;32mSupport: https://www.debian.org/support[0m[m
+[0;38;5;245m--[0m [0;32m[0m[m
+[0;38;5;245m--[0m [0;32mThe process celery could not be executed and failed.[0m[m
+[0;38;5;245m--[0m [0;32m[0m[m
+[0;38;5;245m--[0m [0;32mThe error number returned by this process is ERRNO.[0m[m
+Nov 13 20:47:55 paperless-hakimi systemd[1]: [0;1;39m[0;1;31m[0;1;39mm-queue.service: Main process exited, code=exited, status=203/EXEC[0m[m
+[0;38;5;245m-- [0m[0;32mSubject: Unit process exited[0m[m
+[0;38;5;245m--[0m [0;32mDefined-By: systemd[0m[m
+[0;38;5;245m--[0m [0;32mSupport: https://www.debian.org/support[0m[m
+[0;38;5;245m--[0m [0;32m[0m[m
+[0;38;5;245m--[0m [0;32mAn ExecStart= process belonging to unit m-queue.service has exited.[0m[m
+[0;38;5;245m--[0m [0;32m[0m[m
+[0;38;5;245m--[0m [0;32mThe process' exit code is 'exited' and its exit status is 203.[0m[m
+Nov 13 20:47:55 paperless-hakimi systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mm-queue.service: Failed with result 'exit-code'.[0m[m
+[0;38;5;245m-- [0m[0;32mSubject: Unit failed[0m[m
+[0;38;5;245m--[0m [0;32mDefined-By: systemd[0m[m
+[0;38;5;245m--[0m [0;32mSupport: https://www.debian.org/support[0m[m
+[0;38;5;245m--[0m [0;32m[0m[m
+[0;38;5;245m--[0m [0;32mThe unit m-queue.service has entered the 'failed' state with result 'exit-code'.[0m[m
+Nov 13 20:48:01 paperless-hakimi CRON[3287]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)[m
+Nov 13 20:48:01 paperless-hakimi CRON[3288]: (root) CMD (cd / && run-parts --report /etc/cron.hourly)[m
+Nov 13 20:48:01 paperless-hakimi CRON[3287]: pam_unix(cron:session): session closed for user root[m
+[7mlines 1478-1505/1505 (END)[27m[K
+[?2004hroot@paperless-hakimi:/opt/paperless/scripts# [Kjournalctl -xe[10@systemctl status m-queueqz
+[?2004l[0;1;31mUnit m-queueqz.service could not be found.[0m[m
+[K[?2004hroot@paperless-hakimi:/opt/paperless/scripts# systemctl status m-queueqz[12Pjournalctl -xe[10@systemctl status m-queue
+[?2004l[0;1;31mx[0m m-queue.service - Paperless Celery Workers[m
+     Loaded: loaded (]8;;file://paperless-hakimi/etc/systemd/system/m-queue.service/etc/systemd/system/m-queue.service]8;;; [0;1;32menabled[0m; preset: [0;1;32menabled[0m)[m
+     Active: [0;1;31mfailed[0m (Result: exit-code) since Mon 2023-11-13 20:47:55 UTC; 58s ago[m
+   Duration: 1ms[m
+    Process: 3285 ExecStart=celery --app paperless worker --loglevel INFO [0;1;31m(code=exited, status=203/EXEC)[0m[m
+   Main PID: 3285 (code=exited, status=203/EXEC)[m
+        CPU: 978us[m
+[m
+Nov 13 20:47:55 paperless-hakimi systemd[1]: Started m-queue.service - Paperless Celery Workers.[m
+Nov 13 20:47:55 paperless-hakimi systemd[1]: [0;1;39m[0;1;31m[0;1;39mm-queue.service: Main process exited, code=exited, status=203/EXEC[0m[m
+Nov 13 20:47:55 paperless-hakimi systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mm-queue.service: Failed with result 'exit-code'.[0m[m
+[K[?2004hroot@paperless-hakimi:/opt/paperless/scripts# systemctl status m-queueqz[12Pjournalctl -xe[10@systemctl status m-queue[1Prt m-queuedaemon-reload[3P daemon-reloadnano m-queue.serviceenv[K   wehre is celer              whereis celery
+[?2004lcelery: /root/.pyenv/shims/celery
+[?2004hroot@paperless-hakimi:/opt/paperless/scripts# nano      nano servi          nano s calery      celary           whereis celerysystemctl status m-queueatus m-queueqz[12Pjournalctl -xe[10@systemctl status m-queue[1Prt m-queuedaemon-reload[3P daemon-reloadnano m-queue.service
+[?2004l[?2004h)0[1;29r[m[4l[?7h[39;49m[?25l[?1c[39;49m[m[H[J[27;56H[0;10;7m[ Reading... ][m[27;54H[0;10;7m[ Read 14 lines ][m[H[0;10;7m  GNU nano 7.2                                           m-queue.service                                                    [1;123H[m[28d[0;10;7m^G[m Help[28;16H[0;10;7m^O[m Write Out   [0;10;7m^W[m Where Is    [0;10;7m^K[m Cut[28;61H[0;10;7m^T[m Execute     [0;10;7m^C[m Location    [0;10;7mM-U[m Undo[106G[0;10;7mM-A[m Set Mark[29d[0;10;7m^X[m Exit[29;16H[0;10;7m^R[m Read File   [0;10;7m^\[m Replace     [0;10;7m^U[m Paste[61G[0;10;7m^J[m Justify     [0;10;7m^/[m Go To Line  [0;10;7mM-E[m Redo[106G[0;10;7mM-6[m Copy[2d[0;10;1m[32m[Unit][3d[39m[mDescription=Paperless Celery Workers[4dRequires=redis.service[6d[0;10;1m[32m[Service][7d[39m[mUser=paperless[8dGroup=paperless[9dEnviroment = "PYENV_SHELL=bash" "PYENV_ROOT=/root/.pyenv"[10dEnviroment = "PATH=/root/.pyenv/shims:/root/.pyenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"[11dWorkingDirectory=/opt/paperless/src[12dExecStart=celery --app paperless worker --loglevel INFO[14d[0;10;1m[32m[Install][15d[39m[mWantedBy=multi-user.target[2d[?25h[?0c[?25l[?1c[?25h[?0c[3d[?25l[?1c[?25h[?0c[4d[?25l[?1c[?25h[?0c[5d[?25l[?1c[?25h[?0c[6d[?25l[?1c[?25h[?0c[7d[?25l[?1c[?25h[?0c[8d[?25l[?1c[?25h[?0c[9d[?25l[?1c[?25h[?0c[10d[?25l[?1c[?25h[?0c[11d[?25l[?1c[?25h[?0c[12d[?25l[?1c[?25h[?0c[A[?25l[?1c[?25h[?0c[A[?25l[?1c[?25h[?0c[A[?25l[?1c[?25h[?0cE[?25l[?1c[?25h[?0cn[?25l[?1c[?25h[?0cv[?25l[?1c[?25h[?0ci[?25l[?1c[?25h[?0cr[?25l[?1c[?25h[?0co[?25l[?1c[27d[K[?25h[?0c[9;8H[?25l[?1c[?25h[?0c[A[?25l[?1c[?25h[?0c[9d[?25l[?1c[?25h[?0ce[?25l[?1c[?25h[?0cn[?25l[?1c[?25h[?0ct[?25l[?1c[?25h[?0c [?25l[?1c[?25h[?0c=[?25l[?1c[?25h[?0c [?25l[?1c[?25h[?0c"[?25l[?1c[?25h[?0c[10d[?25l[?1c[?25h[?0c[A[?25l[?1c[1;74H[0;10;7m*[123G[m[9;27r[27;1H
+[1;29r[9;1H[?25h[?0c[?25l[?1c[9;27r[27;1H
+[1;29r[9;1H[?25h[?0c[?25l[?1c[?25h[?0c[10d[?25l[?1c[?25h[?0cE[?25l[?1c[?25h[?0c[10;11H[?25l[?1c/root/.pyenv/shims/celerycelery --app paperless worker --loglevel INFO[10;36H[?25h[?0c[?25l[?1c[?25h[?0c/celery --app paperless worker --loglevel INFO[10;37H[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[?25h[?0c[1P[?25l[?1c[27;56H[0;10;7m[ Writing... ][m[1;74H[0;10;7m [123G[m[27;54H[0;10;7m[ Wrote 12 lines ][m[?25h[?0c[10;30H[?25l[?1c[27d[J[29d[?25h[?0c[29;1H[?2004l[?2004hroot@paperless-hakimi:/opt/paperless/scripts# nano m-queue.service[6Pwhereis celerysystemctl status m-queueqz[12Pjournalctl -xe[10@systemctl status m-queue[1Prt m-queuedaemon-reload
+[?2004l[?2004hroot@paperless-hakimi:/opt/paperless/scripts# systemctl daemon-reload[3Pnano m-queue.service[6Pwhereis celerysystemctl status m-queueqz[12Pjournalctl -xe[10@systemctl status m-queue[1P[1P[1P[1P[1P[1@t[1@a[1@r[1@t
+[?2004l[?2004hroot@paperless-hakimi:/opt/paperless/scripts# systemctl start m-queuedaemon-reload[3Pnano m-queue.service[6Pwhereis celerysystemctl status m-queue
+[?2004l[0;1;31mx[0m m-queue.service - Paperless Celery Workers[m
+     Loaded: loaded (]8;;file://paperless-hakimi/etc/systemd/system/m-queue.service/etc/systemd/system/m-queue.service]8;;; [0;1;32menabled[0m; preset: [0;1;32menabled[0m)[m
+     Active: [0;1;31mfailed[0m (Result: exit-code) since Mon 2023-11-13 20:50:23 UTC; 5s ago[m
+   Duration: 1ms[m
+    Process: 3326 ExecStart=/root/.pyenv/shims/celery --app paperless worker --loglevel INFO [0;1;31m(code=exited, status=203/EXEC)[0m[m
+   Main PID: 3326 (code=exited, status=203/EXEC)[m
+        CPU: 990us[m
+[m
+Nov 13 20:50:23 paperless-hakimi systemd[1]: Started m-queue.service - Paperless Celery Workers.[m
+Nov 13 20:50:23 paperless-hakimi systemd[1]: [0;1;39m[0;1;31m[0;1;39mm-queue.service: Main process exited, code=exited, status=203/EXEC[0m[m
+Nov 13 20:50:23 paperless-hakimi systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mm-queue.service: Failed with result 'exit-code'.[0m[m
+[K[?2004hroot@paperless-hakimi:/opt/paperless/scripts# systemctl status m-queue[1Prt m-queuedaemon-reload[3Pnano m-queue.servicesystemctl daemon-reloadstart m-queue[1@tus m-queue[Ksystemctl status m-queue[1Prt m-queuedaemon-reload[3Pnano m-queue.service
+[?2004l[?2004h)0[1;29r[m[4l[?7h[39;49m[?25l[?1c[39;49m[m[H[J[27;56H[0;10;7m[ Reading... ][m[27;54H[0;10;7m[ Read 12 lines ][m[H[0;10;7m  GNU nano 7.2                                           m-queue.service                                                    [1;123H[m[28d[0;10;7m^G[m Help[28;16H[0;10;7m^O[m Write Out   [0;10;7m^W[m Where Is    [0;10;7m^K[m Cut[28;61H[0;10;7m^T[m Execute     [0;10;7m^C[m Location    [0;10;7mM-U[m Undo[106G[0;10;7mM-A[m Set Mark[29d[0;10;7m^X[m Exit[29;16H[0;10;7m^R[m Read File   [0;10;7m^\[m Replace     [0;10;7m^U[m Paste[61G[0;10;7m^J[m Justify     [0;10;7m^/[m Go To Line  [0;10;7mM-E[m Redo[106G[0;10;7mM-6[m Copy[2d[0;10;1m[32m[Unit][3d[39m[mDescription=Paperless Celery Workers[4dRequires=redis.service[6d[0;10;1m[32m[Service][7d[39m[mUser=paperless[8dGroup=paperless[9dWorkingDirectory=/opt/paperless/src[10dExecStart=/root/.pyenv/shims/celery --app paperless worker --loglevel INFO[12d[0;10;1m[32m[Install][13d[39m[mWantedBy=multi-user.target[2d[?25h[?0c[?25l[?1c[?25h[?0c[3d[?25l[?1c[?25h[?0c[4d[?25l[?1c[?25h[?0c[5d[?25l[?1c[?25h[?0c[6d[?25l[?1c[?25h[?0c[7d[?25l[?1c[1;74H[0;10;7m*[123G[m[?25h[?0c[7d[36m#User=paperless#[39m[m[?25l[?1c[?25h[?0c[8d[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[36m#Group=paperless#[39m[m[?25l[?1c[?25h[?0c[9d[?25l[?1c[?25h[?0c[10d[?25l[?1c[27;54H  [0;10;7m[ Writing... ][m[K[1;74H[0;10;7m [123G[m[27;54H[0;10;7m[ Wrote 12 lines ][m[?25h[?0c[10dE[?25l[?1c[27d[J[29d[?25h[?0c[29;1H[?2004l[?2004hroot@paperless-hakimi:/opt/paperless/scripts# nano m-queue.service[4@systemctl status m-queue[1Prt m-queuedaemon-reload
+[?2004l[?2004hroot@paperless-hakimi:/opt/paperless/scripts# systemctl daemon-reload[3Pnano m-queue.service[4@systemctl status m-queue[1@\[1P[1@\[1P[1P[1P[1P[1P[1@a[1@r[1@t
+[?2004l[?2004hroot@paperless-hakimi:/opt/paperless/scripts# systemctl start m-queuedaemon-reload[3Pnano m-queue.service[4@systemctl status m-queue
+[?2004l[0;1;32m*[0m m-queue.service - Paperless Celery Workers[m
+     Loaded: loaded (]8;;file://paperless-hakimi/etc/systemd/system/m-queue.service/etc/systemd/system/m-queue.service]8;;; [0;1;32menabled[0m; preset: [0;1;32menabled[0m)[m
+     Active: [0;1;32mactive (running)[0m since Mon 2023-11-13 20:51:02 UTC; 2s ago[m
+   Main PID: 3356 ([celeryd: celer)[m
+      Tasks: 24 (limit: 18846)[m
+     Memory: 133.6M[m
+        CPU: 962ms[m
+     CGroup: /system.slice/m-queue.service[m
+             |-[0;38;5;245m3356 "[celeryd: celery@paperless-hakimi:MainProcess] -active- (--app paperless worker --loglevel INFO)"[0m[m
+             |-[0;38;5;245m3433 "[celeryd: celery@paperless-hakimi:ForkPoolWorker-1]"[0m[m
+             `-[0;38;5;245m3434 "[celeryd: celery@paperless-hakimi:ForkPoolWorker-2]"[0m[m
+[m
+Nov 13 20:51:04 paperless-hakimi celery[3356]: [2023-11-13 23:51:04,794] [DEBUG] [celery.bootsteps] | Consumer: Starting Co[m[7m>[27m
+Nov 13 20:51:04 paperless-hakimi celery[3356]: [2023-11-13 23:51:04,795] [DEBUG] [celery.bootsteps] ^-- substep ok[m
+Nov 13 20:51:04 paperless-hakimi celery[3356]: [2023-11-13 23:51:04,796] [DEBUG] [celery.bootsteps] | Consumer: Starting He[m[7m>[27m
+Nov 13 20:51:04 paperless-hakimi celery[3356]: [2023-11-13 23:51:04,797] [DEBUG] [celery.bootsteps] ^-- substep ok[m
+Nov 13 20:51:04 paperless-hakimi celery[3356]: [2023-11-13 23:51:04,797] [DEBUG] [celery.bootsteps] | Consumer: Starting Go[m[7m>[27m
+Nov 13 20:51:04 paperless-hakimi celery[3356]: [2023-11-13 23:51:04,799] [DEBUG] [celery.bootsteps] ^-- substep ok[m
+Nov 13 20:51:04 paperless-hakimi celery[3356]: [2023-11-13 23:51:04,799] [DEBUG] [celery.bootsteps] | Consumer: Starting ev[m[7m>[27m
+Nov 13 20:51:04 paperless-hakimi celery[3356]: [2023-11-13 23:51:04,799] [DEBUG] [celery.bootsteps] | Worker: Hub.register [m[7m>[27m
+Nov 13 20:51:04 paperless-hakimi celery[3356]: [2023-11-13 23:51:04,800] [INFO] [celery.apps.worker] celery@paperless-hakim[m[7m>[27m
+Nov 13 20:51:04 paperless-hakimi celery[3356]: [2023-11-13 23:51:04,800] [DEBUG] [kombu.common] basic.qos: prefetch_count->8[m
+[7mlines 1-22/22 (END)[27m[K
+[?2004hroot@paperless-hakimi:/opt/paperless/scripts# [K^C[?2004l[?2004h[?2004l
+[?2004hroot@paperless-hakimi:/opt/paperless/scripts# 
+[?2004l[?2004hroot@paperless-hakimi:/opt/paperless/scripts# 
+[?2004l[?2004hroot@paperless-hakimi:/opt/paperless/scripts# systemctl status m-queue[1Prt m-queuedaemon-reload[3Pnano m-queue.service
+[?2004l[?2004h)0[1;29r[m[4l[?7h[39;49m[?25l[?1c[39;49m[m[H[J[27;56H[0;10;7m[ Reading... ][m[27;54H[0;10;7m[ Read 12 lines ][m[H[0;10;7m  GNU nano 7.2                                           m-queue.service                                                    [1;123H[m[28d[0;10;7m^G[m Help[28;16H[0;10;7m^O[m Write Out   [0;10;7m^W[m Where Is    [0;10;7m^K[m Cut[28;61H[0;10;7m^T[m Execute     [0;10;7m^C[m Location    [0;10;7mM-U[m Undo[106G[0;10;7mM-A[m Set Mark[29d[0;10;7m^X[m Exit[29;16H[0;10;7m^R[m Read File   [0;10;7m^\[m Replace     [0;10;7m^U[m Paste[61G[0;10;7m^J[m Justify     [0;10;7m^/[m Go To Line  [0;10;7mM-E[m Redo[106G[0;10;7mM-6[m Copy[2d[0;10;1m[32m[Unit][3d[39m[mDescription=Paperless Celery Workers[4dRequires=redis.service[6d[0;10;1m[32m[Service][7d[0;10m[36m#User=paperless[8d#Group=paperless[9d[39m[mWorkingDirectory=/opt/paperless/src[10dExecStart=/root/.pyenv/shims/celery --app paperless worker --loglevel INFO[12d[0;10;1m[32m[Install][13d[39m[mWantedBy=multi-user.target[2d[?25h[?0c[?25l[?1c[?25h[?0c[3d[?25l[?1c[?25h[?0c[4d[?25l[?1c[?25h[?0c[5d[?25l[?1c[?25h[?0c[6d[?25l[?1c[?25h[?0c[7d[?25l[?1c[27d[J[29d[?25h[?0c[29;1H[?2004l[?2004hroot@paperless-hakimi:/opt/paperless/scripts# users
+[?2004lroot
+[?2004hroot@paperless-hakimi:/opt/paperless/scripts# cd /opt
+[?2004l[?2004hroot@paperless-hakimi:/opt# ls
+[?2004lcontainerd  paperless
+[?2004hroot@paperless-hakimi:/opt# cd    mv paperless paperless- p
+[?2004l[?2004hroot@paperless-hakimi:/opt# [7madduser paperless --system --home /opt/paperless --group[27mroot@paperless-hakimi:/opt# adduser paperless --system --home /opt/paperless --group
+[?2004lThe system user `paperless' already exists. Exiting.
+[?2004hroot@paperless-hakimi:/opt# adduser paperless --system --home /opt/paperless --grouproot@paperless-hakimi:/opt# [33Pmv paperless paperlesspls[Kmv paperless paperlessp[33@adduser paperless --system --home /opt/paperless --grouproot@paperless-hakimi:/opt# [33Pmv paperless paperlesspls[Kcd /opt[2Pusersnano m-queue.serviceusers[K
+[?2004lroot
+[?2004hroot@paperless-hakimi:/opt# systemusers
+[?2004lbash: systemusers: command not found
+[?2004hroot@paperless-hakimi:/opt# uers    yusers      users a -all
+[?2004lusers: invalid option -- 'a'
+Try 'users --help' for more information.
+[?2004hroot@paperless-hakimi:/opt# users -all    -> ?
+[?2004lusers: invalid option -- '?'
+Try 'users --help' for more information.
+[?2004hroot@paperless-hakimi:/opt# users -?  --help
+[?2004lUsage: users [OPTION]... [FILE]
+Output who is currently logged in according to FILE.
+If FILE is not specified, use /var/run/utmp.  /var/log/wtmp as FILE is common.
+
+      --help        display this help and exit
+      --version     output version information and exit
+
+GNU coreutils online help: <https://www.gnu.org/software/coreutils/>
+Report any translation bugs to <https://translationproject.org/team/>
+Full documentation <https://www.gnu.org/software/coreutils/users>
+or available locally via: info '(coreutils) users invocation'
+[?2004hroot@paperless-hakimi:/opt# users
+[?2004lroot
+[?2004hroot@paperless-hakimi:/opt# ls
+[?2004lcontainerd  paperlessp
+[?2004hroot@paperless-hakimi:/opt# mv paperlessp paperless
+[?2004l[?2004hroot@paperless-hakimi:/opt# clear
+[?2004l[H[J[3J[?2004hroot@paperless-hakimi:/opt# ls
+[?2004lcontainerd  paperless
+[?2004hroot@paperless-hakimi:/opt# ls
+[?2004lcontainerd  paperless
+[?2004hroot@paperless-hakimi:/opt# c ls -la
+[?2004ltotal 16
+drwxr-xr-x  4 root      root      4096 Nov 13 20:54 .
+drwxr-xr-x 18 root      root      4096 Nov 13 17:16 ..
+drwx--x--x  4 root      root      4096 Nov 13 17:12 containerd
+drwxr-xr-x 11 paperless paperless 4096 Nov 13 20:23 paperless
+[?2004hroot@paperless-hakimi:/opt# ch  h ch  l
+[?2004lbash: l: command not found
+[?2004hroot@paperless-hakimi:/opt# ls
+[?2004lcontainerd  paperless
+[?2004hroot@paperless-hakimi:/opt# ls
+[?2004lcontainerd  paperless
+[?2004hroot@paperless-hakimi:/opt# mv /root/.p           cd
+[?2004l[?2004hroot@paperless-hakimi:~# ls
+[?2004lsetup.sh  setupenv.sh
+[?2004hroot@paperless-hakimi:~# cd  ls -la
+[?2004ltotal 68
+drwx------  8 root root 4096 Nov 13 20:51 .
+drwxr-xr-x 18 root root 4096 Nov 13 17:16 ..
+-rw-r--r--  1 root root  168 Nov 13 17:20 .angular-config.json
+-rw-------  1 root root  385 Nov 13 17:16 .bash_history
+-rw-r--r--  1 root root  694 Nov 13 17:12 .bashrc
+drwxr-xr-x  3 root root 4096 Nov 13 17:17 .cache
+-rw-r--r--  1 root root   86 Nov 13 17:21 .gitconfig
+-rw
