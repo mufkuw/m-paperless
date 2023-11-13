@@ -3,10 +3,12 @@ Description=Paperless Celery Workers
 Requires=redis.service
 
 [Service]
-#User=paperless
-#Group=paperless
+User=root
+Group=root
 WorkingDirectory=/opt/paperless/src
+Environment="PATH=/root/.pyenv/shims:/root/.pyenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 ExecStart=/root/.pyenv/shims/celery --app paperless worker --loglevel INFO
+#ExecStart=env
 
 [Install]
 WantedBy=multi-user.target
