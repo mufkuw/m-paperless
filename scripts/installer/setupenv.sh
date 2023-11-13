@@ -1,4 +1,4 @@
-﻿cd /opt/paperless
+cd /opt/paperless
 #cp paperless.conf.example paperless.conf
 pyenv global 3.9.18
 pyenv local 3.9.18
