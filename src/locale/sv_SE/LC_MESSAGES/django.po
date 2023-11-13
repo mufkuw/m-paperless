@@ -658,8 +658,8 @@ msgid "Invalid variable detected."
 msgstr "Ogiltig variabel upptäckt."
 
 #: documents/templates/index.html:79
-msgid "Paperless-ngx is loading..."
-msgstr "Paperless-ngx laddar..."
+msgid "M-Paperless is loading..."
+msgstr "M-Paperless laddar..."
 
 #: documents/templates/index.html:80
 msgid "Still here?! Hmm, something might be wrong."
@@ -670,8 +670,8 @@ msgid "Here's a link to the docs."
 msgstr "Här är en länk till dokumentationen."
 
 #: documents/templates/registration/logged_out.html:14
-msgid "Paperless-ngx signed out"
-msgstr "Paperless-ngx utloggas"
+msgid "M-Paperless signed out"
+msgstr "M-Paperless utloggas"
 
 #: documents/templates/registration/logged_out.html:40
 msgid "You have been successfully logged out. Bye!"
@@ -682,8 +682,8 @@ msgid "Sign in again"
 msgstr "Logga in igen"
 
 #: documents/templates/registration/login.html:14
-msgid "Paperless-ngx sign in"
-msgstr "Paperless-ngx inloggning"
+msgid "M-Paperless sign in"
+msgstr "M-Paperless inloggning"
 
 #: documents/templates/registration/login.html:41
 msgid "Please sign in."
@@ -718,8 +718,8 @@ msgid "Forgot your password?"
 msgstr "Glömt ditt lösenord?"
 
 #: documents/templates/registration/password_reset_complete.html:14
-msgid "Paperless-ngx reset password complete"
-msgstr "Paperless-ngx återställning av lösenord slutfört"
+msgid "M-Paperless reset password complete"
+msgstr "M-Paperless återställning av lösenord slutfört"
 
 #: documents/templates/registration/password_reset_complete.html:40
 msgid "Password reset complete."
@@ -731,8 +731,8 @@ msgid "Your new password has been set. You can now <a href=\"%(login_url)s\">log
 msgstr "Ditt nya lösenord har ställts in. Du kan nu <a href=\"%(login_url)s\">logga in</a>"
 
 #: documents/templates/registration/password_reset_confirm.html:14
-msgid "Paperless-ngx reset password confirmation"
-msgstr "Paperless-ngx återställning av lösenord bekräftelse"
+msgid "M-Paperless reset password confirmation"
+msgstr "M-Paperless återställning av lösenord bekräftelse"
 
 #: documents/templates/registration/password_reset_confirm.html:42
 msgid "Set a new password."
@@ -759,7 +759,7 @@ msgid "request a new password reset"
 msgstr ""
 
 #: documents/templates/registration/password_reset_done.html:14
-msgid "Paperless-ngx reset password sent"
+msgid "M-Paperless reset password sent"
 msgstr ""
 
 #: documents/templates/registration/password_reset_done.html:40
@@ -771,7 +771,7 @@ msgid "We've emailed you instructions for setting your password. You should rece
 msgstr ""
 
 #: documents/templates/registration/password_reset_form.html:14
-msgid "Paperless-ngx reset password request"
+msgid "M-Paperless reset password request"
 msgstr ""
 
 #: documents/templates/registration/password_reset_form.html:41
@@ -911,8 +911,8 @@ msgid "Chinese Simplified"
 msgstr "Kinesiska (förenklad)"
 
 #: paperless/urls.py:184
-msgid "Paperless-ngx administration"
-msgstr "Paperless-ngx administration"
+msgid "M-Paperless administration"
+msgstr "M-Paperless administration"
 
 #: paperless_mail/admin.py:41
 msgid "Authentication"

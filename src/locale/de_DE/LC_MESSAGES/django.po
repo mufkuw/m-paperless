@@ -658,8 +658,8 @@ msgid "Invalid variable detected."
 msgstr "Ungültige Variable erkannt."
 
 #: documents/templates/index.html:79
-msgid "Paperless-ngx is loading..."
-msgstr "Paperless-ngx wird geladen..."
+msgid "M-Paperless is loading..."
+msgstr "M-Paperless wird geladen..."
 
 #: documents/templates/index.html:80
 msgid "Still here?! Hmm, something might be wrong."
@@ -670,8 +670,8 @@ msgid "Here's a link to the docs."
 msgstr "Hier ist ein Link zur Dokumentation."
 
 #: documents/templates/registration/logged_out.html:14
-msgid "Paperless-ngx signed out"
-msgstr "Paperless-ngx abgemeldet"
+msgid "M-Paperless signed out"
+msgstr "M-Paperless abgemeldet"
 
 #: documents/templates/registration/logged_out.html:40
 msgid "You have been successfully logged out. Bye!"
@@ -682,8 +682,8 @@ msgid "Sign in again"
 msgstr "Erneut anmelden"
 
 #: documents/templates/registration/login.html:14
-msgid "Paperless-ngx sign in"
-msgstr "Paperless-ngx Anmeldung"
+msgid "M-Paperless sign in"
+msgstr "M-Paperless Anmeldung"
 
 #: documents/templates/registration/login.html:41
 msgid "Please sign in."
@@ -718,8 +718,8 @@ msgid "Forgot your password?"
 msgstr "Kennwort vergessen?"
 
 #: documents/templates/registration/password_reset_complete.html:14
-msgid "Paperless-ngx reset password complete"
-msgstr "Paperless-ngx Kennwort zurücksetzen abgeschlossen"
+msgid "M-Paperless reset password complete"
+msgstr "M-Paperless Kennwort zurücksetzen abgeschlossen"
 
 #: documents/templates/registration/password_reset_complete.html:40
 msgid "Password reset complete."
@@ -731,8 +731,8 @@ msgid "Your new password has been set. You can now <a href=\"%(login_url)s\">log
 msgstr "Ihr neues Kennwort wurde gesetzt. Sie können sich jetzt unter <a href=\"%(login_url)s\">anmelden</a>"
 
 #: documents/templates/registration/password_reset_confirm.html:14
-msgid "Paperless-ngx reset password confirmation"
-msgstr "Paperless-ngx Kennwort zurücksetzen Bestätigung"
+msgid "M-Paperless reset password confirmation"
+msgstr "M-Paperless Kennwort zurücksetzen Bestätigung"
 
 #: documents/templates/registration/password_reset_confirm.html:42
 msgid "Set a new password."
@@ -759,8 +759,8 @@ msgid "request a new password reset"
 msgstr "Fordern Sie eine neue Kennwortrücksetzung an"
 
 #: documents/templates/registration/password_reset_done.html:14
-msgid "Paperless-ngx reset password sent"
-msgstr "Paperless-ngx Kennwort zurücksetzen gesendet"
+msgid "M-Paperless reset password sent"
+msgstr "M-Paperless Kennwort zurücksetzen gesendet"
 
 #: documents/templates/registration/password_reset_done.html:40
 msgid "Check your inbox."
@@ -771,8 +771,8 @@ msgid "We've emailed you instructions for setting your password. You should rece
 msgstr "Wir haben Ihnen Anweisungen zum Setzen Ihres neuen Kennworts gesendet. Sie sollten die E-Mail in Kürze erhalten!"
 
 #: documents/templates/registration/password_reset_form.html:14
-msgid "Paperless-ngx reset password request"
-msgstr "Paperless-ngx Kennwort zurücksetzen Anfrage"
+msgid "M-Paperless reset password request"
+msgstr "M-Paperless Kennwort zurücksetzen Anfrage"
 
 #: documents/templates/registration/password_reset_form.html:41
 msgid "Enter your email address below, and we'll email instructions for setting a new one."
@@ -911,8 +911,8 @@ msgid "Chinese Simplified"
 msgstr "Chinesisch (vereinfacht)"
 
 #: paperless/urls.py:184
-msgid "Paperless-ngx administration"
-msgstr "Paperless-ngx Administration"
+msgid "M-Paperless administration"
+msgstr "M-Paperless Administration"
 
 #: paperless_mail/admin.py:41
 msgid "Authentication"
@@ -948,7 +948,7 @@ msgstr "Folgende Metadaten werden Dokumenten dieser Regel automatisch zugewiesen
 
 #: paperless_mail/apps.py:11
 msgid "Paperless mail"
-msgstr "Paperless-ngx E-Mail"
+msgstr "M-Paperless E-Mail"
 
 #: paperless_mail/models.py:10
 msgid "mail account"

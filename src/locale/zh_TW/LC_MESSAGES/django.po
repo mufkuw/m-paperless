@@ -658,7 +658,7 @@ msgid "Invalid variable detected."
 msgstr ""
 
 #: documents/templates/index.html:79
-msgid "Paperless-ngx is loading..."
+msgid "M-Paperless is loading..."
 msgstr ""
 
 #: documents/templates/index.html:80
@@ -670,7 +670,7 @@ msgid "Here's a link to the docs."
 msgstr ""
 
 #: documents/templates/registration/logged_out.html:14
-msgid "Paperless-ngx signed out"
+msgid "M-Paperless signed out"
 msgstr ""
 
 #: documents/templates/registration/logged_out.html:40
@@ -682,7 +682,7 @@ msgid "Sign in again"
 msgstr ""
 
 #: documents/templates/registration/login.html:14
-msgid "Paperless-ngx sign in"
+msgid "M-Paperless sign in"
 msgstr ""
 
 #: documents/templates/registration/login.html:41
@@ -718,7 +718,7 @@ msgid "Forgot your password?"
 msgstr ""
 
 #: documents/templates/registration/password_reset_complete.html:14
-msgid "Paperless-ngx reset password complete"
+msgid "M-Paperless reset password complete"
 msgstr ""
 
 #: documents/templates/registration/password_reset_complete.html:40
@@ -731,7 +731,7 @@ msgid "Your new password has been set. You can now <a href=\"%(login_url)s\">log
 msgstr ""
 
 #: documents/templates/registration/password_reset_confirm.html:14
-msgid "Paperless-ngx reset password confirmation"
+msgid "M-Paperless reset password confirmation"
 msgstr ""
 
 #: documents/templates/registration/password_reset_confirm.html:42
@@ -759,7 +759,7 @@ msgid "request a new password reset"
 msgstr ""
 
 #: documents/templates/registration/password_reset_done.html:14
-msgid "Paperless-ngx reset password sent"
+msgid "M-Paperless reset password sent"
 msgstr ""
 
 #: documents/templates/registration/password_reset_done.html:40
@@ -771,7 +771,7 @@ msgid "We've emailed you instructions for setting your password. You should rece
 msgstr ""
 
 #: documents/templates/registration/password_reset_form.html:14
-msgid "Paperless-ngx reset password request"
+msgid "M-Paperless reset password request"
 msgstr ""
 
 #: documents/templates/registration/password_reset_form.html:41
@@ -911,7 +911,7 @@ msgid "Chinese Simplified"
 msgstr ""
 
 #: paperless/urls.py:184
-msgid "Paperless-ngx administration"
+msgid "M-Paperless administration"
 msgstr ""
 
 #: paperless_mail/admin.py:41

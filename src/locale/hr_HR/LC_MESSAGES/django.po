@@ -658,8 +658,8 @@ msgid "Invalid variable detected."
 msgstr "Otkrivena je nevaljana vrsta datoteke."
 
 #: documents/templates/index.html:79
-msgid "Paperless-ngx is loading..."
-msgstr "Paperless-ngx se učitava..."
+msgid "M-Paperless is loading..."
+msgstr "M-Paperless se učitava..."
 
 #: documents/templates/index.html:80
 msgid "Still here?! Hmm, something might be wrong."
@@ -670,8 +670,8 @@ msgid "Here's a link to the docs."
 msgstr "Poveznica na dokumente."
 
 #: documents/templates/registration/logged_out.html:14
-msgid "Paperless-ngx signed out"
-msgstr "Paperless-ngx odjavljen"
+msgid "M-Paperless signed out"
+msgstr "M-Paperless odjavljen"
 
 #: documents/templates/registration/logged_out.html:40
 msgid "You have been successfully logged out. Bye!"
@@ -682,8 +682,8 @@ msgid "Sign in again"
 msgstr "Ponovna prijava"
 
 #: documents/templates/registration/login.html:14
-msgid "Paperless-ngx sign in"
-msgstr "Paperless-ngx prijava"
+msgid "M-Paperless sign in"
+msgstr "M-Paperless prijava"
 
 #: documents/templates/registration/login.html:41
 msgid "Please sign in."
@@ -718,7 +718,7 @@ msgid "Forgot your password?"
 msgstr ""
 
 #: documents/templates/registration/password_reset_complete.html:14
-msgid "Paperless-ngx reset password complete"
+msgid "M-Paperless reset password complete"
 msgstr ""
 
 #: documents/templates/registration/password_reset_complete.html:40
@@ -731,7 +731,7 @@ msgid "Your new password has been set. You can now <a href=\"%(login_url)s\">log
 msgstr ""
 
 #: documents/templates/registration/password_reset_confirm.html:14
-msgid "Paperless-ngx reset password confirmation"
+msgid "M-Paperless reset password confirmation"
 msgstr ""
 
 #: documents/templates/registration/password_reset_confirm.html:42
@@ -759,7 +759,7 @@ msgid "request a new password reset"
 msgstr ""
 
 #: documents/templates/registration/password_reset_done.html:14
-msgid "Paperless-ngx reset password sent"
+msgid "M-Paperless reset password sent"
 msgstr ""
 
 #: documents/templates/registration/password_reset_done.html:40
@@ -771,7 +771,7 @@ msgid "We've emailed you instructions for setting your password. You should rece
 msgstr ""
 
 #: documents/templates/registration/password_reset_form.html:14
-msgid "Paperless-ngx reset password request"
+msgid "M-Paperless reset password request"
 msgstr ""
 
 #: documents/templates/registration/password_reset_form.html:41
@@ -911,8 +911,8 @@ msgid "Chinese Simplified"
 msgstr "Pojednostavljeni kineski"
 
 #: paperless/urls.py:184
-msgid "Paperless-ngx administration"
-msgstr "Paperless-ngx administracija"
+msgid "M-Paperless administration"
+msgstr "M-Paperless administracija"
 
 #: paperless_mail/admin.py:41
 msgid "Authentication"
@@ -928,7 +928,7 @@ msgstr "Filter"
 
 #: paperless_mail/admin.py:63
 msgid "Paperless will only process mails that match ALL of the filters given below."
-msgstr "Paperless-ngx će obrađivati samo e-poštu koja odgovara SVIM filterima navedenim u nastavku."
+msgstr "M-Paperless će obrađivati samo e-poštu koja odgovara SVIM filterima navedenim u nastavku."
 
 #: paperless_mail/admin.py:79
 msgid "Actions"
@@ -944,11 +944,11 @@ msgstr "Metapodaci"
 
 #: paperless_mail/admin.py:93
 msgid "Assign metadata to documents consumed from this rule automatically. If you do not assign tags, types or correspondents here, paperless will still process all matching rules that you have defined."
-msgstr "Automatski dodijelite metapodatke dokumentima koji se koriste iz ovog pravila. Ako ne dodijelite oznaku, vrstu ili dopisnika, Paperless-ngx će i dalje obraditi sva pravila podudaranja koja ste definirali."
+msgstr "Automatski dodijelite metapodatke dokumentima koji se koriste iz ovog pravila. Ako ne dodijelite oznaku, vrstu ili dopisnika, M-Paperless će i dalje obraditi sva pravila podudaranja koja ste definirali."
 
 #: paperless_mail/apps.py:11
 msgid "Paperless mail"
-msgstr "Paperless-ngx e-pošta"
+msgstr "M-Paperless e-pošta"
 
 #: paperless_mail/models.py:10
 msgid "mail account"

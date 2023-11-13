@@ -58,7 +58,7 @@ Our community review process for `non-trivial` PRs is the following:
 
 This process might be slow as community members have different schedules and time to dedicate to the Paperless project. However it ensures community code reviews are as brilliantly thorough as they once were with @jonaswinkler.
 
-# Translating Paperless-ngx
+# Translating M-Paperless
 
 Some notes about translation:
 
@@ -98,7 +98,7 @@ If not, let us know in the issue you created for the language, so that another d
 
 # Organization Structure & Membership
 
-Paperless-ngx is a community project. We do our best to delegate permission and responsibility among a team of people to ensure the longevity of the project.
+M-Paperless is a community project. We do our best to delegate permission and responsibility among a team of people to ensure the longevity of the project.
 
 ## Structure
 

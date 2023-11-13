@@ -658,8 +658,8 @@ msgid "Invalid variable detected."
 msgstr "اكتشاف متغير خاطئ."
 
 #: documents/templates/index.html:79
-msgid "Paperless-ngx is loading..."
-msgstr "تحميل Paperless-ngx..."
+msgid "M-Paperless is loading..."
+msgstr "تحميل M-Paperless..."
 
 #: documents/templates/index.html:80
 msgid "Still here?! Hmm, something might be wrong."
@@ -670,8 +670,8 @@ msgid "Here's a link to the docs."
 msgstr "إليك رابط المستندات."
 
 #: documents/templates/registration/logged_out.html:14
-msgid "Paperless-ngx signed out"
-msgstr "تسجيل الخروج Paperless-ngx"
+msgid "M-Paperless signed out"
+msgstr "تسجيل الخروج M-Paperless"
 
 #: documents/templates/registration/logged_out.html:40
 msgid "You have been successfully logged out. Bye!"
@@ -682,8 +682,8 @@ msgid "Sign in again"
 msgstr "تسجيل الدخول مرة أخرى"
 
 #: documents/templates/registration/login.html:14
-msgid "Paperless-ngx sign in"
-msgstr "تسجيل الدخول Paperless-ngx"
+msgid "M-Paperless sign in"
+msgstr "تسجيل الدخول M-Paperless"
 
 #: documents/templates/registration/login.html:41
 msgid "Please sign in."
@@ -718,8 +718,8 @@ msgid "Forgot your password?"
 msgstr "نسيت كلمة المرور؟"
 
 #: documents/templates/registration/password_reset_complete.html:14
-msgid "Paperless-ngx reset password complete"
-msgstr "تم إعادة تعيين كلمة المرور لPaperless-ngx"
+msgid "M-Paperless reset password complete"
+msgstr "تم إعادة تعيين كلمة المرور لM-Paperless"
 
 #: documents/templates/registration/password_reset_complete.html:40
 msgid "Password reset complete."
@@ -731,8 +731,8 @@ msgid "Your new password has been set. You can now <a href=\"%(login_url)s\">log
 msgstr "تم تعيين كلمة المرور الجديدة الخاصة بك. يمكنك الآن <a href=\"%(login_url)s\">تسجيل الدخول</a>"
 
 #: documents/templates/registration/password_reset_confirm.html:14
-msgid "Paperless-ngx reset password confirmation"
-msgstr "تأكيد إعادة تعيين كلمة المرور لPaperless-ngx"
+msgid "M-Paperless reset password confirmation"
+msgstr "تأكيد إعادة تعيين كلمة المرور لM-Paperless"
 
 #: documents/templates/registration/password_reset_confirm.html:42
 msgid "Set a new password."
@@ -759,8 +759,8 @@ msgid "request a new password reset"
 msgstr "طلب رابط جديد لإعادة تعيين كلمة المرور"
 
 #: documents/templates/registration/password_reset_done.html:14
-msgid "Paperless-ngx reset password sent"
-msgstr "‏تم إرسال رابط إعادة تعيين كلمة المرور لPaperless-ngx"
+msgid "M-Paperless reset password sent"
+msgstr "‏تم إرسال رابط إعادة تعيين كلمة المرور لM-Paperless"
 
 #: documents/templates/registration/password_reset_done.html:40
 msgid "Check your inbox."
@@ -771,8 +771,8 @@ msgid "We've emailed you instructions for setting your password. You should rece
 msgstr "لقد أرسلنا إليك تعليمات لإعداد كلمة المرور الخاصة بك. يجب أن تتلقى البريد الإلكتروني قريباً!"
 
 #: documents/templates/registration/password_reset_form.html:14
-msgid "Paperless-ngx reset password request"
-msgstr "طلب إعادة تعيين كلمة مرور Paperless-ngx"
+msgid "M-Paperless reset password request"
+msgstr "طلب إعادة تعيين كلمة مرور M-Paperless"
 
 #: documents/templates/registration/password_reset_form.html:41
 msgid "Enter your email address below, and we'll email instructions for setting a new one."
@@ -911,8 +911,8 @@ msgid "Chinese Simplified"
 msgstr "الصينية المبسطة"
 
 #: paperless/urls.py:184
-msgid "Paperless-ngx administration"
-msgstr "Paperless-ngx الإدارة"
+msgid "M-Paperless administration"
+msgstr "M-Paperless الإدارة"
 
 #: paperless_mail/admin.py:41
 msgid "Authentication"
