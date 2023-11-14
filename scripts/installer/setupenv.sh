@@ -29,6 +29,7 @@ ln -s /opt/paperless/scripts/m-consumer.service /etc/systemd/system/m-consumer.s
 ln -s /opt/paperless/scripts/m-queue.service /etc/systemd/system/m-queue.service
 ln -s /opt/paperless/scripts/m-scheduler.service /etc/systemd/system/m-scheduler.service
 
+systemctl daemon-reload
 systemctl enable m-webserver m-consumer m-queue m-scheduler
 systemctl start m-webserver m-consumer m-queue m-scheduler
 
