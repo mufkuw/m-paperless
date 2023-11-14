@@ -3,8 +3,8 @@ Description=M-Paperless Consumer
 Requires=redis.service
 
 [Service]
-User=root
-Group=root
+User=paperless
+Group=paperless
 #Environment="PATH=/root/.pyenv/shims:/root/.pyenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 WorkingDirectory=/opt/paperless/src/
 ExecStart=python3 manage.py document_consumer

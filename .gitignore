@@ -71,6 +71,7 @@ target/
 virtualenv
 /venv
 .venv/
+.local/
 /docker-compose.env
 /docker-compose.yml
 .ruff_cache/
