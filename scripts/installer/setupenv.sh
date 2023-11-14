@@ -3,6 +3,7 @@ cd /opt/paperless
 pyenv global 3.9.18
 pyenv local 3.9.18
 
+pipenv install
 pipenv requirements > req.txt
 #pip install -r req.txt
 sudo -Hu paperless pip3 install -r req.txt --break-system-packages
