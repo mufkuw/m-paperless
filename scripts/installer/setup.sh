@@ -14,10 +14,13 @@ echo 'eval "$(pyenv init -)"' >> ~/.bashrc
 pyenv install 3.9.18
 
 rm -R /opt/paperless
-
-git clone https://github.com/mufkuw/m-paperless.git /opt/paperless
-
 adduser paperless --system --home /opt/paperless --group
+
+git clone https://github.com/mufkuw/m-paperless.git /opt/mpls
+
+mv /opt/paperless /opt/mmpls
+mv /opt/mpls /opt/paperless
+rm -R mmpls
 
 chown -R paperless:paperless /opt/paperless
 
