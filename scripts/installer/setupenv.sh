@@ -5,7 +5,7 @@ pyenv local 3.9.18
 
 pipenv requirements > req.txt
 #pip install -r req.txt
-sudo -Hu paperless pip3 install -r req.txt
+sudo -Hu paperless pip3 install -r req.txt --break-system-packages
 
 cd /opt/paperless/src
 sudo -Hu paperless python3 manage.py migrate
