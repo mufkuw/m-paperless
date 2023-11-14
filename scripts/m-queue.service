@@ -6,9 +6,8 @@ Requires=redis.service
 User=paperless
 Group=paperless
 WorkingDirectory=/opt/paperless/src
-Environment="PATH=/root/.pyenv/shims:/root/.pyenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-ExecStart=/root/.pyenv/shims/celery --app paperless worker --loglevel INFO
-#ExecStart=env
+#Environment="PATH=/root/.pyenv/shims:/root/.pyenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+ExecStart=celery --app paperless worker --loglevel INFO
 
 [Install]
 WantedBy=multi-user.target
