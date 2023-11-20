@@ -122,6 +122,7 @@ def consume_file(
     if overrides is None:
         overrides = DocumentMetadataOverrides()
 
+
     # Handle collation of double-sided documents scanned in two parts
     if settings.CONSUMER_ENABLE_COLLATE_DOUBLE_SIDED and (
         settings.CONSUMER_COLLATE_DOUBLE_SIDED_SUBDIR_NAME
@@ -156,6 +157,9 @@ def consume_file(
                 # But it's from a physical barcode, so that's good
                 overrides.asn = reader.asn
                 logger.info(f"Found ASN in barcode: {overrides.asn}")
+
+
+
 
     template_overrides = Consumer().get_template_overrides(
         input_doc=input_doc,
