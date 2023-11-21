@@ -35,15 +35,21 @@ from documents.utils import copy_file_with_basic_stats
 
 # TODO: isnt there a date parsing library for this?
 
+# DATE_REGEX = re.compile(
+#     r"(\b|(?!=([_-])))([0-9]{1,2})[\.\/-]([0-9]{1,2})[\.\/-]([0-9]{4}|[0-9]{2})(\b|(?=([_-])))|"  # noqa: E501
+#     r"(\b|(?!=([_-])))([0-9]{4}|[0-9]{2})[\.\/-]([0-9]{1,2})[\.\/-]([0-9]{1,2})(\b|(?=([_-])))|"  # noqa: E501
+#     r"(\b|(?!=([_-])))([0-9]{1,2}[\. ]+[a-zA-Z]{3,9} ([0-9]{4}|[0-9]{2}))(\b|(?=([_-])))|"  # noqa: E501
+#     r"(\b|(?!=([_-])))([^\W\d_]{3,9} [0-9]{1,2}, ([0-9]{4}))(\b|(?=([_-])))|"
+#     r"(\b|(?!=([_-])))([^\W\d_]{3,9} [0-9]{4})(\b|(?=([_-])))|"
+#     r"(\b|(?!=([_-])))([0-9]{1,2}[^ ]{2}[\. ]+[^ ]{3,9}[ \.\/-][0-9]{4})(\b|(?=([_-])))|"  # noqa: E501
+#     r"(\b|(?!=([_-])))(\b[0-9]{1,2}[ \.\/-][a-zA-Z]{3}[ \.\/-][0-9]{4})(\b|(?=([_-])))",  # noqa: E501
+# )
+
 DATE_REGEX = re.compile(
-    r"(\b|(?!=([_-])))([0-9]{1,2})[\.\/-]([0-9]{1,2})[\.\/-]([0-9]{4}|[0-9]{2})(\b|(?=([_-])))|"  # noqa: E501
-    r"(\b|(?!=([_-])))([0-9]{4}|[0-9]{2})[\.\/-]([0-9]{1,2})[\.\/-]([0-9]{1,2})(\b|(?=([_-])))|"  # noqa: E501
-    r"(\b|(?!=([_-])))([0-9]{1,2}[\. ]+[a-zA-Z]{3,9} ([0-9]{4}|[0-9]{2}))(\b|(?=([_-])))|"  # noqa: E501
-    r"(\b|(?!=([_-])))([^\W\d_]{3,9} [0-9]{1,2}, ([0-9]{4}))(\b|(?=([_-])))|"
-    r"(\b|(?!=([_-])))([^\W\d_]{3,9} [0-9]{4})(\b|(?=([_-])))|"
-    r"(\b|(?!=([_-])))([0-9]{1,2}[^ ]{2}[\. ]+[^ ]{3,9}[ \.\/-][0-9]{4})(\b|(?=([_-])))|"  # noqa: E501
-    r"(\b|(?!=([_-])))(\b[0-9]{1,2}[ \.\/-][a-zA-Z]{3}[ \.\/-][0-9]{4})(\b|(?=([_-])))",  # noqa: E501
+    r"(?:(?:(\d{4})[\/-](\d{2})[\/-](\d{2})|(\d{2})[\/-](\d{2})[\/-](\d{4}))|(\d{2})[\/-](\d{2})[\/-](\d{2}))\b"  # noqa: E501
 )
+
+
 
 
 logger = logging.getLogger("paperless.parsing")
@@ -258,8 +264,8 @@ def parse_date_generator(filename, text) -> Iterator[datetime.datetime]:
         return dateparser.parse(
             ds,
             settings={
-                "DATE_ORDER": date_order,
-                "PREFER_DAY_OF_MONTH": "first",
+                #"DATE_ORDER": date_order,
+                #"PREFER_DAY_OF_MONTH": "first",
                 "RETURN_AS_TIMEZONE_AWARE": True,
                 "TIMEZONE": settings.TIME_ZONE,
             },
@@ -280,7 +286,7 @@ def parse_date_generator(filename, text) -> Iterator[datetime.datetime]:
         date_order: str,
     ) -> Optional[datetime.datetime]:
         date_string = match.group(0)
-
+        logger.info(date_string)
         try:
             date = __parser(date_string, date_order)
         except Exception:
