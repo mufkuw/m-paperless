@@ -51,7 +51,6 @@ import { SavedViewWidgetComponent } from './components/dashboard/widgets/saved-v
 import { StatisticsWidgetComponent } from './components/dashboard/widgets/statistics-widget/statistics-widget.component'
 import { UploadFileWidgetComponent } from './components/dashboard/widgets/upload-file-widget/upload-file-widget.component'
 import { WidgetFrameComponent } from './components/dashboard/widgets/widget-frame/widget-frame.component'
-import { PdfViewerModule } from 'ng2-pdf-viewer'
 import { WelcomeWidgetComponent } from './components/dashboard/widgets/welcome-widget/welcome-widget.component'
 import { YesNoPipe } from './pipes/yes-no.pipe'
 import { FileSizePipe } from './pipes/file-size.pipe'
@@ -105,6 +104,9 @@ import { FileDropComponent } from './components/file-drop/file-drop.component'
 import { CustomFieldsComponent } from './components/manage/custom-fields/custom-fields.component'
 import { CustomFieldEditDialogComponent } from './components/common/edit-dialog/custom-field-edit-dialog/custom-field-edit-dialog.component'
 import { CustomFieldsDropdownComponent } from './components/common/custom-fields-dropdown/custom-fields-dropdown.component'
+import { ProfileEditDialogComponent } from './components/common/profile-edit-dialog/profile-edit-dialog.component'
+import { PdfViewerComponent } from './components/common/pdf-viewer/pdf-viewer.component'
+import { DocumentLinkComponent } from './components/common/input/document-link/document-link.component'
 
 import localeAf from '@angular/common/locales/af'
 import localeAr from '@angular/common/locales/ar'
@@ -119,6 +121,7 @@ import localeEnGb from '@angular/common/locales/en-GB'
 import localeEs from '@angular/common/locales/es'
 import localeFi from '@angular/common/locales/fi'
 import localeFr from '@angular/common/locales/fr'
+import localeHu from '@angular/common/locales/hu'
 import localeIt from '@angular/common/locales/it'
 import localeLb from '@angular/common/locales/lb'
 import localeNl from '@angular/common/locales/nl'
@@ -148,6 +151,7 @@ registerLocaleData(localeEnGb)
 registerLocaleData(localeEs)
 registerLocaleData(localeFi)
 registerLocaleData(localeFr)
+registerLocaleData(localeHu)
 registerLocaleData(localeIt)
 registerLocaleData(localeLb)
 registerLocaleData(localeNl)
@@ -254,6 +258,9 @@ function initializeApp(settings: SettingsService) {
     CustomFieldsComponent,
     CustomFieldEditDialogComponent,
     CustomFieldsDropdownComponent,
+    ProfileEditDialogComponent,
+    PdfViewerComponent,
+    DocumentLinkComponent,
   ],
   imports: [
     BrowserModule,
@@ -263,7 +270,6 @@ function initializeApp(settings: SettingsService) {
     FormsModule,
     ReactiveFormsModule,
     NgxFileDropModule,
-    PdfViewerModule,
     NgSelectModule,
     ColorSliderModule,
     TourNgBootstrapModule,

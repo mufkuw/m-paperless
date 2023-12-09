@@ -416,7 +416,7 @@ export class SettingsComponent
     )
     this.settings.set(
       SETTINGS_KEYS.THEME_COLOR,
-      this.settingsForm.value.themeColor.toString()
+      this.settingsForm.value.themeColor
     )
     this.settings.set(
       SETTINGS_KEYS.USE_NATIVE_PDF_VIEWER,
@@ -489,7 +489,6 @@ export class SettingsComponent
           this.documentListViewService.updatePageSize()
           this.settings.updateAppearanceSettings()
           let savedToast: Toast = {
-            title: $localize`Settings saved`,
             content: $localize`Settings were saved successfully.`,
             delay: 5000,
           }

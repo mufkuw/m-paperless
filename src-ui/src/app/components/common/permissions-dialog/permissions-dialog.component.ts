@@ -52,13 +52,23 @@ export class PermissionsDialogComponent {
   get permissions() {
     return {
       owner: this.form.get('permissions_form').value?.owner ?? null,
-      set_permissions:
-        this.form.get('permissions_form').value?.set_permissions ?? null,
+      set_permissions: this.form.get('permissions_form').value
+        ?.set_permissions ?? {
+        view: {
+          users: [],
+          groups: [],
+        },
+        change: {
+          users: [],
+          groups: [],
+        },
+      },
     }
   }
 
   @Input()
-  message = $localize`Note that permissions set here will override any existing permissions`
+  message =
+    $localize`Note that permissions set here will override any existing permissions`
 
   cancelClicked() {
     this.activeModal.close()

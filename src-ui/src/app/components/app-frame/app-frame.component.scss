@@ -27,7 +27,7 @@
     max-width: 16.66666667%;
   }
 
-  @media (min-width: 2000px) {
+  @media (min-width: 2400px) {
     max-width: 8.33333333%;
   }
 
@@ -312,7 +312,7 @@ main {
   }
 }
 
-.nav-item .position-absolute {
+.nav-item > .position-absolute {
   cursor: move;
 }
 

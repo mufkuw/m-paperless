@@ -4459,6 +4459,51 @@ class TestApiAuth(DirectoriesMixin, APITestCase):
         self.assertEqual(checker.has_perm("view_tag", tag1), True)
         self.assertIn("view_tag", get_perms(group1, tag1))
 
+    def test_api_set_other_owner_w_permissions(self):
+        """
+        GIVEN:
+            - API request to create an object (Tag)
+        WHEN:
+            - a different owner than is logged in is set
+            - view > groups is set
+        THEN:
+            - Object permissions are set appropriately
+        """
+        user1 = User.objects.create_superuser(username="user1")
+        user2 = User.objects.create(username="user2")
+        group1 = Group.objects.create(name="group1")
+
+        self.client.force_authenticate(user1)
+
+        response = self.client.post(
+            "/api/tags/",
+            json.dumps(
+                {
+                    "name": "test1",
+                    "matching_algorithm": MatchingModel.MATCH_AUTO,
+                    "owner": user2.id,
+                    "set_permissions": {
+                        "view": {
+                            "users": None,
+                            "groups": [group1.id],
+                        },
+                        "change": {
+                            "users": None,
+                            "groups": None,
+                        },
+                    },
+                },
+            ),
+            content_type="application/json",
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+        tag1 = Tag.objects.filter(name="test1").first()
+
+        self.assertEqual(tag1.owner, user2)
+        self.assertIn("view_tag", get_perms(group1, tag1))
+
     def test_api_set_doc_permissions(self):
         """
         GIVEN:
@@ -5604,6 +5649,11 @@ class TestApiConsumptionTemplates(DirectoriesMixin, APITestCase):
         self.t2 = Tag.objects.create(name="t2")
         self.t3 = Tag.objects.create(name="t3")
         self.sp = StoragePath.objects.create(path="/test/")
+        self.cf1 = CustomField.objects.create(name="Custom Field 1", data_type="string")
+        self.cf2 = CustomField.objects.create(
+            name="Custom Field 2",
+            data_type="integer",
+        )
 
         self.ct = ConsumptionTemplate.objects.create(
             name="Template 1",
@@ -5624,6 +5674,8 @@ class TestApiConsumptionTemplates(DirectoriesMixin, APITestCase):
         self.ct.assign_view_groups.add(self.group1.pk)
         self.ct.assign_change_users.add(self.user3.pk)
         self.ct.assign_change_groups.add(self.group1.pk)
+        self.ct.assign_custom_fields.add(self.cf1.pk)
+        self.ct.assign_custom_fields.add(self.cf2.pk)
         self.ct.save()
 
     def test_api_get_consumption_template(self):
@@ -5695,7 +5747,55 @@ class TestApiConsumptionTemplates(DirectoriesMixin, APITestCase):
             content_type="application/json",
         )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-        self.assertEqual(StoragePath.objects.count(), 1)
+        self.assertEqual(ConsumptionTemplate.objects.count(), 1)
+
+    def test_api_create_consumption_template_empty_fields(self):
+        """
+        GIVEN:
+            - API request to create a consumption template
+            - Path or filename filter or assign title are empty string
+        WHEN:
+            - API is called
+        THEN:
+            - Template is created but filter or title assignment is not set if ""
+        """
+        response = self.client.post(
+            self.ENDPOINT,
+            json.dumps(
+                {
+                    "name": "Template 2",
+                    "order": 1,
+                    "sources": [DocumentSource.ApiUpload],
+                    "filter_filename": "*test*",
+                    "filter_path": "",
+                    "assign_title": "",
+                },
+            ),
+            content_type="application/json",
+        )
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        ct = ConsumptionTemplate.objects.get(name="Template 2")
+        self.assertEqual(ct.filter_filename, "*test*")
+        self.assertIsNone(ct.filter_path)
+        self.assertIsNone(ct.assign_title)
+
+        response = self.client.post(
+            self.ENDPOINT,
+            json.dumps(
+                {
+                    "name": "Template 3",
+                    "order": 1,
+                    "sources": [DocumentSource.ApiUpload],
+                    "filter_filename": "",
+                    "filter_path": "*/test/*",
+                },
+            ),
+            content_type="application/json",
+        )
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        ct2 = ConsumptionTemplate.objects.get(name="Template 3")
+        self.assertEqual(ct2.filter_path, "*/test/*")
+        self.assertIsNone(ct2.filter_filename)
 
     def test_api_create_consumption_template_with_mailrule(self):
         """
@@ -5724,7 +5824,7 @@ class TestApiConsumptionTemplates(DirectoriesMixin, APITestCase):
             filter_to="someone@somewhere.com",
             filter_subject="subject",
             filter_body="body",
-            filter_attachment_filename="file.pdf",
+            filter_attachment_filename_include="file.pdf",
             maximum_age=30,
             action=MailRule.MailAction.MARK_READ,
             assign_title_from=MailRule.TitleSource.FROM_SUBJECT,

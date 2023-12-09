@@ -81,7 +81,7 @@
 
 </pngx-page-header>
 
-<div class="row sticky-top pb-3 bg-body">
+<div class="row sticky-top py-3 mt-n2 mt-md-n3 bg-body">
   <pngx-filter-editor [hidden]="isBulkEditing" [(filterRules)]="list.filterRules" [unmodifiedFilterRules]="unmodifiedFilterRules" [selectionData]="list.selectionData" #filterEditor></pngx-filter-editor>
   <pngx-bulk-editor [hidden]="!isBulkEditing"></pngx-bulk-editor>
 </div>
@@ -143,6 +143,7 @@
       <th
         pngxSortable="title"
         title="Sort by title" i18n-title
+        class="w-40"
         [currentSortField]="list.sortField"
         [currentSortReverse]="list.sortReverse"
         (sort)="onSort($event)"

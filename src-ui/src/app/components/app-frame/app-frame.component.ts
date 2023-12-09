@@ -39,6 +39,8 @@ import {
   CdkDragDrop,
   moveItemInArray,
 } from '@angular/cdk/drag-drop'
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
+import { ProfileEditDialogComponent } from '../common/profile-edit-dialog/profile-edit-dialog.component'
 
 @Component({
   selector: 'pngx-app-frame',
@@ -58,8 +60,6 @@ export class AppFrameComponent
 
   searchField = new FormControl('')
 
-  sidebarViews: PaperlessSavedView[]
-
   constructor(
     public router: Router,
     private activatedRoute: ActivatedRoute,
@@ -71,6 +71,7 @@ export class AppFrameComponent
     public settingsService: SettingsService,
     public tasksService: TasksService,
     private readonly toastService: ToastService,
+    private modalService: NgbModal,
     permissionsService: PermissionsService
   ) {
     super()
@@ -90,10 +91,6 @@ export class AppFrameComponent
       this.checkForUpdates()
     }
     this.tasksService.reload()
-
-    this.savedViewService.listAll().subscribe(() => {
-      this.sidebarViews = this.savedViewService.sidebarViews
-    })
   }
 
   toggleSlimSidebar(): void {
@@ -125,6 +122,13 @@ export class AppFrameComponent
 
   closeMenu() {
     this.isMenuCollapsed = true
+  }
+
+  editProfile() {
+    this.modalService.open(ProfileEditDialogComponent, {
+      backdrop: 'static',
+    })
+    this.closeMenu()
   }
 
   get openDocuments(): PaperlessDocument[] {
@@ -240,9 +244,10 @@ export class AppFrameComponent
   }
 
   onDrop(event: CdkDragDrop<PaperlessSavedView[]>) {
-    moveItemInArray(this.sidebarViews, event.previousIndex, event.currentIndex)
+    const sidebarViews = this.savedViewService.sidebarViews.concat([])
+    moveItemInArray(sidebarViews, event.previousIndex, event.currentIndex)
 
-    this.settingsService.updateSidebarViewsSort(this.sidebarViews).subscribe({
+    this.settingsService.updateSidebarViewsSort(sidebarViews).subscribe({
       next: () => {
         this.toastService.showInfo($localize`Sidebar views updated`)
       },
