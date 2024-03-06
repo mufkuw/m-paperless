@@ -617,7 +617,7 @@ class MailAccountHandler(LoggingMixin):
             f"{len(message.attachments)} attachment(s)",
         )
 
-        tag_ids = [tag.id for tag in rule.assign_tags.all()]
+        tag_ids: list[int] = [tag.id for tag in rule.assign_tags.all()]
         doc_type = rule.assign_document_type
 
         if (
@@ -668,12 +668,29 @@ class MailAccountHandler(LoggingMixin):
                 )
                 continue
 
-            if rule.filter_attachment_filename and not fnmatch(
+            if rule.filter_attachment_filename_include and not fnmatch(
                 att.filename.lower(),
-                rule.filter_attachment_filename.lower(),
+                rule.filter_attachment_filename_include.lower(),
             ):
                 # Force the filename and pattern to the lowercase
                 # as this is system dependent otherwise
+                self.log.debug(
+                    f"Rule {rule}: "
+                    f"Skipping attachment {att.filename} "
+                    f"does not match pattern {rule.filter_attachment_filename_include}",
+                )
+                continue
+            elif rule.filter_attachment_filename_exclude and fnmatch(
+                att.filename.lower(),
+                rule.filter_attachment_filename_exclude.lower(),
+            ):
+                # Force the filename and pattern to the lowercase
+                # as this is system dependent otherwise
+                self.log.debug(
+                    f"Rule {rule}: "
+                    f"Skipping attachment {att.filename} "
+                    f"does match pattern {rule.filter_attachment_filename_exclude}",
+                )
                 continue
 
             correspondent = self._get_correspondent(message, rule)
