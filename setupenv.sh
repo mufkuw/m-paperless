@@ -13,7 +13,7 @@ sudo -Hu paperless python3 -m nltk.downloader popular
 
 cd /opt/paperless/src
 sudo -Hu paperless python3 manage.py migrate
-sudo -Hu paperless python3 manage.py createsuperuser
+#sudo -Hu paperless python3 manage.py createsuperuser
 
 cd /opt/paperless/src-ui
 npm i -g npm@latest --force
