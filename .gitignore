@@ -97,3 +97,5 @@ scripts/nuke
 
 # celery schedule file
 celerybeat-schedule*
+
+.local
