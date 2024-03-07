@@ -343,7 +343,6 @@ class TestConsumer(DirectoriesMixin, ConsumerThreadMixin, TransactionTestCase):
 @override_settings(
     CONSUMER_POLLING=1,
     # please leave the delay here and down below
-    # see https://github.com/paperless-ngx/paperless-ngx/pull/66
     CONSUMER_POLLING_DELAY=3,
     CONSUMER_POLLING_RETRY_COUNT=20,
 )
