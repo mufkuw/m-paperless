@@ -20,7 +20,7 @@
     <div class="position-absolute top-50 start-50 translate-middle">
         <form class="form-accounts" method="post">
             {% csrf_token %}
-            {% include "paperless-ngx/snippets/svg_logo.html" with extra_attrs="width='300' class='logo mb-4'" %}
+            {% include "paperless/snippets/svg_logo.html" with extra_attrs="width='300' class='logo mb-4'" %}
             {% for message in messages %}
             <div class="alert alert-{{ message.level_tag }}" role="alert">
                 {{ message }}
