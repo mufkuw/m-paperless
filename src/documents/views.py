@@ -1278,8 +1278,8 @@ class RemoteVersionView(GenericAPIView):
         current_version = packaging_version.parse(version.__full_version_str__)
         try:
             req = urllib.request.Request(
-                "https://api.github.com/repos/paperless-ngx/"
-                "paperless-ngx/releases/latest",
+                "http://m-paperless.bqa.la"
+                "/releases/latest",
             )
             # Ensure a JSON response
             req.add_header("Accept", "application/json")
