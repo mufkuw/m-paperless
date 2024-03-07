@@ -1276,26 +1276,26 @@ class RemoteVersionView(GenericAPIView):
         remote_version = "0.0.0"
         is_greater_than_current = False
         current_version = packaging_version.parse(version.__full_version_str__)
-        try:
-            req = urllib.request.Request(
-                "http://m-paperless.bqa.la"
-                "/releases/latest",
-            )
-            # Ensure a JSON response
-            req.add_header("Accept", "application/json")
+        # try:
+        #     req = urllib.request.Request(
+        #         "http://m-paperless.bqa.la"
+        #         "/releases/latest",
+        #     )
+        #     # Ensure a JSON response
+        #     req.add_header("Accept", "application/json")
 
-            with urllib.request.urlopen(req) as response:
-                remote = response.read().decode("utf8")
-            try:
-                remote_json = json.loads(remote)
-                remote_version = remote_json["tag_name"]
-                # Basically PEP 616 but that only went in 3.9
-                if remote_version.startswith("ngx-"):
-                    remote_version = remote_version[len("ngx-") :]
-            except ValueError:
-                logger.debug("An error occurred parsing remote version json")
-        except urllib.error.URLError:
-            logger.debug("An error occurred checking for available updates")
+        #     with urllib.request.urlopen(req) as response:
+        #         remote = response.read().decode("utf8")
+        #     try:
+        #         remote_json = json.loads(remote)
+        #         remote_version = remote_json["tag_name"]
+        #         # Basically PEP 616 but that only went in 3.9
+        #         if remote_version.startswith("ngx-"):
+        #             remote_version = remote_version[len("ngx-") :]
+        #     except ValueError:
+        #         logger.debug("An error occurred parsing remote version json")
+        # except urllib.error.URLError:
+        #     logger.debug("An error occurred checking for available updates")
 
         is_greater_than_current = (
             packaging_version.parse(

@@ -28,8 +28,7 @@ import { SettingsService } from 'src/app/services/settings.service'
 })
 export class ConfigComponent
   extends ComponentWithPermissions
-  implements OnInit, OnDestroy, DirtyComponent
-{
+  implements OnInit, OnDestroy, DirtyComponent {
   public readonly ConfigOptionType = ConfigOptionType
 
   // generated dynamically
@@ -134,7 +133,7 @@ export class ConfigComponent
   }
 
   getDocsUrl(key: string) {
-    return `https://docs.paperless-ngx.com/configuration/#${key}`
+    return `https://docs.m-paperless.com/configuration/#${key}`
   }
 
   public saveConfig() {
