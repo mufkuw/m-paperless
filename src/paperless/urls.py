@@ -193,6 +193,7 @@ urlpatterns = [
             ),
         ),
     ),
+    
     # Frontend assets TODO: this is pretty bad, but it works.
     path(
         "assets/<path:path>",
@@ -207,6 +208,9 @@ urlpatterns = [
         serve,
         kwargs={"document_root": os.path.join(settings.MEDIA_ROOT, "logo")},
     ),
+    
+    
+    
     # login, logout
     path("accounts/", include("allauth.urls")),
     # Root of the Frontend
@@ -221,6 +225,9 @@ urlpatterns = [
 websocket_urlpatterns = [
     path(settings.BASE_URL.lstrip("/") + "ws/status/", StatusConsumer.as_asgi()),
 ]
+
+
+# urlpatterns += 
 
 # Text in each page's <h1> (and above login form).
 admin.site.site_header = "M-Paperless"

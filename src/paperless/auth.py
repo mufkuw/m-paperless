@@ -33,7 +33,7 @@ class AngularApiAuthenticationOverride(authentication.BaseAuthentication):
     """
 
     def authenticate(self, request):
-        if (
+        if ( 
             settings.DEBUG
             and "Referer" in request.headers
             and request.headers["Referer"].startswith("http://localhost:4200/")
