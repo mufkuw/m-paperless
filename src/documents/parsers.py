@@ -46,7 +46,13 @@ from documents.utils import copy_file_with_basic_stats
 # )
 
 DATE_REGEX = re.compile(
-    r"(?:(?:(\d{4})[\/-](\d{2})[\/-](\d{2})|(\d{2})[\/-](\d{2})[\/-](\d{4}))|(\d{2})[\/-](\d{2})[\/-](\d{2}))\b"  # noqa: E501
+    r"(\b|(?!=([_-])))([0-9]{1,2})[\.\/-]([0-9]{1,2})[\.\/-]([0-9]{4}|[0-9]{2})(\b|(?=([_-])))|"
+    r"(\b|(?!=([_-])))([0-9]{4}|[0-9]{2})[\.\/-]([0-9]{1,2})[\.\/-]([0-9]{1,2})(\b|(?=([_-])))|"
+    r"(\b|(?!=([_-])))([0-9]{1,2}[\. ]+[a-zA-Z]{3,9} ([0-9]{4}|[0-9]{2}))(\b|(?=([_-])))|"
+    r"(\b|(?!=([_-])))([^\W\d_]{3,9} [0-9]{1,2}, ([0-9]{4}))(\b|(?=([_-])))|"
+    r"(\b|(?!=([_-])))([^\W\d_]{3,9} [0-9]{4})(\b|(?=([_-])))|"
+    r"(\b|(?!=([_-])))([0-9]{1,2}[^ ]{2}[\. ]+[^ ]{3,9}[ \.\/-][0-9]{4})(\b|(?=([_-])))|"
+    r"(\b|(?!=([_-])))(\b[0-9]{1,2}[ \.\/-][a-zA-Z]{3}[ \.\/-][0-9]{4})(\b|(?=([_-])))",
 )
 
 
@@ -111,7 +117,7 @@ def get_supported_file_extensions() -> set[str]:
     return extensions
 
 
-def get_parser_class_for_mime_type(mime_type: str) -> Optional["DocumentParser"]:
+def get_parser_class_for_mime_type(mime_type: str) -> Optional[type["DocumentParser"]]:
     """
     Returns the best parser (by weight) for the given mimetype or
     None if no parser exists

@@ -469,7 +469,7 @@ SECRET_KEY = os.getenv(
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",  # noqa: E501
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {
         "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
@@ -597,6 +597,7 @@ LANGUAGES = [
     ("es-es", _("Spanish")),
     ("fi-fi", _("Finnish")),
     ("fr-fr", _("French")),
+    ("hu-hu", _("Hungarian")),
     ("it-it", _("Italian")),
     ("lb-lu", _("Luxembourgish")),
     ("no-no", _("Norwegian")),
@@ -775,7 +776,7 @@ CONSUMER_IGNORE_PATTERNS = list(
     json.loads(
         os.getenv(
             "PAPERLESS_CONSUMER_IGNORE_PATTERNS",
-            '[".DS_Store", ".DS_STORE", "._*", ".stfolder/*", ".stversions/*", ".localized/*", "desktop.ini", "@eaDir/*"]',  # noqa: E501
+            '[".DS_Store", ".DS_STORE", "._*", ".stfolder/*", ".stversions/*", ".localized/*", "desktop.ini", "@eaDir/*"]',
         ),
     ),
 )
@@ -862,6 +863,11 @@ OCR_ROTATE_PAGES_THRESHOLD = float(
 OCR_MAX_IMAGE_PIXELS: Optional[int] = None
 if os.environ.get("PAPERLESS_OCR_MAX_IMAGE_PIXELS") is not None:
     OCR_MAX_IMAGE_PIXELS: int = int(os.environ.get("PAPERLESS_OCR_MAX_IMAGE_PIXELS"))
+
+OCR_COLOR_CONVERSION_STRATEGY = os.getenv(
+    "PAPERLESS_OCR_COLOR_CONVERSION_STRATEGY",
+    "RGB",
+)
 
 OCR_USER_ARGS = os.getenv("PAPERLESS_OCR_USER_ARGS", "{}")
 
@@ -1019,6 +1025,7 @@ EMAIL_HOST: Final[str] = os.getenv("PAPERLESS_EMAIL_HOST", "localhost")
 EMAIL_PORT: Final[int] = int(os.getenv("PAPERLESS_EMAIL_PORT", 25))
 EMAIL_HOST_USER: Final[str] = os.getenv("PAPERLESS_EMAIL_HOST_USER", "")
 EMAIL_HOST_PASSWORD: Final[str] = os.getenv("PAPERLESS_EMAIL_HOST_PASSWORD", "")
+DEFAULT_FROM_EMAIL: Final[str] = os.getenv("PAPERLESS_EMAIL_FROM", EMAIL_HOST_USER)
 EMAIL_USE_TLS: Final[bool] = __get_boolean("PAPERLESS_EMAIL_USE_TLS")
 EMAIL_USE_SSL: Final[bool] = __get_boolean("PAPERLESS_EMAIL_USE_SSL")
 EMAIL_SUBJECT_PREFIX: Final[str] = "[M-Paperless] "

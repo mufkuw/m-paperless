@@ -28,6 +28,7 @@ class DocumentMetadataOverrides:
     view_groups: Optional[list[int]] = None
     change_users: Optional[list[int]] = None
     change_groups: Optional[list[int]] = None
+    custom_field_ids: Optional[list[int]] = None
 
     def update(self, other: "DocumentMetadataOverrides") -> "DocumentMetadataOverrides":
         """
@@ -50,7 +51,6 @@ class DocumentMetadataOverrides:
             self.owner_id = other.owner_id
         
         # merge
-        # TODO: Handle the case where other is also None
         if self.tag_ids is None:
             self.tag_ids = other.tag_ids
         else:
@@ -60,23 +60,29 @@ class DocumentMetadataOverrides:
 
         if self.view_users is None:
             self.view_users = other.view_users
-        else:
+        elif other.view_users is not None:
             self.view_users.extend(other.view_users)
+
         if self.view_groups is None:
             self.view_groups = other.view_groups
-        else:
+        elif other.view_groups is not None:
             self.view_groups.extend(other.view_groups)
+
         if self.change_users is None:
             self.change_users = other.change_users
-        else:
+        elif other.change_users is not None:
             self.change_users.extend(other.change_users)
+
         if self.change_groups is None:
             self.change_groups = other.change_groups
-        else:
-            self.change_groups = [
-                *self.change_groups,
-                *other.change_groups,
-            ]
+        elif other.change_groups is not None:
+            self.change_groups.extend(other.change_groups)
+
+        if self.custom_field_ids is None:
+            self.custom_field_ids = other.custom_field_ids
+        elif other.custom_field_ids is not None:
+            self.custom_field_ids.extend(other.custom_field_ids)
+
         return self
 
 

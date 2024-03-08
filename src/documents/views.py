@@ -158,10 +158,10 @@ class IndexView(TemplateView):
         context["main_js"] = f"frontend/{self.get_frontend_language()}/main.js"
         context[
             "webmanifest"
-        ] = f"frontend/{self.get_frontend_language()}/manifest.webmanifest"  # noqa: E501
+        ] = f"frontend/{self.get_frontend_language()}/manifest.webmanifest"
         context[
             "apple_touch_icon"
-        ] = f"frontend/{self.get_frontend_language()}/apple-touch-icon.png"  # noqa: E501
+        ] = f"frontend/{self.get_frontend_language()}/apple-touch-icon.png"
         return context
 
 
@@ -583,7 +583,7 @@ class DocumentViewSet(
 
             from documents import index
 
-            index.add_or_update_document(self.get_object())
+            index.add_or_update_document(doc)
 
             return Response(self.getNotes(doc))
 
@@ -1158,8 +1158,8 @@ class RemoteVersionView(GenericAPIView):
         current_version = packaging_version.parse(version.__full_version_str__)
         try:
             req = urllib.request.Request(
-                "https://api.github.com/repos/paperlessngx/"
-                "paperlessngx/releases/latest",
+                "https://api.github.com/repos/paperless-ngx/"
+                "paperless-ngx/releases/latest",
             )
             # Ensure a JSON response
             req.add_header("Accept", "application/json")

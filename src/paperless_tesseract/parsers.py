@@ -186,6 +186,11 @@ class RasterisedDocumentParser(DocumentParser):
             "progress_bar": False,
         }
 
+        if "pdfa" in ocrmypdf_args["output_type"]:
+            ocrmypdf_args[
+                "color_conversion_strategy"
+            ] = settings.OCR_COLOR_CONVERSION_STRATEGY
+
         if settings.OCR_MODE == "force" or safe_fallback:
             ocrmypdf_args["force_ocr"] = True
         elif settings.OCR_MODE in ["skip", "skip_noarchive"]:
@@ -243,6 +248,10 @@ class RasterisedDocumentParser(DocumentParser):
                     f"Cannot produce archive PDF for image {input_file}, "
                     f"no DPI information is present in this image and "
                     f"OCR_IMAGE_DPI is not set.",
+                )
+            if ocrmypdf_args["image_dpi"] < 70:  # pragma: no cover
+                self.log.warning(
+                    f"Image DPI of {ocrmypdf_args['image_dpi']} is low, OCR may fail",
                 )
 
         if settings.OCR_USER_ARGS and not safe_fallback:
@@ -338,7 +347,7 @@ class RasterisedDocumentParser(DocumentParser):
             if "Ghostscript PDF/A rendering" in str(e):
                 self.log.warning(
                     "Ghostscript PDF/A rendering failed, consider setting "
-                    "PAPERLESS_OCR_USER_ARGS: '{\"continue_on_soft_render_error\": true}'",  # noqa: E501
+                    "PAPERLESS_OCR_USER_ARGS: '{\"continue_on_soft_render_error\": true}'",
                 )
 
             raise ParseError(
