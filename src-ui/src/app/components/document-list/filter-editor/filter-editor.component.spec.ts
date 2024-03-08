@@ -1,5 +1,8 @@
 import { DatePipe } from '@angular/common'
-import { HttpClientTestingModule } from '@angular/common/http/testing'
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing'
 import {
   ComponentFixture,
   fakeAsync,
@@ -47,12 +50,13 @@ import {
   FILTER_OWNER_DOES_NOT_INCLUDE,
   FILTER_OWNER_ISNULL,
   FILTER_CUSTOM_FIELDS,
+  FILTER_SHARED_BY_USER,
 } from 'src/app/data/filter-rule-type'
-import { PaperlessCorrespondent } from 'src/app/data/paperless-correspondent'
-import { PaperlessDocumentType } from 'src/app/data/paperless-document-type'
-import { PaperlessStoragePath } from 'src/app/data/paperless-storage-path'
-import { PaperlessTag } from 'src/app/data/paperless-tag'
-import { PaperlessUser } from 'src/app/data/paperless-user'
+import { Correspondent } from 'src/app/data/correspondent'
+import { DocumentType } from 'src/app/data/document-type'
+import { StoragePath } from 'src/app/data/storage-path'
+import { Tag } from 'src/app/data/tag'
+import { User } from 'src/app/data/user'
 import { IfPermissionsDirective } from 'src/app/directives/if-permissions.directive'
 import { CustomDatePipe } from 'src/app/pipes/custom-date.pipe'
 import { FilterPipe } from 'src/app/pipes/filter.pipe'
@@ -76,8 +80,14 @@ import {
   OwnerFilterType,
 } from '../../common/permissions-filter-dropdown/permissions-filter-dropdown.component'
 import { FilterEditorComponent } from './filter-editor.component'
+import { NgxBootstrapIconsModule, allIcons } from 'ngx-bootstrap-icons'
+import {
+  PermissionType,
+  PermissionsService,
+} from 'src/app/services/permissions.service'
+import { environment } from 'src/environments/environment'
 
-const tags: PaperlessTag[] = [
+const tags: Tag[] = [
   {
     id: 2,
     name: 'Tag2',
@@ -88,7 +98,7 @@ const tags: PaperlessTag[] = [
   },
 ]
 
-const correspondents: PaperlessCorrespondent[] = [
+const correspondents: Correspondent[] = [
   {
     id: 12,
     name: 'Corresp12',
@@ -99,7 +109,7 @@ const correspondents: PaperlessCorrespondent[] = [
   },
 ]
 
-const document_types: PaperlessDocumentType[] = [
+const document_types: DocumentType[] = [
   {
     id: 22,
     name: 'DocType22',
@@ -110,7 +120,7 @@ const document_types: PaperlessDocumentType[] = [
   },
 ]
 
-const storage_paths: PaperlessStoragePath[] = [
+const storage_paths: StoragePath[] = [
   {
     id: 32,
     name: 'StoragePath32',
@@ -121,7 +131,7 @@ const storage_paths: PaperlessStoragePath[] = [
   },
 ]
 
-const users: PaperlessUser[] = [
+const users: User[] = [
   {
     id: 1,
     username: 'user1',
@@ -133,6 +143,8 @@ describe('FilterEditorComponent', () => {
   let fixture: ComponentFixture<FilterEditorComponent>
   let documentService: DocumentService
   let settingsService: SettingsService
+  let permissionsService: PermissionsService
+  let httpTestingController: HttpTestingController
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
@@ -190,18 +202,46 @@ describe('FilterEditorComponent', () => {
         FormsModule,
         ReactiveFormsModule,
         NgbDatepickerModule,
+        NgxBootstrapIconsModule.pick(allIcons),
       ],
     }).compileComponents()
 
     documentService = TestBed.inject(DocumentService)
     settingsService = TestBed.inject(SettingsService)
     settingsService.currentUser = users[0]
+    permissionsService = TestBed.inject(PermissionsService)
+    jest
+      .spyOn(permissionsService, 'currentUserCan')
+      .mockImplementation((action, type) => {
+        // a little hack-ish, permissions filter dropdown causes reactive forms issue due to ng-select
+        // trying to apply formControlName
+        return type !== PermissionType.User
+      })
+    httpTestingController = TestBed.inject(HttpTestingController)
     fixture = TestBed.createComponent(FilterEditorComponent)
     component = fixture.componentInstance
     component.filterRules = []
     fixture.detectChanges()
     tick()
   }))
+
+  it('should not attempt to retrieve objects if user does not have permissions', () => {
+    jest.spyOn(permissionsService, 'currentUserCan').mockReset()
+    jest
+      .spyOn(permissionsService, 'currentUserCan')
+      .mockImplementation((action, type) => false)
+    component.ngOnInit()
+    httpTestingController.expectNone(`${environment.apiBaseUrl}documents/tags/`)
+    httpTestingController.expectNone(
+      `${environment.apiBaseUrl}documents/correspondents/`
+    )
+    httpTestingController.expectNone(
+      `${environment.apiBaseUrl}documents/document_types/`
+    )
+    httpTestingController.expectNone(
+      `${environment.apiBaseUrl}documents/storage_paths/`
+    )
+  })
 
   // SET filterRules
 
@@ -341,6 +381,28 @@ describe('FilterEditorComponent', () => {
     expect(component.textFilter).toBeNull()
   }))
 
+  it('should ingest text filter content with relative dates that are not in quick list', fakeAsync(() => {
+    expect(component.dateAddedRelativeDate).toBeNull()
+    component.filterRules = [
+      {
+        rule_type: FILTER_FULLTEXT_QUERY,
+        value: 'added:[-2 week to now]',
+      },
+    ]
+    expect(component.dateAddedRelativeDate).toBeNull()
+    expect(component.textFilter).toEqual('added:[-2 week to now]')
+
+    expect(component.dateCreatedRelativeDate).toBeNull()
+    component.filterRules = [
+      {
+        rule_type: FILTER_FULLTEXT_QUERY,
+        value: 'created:[-2 week to now]',
+      },
+    ]
+    expect(component.dateCreatedRelativeDate).toBeNull()
+    expect(component.textFilter).toEqual('created:[-2 week to now]')
+  }))
+
   it('should ingest text filter rules for more like', fakeAsync(() => {
     const moreLikeSpy = jest.spyOn(documentService, 'get')
     moreLikeSpy.mockReturnValue(of({ id: 1, title: 'Foo Bar' }))
@@ -354,7 +416,7 @@ describe('FilterEditorComponent', () => {
     expect(component.textFilterTarget).toEqual('fulltext-morelike') // TEXT_FILTER_TARGET_FULLTEXT_MORELIKE
     expect(moreLikeSpy).toHaveBeenCalledWith(1)
     expect(component.textFilter).toEqual('Foo Bar')
-    // we have to do this here because it cant be done by user input
+    // we have to do this here because it can't be done by user input
     expect(component.filterRules).toEqual([
       {
         rule_type: FILTER_FULLTEXT_MORELIKE,
@@ -826,6 +888,16 @@ describe('FilterEditorComponent', () => {
     expect(component.permissionsSelectionModel.hideUnowned).toBeTruthy()
   }))
 
+  it('should ingest filter rules for shared by me', fakeAsync(() => {
+    component.filterRules = [
+      {
+        rule_type: FILTER_SHARED_BY_USER,
+        value: '2',
+      },
+    ]
+    expect(component.permissionsSelectionModel.userID).toEqual(2)
+  }))
+
   // GET filterRules
 
   it('should convert user input to correct filter rules on text field search title + content', fakeAsync(() => {
@@ -1253,7 +1325,7 @@ describe('FilterEditorComponent', () => {
 
     dateCreatedAfter.nativeElement.value = '05/14/2023'
     // dateCreatedAfter.triggerEventHandler('change')
-    // TODO: why isnt ngModel triggering this on change?
+    // TODO: why isn't ngModel triggering this on change?
     component.dateCreatedAfter = '2023-05-14'
     fixture.detectChanges()
     tick(400)
@@ -1273,7 +1345,7 @@ describe('FilterEditorComponent', () => {
 
     dateCreatedBefore.nativeElement.value = '05/14/2023'
     // dateCreatedBefore.triggerEventHandler('change')
-    // TODO: why isnt ngModel triggering this on change?
+    // TODO: why isn't ngModel triggering this on change?
     component.dateCreatedBefore = '2023-05-14'
     fixture.detectChanges()
     tick(400)
@@ -1322,6 +1394,34 @@ describe('FilterEditorComponent', () => {
     ])
   }))
 
+  it('should leave relative dates not in quick list intact', fakeAsync(() => {
+    component.textFilterInput.nativeElement.value = 'created:[-2 week to now]'
+    component.textFilterInput.nativeElement.dispatchEvent(new Event('input'))
+    const textFieldTargetDropdown = fixture.debugElement.queryAll(
+      By.directive(NgbDropdownItem)
+    )[4]
+    textFieldTargetDropdown.triggerEventHandler('click')
+    fixture.detectChanges()
+    tick(400)
+    expect(component.filterRules).toEqual([
+      {
+        rule_type: FILTER_FULLTEXT_QUERY,
+        value: 'created:[-2 week to now]',
+      },
+    ])
+
+    component.textFilterInput.nativeElement.value = 'added:[-2 month to now]'
+    component.textFilterInput.nativeElement.dispatchEvent(new Event('input'))
+    fixture.detectChanges()
+    tick(400)
+    expect(component.filterRules).toEqual([
+      {
+        rule_type: FILTER_FULLTEXT_QUERY,
+        value: 'added:[-2 month to now]',
+      },
+    ])
+  }))
+
   it('should convert user input to correct filter rules on date added after', fakeAsync(() => {
     const dateAddedDropdown = fixture.debugElement.queryAll(
       By.directive(DateDropdownComponent)
@@ -1330,7 +1430,7 @@ describe('FilterEditorComponent', () => {
 
     dateAddedAfter.nativeElement.value = '05/14/2023'
     // dateAddedAfter.triggerEventHandler('change')
-    // TODO: why isnt ngModel triggering this on change?
+    // TODO: why isn't ngModel triggering this on change?
     component.dateAddedAfter = '2023-05-14'
     fixture.detectChanges()
     tick(400)
@@ -1350,7 +1450,7 @@ describe('FilterEditorComponent', () => {
 
     dateAddedBefore.nativeElement.value = '05/14/2023'
     // dateAddedBefore.triggerEventHandler('change')
-    // TODO: why isnt ngModel triggering this on change?
+    // TODO: why isn't ngModel triggering this on change?
     component.dateAddedBefore = '2023-05-14'
     fixture.detectChanges()
     tick(400)
@@ -1453,11 +1553,26 @@ describe('FilterEditorComponent', () => {
     ])
   }))
 
-  it('should convert user input to correct filter on permissions select unowned', fakeAsync(() => {
+  it('should convert user input to correct filter on permissions select shared by me', fakeAsync(() => {
     const permissionsDropdown = fixture.debugElement.query(
       By.directive(PermissionsFilterDropdownComponent)
     )
     const unownedButton = permissionsDropdown.queryAll(By.css('button'))[4]
+    unownedButton.triggerEventHandler('click')
+    fixture.detectChanges()
+    expect(component.filterRules).toEqual([
+      {
+        rule_type: FILTER_SHARED_BY_USER,
+        value: '1',
+      },
+    ])
+  }))
+
+  it('should convert user input to correct filter on permissions select unowned', fakeAsync(() => {
+    const permissionsDropdown = fixture.debugElement.query(
+      By.directive(PermissionsFilterDropdownComponent)
+    )
+    const unownedButton = permissionsDropdown.queryAll(By.css('button'))[5]
     unownedButton.triggerEventHandler('click')
     fixture.detectChanges()
     expect(component.filterRules).toEqual([
@@ -1498,7 +1613,7 @@ describe('FilterEditorComponent', () => {
     )
     ownerToggle.nativeElement.checked = true
     // ownerToggle.triggerEventHandler('change')
-    // TODO: ngModel isnt doing this here
+    // TODO: ngModel isn't doing this here
     component.permissionsSelectionModel.hideUnowned = true
     fixture.detectChanges()
     expect(component.filterRules).toEqual([
@@ -1699,5 +1814,14 @@ describe('FilterEditorComponent', () => {
       new KeyboardEvent('keyup', { key: 'Escape' })
     )
     expect(component.textFilter).toEqual('')
+  })
+
+  it('should adjust text filter targets if more like search', () => {
+    const TEXT_FILTER_TARGET_FULLTEXT_MORELIKE = 'fulltext-morelike' // private const
+    component.textFilterTarget = TEXT_FILTER_TARGET_FULLTEXT_MORELIKE
+    expect(component.textFilterTargets).toContainEqual({
+      id: TEXT_FILTER_TARGET_FULLTEXT_MORELIKE,
+      name: $localize`More like`,
+    })
   })
 })

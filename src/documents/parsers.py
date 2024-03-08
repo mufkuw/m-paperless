@@ -33,7 +33,17 @@ from documents.utils import copy_file_with_basic_stats
 # - XX MON ZZZZ with XX being 1 or 2 and ZZZZ being 4 digits. MONTH is 3 letters
 # - XXPP MONTH ZZZZ with XX being 1 or 2 and PP being 2 letters and ZZZZ being 4 digits
 
-# TODO: isnt there a date parsing library for this?
+# TODO: isn't there a date parsing library for this?
+
+# DATE_REGEX = re.compile(
+#     r"(\b|(?!=([_-])))([0-9]{1,2})[\.\/-]([0-9]{1,2})[\.\/-]([0-9]{4}|[0-9]{2})(\b|(?=([_-])))|"
+#     r"(\b|(?!=([_-])))([0-9]{4}|[0-9]{2})[\.\/-]([0-9]{1,2})[\.\/-]([0-9]{1,2})(\b|(?=([_-])))|"
+#     r"(\b|(?!=([_-])))([0-9]{1,2}[\. ]+[a-zA-Z]{3,9} [0-9]{4}|[a-zA-Z]{3,9} [0-9]{1,2}, [0-9]{4})(\b|(?=([_-])))|"
+#     r"(\b|(?!=([_-])))([^\W\d_]{3,9} [0-9]{1,2}, ([0-9]{4}))(\b|(?=([_-])))|"
+#     r"(\b|(?!=([_-])))([^\W\d_]{3,9} [0-9]{4})(\b|(?=([_-])))|"
+#     r"(\b|(?!=([_-])))([0-9]{1,2}[^ ]{2}[\. ]+[^ ]{3,9}[ \.\/-][0-9]{4})(\b|(?=([_-])))|"
+#     r"(\b|(?!=([_-])))(\b[0-9]{1,2}[ \.\/-][a-zA-Z]{3}[ \.\/-][0-9]{4})(\b|(?=([_-])))",
+# )
 
 # DATE_REGEX = re.compile(
 #     r"(\b|(?!=([_-])))([0-9]{1,2})[\.\/-]([0-9]{1,2})[\.\/-]([0-9]{4}|[0-9]{2})(\b|(?=([_-])))|"  # noqa: E501
@@ -46,14 +56,10 @@ from documents.utils import copy_file_with_basic_stats
 # )
 
 DATE_REGEX = re.compile(
-    r"(\b|(?!=([_-])))([0-9]{1,2})[\.\/-]([0-9]{1,2})[\.\/-]([0-9]{4}|[0-9]{2})(\b|(?=([_-])))|"
-    r"(\b|(?!=([_-])))([0-9]{4}|[0-9]{2})[\.\/-]([0-9]{1,2})[\.\/-]([0-9]{1,2})(\b|(?=([_-])))|"
-    r"(\b|(?!=([_-])))([0-9]{1,2}[\. ]+[a-zA-Z]{3,9} ([0-9]{4}|[0-9]{2}))(\b|(?=([_-])))|"
-    r"(\b|(?!=([_-])))([^\W\d_]{3,9} [0-9]{1,2}, ([0-9]{4}))(\b|(?=([_-])))|"
-    r"(\b|(?!=([_-])))([^\W\d_]{3,9} [0-9]{4})(\b|(?=([_-])))|"
-    r"(\b|(?!=([_-])))([0-9]{1,2}[^ ]{2}[\. ]+[^ ]{3,9}[ \.\/-][0-9]{4})(\b|(?=([_-])))|"
-    r"(\b|(?!=([_-])))(\b[0-9]{1,2}[ \.\/-][a-zA-Z]{3}[ \.\/-][0-9]{4})(\b|(?=([_-])))",
+    r"(?i)\b(\d{2}|\d{4})(\s+)?[\.\-\/](\s+)?(\d{1,2})(\s+)?[\.\-\/](\s+)?(\d{2}|\d{4})\b|\b(\d{1,2})(?:.+)?(jan\w+|feb\w+|mar\w+|apr\w+|may\w+|jun\w+|jul\w+|aug\w+|sep\w+|oct\w+|nov\w+|dec\w+)(?:.+)?(\d{4})\b|\b(jan\w+|feb\w+|mar\w+|apr\w+|may\w+|jun\w+|jul\w+|aug\w+|sep\w+|oct\w+|nov\w+|dec\w+)(?:.+)?(\d{2})(?:.+)?(\d{4})\b",
 )
+
+# 
 
 
 
@@ -125,8 +131,6 @@ def get_parser_class_for_mime_type(mime_type: str) -> Optional[type["DocumentPar
 
     options = []
 
-    # Sein letzter Befehl war: KOMMT! Und sie kamen. Alle. Sogar die Parser.
-
     for response in document_consumer_declaration.send(None):
         parser_declaration = response[1]
         supported_mime_types = parser_declaration["mime_types"]
@@ -137,8 +141,10 @@ def get_parser_class_for_mime_type(mime_type: str) -> Optional[type["DocumentPar
     if not options:
         return None
 
+    best_parser = sorted(options, key=lambda _: _["weight"], reverse=True)[0]
+
     # Return the parser with the highest weight.
-    return sorted(options, key=lambda _: _["weight"], reverse=True)[0]["parser"]
+    return best_parser["parser"]
 
 
 def run_convert(
@@ -152,6 +158,7 @@ def run_convert(
     type=None,
     depth=None,
     auto_orient=False,
+    use_cropbox=False,
     extra=None,
     logging_group=None,
 ) -> None:
@@ -170,6 +177,7 @@ def run_convert(
     args += ["-type", str(type)] if type else []
     args += ["-depth", str(depth)] if depth else []
     args += ["-auto-orient"] if auto_orient else []
+    args += ["-define", "pdf:use-cropbox=true"] if use_cropbox else []
     args += [input_file, output_file]
 
     logger.debug("Execute: " + " ".join(args), extra={"group": logging_group})
@@ -220,7 +228,6 @@ def make_thumbnail_from_pdf_gs_fallback(in_path, temp_dir, logging_group=None) -
         logger.error(f"Unable to make thumbnail with Ghostscript: {e}")
         # The caller might expect a generated thumbnail that can be moved,
         # so we need to copy it before it gets moved.
-        # https://github.com/paperless-ngx/paperless-ngx/issues/3631
         default_thumbnail_path = os.path.join(temp_dir, "document.webp")
         copy_file_with_basic_stats(get_default_thumbnail(), default_thumbnail_path)
         return default_thumbnail_path
@@ -241,6 +248,7 @@ def make_thumbnail_from_pdf(in_path, temp_dir, logging_group=None) -> str:
             strip=True,
             trim=False,
             auto_orient=True,
+            use_cropbox=True,
             input_file=f"{in_path}[0]",
             output_file=out_path,
             logging_group=logging_group,
@@ -330,8 +338,11 @@ class DocumentParser(LoggingMixin):
     def __init__(self, logging_group, progress_callback=None):
         super().__init__()
         self.logging_group = logging_group
-        os.makedirs(settings.SCRATCH_DIR, exist_ok=True)
-        self.tempdir = tempfile.mkdtemp(prefix="paperless-", dir=settings.SCRATCH_DIR)
+        self.settings = self.get_settings()
+        settings.SCRATCH_DIR.mkdir(parents=True, exist_ok=True)
+        self.tempdir = Path(
+            tempfile.mkdtemp(prefix="paperless-", dir=settings.SCRATCH_DIR),
+        )
 
         self.archive_path = None
         self.text = None
@@ -341,6 +352,12 @@ class DocumentParser(LoggingMixin):
     def progress(self, current_progress, max_progress):
         if self.progress_callback:
             self.progress_callback(current_progress, max_progress)
+
+    def get_settings(self):  # pragma: no cover
+        """
+        A parser must implement this
+        """
+        raise NotImplementedError
 
     def read_file_handle_unicode_errors(self, filepath: Path) -> str:
         """

@@ -1,7 +1,7 @@
 import { Component, QueryList, ViewChildren } from '@angular/core'
 import { NgbAlert } from '@ng-bootstrap/ng-bootstrap'
 import { ComponentWithPermissions } from 'src/app/components/with-permissions/with-permissions.component'
-import { SETTINGS_KEYS } from 'src/app/data/paperless-uisettings'
+import { SETTINGS_KEYS } from 'src/app/data/ui-settings'
 import {
   ConsumerStatusService,
   FileStatus,
@@ -116,6 +116,11 @@ export class UploadFileWidgetComponent extends ComponentWithPermissions {
 
   dismissCompleted() {
     this.alerts.forEach((a) => a.close())
+    if (this.alertsExpanded) {
+      this.getStatusCompleted().forEach((status) =>
+        this.consumerStatusService.dismiss(status)
+      )
+    }
   }
 
   public onFileSelected(event: Event) {

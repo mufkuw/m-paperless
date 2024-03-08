@@ -7,6 +7,7 @@ from enum import Enum
 from pathlib import Path
 from subprocess import CompletedProcess
 from subprocess import run
+from typing import TYPE_CHECKING
 from typing import Optional
 
 import magic
@@ -21,13 +22,11 @@ from filelock import FileLock
 from rest_framework.reverse import reverse
 
 from documents.classifier import load_classifier
-from documents.data_models import ConsumableDocument
 from documents.data_models import DocumentMetadataOverrides
 from documents.file_handling import create_source_path_directory
 from documents.file_handling import generate_unique_filename
 from documents.loggers import LoggingMixin
-from documents.matching import document_matches_template
-from documents.models import ConsumptionTemplate
+from documents.matching import document_matches_workflow
 from documents.models import Correspondent
 from documents.models import CustomField
 from documents.models import CustomFieldInstance
@@ -36,15 +35,194 @@ from documents.models import DocumentType
 from documents.models import FileInfo
 from documents.models import StoragePath
 from documents.models import Tag
+from documents.models import Workflow
+from documents.models import WorkflowAction
+from documents.models import WorkflowTrigger
 from documents.parsers import DocumentParser
 from documents.parsers import ParseError
 from documents.parsers import get_parser_class_for_mime_type
 from documents.parsers import parse_date
 from documents.permissions import set_permissions_for_object
+from documents.plugins.base import AlwaysRunPluginMixin
+from documents.plugins.base import ConsumeTaskPlugin
+from documents.plugins.base import NoCleanupPluginMixin
+from documents.plugins.base import NoSetupPluginMixin
 from documents.signals import document_consumption_finished
 from documents.signals import document_consumption_started
 from documents.utils import copy_basic_file_stats
 from documents.utils import copy_file_with_basic_stats
+
+
+class WorkflowTriggerPlugin(
+    NoCleanupPluginMixin,
+    NoSetupPluginMixin,
+    AlwaysRunPluginMixin,
+    ConsumeTaskPlugin,
+):
+    NAME: str = "WorkflowTriggerPlugin"
+
+    def run(self) -> Optional[str]:
+        """
+        Get overrides from matching workflows
+        """
+        msg = ""
+        overrides = DocumentMetadataOverrides()
+        for workflow in (
+            Workflow.objects.filter(enabled=True)
+            .prefetch_related("actions")
+            .prefetch_related("actions__assign_view_users")
+            .prefetch_related("actions__assign_view_groups")
+            .prefetch_related("actions__assign_change_users")
+            .prefetch_related("actions__assign_change_groups")
+            .prefetch_related("actions__assign_custom_fields")
+            .prefetch_related("actions__remove_tags")
+            .prefetch_related("actions__remove_correspondents")
+            .prefetch_related("actions__remove_document_types")
+            .prefetch_related("actions__remove_storage_paths")
+            .prefetch_related("actions__remove_custom_fields")
+            .prefetch_related("actions__remove_owners")
+            .prefetch_related("triggers")
+            .order_by("order")
+        ):
+            action_overrides = DocumentMetadataOverrides()
+
+            if document_matches_workflow(
+                self.input_doc,
+                workflow,
+                WorkflowTrigger.WorkflowTriggerType.CONSUMPTION,
+            ):
+                for action in workflow.actions.all():
+                    if TYPE_CHECKING:
+                        assert isinstance(action, WorkflowAction)
+                    msg += f"Applying {action} from {workflow}\n"
+                    if action.type == WorkflowAction.WorkflowActionType.ASSIGNMENT:
+                        if action.assign_title is not None:
+                            action_overrides.title = action.assign_title
+                        if action.assign_tags is not None:
+                            action_overrides.tag_ids = list(
+                                action.assign_tags.values_list("pk", flat=True),
+                            )
+
+                        if action.assign_correspondent is not None:
+                            action_overrides.correspondent_id = (
+                                action.assign_correspondent.pk
+                            )
+                        if action.assign_document_type is not None:
+                            action_overrides.document_type_id = (
+                                action.assign_document_type.pk
+                            )
+                        if action.assign_storage_path is not None:
+                            action_overrides.storage_path_id = (
+                                action.assign_storage_path.pk
+                            )
+                        if action.assign_owner is not None:
+                            action_overrides.owner_id = action.assign_owner.pk
+                        if action.assign_view_users is not None:
+                            action_overrides.view_users = list(
+                                action.assign_view_users.values_list("pk", flat=True),
+                            )
+                        if action.assign_view_groups is not None:
+                            action_overrides.view_groups = list(
+                                action.assign_view_groups.values_list("pk", flat=True),
+                            )
+                        if action.assign_change_users is not None:
+                            action_overrides.change_users = list(
+                                action.assign_change_users.values_list("pk", flat=True),
+                            )
+                        if action.assign_change_groups is not None:
+                            action_overrides.change_groups = list(
+                                action.assign_change_groups.values_list(
+                                    "pk",
+                                    flat=True,
+                                ),
+                            )
+                        if action.assign_custom_fields is not None:
+                            action_overrides.custom_field_ids = list(
+                                action.assign_custom_fields.values_list(
+                                    "pk",
+                                    flat=True,
+                                ),
+                            )
+                        overrides.update(action_overrides)
+                    elif action.type == WorkflowAction.WorkflowActionType.REMOVAL:
+                        # Removal actions overwrite the current overrides
+                        if action.remove_all_tags:
+                            overrides.tag_ids = []
+                        elif overrides.tag_ids:
+                            for tag in action.remove_custom_fields.filter(
+                                pk__in=overrides.tag_ids,
+                            ):
+                                overrides.tag_ids.remove(tag.pk)
+
+                        if action.remove_all_correspondents or (
+                            overrides.correspondent_id is not None
+                            and action.remove_correspondents.filter(
+                                pk=overrides.correspondent_id,
+                            ).exists()
+                        ):
+                            overrides.correspondent_id = None
+
+                        if action.remove_all_document_types or (
+                            overrides.document_type_id is not None
+                            and action.remove_document_types.filter(
+                                pk=overrides.document_type_id,
+                            ).exists()
+                        ):
+                            overrides.document_type_id = None
+
+                        if action.remove_all_storage_paths or (
+                            overrides.storage_path_id is not None
+                            and action.remove_storage_paths.filter(
+                                pk=overrides.storage_path_id,
+                            ).exists()
+                        ):
+                            overrides.storage_path_id = None
+
+                        if action.remove_all_custom_fields:
+                            overrides.custom_field_ids = []
+                        elif overrides.custom_field_ids:
+                            for field in action.remove_custom_fields.filter(
+                                pk__in=overrides.custom_field_ids,
+                            ):
+                                overrides.custom_field_ids.remove(field.pk)
+
+                        if action.remove_all_owners or (
+                            overrides.owner_id is not None
+                            and action.remove_owners.filter(
+                                pk=overrides.owner_id,
+                            ).exists()
+                        ):
+                            overrides.owner_id = None
+
+                        if action.remove_all_permissions:
+                            overrides.view_users = []
+                            overrides.view_groups = []
+                            overrides.change_users = []
+                            overrides.change_groups = []
+                        else:
+                            if overrides.view_users:
+                                for user in action.remove_view_users.filter(
+                                    pk__in=overrides.view_users,
+                                ):
+                                    overrides.view_users.remove(user.pk)
+                            if overrides.change_users:
+                                for user in action.remove_change_users.filter(
+                                    pk__in=overrides.change_users,
+                                ):
+                                    overrides.change_users.remove(user.pk)
+                            if overrides.view_groups:
+                                for user in action.remove_view_groups.filter(
+                                    pk__in=overrides.view_groups,
+                                ):
+                                    overrides.view_groups.remove(user.pk)
+                            if overrides.change_groups:
+                                for user in action.remove_change_groups.filter(
+                                    pk__in=overrides.change_groups,
+                                ):
+                                    overrides.change_groups.remove(user.pk)
+
+        self.metadata.update(overrides)
+        return msg
 
 
 class ConsumerError(Exception):
@@ -134,24 +312,24 @@ class Consumer(LoggingMixin):
         """
         Confirm the input file still exists where it should
         """
-        if not os.path.isfile(self.path):
+        if not os.path.isfile(self.original_path):
             self._fail(
                 ConsumerStatusShortMessage.FILE_NOT_FOUND,
-                f"Cannot consume {self.path}: File not found.",
+                f"Cannot consume {self.original_path}: File not found.",
             )
 
     def pre_check_duplicate(self):
         """
         Using the MD5 of the file, check this exact file doesn't already exist
         """
-        with open(self.path, "rb") as f:
+        with open(self.original_path, "rb") as f:
             checksum = hashlib.md5(f.read()).hexdigest()
         existing_doc = Document.objects.filter(
             Q(checksum=checksum) | Q(archive_checksum=checksum),
         )
         if existing_doc.exists():
             if settings.CONSUMER_DELETE_DUPLICATES:
-                os.unlink(self.path)
+                os.unlink(self.original_path)
             self._fail(
                 ConsumerStatusShortMessage.DOCUMENT_ALREADY_EXISTS,
                 f"Not consuming {self.filename}: It is a duplicate of"
@@ -162,10 +340,10 @@ class Consumer(LoggingMixin):
         """
         Ensure all required directories exist before attempting to use them
         """
-        os.makedirs(settings.SCRATCH_DIR, exist_ok=True)
-        os.makedirs(settings.THUMBNAIL_DIR, exist_ok=True)
-        os.makedirs(settings.ORIGINALS_DIR, exist_ok=True)
-        os.makedirs(settings.ARCHIVE_DIR, exist_ok=True)
+        settings.SCRATCH_DIR.mkdir(parents=True, exist_ok=True)
+        settings.THUMBNAIL_DIR.mkdir(parents=True, exist_ok=True)
+        settings.ORIGINALS_DIR.mkdir(parents=True, exist_ok=True)
+        settings.ARCHIVE_DIR.mkdir(parents=True, exist_ok=True)
 
     def pre_check_asn_value(self):
         """
@@ -210,7 +388,7 @@ class Consumer(LoggingMixin):
 
         self.log.info(f"Executing pre-consume script {settings.PRE_CONSUME_SCRIPT}")
 
-        working_file_path = str(self.path)
+        working_file_path = str(self.working_copy)
         original_file_path = str(self.original_path)
 
         script_env = os.environ.copy()
@@ -342,8 +520,8 @@ class Consumer(LoggingMixin):
         Return the document object if it was successfully created.
         """
 
-        self.path = Path(path).resolve()
-        self.filename = override_filename or self.path.name
+        self.original_path = Path(path).resolve()
+        self.filename = override_filename or self.original_path.name
         self.override_title = override_title
         self.override_correspondent_id = override_correspondent_id
         self.override_document_type_id = override_document_type_id
@@ -376,17 +554,16 @@ class Consumer(LoggingMixin):
         self.log.info(f"Consuming {self.filename}")
 
         # For the actual work, copy the file into a tempdir
-        self.original_path = self.path
         tempdir = tempfile.TemporaryDirectory(
             prefix="m-paperless",
             dir=settings.SCRATCH_DIR,
         )
-        self.path = Path(tempdir.name) / Path(self.filename)
-        copy_file_with_basic_stats(self.original_path, self.path)
+        self.working_copy = Path(tempdir.name) / Path(self.filename)
+        copy_file_with_basic_stats(self.original_path, self.working_copy)
 
         # Determine the parser class.
 
-        mime_type = magic.from_file(self.path, mime=True)
+        mime_type = magic.from_file(self.working_copy, mime=True)
 
         self.log.debug(f"Detected mime type: {mime_type}")
 
@@ -405,7 +582,7 @@ class Consumer(LoggingMixin):
 
         document_consumption_started.send(
             sender=self.__class__,
-            filename=self.path,
+            filename=self.working_copy,
             logging_group=self.logging_group,
         )
 
@@ -420,7 +597,7 @@ class Consumer(LoggingMixin):
 
         document_parser: DocumentParser = parser_class(
             self.logging_group,
-            progress_callback,
+            progress_callback=progress_callback,
         )
 
         self.log.debug(f"Parser: {type(document_parser).__name__}")
@@ -443,7 +620,7 @@ class Consumer(LoggingMixin):
                 ConsumerStatusShortMessage.PARSING_DOCUMENT,
             )
             self.log.debug(f"Parsing {self.filename}...")
-            document_parser.parse(self.path, mime_type, self.filename)
+            document_parser.parse(self.working_copy, mime_type, self.filename)
 
             self.log.debug(f"Generating thumbnail for {self.filename}...")
             self._send_progress(
@@ -453,7 +630,7 @@ class Consumer(LoggingMixin):
                 ConsumerStatusShortMessage.GENERATING_THUMBNAIL,
             )
             thumbnail = document_parser.get_thumbnail(
-                self.path,
+                self.working_copy,
                 mime_type,
                 self.filename,
             )
@@ -526,7 +703,7 @@ class Consumer(LoggingMixin):
 
                     self._write(
                         document.storage_type,
-                        self.original_path,
+                        self.working_copy,
                         document.source_path,
                     )
 
@@ -559,9 +736,9 @@ class Consumer(LoggingMixin):
                 document.save()
 
                 # Delete the file only if it was successfully consumed
-                self.log.debug(f"Deleting file {self.path}")
-                os.unlink(self.path)
+                self.log.debug(f"Deleting file {self.working_copy}")
                 self.original_path.unlink()
+                self.working_copy.unlink()
 
                 # https://github.com/jonaswinkler/paperless-ng/discussions/1037
                 shadow_file = os.path.join(
@@ -602,66 +779,7 @@ class Consumer(LoggingMixin):
 
         return document
 
-    def get_template_overrides(
-        self,
-        input_doc: ConsumableDocument,
-    ) -> DocumentMetadataOverrides:
-        """
-        Match consumption templates to a document based on source and
-        file name filters, path filters or mail rule filter if specified
-        """
-        overrides = DocumentMetadataOverrides()
-        for template in ConsumptionTemplate.objects.all().order_by("order"):
-            template_overrides = DocumentMetadataOverrides()
-
-            if document_matches_template(input_doc, template):
-                if template.assign_title is not None:
-                    template_overrides.title = template.assign_title
-                if template.assign_tags is not None:
-                    template_overrides.tag_ids = [
-                        tag.pk for tag in template.assign_tags.all()
-                    ]
-                if template.assign_correspondent is not None:
-                    template_overrides.correspondent_id = (
-                        template.assign_correspondent.pk
-                    )
-                if template.assign_document_type is not None:
-                    template_overrides.document_type_id = (
-                        template.assign_document_type.pk
-                    )
-                if template.assign_storage_path is not None:
-                    template_overrides.storage_path_id = template.assign_storage_path.pk
-                if template.assign_owner is not None:
-                    template_overrides.owner_id = template.assign_owner.pk
-                if template.assign_view_users is not None:
-                    template_overrides.view_users = [
-                        user.pk for user in template.assign_view_users.all()
-                    ]
-                if template.assign_view_groups is not None:
-                    template_overrides.view_groups = [
-                        group.pk for group in template.assign_view_groups.all()
-                    ]
-                if template.assign_change_users is not None:
-                    template_overrides.change_users = [
-                        user.pk for user in template.assign_change_users.all()
-                    ]
-                if template.assign_change_groups is not None:
-                    template_overrides.change_groups = [
-                        group.pk for group in template.assign_change_groups.all()
-                    ]
-                if template.assign_custom_fields is not None:
-                    template_overrides.custom_field_ids = [
-                        field.pk for field in template.assign_custom_fields.all()
-                    ]
-
-                overrides.update(template_overrides)
-        return overrides
-
     def _parse_title_placeholders(self, title: str) -> str:
-        """
-        Consumption template title placeholders can only include items that are
-        assigned as part of this template (since auto-matching hasnt happened yet)
-        """
         local_added = timezone.localtime(timezone.now())
 
         correspondent_name = (
@@ -680,18 +798,14 @@ class Consumer(LoggingMixin):
             else None
         )
 
-        return title.format(
-            correspondent=correspondent_name,
-            document_type=doc_type_name,
-            added=local_added.isoformat(),
-            added_year=local_added.strftime("%Y"),
-            added_year_short=local_added.strftime("%y"),
-            added_month=local_added.strftime("%m"),
-            added_month_name=local_added.strftime("%B"),
-            added_month_name_short=local_added.strftime("%b"),
-            added_day=local_added.strftime("%d"),
-            owner_username=owner_username,
-        ).strip()
+        return parse_doc_title_w_placeholders(
+            title,
+            correspondent_name,
+            doc_type_name,
+            owner_username,
+            local_added,
+            self.filename,
+        )
 
     def _store(
         self,
@@ -725,15 +839,20 @@ class Consumer(LoggingMixin):
 
         storage_type = Document.STORAGE_TYPE_UNENCRYPTED
 
+        title = file_info.title
+        if self.override_title is not None:
+            try:
+                title = self._parse_title_placeholders(self.override_title)
+            except Exception as e:
+                self.log.error(
+                    f"Error occurred parsing title override '{self.override_title}', falling back to original. Exception: {e}",
+                )
+
         document = Document.objects.create(
-            title=(
-                self._parse_title_placeholders(self.override_title)
-                if self.override_title is not None
-                else file_info.title
-            )[:127],
+            title=title[:127],
             content=text,
             mime_type=mime_type,
-            checksum=hashlib.md5(self.original_path.read_bytes()).hexdigest(),
+            checksum=hashlib.md5(self.working_copy.read_bytes()).hexdigest(),
             created=create_date,
             modified=create_date,
             storage_type=storage_type,
@@ -844,3 +963,47 @@ class Consumer(LoggingMixin):
             self.log.warning("Script stderr:")
             for line in stderr_str:
                 self.log.warning(line)
+
+
+def parse_doc_title_w_placeholders(
+    title: str,
+    correspondent_name: str,
+    doc_type_name: str,
+    owner_username: str,
+    local_added: datetime.datetime,
+    original_filename: str,
+    created: Optional[datetime.datetime] = None,
+) -> str:
+    """
+    Available title placeholders for Workflows depend on what has already been assigned,
+    e.g. for pre-consumption triggers created will not have been parsed yet, but it will
+    for added / updated triggers
+    """
+    formatting = {
+        "correspondent": correspondent_name,
+        "document_type": doc_type_name,
+        "added": local_added.isoformat(),
+        "added_year": local_added.strftime("%Y"),
+        "added_year_short": local_added.strftime("%y"),
+        "added_month": local_added.strftime("%m"),
+        "added_month_name": local_added.strftime("%B"),
+        "added_month_name_short": local_added.strftime("%b"),
+        "added_day": local_added.strftime("%d"),
+        "added_time": local_added.strftime("%H:%M"),
+        "owner_username": owner_username,
+        "original_filename": Path(original_filename).stem,
+    }
+    if created is not None:
+        formatting.update(
+            {
+                "created": created.isoformat(),
+                "created_year": created.strftime("%Y"),
+                "created_year_short": created.strftime("%y"),
+                "created_month": created.strftime("%m"),
+                "created_month_name": created.strftime("%B"),
+                "created_month_name_short": created.strftime("%b"),
+                "created_day": created.strftime("%d"),
+                "created_time": created.strftime("%H:%M"),
+            },
+        )
+    return title.format(**formatting).strip()

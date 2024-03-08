@@ -8,9 +8,14 @@ import {
   map,
   switchMap,
   first,
+  catchError,
 } from 'rxjs/operators'
-import { PaperlessDocument } from 'src/app/data/paperless-document'
+import { Document } from 'src/app/data/document'
 import { OpenDocumentsService } from 'src/app/services/open-documents.service'
+import {
+  DjangoMessageLevel,
+  DjangoMessagesService,
+} from 'src/app/services/django-messages.service'
 import { SavedViewService } from 'src/app/services/rest/saved-view.service'
 import { SearchService } from 'src/app/services/rest/search.service'
 import { environment } from 'src/environments/environment'
@@ -24,7 +29,7 @@ import {
 import { SettingsService } from 'src/app/services/settings.service'
 import { TasksService } from 'src/app/services/tasks.service'
 import { ComponentCanDeactivate } from 'src/app/guards/dirty-doc.guard'
-import { SETTINGS_KEYS } from 'src/app/data/paperless-uisettings'
+import { SETTINGS_KEYS } from 'src/app/data/ui-settings'
 import { ToastService } from 'src/app/services/toast.service'
 import { ComponentWithPermissions } from '../with-permissions/with-permissions.component'
 import {
@@ -32,7 +37,7 @@ import {
   PermissionsService,
   PermissionType,
 } from 'src/app/services/permissions.service'
-import { PaperlessSavedView } from 'src/app/data/paperless-saved-view'
+import { SavedView } from 'src/app/data/saved-view'
 import {
   CdkDragStart,
   CdkDragEnd,
@@ -72,7 +77,8 @@ export class AppFrameComponent
     public tasksService: TasksService,
     private readonly toastService: ToastService,
     private modalService: NgbModal,
-    permissionsService: PermissionsService
+    public permissionsService: PermissionsService,
+    private djangoMessagesService: DjangoMessagesService
   ) {
     super()
 
@@ -91,6 +97,20 @@ export class AppFrameComponent
       this.checkForUpdates()
     }
     this.tasksService.reload()
+
+    this.djangoMessagesService.get().forEach((message) => {
+      switch (message.level) {
+        case DjangoMessageLevel.ERROR:
+        case DjangoMessageLevel.WARNING:
+          this.toastService.showError(message.message)
+          break
+        case DjangoMessageLevel.SUCCESS:
+        case DjangoMessageLevel.INFO:
+        case DjangoMessageLevel.DEBUG:
+          this.toastService.showInfo(message.message)
+          break
+      }
+    })
   }
 
   toggleSlimSidebar(): void {
@@ -99,6 +119,10 @@ export class AppFrameComponent
     setTimeout(() => {
       this.slimSidebarAnimating = false
     }, 200) // slightly longer than css animation for slim sidebar
+  }
+
+  get customAppTitle(): string {
+    return this.settingsService.get(SETTINGS_KEYS.APP_TITLE)
   }
 
   get slimSidebarEnabled(): boolean {
@@ -131,7 +155,7 @@ export class AppFrameComponent
     this.closeMenu()
   }
 
-  get openDocuments(): PaperlessDocument[] {
+  get openDocuments(): Document[] {
     return this.openDocumentsService.getOpenDocuments()
   }
 
@@ -166,7 +190,13 @@ export class AppFrameComponent
         }
       }),
       switchMap((term) =>
-        term.length < 2 ? from([[]]) : this.searchService.autocomplete(term)
+        term.length < 2
+          ? from([[]])
+          : this.searchService.autocomplete(term).pipe(
+              catchError(() => {
+                return from([[]])
+              })
+            )
       )
     )
 
@@ -193,7 +223,7 @@ export class AppFrameComponent
     ])
   }
 
-  closeDocument(d: PaperlessDocument) {
+  closeDocument(d: Document) {
     this.openDocumentsService
       .closeDocument(d)
       .pipe(first())
@@ -243,7 +273,7 @@ export class AppFrameComponent
     this.settingsService.globalDropzoneEnabled = true
   }
 
-  onDrop(event: CdkDragDrop<PaperlessSavedView[]>) {
+  onDrop(event: CdkDragDrop<SavedView[]>) {
     const sidebarViews = this.savedViewService.sidebarViews.concat([])
     moveItemInArray(sidebarViews, event.previousIndex, event.currentIndex)
 

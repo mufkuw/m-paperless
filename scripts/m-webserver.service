@@ -3,7 +3,7 @@ Description=M-Paperless Webserver
 After=network.target
 Wants=network.target
 Requires=redis.service
-Requires=m-webserver.socket
+#Requires=m-webserver.socket
 
 [Service]
 User=paperless

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { ObjectWithPermissions } from '../data/object-with-permissions'
-import { PaperlessUser } from '../data/paperless-user'
+import { User } from '../data/user'
 
 export enum PermissionAction {
   Add = 'add',
@@ -17,6 +17,7 @@ export enum PermissionType {
   StoragePath = '%s_storagepath',
   SavedView = '%s_savedview',
   PaperlessTask = '%s_paperlesstask',
+  AppConfig = '%s_applicationconfiguration',
   UISettings = '%s_uisettings',
   Note = '%s_note',
   MailAccount = '%s_mailaccount',
@@ -25,8 +26,8 @@ export enum PermissionType {
   Group = '%s_group',
   Admin = '%s_logentry',
   ShareLink = '%s_sharelink',
-  ConsumptionTemplate = '%s_consumptiontemplate',
   CustomField = '%s_customfield',
+  Workflow = '%s_workflow',
 }
 
 @Injectable({
@@ -34,9 +35,9 @@ export enum PermissionType {
 })
 export class PermissionsService {
   private permissions: string[]
-  private currentUser: PaperlessUser
+  private currentUser: User
 
-  public initialize(permissions: string[], currentUser: PaperlessUser) {
+  public initialize(permissions: string[], currentUser: User) {
     this.permissions = permissions
     this.currentUser = currentUser
   }

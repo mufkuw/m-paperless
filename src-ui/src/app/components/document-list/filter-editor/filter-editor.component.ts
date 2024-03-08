@@ -8,9 +8,9 @@ import {
   ViewChild,
   ElementRef,
 } from '@angular/core'
-import { PaperlessTag } from 'src/app/data/paperless-tag'
-import { PaperlessCorrespondent } from 'src/app/data/paperless-correspondent'
-import { PaperlessDocumentType } from 'src/app/data/paperless-document-type'
+import { Tag } from 'src/app/data/tag'
+import { Correspondent } from 'src/app/data/correspondent'
+import { DocumentType } from 'src/app/data/document-type'
 import { Subject, Subscription } from 'rxjs'
 import { debounceTime, distinctUntilChanged, filter } from 'rxjs/operators'
 import { DocumentTypeService } from 'src/app/services/rest/document-type.service'
@@ -49,6 +49,7 @@ import {
   FILTER_OWNER_ISNULL,
   FILTER_OWNER_ANY,
   FILTER_CUSTOM_FIELDS,
+  FILTER_SHARED_BY_USER,
 } from 'src/app/data/filter-rule-type'
 import {
   FilterableDropdownSelectionModel,
@@ -61,14 +62,20 @@ import {
   SelectionData,
   SelectionDataItem,
 } from 'src/app/services/rest/document.service'
-import { PaperlessDocument } from 'src/app/data/paperless-document'
-import { PaperlessStoragePath } from 'src/app/data/paperless-storage-path'
+import { Document } from 'src/app/data/document'
+import { StoragePath } from 'src/app/data/storage-path'
 import { StoragePathService } from 'src/app/services/rest/storage-path.service'
 import { RelativeDate } from '../../common/date-dropdown/date-dropdown.component'
 import {
   OwnerFilterType,
   PermissionsSelectionModel,
 } from '../../common/permissions-filter-dropdown/permissions-filter-dropdown.component'
+import {
+  PermissionAction,
+  PermissionType,
+  PermissionsService,
+} from 'src/app/services/permissions.service'
+import { ComponentWithPermissions } from '../../with-permissions/with-permissions.component'
 
 const TEXT_FILTER_TARGET_TITLE = 'title'
 const TEXT_FILTER_TARGET_TITLE_CONTENT = 'title-content'
@@ -104,12 +111,60 @@ const RELATIVE_DATE_QUERYSTRINGS = [
   },
 ]
 
+const DEFAULT_TEXT_FILTER_TARGET_OPTIONS = [
+  { id: TEXT_FILTER_TARGET_TITLE, name: $localize`Title` },
+  {
+    id: TEXT_FILTER_TARGET_TITLE_CONTENT,
+    name: $localize`Title & content`,
+  },
+  { id: TEXT_FILTER_TARGET_ASN, name: $localize`ASN` },
+  {
+    id: TEXT_FILTER_TARGET_CUSTOM_FIELDS,
+    name: $localize`Custom fields`,
+  },
+  {
+    id: TEXT_FILTER_TARGET_FULLTEXT_QUERY,
+    name: $localize`Advanced search`,
+  },
+]
+
+const TEXT_FILTER_TARGET_MORELIKE_OPTION = {
+  id: TEXT_FILTER_TARGET_FULLTEXT_MORELIKE,
+  name: $localize`More like`,
+}
+
+const DEFAULT_TEXT_FILTER_MODIFIER_OPTIONS = [
+  {
+    id: TEXT_FILTER_MODIFIER_EQUALS,
+    label: $localize`equals`,
+  },
+  {
+    id: TEXT_FILTER_MODIFIER_NULL,
+    label: $localize`is empty`,
+  },
+  {
+    id: TEXT_FILTER_MODIFIER_NOTNULL,
+    label: $localize`is not empty`,
+  },
+  {
+    id: TEXT_FILTER_MODIFIER_GT,
+    label: $localize`greater than`,
+  },
+  {
+    id: TEXT_FILTER_MODIFIER_LT,
+    label: $localize`less than`,
+  },
+]
+
 @Component({
   selector: 'pngx-filter-editor',
   templateUrl: './filter-editor.component.html',
   styleUrls: ['./filter-editor.component.scss'],
 })
-export class FilterEditorComponent implements OnInit, OnDestroy {
+export class FilterEditorComponent
+  extends ComponentWithPermissions
+  implements OnInit, OnDestroy
+{
   generateFilterName() {
     if (this.filterRules.length == 1) {
       let rule = this.filterRules[0]
@@ -178,16 +233,19 @@ export class FilterEditorComponent implements OnInit, OnDestroy {
     private tagService: TagService,
     private correspondentService: CorrespondentService,
     private documentService: DocumentService,
-    private storagePathService: StoragePathService
-  ) {}
+    private storagePathService: StoragePathService,
+    public permissionsService: PermissionsService
+  ) {
+    super()
+  }
 
   @ViewChild('textFilterInput')
   textFilterInput: ElementRef
 
-  tags: PaperlessTag[] = []
-  correspondents: PaperlessCorrespondent[] = []
-  documentTypes: PaperlessDocumentType[] = []
-  storagePaths: PaperlessStoragePath[] = []
+  tags: Tag[] = []
+  correspondents: Correspondent[] = []
+  documentTypes: DocumentType[] = []
+  storagePaths: StoragePath[] = []
 
   tagDocumentCounts: SelectionDataItem[]
   correspondentDocumentCounts: SelectionDataItem[]
@@ -196,32 +254,15 @@ export class FilterEditorComponent implements OnInit, OnDestroy {
 
   _textFilter = ''
   _moreLikeId: number
-  _moreLikeDoc: PaperlessDocument
+  _moreLikeDoc: Document
 
   get textFilterTargets() {
-    let targets = [
-      { id: TEXT_FILTER_TARGET_TITLE, name: $localize`Title` },
-      {
-        id: TEXT_FILTER_TARGET_TITLE_CONTENT,
-        name: $localize`Title & content`,
-      },
-      { id: TEXT_FILTER_TARGET_ASN, name: $localize`ASN` },
-      {
-        id: TEXT_FILTER_TARGET_CUSTOM_FIELDS,
-        name: $localize`Custom fields`,
-      },
-      {
-        id: TEXT_FILTER_TARGET_FULLTEXT_QUERY,
-        name: $localize`Advanced search`,
-      },
-    ]
     if (this.textFilterTarget == TEXT_FILTER_TARGET_FULLTEXT_MORELIKE) {
-      targets.push({
-        id: TEXT_FILTER_TARGET_FULLTEXT_MORELIKE,
-        name: $localize`More like`,
-      })
+      return DEFAULT_TEXT_FILTER_TARGET_OPTIONS.concat([
+        TEXT_FILTER_TARGET_MORELIKE_OPTION,
+      ])
     }
-    return targets
+    return DEFAULT_TEXT_FILTER_TARGET_OPTIONS
   }
 
   textFilterTarget = TEXT_FILTER_TARGET_TITLE_CONTENT
@@ -234,28 +275,7 @@ export class FilterEditorComponent implements OnInit, OnDestroy {
   public textFilterModifier: string
 
   get textFilterModifiers() {
-    return [
-      {
-        id: TEXT_FILTER_MODIFIER_EQUALS,
-        label: $localize`equals`,
-      },
-      {
-        id: TEXT_FILTER_MODIFIER_NULL,
-        label: $localize`is empty`,
-      },
-      {
-        id: TEXT_FILTER_MODIFIER_NOTNULL,
-        label: $localize`is not empty`,
-      },
-      {
-        id: TEXT_FILTER_MODIFIER_GT,
-        label: $localize`greater than`,
-      },
-      {
-        id: TEXT_FILTER_MODIFIER_LT,
-        label: $localize`less than`,
-      },
-    ]
+    return DEFAULT_TEXT_FILTER_MODIFIER_OPTIONS
   }
 
   get textFilterModifierIsNull(): boolean {
@@ -342,10 +362,11 @@ export class FilterEditorComponent implements OnInit, OnDestroy {
                     this.dateCreatedRelativeDate =
                       RELATIVE_DATE_QUERYSTRINGS.find(
                         (qS) => qS.dateQuery == match[1]
-                      )?.relativeDate
+                      )?.relativeDate ?? null
                   }
                 }
               )
+              if (this.dateCreatedRelativeDate === null) textQueryArgs.push(arg) // relative query not in the quick list
             } else if (arg.match(RELATIVE_DATE_QUERY_REGEXP_ADDED)) {
               ;[...arg.matchAll(RELATIVE_DATE_QUERY_REGEXP_ADDED)].forEach(
                 (match) => {
@@ -353,10 +374,11 @@ export class FilterEditorComponent implements OnInit, OnDestroy {
                     this.dateAddedRelativeDate =
                       RELATIVE_DATE_QUERYSTRINGS.find(
                         (qS) => qS.dateQuery == match[1]
-                      )?.relativeDate
+                      )?.relativeDate ?? null
                   }
                 }
               )
+              if (this.dateAddedRelativeDate === null) textQueryArgs.push(arg) // relative query not in the quick list
             } else {
               textQueryArgs.push(arg)
             }
@@ -502,6 +524,12 @@ export class FilterEditorComponent implements OnInit, OnDestroy {
             this.permissionsSelectionModel.excludeUsers.push(
               parseInt(rule.value, 10)
             )
+          break
+        case FILTER_SHARED_BY_USER:
+          this.permissionsSelectionModel.ownerFilter =
+            OwnerFilterType.SHARED_BY_ME
+          if (rule.value)
+            this.permissionsSelectionModel.userID = parseInt(rule.value, 10)
           break
         case FILTER_OWNER_ISNULL:
           if (rule.value === 'true' || rule.value === '1') {
@@ -761,27 +789,6 @@ export class FilterEditorComponent implements OnInit, OnDestroy {
         })
       }
     }
-    if (
-      this.dateCreatedRelativeDate == null &&
-      this.dateAddedRelativeDate == null
-    ) {
-      const existingRule = filterRules.find(
-        (fr) => fr.rule_type == FILTER_FULLTEXT_QUERY
-      )
-      if (
-        existingRule?.value.match(RELATIVE_DATE_QUERY_REGEXP_CREATED) ||
-        existingRule?.value.match(RELATIVE_DATE_QUERY_REGEXP_ADDED)
-      ) {
-        // remove any existing date query
-        existingRule.value = existingRule.value
-          .replace(RELATIVE_DATE_QUERY_REGEXP_CREATED, '')
-          .replace(RELATIVE_DATE_QUERY_REGEXP_ADDED, '')
-        if (existingRule.value.replace(',', '').trim() === '') {
-          // if its empty now, remove it entirely
-          filterRules.splice(filterRules.indexOf(existingRule), 1)
-        }
-      }
-    }
     if (this.permissionsSelectionModel.ownerFilter == OwnerFilterType.SELF) {
       filterRules.push({
         rule_type: FILTER_OWNER,
@@ -800,6 +807,13 @@ export class FilterEditorComponent implements OnInit, OnDestroy {
       filterRules.push({
         rule_type: FILTER_OWNER_ANY,
         value: this.permissionsSelectionModel.includeUsers?.join(','),
+      })
+    } else if (
+      this.permissionsSelectionModel.ownerFilter == OwnerFilterType.SHARED_BY_ME
+    ) {
+      filterRules.push({
+        rule_type: FILTER_SHARED_BY_USER,
+        value: this.permissionsSelectionModel.userID.toString(),
       })
     } else if (
       this.permissionsSelectionModel.ownerFilter == OwnerFilterType.UNOWNED
@@ -851,18 +865,46 @@ export class FilterEditorComponent implements OnInit, OnDestroy {
   subscription: Subscription
 
   ngOnInit() {
-    this.tagService
-      .listAll()
-      .subscribe((result) => (this.tags = result.results))
-    this.correspondentService
-      .listAll()
-      .subscribe((result) => (this.correspondents = result.results))
-    this.documentTypeService
-      .listAll()
-      .subscribe((result) => (this.documentTypes = result.results))
-    this.storagePathService
-      .listAll()
-      .subscribe((result) => (this.storagePaths = result.results))
+    if (
+      this.permissionsService.currentUserCan(
+        PermissionAction.View,
+        PermissionType.Tag
+      )
+    ) {
+      this.tagService
+        .listAll()
+        .subscribe((result) => (this.tags = result.results))
+    }
+    if (
+      this.permissionsService.currentUserCan(
+        PermissionAction.View,
+        PermissionType.Correspondent
+      )
+    ) {
+      this.correspondentService
+        .listAll()
+        .subscribe((result) => (this.correspondents = result.results))
+    }
+    if (
+      this.permissionsService.currentUserCan(
+        PermissionAction.View,
+        PermissionType.DocumentType
+      )
+    ) {
+      this.documentTypeService
+        .listAll()
+        .subscribe((result) => (this.documentTypes = result.results))
+    }
+    if (
+      this.permissionsService.currentUserCan(
+        PermissionAction.View,
+        PermissionType.StoragePath
+      )
+    ) {
+      this.storagePathService
+        .listAll()
+        .subscribe((result) => (this.storagePaths = result.results))
+    }
 
     this.textFilterDebounce = new Subject<string>()
 
