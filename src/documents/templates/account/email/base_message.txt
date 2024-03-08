@@ -1,0 +1,7 @@
+{% load i18n %}{% autoescape off %}{% blocktrans with site_name="M-Paperless" %}Hello from {{ site_name }}!{% endblocktrans %}
+
+{% block content %}{% endblock content %}
+
+{% blocktrans with site_name="M-Paperless" site_domain=settings.domain %}Thank you for using {{ site_name }}!
+{{ site_domain }}{% endblocktrans %}
+{% endautoescape %}

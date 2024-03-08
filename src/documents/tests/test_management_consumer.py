@@ -88,10 +88,10 @@ class ConsumerThreadMixin(DocumentConsumeDelayMixin):
     ):
         eq = filecmp.cmp(input_doc.original_file, self.sample_file, shallow=False)
         if not eq:
-            print("Consumed an INVALID file.")
+            print("Consumed an INVALID file.")  # noqa: T201
             raise ConsumerError("Incomplete File READ FAILED")
         else:
-            print("Consumed a perfectly valid file.")
+            print("Consumed a perfectly valid file.")  # noqa: T201
 
     def slow_write_file(self, target, incomplete=False):
         with open(self.sample_file, "rb") as f:
@@ -102,11 +102,11 @@ class ConsumerThreadMixin(DocumentConsumeDelayMixin):
 
         with open(target, "wb") as f:
             # this will take 2 seconds, since the file is about 20k.
-            print("Start writing file.")
+            print("Start writing file.")  # noqa: T201
             for b in chunked(1000, pdf_bytes):
                 f.write(b)
                 sleep(0.1)
-            print("file completed.")
+            print("file completed.")  # noqa: T201
 
 
 @override_settings(
@@ -343,7 +343,6 @@ class TestConsumer(DirectoriesMixin, ConsumerThreadMixin, TransactionTestCase):
 @override_settings(
     CONSUMER_POLLING=1,
     # please leave the delay here and down below
-    # see https://github.com/paperless-ngx/paperless-ngx/pull/66
     CONSUMER_POLLING_DELAY=3,
     CONSUMER_POLLING_RETRY_COUNT=20,
 )

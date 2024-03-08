@@ -17,15 +17,11 @@ import {
   hexToHsl,
 } from 'src/app/utils/color'
 import { environment } from 'src/environments/environment'
-import {
-  PaperlessUiSettings,
-  SETTINGS,
-  SETTINGS_KEYS,
-} from '../data/paperless-uisettings'
-import { PaperlessUser } from '../data/paperless-user'
+import { UiSettings, SETTINGS, SETTINGS_KEYS } from '../data/ui-settings'
+import { User } from '../data/user'
 import { PermissionsService } from './permissions.service'
 import { ToastService } from './toast.service'
-import { PaperlessSavedView } from '../data/paperless-saved-view'
+import { SavedView } from '../data/saved-view'
 
 export interface LanguageOption {
   code: string
@@ -38,6 +34,27 @@ export interface LanguageOption {
   dateInputFormat?: string
 }
 
+const LANGUAGE_OPTIONS = [
+  {
+    code: 'en-us',
+    name: $localize`English (US)`,
+    englishName: 'English (US)',
+    dateInputFormat: 'dd.mm.yyyy',
+  },
+  {
+    code: 'ar-ar',
+    name: $localize`Arabic`,
+    englishName: 'Arabic',
+    dateInputFormat: 'dd.mm.yyyy',
+  },
+]
+
+const ISO_LANGUAGE_OPTION: LanguageOption = {
+  code: 'iso-8601',
+  name: $localize`ISO 8601`,
+  dateInputFormat: 'yyyy-mm-dd',
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -45,7 +62,7 @@ export class SettingsService {
   protected baseUrl: string = environment.apiBaseUrl + 'ui_settings/'
 
   private settings: Object = {}
-  currentUser: PaperlessUser
+  currentUser: User
 
   public settingsSaved: EventEmitter<any> = new EventEmitter()
 
@@ -74,11 +91,14 @@ export class SettingsService {
   }
 
   // this is called by the app initializer in app.module
-  public initializeSettings(): Observable<PaperlessUiSettings> {
-    return this.http.get<PaperlessUiSettings>(this.baseUrl).pipe(
+  public initializeSettings(): Observable<UiSettings> {
+    return this.http.get<UiSettings>(this.baseUrl).pipe(
       first(),
       tap((uisettings) => {
         Object.assign(this.settings, uisettings.settings)
+        if (this.get(SETTINGS_KEYS.APP_TITLE)?.length) {
+          environment.appTitle = this.get(SETTINGS_KEYS.APP_TITLE)
+        }
         this.maybeMigrateSettings()
         // to update lang cookie
         if (this.settings['language']?.length)
@@ -151,36 +171,14 @@ export class SettingsService {
   }
 
   getLanguageOptions(): LanguageOption[] {
-    const languages = [
-      {
-        code: 'en-us',
-        name: $localize`English (US)`,
-        englishName: 'English (US)',
-        dateInputFormat: 'mm/dd/yyyy',
-      },
-      {
-        code: 'ar-ar',
-        name: $localize`Arabic`,
-        englishName: 'Arabic',
-        dateInputFormat: 'yyyy-mm-dd',
-      },
-    ]
-
     // Sort languages by localized name at runtime
-    languages.sort((a, b) => {
+    return LANGUAGE_OPTIONS.sort((a, b) => {
       return a.name < b.name ? -1 : 1
     })
-
-    return languages
   }
 
   getDateLocaleOptions(): LanguageOption[] {
-    let isoOption: LanguageOption = {
-      code: 'iso-8601',
-      name: $localize`ISO 8601`,
-      dateInputFormat: 'yyyy-mm-dd',
-    }
-    return [isoOption].concat(this.getLanguageOptions())
+    return [ISO_LANGUAGE_OPTION].concat(this.getLanguageOptions())
   }
 
   private getLanguageCookieName() {
@@ -373,16 +371,14 @@ export class SettingsService {
     }
   }
 
-  updateDashboardViewsSort(
-    dashboardViews: PaperlessSavedView[]
-  ): Observable<any> {
+  updateDashboardViewsSort(dashboardViews: SavedView[]): Observable<any> {
     this.set(SETTINGS_KEYS.DASHBOARD_VIEWS_SORT_ORDER, [
       ...new Set(dashboardViews.map((v) => v.id)),
     ])
     return this.storeSettings()
   }
 
-  updateSidebarViewsSort(sidebarViews: PaperlessSavedView[]): Observable<any> {
+  updateSidebarViewsSort(sidebarViews: SavedView[]): Observable<any> {
     this.set(SETTINGS_KEYS.SIDEBAR_VIEWS_SORT_ORDER, [
       ...new Set(sidebarViews.map((v) => v.id)),
     ])

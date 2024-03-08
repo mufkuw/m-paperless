@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core'
-import { PaperlessDocument } from 'src/app/data/paperless-document'
-import { PaperlessDocumentMetadata } from 'src/app/data/paperless-document-metadata'
+import { Document } from 'src/app/data/document'
+import { DocumentMetadata } from 'src/app/data/document-metadata'
 import { AbstractPaperlessService } from './abstract-paperless-service'
-import { HttpClient, HttpParams } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs'
 import { Results } from 'src/app/data/results'
 import { FilterRule } from 'src/app/data/filter-rule'
@@ -10,9 +10,16 @@ import { map, tap } from 'rxjs/operators'
 import { CorrespondentService } from './correspondent.service'
 import { DocumentTypeService } from './document-type.service'
 import { TagService } from './tag.service'
-import { PaperlessDocumentSuggestions } from 'src/app/data/paperless-document-suggestions'
+import { DocumentSuggestions } from 'src/app/data/document-suggestions'
 import { queryParamsFromFilterRules } from '../../utils/query-params'
 import { StoragePathService } from './storage-path.service'
+import {
+  PermissionAction,
+  PermissionType,
+  PermissionsService,
+} from '../permissions.service'
+import { SettingsService } from '../settings.service'
+import { SETTINGS, SETTINGS_KEYS } from 'src/app/data/ui-settings'
 
 export const DOCUMENT_SORT_FIELDS = [
   { field: 'archive_serial_number', name: $localize`ASN` },
@@ -49,7 +56,7 @@ export interface SelectionData {
 @Injectable({
   providedIn: 'root',
 })
-export class DocumentService extends AbstractPaperlessService<PaperlessDocument> {
+export class DocumentService extends AbstractPaperlessService<Document> {
   private _searchQuery: string
 
   constructor(
@@ -57,21 +64,41 @@ export class DocumentService extends AbstractPaperlessService<PaperlessDocument>
     private correspondentService: CorrespondentService,
     private documentTypeService: DocumentTypeService,
     private tagService: TagService,
-    private storagePathService: StoragePathService
+    private storagePathService: StoragePathService,
+    private permissionsService: PermissionsService,
+    private settingsService: SettingsService
   ) {
     super(http, 'documents')
   }
 
-  addObservablesToDocument(doc: PaperlessDocument) {
-    if (doc.correspondent) {
+  addObservablesToDocument(doc: Document) {
+    if (
+      doc.correspondent &&
+      this.permissionsService.currentUserCan(
+        PermissionAction.View,
+        PermissionType.Correspondent
+      )
+    ) {
       doc.correspondent$ = this.correspondentService.getCached(
         doc.correspondent
       )
     }
-    if (doc.document_type) {
+    if (
+      doc.document_type &&
+      this.permissionsService.currentUserCan(
+        PermissionAction.View,
+        PermissionType.DocumentType
+      )
+    ) {
       doc.document_type$ = this.documentTypeService.getCached(doc.document_type)
     }
-    if (doc.tags) {
+    if (
+      doc.tags &&
+      this.permissionsService.currentUserCan(
+        PermissionAction.View,
+        PermissionType.Tag
+      )
+    ) {
       doc.tags$ = this.tagService
         .getCachedMany(doc.tags)
         .pipe(
@@ -80,7 +107,13 @@ export class DocumentService extends AbstractPaperlessService<PaperlessDocument>
           )
         )
     }
-    if (doc.storage_path) {
+    if (
+      doc.storage_path &&
+      this.permissionsService.currentUserCan(
+        PermissionAction.View,
+        PermissionType.StoragePath
+      )
+    ) {
       doc.storage_path$ = this.storagePathService.getCached(doc.storage_path)
     }
     return doc
@@ -93,7 +126,7 @@ export class DocumentService extends AbstractPaperlessService<PaperlessDocument>
     sortReverse?: boolean,
     filterRules?: FilterRule[],
     extraParams = {}
-  ): Observable<Results<PaperlessDocument>> {
+  ): Observable<Results<Document>> {
     return this.list(
       page,
       pageSize,
@@ -114,8 +147,8 @@ export class DocumentService extends AbstractPaperlessService<PaperlessDocument>
     }).pipe(map((response) => response.results.map((doc) => doc.id)))
   }
 
-  get(id: number): Observable<PaperlessDocument> {
-    return this.http.get<PaperlessDocument>(this.getResourceUrl(id), {
+  get(id: number): Observable<Document> {
+    return this.http.get<Document>(this.getResourceUrl(id), {
       params: {
         full_perms: true,
       },
@@ -147,9 +180,12 @@ export class DocumentService extends AbstractPaperlessService<PaperlessDocument>
     return this.http.get<number>(this.getResourceUrl(null, 'next_asn'))
   }
 
-  update(o: PaperlessDocument): Observable<PaperlessDocument> {
+  update(o: Document): Observable<Document> {
     // we want to only set created_date
     o.created = undefined
+    o.remove_inbox_tags = !!this.settingsService.get(
+      SETTINGS_KEYS.DOCUMENT_EDITING_REMOVE_INBOX_TAGS
+    )
     return super.update(o)
   }
 
@@ -161,10 +197,8 @@ export class DocumentService extends AbstractPaperlessService<PaperlessDocument>
     )
   }
 
-  getMetadata(id: number): Observable<PaperlessDocumentMetadata> {
-    return this.http.get<PaperlessDocumentMetadata>(
-      this.getResourceUrl(id, 'metadata')
-    )
+  getMetadata(id: number): Observable<DocumentMetadata> {
+    return this.http.get<DocumentMetadata>(this.getResourceUrl(id, 'metadata'))
   }
 
   bulkEdit(ids: number[], method: string, args: any) {
@@ -182,8 +216,8 @@ export class DocumentService extends AbstractPaperlessService<PaperlessDocument>
     )
   }
 
-  getSuggestions(id: number): Observable<PaperlessDocumentSuggestions> {
-    return this.http.get<PaperlessDocumentSuggestions>(
+  getSuggestions(id: number): Observable<DocumentSuggestions> {
+    return this.http.get<DocumentSuggestions>(
       this.getResourceUrl(id, 'suggestions')
     )
   }

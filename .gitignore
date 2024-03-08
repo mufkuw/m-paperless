@@ -87,6 +87,7 @@ scripts/nuke
 # Stored PDFs
 /media/
 /data/
+#/paperless.conf
 /consume/
 /export/
 
@@ -99,3 +100,5 @@ scripts/nuke
 # celery schedule file
 celerybeat-schedule*
 sdb/
+
+.local

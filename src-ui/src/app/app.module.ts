@@ -95,8 +95,8 @@ import { UsernamePipe } from './pipes/username.pipe'
 import { LogoComponent } from './components/common/logo/logo.component'
 import { IsNumberPipe } from './pipes/is-number.pipe'
 import { ShareLinksDropdownComponent } from './components/common/share-links-dropdown/share-links-dropdown.component'
-import { ConsumptionTemplatesComponent } from './components/manage/consumption-templates/consumption-templates.component'
-import { ConsumptionTemplateEditDialogComponent } from './components/common/edit-dialog/consumption-template-edit-dialog/consumption-template-edit-dialog.component'
+import { WorkflowsComponent } from './components/manage/workflows/workflows.component'
+import { WorkflowEditDialogComponent } from './components/common/edit-dialog/workflow-edit-dialog/workflow-edit-dialog.component'
 import { MailComponent } from './components/manage/mail/mail.component'
 import { UsersAndGroupsComponent } from './components/admin/users-groups/users-groups.component'
 import { DragDropModule } from '@angular/cdk/drag-drop'
@@ -107,6 +107,194 @@ import { CustomFieldsDropdownComponent } from './components/common/custom-fields
 import { ProfileEditDialogComponent } from './components/common/profile-edit-dialog/profile-edit-dialog.component'
 import { PdfViewerComponent } from './components/common/pdf-viewer/pdf-viewer.component'
 import { DocumentLinkComponent } from './components/common/input/document-link/document-link.component'
+import { PreviewPopupComponent } from './components/common/preview-popup/preview-popup.component'
+import { SwitchComponent } from './components/common/input/switch/switch.component'
+import { ConfigComponent } from './components/admin/config/config.component'
+import { FileComponent } from './components/common/input/file/file.component'
+import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
+import { ConfirmButtonComponent } from './components/common/confirm-button/confirm-button.component'
+import { MonetaryComponent } from './components/common/input/monetary/monetary.component'
+import { SystemStatusDialogComponent } from './components/common/system-status-dialog/system-status-dialog.component'
+import { NgxFilesizeModule } from 'ngx-filesize'
+import {
+  airplane,
+  archive,
+  arrowCounterclockwise,
+  arrowDown,
+  arrowLeft,
+  arrowRepeat,
+  arrowRight,
+  arrowRightShort,
+  arrowUpRight,
+  asterisk,
+  boxArrowUp,
+  boxArrowUpRight,
+  boxes,
+  calendar,
+  calendarEvent,
+  cardChecklist,
+  caretDown,
+  caretUp,
+  chatLeftText,
+  check,
+  check2All,
+  checkAll,
+  checkCircleFill,
+  checkLg,
+  chevronDoubleLeft,
+  chevronDoubleRight,
+  clipboard,
+  clipboardCheck,
+  clipboardCheckFill,
+  clipboardFill,
+  dash,
+  diagram3,
+  dice5,
+  doorOpen,
+  download,
+  envelope,
+  exclamationCircleFill,
+  exclamationTriangle,
+  exclamationTriangleFill,
+  eye,
+  fileEarmark,
+  fileEarmarkCheck,
+  fileEarmarkFill,
+  fileEarmarkLock,
+  files,
+  fileText,
+  filter,
+  folder,
+  folderFill,
+  funnel,
+  gear,
+  grid,
+  gripVertical,
+  hash,
+  hddStack,
+  house,
+  infoCircle,
+  link,
+  listTask,
+  listUl,
+  pencil,
+  people,
+  peopleFill,
+  person,
+  personCircle,
+  personFill,
+  personFillLock,
+  personLock,
+  plus,
+  plusCircle,
+  questionCircle,
+  search,
+  slashCircle,
+  sliders2Vertical,
+  sortAlphaDown,
+  sortAlphaUpAlt,
+  tagFill,
+  tags,
+  textIndentLeft,
+  textLeft,
+  threeDots,
+  threeDotsVertical,
+  trash,
+  uiRadios,
+  upcScan,
+  x,
+  xLg,
+} from 'ngx-bootstrap-icons'
+
+const icons = {
+  airplane,
+  archive,
+  arrowCounterclockwise,
+  arrowDown,
+  arrowLeft,
+  arrowRepeat,
+  arrowRight,
+  arrowRightShort,
+  arrowUpRight,
+  asterisk,
+  boxArrowUp,
+  boxArrowUpRight,
+  boxes,
+  calendar,
+  calendarEvent,
+  cardChecklist,
+  caretDown,
+  caretUp,
+  chatLeftText,
+  check,
+  check2All,
+  checkAll,
+  checkCircleFill,
+  checkLg,
+  chevronDoubleLeft,
+  chevronDoubleRight,
+  clipboard,
+  clipboardCheck,
+  clipboardCheckFill,
+  clipboardFill,
+  dash,
+  diagram3,
+  dice5,
+  doorOpen,
+  download,
+  envelope,
+  exclamationCircleFill,
+  exclamationTriangle,
+  exclamationTriangleFill,
+  eye,
+  fileEarmark,
+  fileEarmarkCheck,
+  fileEarmarkFill,
+  fileEarmarkLock,
+  files,
+  fileText,
+  filter,
+  folder,
+  folderFill,
+  funnel,
+  gear,
+  grid,
+  gripVertical,
+  hash,
+  hddStack,
+  house,
+  infoCircle,
+  link,
+  listTask,
+  listUl,
+  pencil,
+  people,
+  peopleFill,
+  person,
+  personCircle,
+  personFill,
+  personFillLock,
+  personLock,
+  plus,
+  plusCircle,
+  questionCircle,
+  search,
+  slashCircle,
+  sliders2Vertical,
+  sortAlphaDown,
+  sortAlphaUpAlt,
+  tagFill,
+  tags,
+  textIndentLeft,
+  textLeft,
+  threeDots,
+  threeDotsVertical,
+  trash,
+  uiRadios,
+  upcScan,
+  x,
+  xLg,
+}
 
 import localeAf from '@angular/common/locales/af'
 import localeAr from '@angular/common/locales/ar'
@@ -123,6 +311,7 @@ import localeFi from '@angular/common/locales/fi'
 import localeFr from '@angular/common/locales/fr'
 import localeHu from '@angular/common/locales/hu'
 import localeIt from '@angular/common/locales/it'
+import localeJa from '@angular/common/locales/ja'
 import localeLb from '@angular/common/locales/lb'
 import localeNl from '@angular/common/locales/nl'
 import localeNo from '@angular/common/locales/no'
@@ -153,6 +342,7 @@ registerLocaleData(localeFi)
 registerLocaleData(localeFr)
 registerLocaleData(localeHu)
 registerLocaleData(localeIt)
+registerLocaleData(localeJa)
 registerLocaleData(localeLb)
 registerLocaleData(localeNl)
 registerLocaleData(localeNo)
@@ -250,8 +440,8 @@ function initializeApp(settings: SettingsService) {
     LogoComponent,
     IsNumberPipe,
     ShareLinksDropdownComponent,
-    ConsumptionTemplatesComponent,
-    ConsumptionTemplateEditDialogComponent,
+    WorkflowsComponent,
+    WorkflowEditDialogComponent,
     MailComponent,
     UsersAndGroupsComponent,
     FileDropComponent,
@@ -261,6 +451,13 @@ function initializeApp(settings: SettingsService) {
     ProfileEditDialogComponent,
     PdfViewerComponent,
     DocumentLinkComponent,
+    PreviewPopupComponent,
+    SwitchComponent,
+    ConfigComponent,
+    FileComponent,
+    ConfirmButtonComponent,
+    MonetaryComponent,
+    SystemStatusDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -274,6 +471,8 @@ function initializeApp(settings: SettingsService) {
     ColorSliderModule,
     TourNgBootstrapModule,
     DragDropModule,
+    NgxBootstrapIconsModule.pick(icons),
+    NgxFilesizeModule,
   ],
   providers: [
     {

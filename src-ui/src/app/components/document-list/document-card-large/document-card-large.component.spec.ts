@@ -19,6 +19,8 @@ import { DocumentTitlePipe } from 'src/app/pipes/document-title.pipe'
 import { SafeUrlPipe } from 'src/app/pipes/safeurl.pipe'
 import { DocumentCardLargeComponent } from './document-card-large.component'
 import { IsNumberPipe } from 'src/app/pipes/is-number.pipe'
+import { PreviewPopupComponent } from '../../common/preview-popup/preview-popup.component'
+import { NgxBootstrapIconsModule, allIcons } from 'ngx-bootstrap-icons'
 
 const doc = {
   id: 10,
@@ -50,6 +52,7 @@ describe('DocumentCardLargeComponent', () => {
         IfPermissionsDirective,
         SafeUrlPipe,
         IsNumberPipe,
+        PreviewPopupComponent,
       ],
       providers: [DatePipe],
       imports: [
@@ -58,6 +61,7 @@ describe('DocumentCardLargeComponent', () => {
         NgbPopoverModule,
         NgbTooltipModule,
         NgbProgressbarModule,
+        NgxBootstrapIconsModule.pick(allIcons),
       ],
     }).compileComponents()
 

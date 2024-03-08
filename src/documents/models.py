@@ -394,11 +394,6 @@ class Log(models.Model):
 
 
 class SavedView(ModelWithOwner):
-    class Meta:
-        ordering = ("name",)
-        verbose_name = _("saved view")
-        verbose_name_plural = _("saved views")
-
     name = models.CharField(_("name"), max_length=128)
 
     show_on_dashboard = models.BooleanField(
@@ -415,6 +410,14 @@ class SavedView(ModelWithOwner):
         blank=True,
     )
     sort_reverse = models.BooleanField(_("sort reverse"), default=False)
+
+    class Meta:
+        ordering = ("name",)
+        verbose_name = _("saved view")
+        verbose_name_plural = _("saved views")
+
+    def __str__(self):
+        return f"SavedView {self.name}"
 
 
 class SavedViewFilterRule(models.Model):
@@ -455,6 +458,8 @@ class SavedViewFilterRule(models.Model):
         (33, _("has owner in")),
         (34, _("does not have owner")),
         (35, _("does not have owner in")),
+        (36, _("has custom field value")),
+        (37, _("is shared by me")),
     ]
 
     saved_view = models.ForeignKey(
@@ -833,7 +838,7 @@ class CustomFieldInstance(models.Model):
 
     value_float = models.FloatField(null=True)
 
-    value_monetary = models.DecimalField(null=True, decimal_places=2, max_digits=12)
+    value_monetary = models.CharField(null=True, max_length=128)
 
     value_document_ids = models.JSONField(null=True)
 
@@ -886,15 +891,31 @@ if settings.AUDIT_LOG_ENABLED:
     auditlog.register(CustomFieldInstance)
 
 
-class ConsumptionTemplate(models.Model):
+class WorkflowTrigger(models.Model):
+    class WorkflowTriggerMatching(models.IntegerChoices):
+        # No auto matching
+        NONE = MatchingModel.MATCH_NONE, _("None")
+        ANY = MatchingModel.MATCH_ANY, _("Any word")
+        ALL = MatchingModel.MATCH_ALL, _("All words")
+        LITERAL = MatchingModel.MATCH_LITERAL, _("Exact match")
+        REGEX = MatchingModel.MATCH_REGEX, _("Regular expression")
+        FUZZY = MatchingModel.MATCH_FUZZY, _("Fuzzy word")
+
+    class WorkflowTriggerType(models.IntegerChoices):
+        CONSUMPTION = 1, _("Consumption Started")
+        DOCUMENT_ADDED = 2, _("Document Added")
+        DOCUMENT_UPDATED = 3, _("Document Updated")
+
     class DocumentSourceChoices(models.IntegerChoices):
         CONSUME_FOLDER = DocumentSource.ConsumeFolder.value, _("Consume Folder")
         API_UPLOAD = DocumentSource.ApiUpload.value, _("Api Upload")
         MAIL_FETCH = DocumentSource.MailFetch.value, _("Mail Fetch")
 
-    name = models.CharField(_("name"), max_length=256, unique=True)
-
-    order = models.IntegerField(_("order"), default=0)
+    type = models.PositiveIntegerField(
+        _("Workflow Trigger Type"),
+        choices=WorkflowTriggerType.choices,
+        default=WorkflowTriggerType.CONSUMPTION,
+    )
 
     sources = MultiSelectField(
         max_length=5,
@@ -934,6 +955,63 @@ class ConsumptionTemplate(models.Model):
         verbose_name=_("filter documents from this mail rule"),
     )
 
+    match = models.CharField(_("match"), max_length=256, blank=True)
+
+    matching_algorithm = models.PositiveIntegerField(
+        _("matching algorithm"),
+        choices=WorkflowTriggerMatching.choices,
+        default=WorkflowTriggerMatching.NONE,
+    )
+
+    is_insensitive = models.BooleanField(_("is insensitive"), default=True)
+
+    filter_has_tags = models.ManyToManyField(
+        Tag,
+        blank=True,
+        verbose_name=_("has these tag(s)"),
+    )
+
+    filter_has_document_type = models.ForeignKey(
+        DocumentType,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        verbose_name=_("has this document type"),
+    )
+
+    filter_has_correspondent = models.ForeignKey(
+        Correspondent,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        verbose_name=_("has this correspondent"),
+    )
+
+    class Meta:
+        verbose_name = _("workflow trigger")
+        verbose_name_plural = _("workflow triggers")
+
+    def __str__(self):
+        return f"WorkflowTrigger {self.pk}"
+
+
+class WorkflowAction(models.Model):
+    class WorkflowActionType(models.IntegerChoices):
+        ASSIGNMENT = (
+            1,
+            _("Assignment"),
+        )
+        REMOVAL = (
+            2,
+            _("Removal"),
+        )
+
+    type = models.PositiveIntegerField(
+        _("Workflow Action Type"),
+        choices=WorkflowActionType.choices,
+        default=WorkflowActionType.ASSIGNMENT,
+    )
+
     assign_title = models.CharField(
         _("assign title"),
         max_length=256,
@@ -948,6 +1026,7 @@ class ConsumptionTemplate(models.Model):
     assign_tags = models.ManyToManyField(
         Tag,
         blank=True,
+        related_name="+",
         verbose_name=_("assign this tag"),
     )
 
@@ -956,6 +1035,7 @@ class ConsumptionTemplate(models.Model):
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
+        related_name="+",
         verbose_name=_("assign this document type"),
     )
 
@@ -964,6 +1044,7 @@ class ConsumptionTemplate(models.Model):
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
+        related_name="+",
         verbose_name=_("assign this correspondent"),
     )
 
@@ -972,6 +1053,7 @@ class ConsumptionTemplate(models.Model):
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
+        related_name="+",
         verbose_name=_("assign this storage path"),
     )
 
@@ -1019,9 +1101,139 @@ class ConsumptionTemplate(models.Model):
         verbose_name=_("assign these custom fields"),
     )
 
+    remove_tags = models.ManyToManyField(
+        Tag,
+        blank=True,
+        related_name="+",
+        verbose_name=_("remove these tag(s)"),
+    )
+
+    remove_all_tags = models.BooleanField(
+        default=False,
+        verbose_name=_("remove all tags"),
+    )
+
+    remove_document_types = models.ManyToManyField(
+        DocumentType,
+        blank=True,
+        related_name="+",
+        verbose_name=_("remove these document type(s)"),
+    )
+
+    remove_all_document_types = models.BooleanField(
+        default=False,
+        verbose_name=_("remove all document types"),
+    )
+
+    remove_correspondents = models.ManyToManyField(
+        Correspondent,
+        blank=True,
+        related_name="+",
+        verbose_name=_("remove these correspondent(s)"),
+    )
+
+    remove_all_correspondents = models.BooleanField(
+        default=False,
+        verbose_name=_("remove all correspondents"),
+    )
+
+    remove_storage_paths = models.ManyToManyField(
+        StoragePath,
+        blank=True,
+        related_name="+",
+        verbose_name=_("remove these storage path(s)"),
+    )
+
+    remove_all_storage_paths = models.BooleanField(
+        default=False,
+        verbose_name=_("remove all storage paths"),
+    )
+
+    remove_owners = models.ManyToManyField(
+        User,
+        blank=True,
+        related_name="+",
+        verbose_name=_("remove these owner(s)"),
+    )
+
+    remove_all_owners = models.BooleanField(
+        default=False,
+        verbose_name=_("remove all owners"),
+    )
+
+    remove_view_users = models.ManyToManyField(
+        User,
+        blank=True,
+        related_name="+",
+        verbose_name=_("remove view permissions for these users"),
+    )
+
+    remove_view_groups = models.ManyToManyField(
+        Group,
+        blank=True,
+        related_name="+",
+        verbose_name=_("remove view permissions for these groups"),
+    )
+
+    remove_change_users = models.ManyToManyField(
+        User,
+        blank=True,
+        related_name="+",
+        verbose_name=_("remove change permissions for these users"),
+    )
+
+    remove_change_groups = models.ManyToManyField(
+        Group,
+        blank=True,
+        related_name="+",
+        verbose_name=_("remove change permissions for these groups"),
+    )
+
+    remove_all_permissions = models.BooleanField(
+        default=False,
+        verbose_name=_("remove all permissions"),
+    )
+
+    remove_custom_fields = models.ManyToManyField(
+        CustomField,
+        blank=True,
+        related_name="+",
+        verbose_name=_("remove these custom fields"),
+    )
+
+    remove_all_custom_fields = models.BooleanField(
+        default=False,
+        verbose_name=_("remove all custom fields"),
+    )
+
     class Meta:
-        verbose_name = _("consumption template")
-        verbose_name_plural = _("consumption templates")
+        verbose_name = _("workflow action")
+        verbose_name_plural = _("workflow actions")
 
     def __str__(self):
-        return f"{self.name}"
+        return f"WorkflowAction {self.pk}"
+
+
+class Workflow(models.Model):
+    name = models.CharField(_("name"), max_length=256, unique=True)
+
+    order = models.IntegerField(_("order"), default=0)
+
+    triggers = models.ManyToManyField(
+        WorkflowTrigger,
+        related_name="workflows",
+        blank=False,
+        verbose_name=_("triggers"),
+    )
+
+    actions = models.ManyToManyField(
+        WorkflowAction,
+        related_name="workflows",
+        blank=False,
+        verbose_name=_("actions"),
+    )
+
+    enabled = models.BooleanField(_("enabled"), default=True)
+
+    def __str__(self):
+        return f"Workflow: {self.name}"
