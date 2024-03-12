@@ -3,8 +3,8 @@ body {
   --bs-link-color-rgb: 23, 84, 31;
   /* #17541f */
   --bs-link-hover-color-rgb: 15, 56, 20;
-  /* --pngx-primary: #17541f; */
-  /* --pngx-primary: #177F5C; */
+  /* --pngx-primary: #17541f;  */
+  --pngx-primary: #177F5C;
   --pngx-primary-hover: #0f3614;
   --pngx-primary-active: #0c2c10;
 }
