@@ -99,3 +99,6 @@ scripts/nuke
 # celery schedule file
 celerybeat-schedule*
 sdb/
+sda/
+
+.bash_history

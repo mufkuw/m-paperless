@@ -114,3 +114,27 @@ ls -la
 ls -la
 rm a.mmm
 ls -la
+clear
+ls
+passwd
+passwd
+exit
+logout
+clear
+ls
+cd consume
+ls
+clear
+ls
+rm -R
+rm -R *
+ls
+rm -R sec1
+clea
+clear
+ls
+clear
+mkdir Arizona
+mkdir Al-Ghanim
+clear
+ls
