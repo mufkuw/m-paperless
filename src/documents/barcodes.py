@@ -279,7 +279,7 @@ class BarcodeReader:
                 logger.debug(f"pdf no:{doc_idx} has {len(dst.pages)} pages")
                 savepath = Path(self.temp_dir.name) / output_filename
                 with open(savepath, "wb") as out:
-                    dst.save(out)
+                    dst.save(out,force_version="1.4")
 
                 copy_basic_file_stats(self.file, savepath)
 
