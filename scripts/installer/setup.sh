@@ -32,5 +32,7 @@ sudo chown paperless:paperless /opt/paperless/media
 sudo chown paperless:paperless /opt/paperless/data
 sudo chown paperless:paperless /opt/paperless/consume
 
+/opt/paperless/resources/plymouth/install.sh
+
 docker run -d --restart=always -p 9998:9998 apache/tika:latest
 docker run -d --restart=always -p 3000:3000 gotenberg/gotenberg:latest
