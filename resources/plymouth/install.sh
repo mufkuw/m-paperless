@@ -1,6 +1,6 @@
 #!/bin/bash
 
-apt install plymouth plymouth-themes
+apt install plymouth plymouth-themes -y
 cp --recursive /opt/paperless/resources/plymouth/m-paperless /usr/share/plymouth/themes/
 plymouth-set-default-theme -R m-paperless
 
