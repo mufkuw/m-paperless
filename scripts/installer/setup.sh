@@ -1,4 +1,3 @@
-
 apt update && apt upgrade -y
 apt install sudo python3 python3-pip python3-dev imagemagick fonts-liberation gnupg libpq-dev default-libmysqlclient-dev pkg-config libmagic-dev mime-support libzbar0 poppler-utils unpaper ghostscript icc-profiles-free qpdf liblept5 libxml2 pngquant zlib1g tesseract-ocr tesseract-ocr-eng tesseract-ocr-ara build-essential python3-setuptools python3-wheel redis-server postgresql git nodejs npm build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python3-openssl libedit-dev libncurses5-dev curl pipenv gunicorn celery nginx -y
 
