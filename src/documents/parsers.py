@@ -36,15 +36,33 @@ from documents.utils import run_subprocess
 
 # TODO: isn't there a date parsing library for this?
 
+# DATE_REGEX = re.compile(
+#     r"(\b|(?!=([_-])))([0-9]{1,2})[\.\/-]([0-9]{1,2})[\.\/-]([0-9]{4}|[0-9]{2})(\b|(?=([_-])))|"
+#     r"(\b|(?!=([_-])))([0-9]{4}|[0-9]{2})[\.\/-]([0-9]{1,2})[\.\/-]([0-9]{1,2})(\b|(?=([_-])))|"
+#     r"(\b|(?!=([_-])))([0-9]{1,2}[\. ]+[a-zA-Z]{3,9} [0-9]{4}|[a-zA-Z]{3,9} [0-9]{1,2}, [0-9]{4})(\b|(?=([_-])))|"
+#     r"(\b|(?!=([_-])))([^\W\d_]{3,9} [0-9]{1,2}, ([0-9]{4}))(\b|(?=([_-])))|"
+#     r"(\b|(?!=([_-])))([^\W\d_]{3,9} [0-9]{4})(\b|(?=([_-])))|"
+#     r"(\b|(?!=([_-])))([0-9]{1,2}[^ ]{2}[\. ]+[^ ]{3,9}[ \.\/-][0-9]{4})(\b|(?=([_-])))|"
+#     r"(\b|(?!=([_-])))(\b[0-9]{1,2}[ \.\/-][a-zA-Z]{3}[ \.\/-][0-9]{4})(\b|(?=([_-])))",
+# )
+
+# DATE_REGEX = re.compile(
+#     r"(\b|(?!=([_-])))([0-9]{1,2})[\.\/-]([0-9]{1,2})[\.\/-]([0-9]{4}|[0-9]{2})(\b|(?=([_-])))|"  # noqa: E501
+#     r"(\b|(?!=([_-])))([0-9]{4}|[0-9]{2})[\.\/-]([0-9]{1,2})[\.\/-]([0-9]{1,2})(\b|(?=([_-])))|"  # noqa: E501
+#     r"(\b|(?!=([_-])))([0-9]{1,2}[\. ]+[a-zA-Z]{3,9} ([0-9]{4}|[0-9]{2}))(\b|(?=([_-])))|"  # noqa: E501
+#     r"(\b|(?!=([_-])))([^\W\d_]{3,9} [0-9]{1,2}, ([0-9]{4}))(\b|(?=([_-])))|"
+#     r"(\b|(?!=([_-])))([^\W\d_]{3,9} [0-9]{4})(\b|(?=([_-])))|"
+#     r"(\b|(?!=([_-])))([0-9]{1,2}[^ ]{2}[\. ]+[^ ]{3,9}[ \.\/-][0-9]{4})(\b|(?=([_-])))|"  # noqa: E501
+#     r"(\b|(?!=([_-])))(\b[0-9]{1,2}[ \.\/-][a-zA-Z]{3}[ \.\/-][0-9]{4})(\b|(?=([_-])))",  # noqa: E501
+# )
+
 DATE_REGEX = re.compile(
-    r"(\b|(?!=([_-])))([0-9]{1,2})[\.\/-]([0-9]{1,2})[\.\/-]([0-9]{4}|[0-9]{2})(\b|(?=([_-])))|"
-    r"(\b|(?!=([_-])))([0-9]{4}|[0-9]{2})[\.\/-]([0-9]{1,2})[\.\/-]([0-9]{1,2})(\b|(?=([_-])))|"
-    r"(\b|(?!=([_-])))([0-9]{1,2}[\. ]+[a-zA-Z]{3,9} [0-9]{4}|[a-zA-Z]{3,9} [0-9]{1,2}, [0-9]{4})(\b|(?=([_-])))|"
-    r"(\b|(?!=([_-])))([^\W\d_]{3,9} [0-9]{1,2}, ([0-9]{4}))(\b|(?=([_-])))|"
-    r"(\b|(?!=([_-])))([^\W\d_]{3,9} [0-9]{4})(\b|(?=([_-])))|"
-    r"(\b|(?!=([_-])))([0-9]{1,2}[^ ]{2}[\. ]+[^ ]{3,9}[ \.\/-][0-9]{4})(\b|(?=([_-])))|"
-    r"(\b|(?!=([_-])))(\b[0-9]{1,2}[ \.\/-][a-zA-Z]{3}[ \.\/-][0-9]{4})(\b|(?=([_-])))",
+    r"(?i)\b(\d{2}|\d{4})(\s+)?[\.\-\/](\s+)?(\d{1,2})(\s+)?[\.\-\/](\s+)?(\d{2}|\d{4})\b|\b(\d{1,2})(?:.+)?(jan\w+|feb\w+|mar\w+|apr\w+|may\w+|jun\w+|jul\w+|aug\w+|sep\w+|oct\w+|nov\w+|dec\w+)(?:.+)?(\d{4})\b|\b(jan\w+|feb\w+|mar\w+|apr\w+|may\w+|jun\w+|jul\w+|aug\w+|sep\w+|oct\w+|nov\w+|dec\w+)(?:.+)?(\d{2})(?:.+)?(\d{4})\b",
 )
+
+# 
+
+
 
 
 logger = logging.getLogger("paperless.parsing")
@@ -218,7 +236,6 @@ def make_thumbnail_from_pdf_gs_fallback(in_path, temp_dir, logging_group=None) -
         logger.error(f"Unable to make thumbnail with Ghostscript: {e}")
         # The caller might expect a generated thumbnail that can be moved,
         # so we need to copy it before it gets moved.
-        # https://github.com/paperless-ngx/paperless-ngx/issues/3631
         default_thumbnail_path = os.path.join(temp_dir, "document.webp")
         copy_file_with_basic_stats(get_default_thumbnail(), default_thumbnail_path)
         return default_thumbnail_path
@@ -269,8 +286,8 @@ def parse_date_generator(filename, text) -> Iterator[datetime.datetime]:
         return dateparser.parse(
             ds,
             settings={
-                "DATE_ORDER": date_order,
-                "PREFER_DAY_OF_MONTH": "first",
+                #"DATE_ORDER": date_order,
+                #"PREFER_DAY_OF_MONTH": "first",
                 "RETURN_AS_TIMEZONE_AWARE": True,
                 "TIMEZONE": settings.TIME_ZONE,
             },
@@ -291,7 +308,7 @@ def parse_date_generator(filename, text) -> Iterator[datetime.datetime]:
         date_order: str,
     ) -> Optional[datetime.datetime]:
         date_string = match.group(0)
-
+        logger.info(date_string)
         try:
             date = __parser(date_string, date_order)
         except Exception:

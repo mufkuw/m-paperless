@@ -433,7 +433,7 @@ msgstr "recherche en texte intégral"
 
 #: documents/models.py:486
 msgid "more like this"
-msgstr "plus comme cela"
+msgstr "documents relatifs"
 
 #: documents/models.py:487
 msgid "has tags in"
@@ -449,7 +449,7 @@ msgstr "NSA inférieur à"
 
 #: documents/models.py:490
 msgid "storage path is"
-msgstr "le chemin de stockage est"
+msgstr "Le chemin de stockage est"
 
 #: documents/models.py:491
 msgid "has correspondent in"
@@ -673,7 +673,7 @@ msgstr "Monétaire"
 
 #: documents/models.py:808
 msgid "Document Link"
-msgstr "Lien du document"
+msgstr ""
 
 #: documents/models.py:820
 msgid "data type"
@@ -933,22 +933,35 @@ msgstr "Type de fichier %(type)s non pris en charge"
 msgid "Invalid variable detected."
 msgstr "Variable invalide détectée."
 
-#: documents/templates/account/email/base_message.txt:1
-#, python-format
-msgid "Hello from %(site_name)s!"
-msgstr "Bonjour de %(site_name)s !"
+#: documents/templates/index.html:79
+msgid "M-Paperless is loading..."
+msgstr "M-Paperless est en cours de chargement..."
 
-#: documents/templates/account/email/base_message.txt:5
-#, python-format
-msgid "Thank you for using %(site_name)s!\n"
-"%(site_domain)s"
-msgstr "Merci d'utiliser %(site_name)s ! %(site_domain)s"
+#: documents/templates/index.html:80
+msgid "Still here?! Hmm, something might be wrong."
+msgstr "Toujours ici ? Hum, quelque chose a dû mal se passer."
 
-#: documents/templates/account/login.html:5
-msgid "Paperless-ngx sign in"
-msgstr "Connexion à Paperless-ngx"
+#: documents/templates/index.html:80
+msgid "Here's a link to the docs."
+msgstr "Voici un lien vers la documentation."
 
-#: documents/templates/account/login.html:10
+#: documents/templates/registration/logged_out.html:14
+msgid "M-Paperless signed out"
+msgstr "Déconnexion de M-Paperless"
+
+#: documents/templates/registration/logged_out.html:40
+msgid "You have been successfully logged out. Bye!"
+msgstr "Vous avez été déconnecté avec succès. Au revoir !"
+
+#: documents/templates/registration/logged_out.html:41
+msgid "Sign in again"
+msgstr "Se reconnecter"
+
+#: documents/templates/registration/login.html:14
+msgid "M-Paperless sign in"
+msgstr "Connexion à M-Paperless"
+
+#: documents/templates/registration/login.html:41
 msgid "Please sign in."
 msgstr "Veuillez vous connecter."
 
@@ -957,93 +970,70 @@ msgstr "Veuillez vous connecter."
 msgid "Don't have an account yet? <a href=\"%(signup_url)s\">Sign up</a>"
 msgstr "Vous n’avez pas encore de compte ? <a href=\"%(signup_url)s\">Inscrivez-vous</a>"
 
-#: documents/templates/account/login.html:19
-#: documents/templates/account/signup.html:15
-#: documents/templates/socialaccount/signup.html:13
+#: documents/templates/registration/login.html:48
+msgid "Share link was not found."
+msgstr "Le lien de partage n'a pas été trouvé."
+
+#: documents/templates/registration/login.html:52
+msgid "Share link has expired."
+msgstr "Le lien de partage a expiré."
+
+#: documents/templates/registration/login.html:55
 msgid "Username"
 msgstr "Nom d'utilisateur"
 
-#: documents/templates/account/login.html:20
-#: documents/templates/account/signup.html:17
+#: documents/templates/registration/login.html:56
 msgid "Password"
 msgstr "Mot de passe"
 
-#: documents/templates/account/login.html:30
+#: documents/templates/registration/login.html:66
 msgid "Sign in"
 msgstr "S'identifier"
 
-#: documents/templates/account/login.html:34
+#: documents/templates/registration/login.html:70
 msgid "Forgot your password?"
 msgstr "Mot de passe oublié ?"
 
-#: documents/templates/account/login.html:45
-#: documents/templates/account/signup.html:49
-msgid "or sign in via"
-msgstr "ou se connecter via"
+#: documents/templates/registration/password_reset_complete.html:14
+msgid "M-Paperless reset password complete"
+msgstr "Mot de passe M-Paperless réinitialisé"
 
-#: documents/templates/account/password_reset.html:5
-msgid "Paperless-ngx reset password request"
-msgstr "Demande de réinitialisation du mot de passe Paperless-ngx"
+#: documents/templates/registration/password_reset_complete.html:40
+msgid "Password reset complete."
+msgstr "Mot de passe réinitialisé."
 
-#: documents/templates/account/password_reset.html:9
-msgid "Enter your email address below, and we'll email instructions for setting a new one."
-msgstr "Entrez votre adresse électronique ci-dessous, et nous vous enverrons les instructions pour en définir un nouveau."
+#: documents/templates/registration/password_reset_complete.html:42
+#, python-format
+msgid "Your new password has been set. You can now <a href=\"%(login_url)s\">log in</a>"
+msgstr "Votre nouveau mot de passe a été défini. Vous pouvez maintenant <a href=\"%(login_url)s\">vous connecter</a>"
 
-#: documents/templates/account/password_reset.html:12
-msgid "An error occurred. Please try again."
-msgstr "Une erreur s'est produite. Veuillez réessayer."
+#: documents/templates/registration/password_reset_confirm.html:14
+msgid "M-Paperless reset password confirmation"
+msgstr "Confirmation de la réinitialisation du mot de passe M-Paperless"
 
-#: documents/templates/account/password_reset.html:15
-msgid "Email"
-msgstr "Adresse électronique"
-
-#: documents/templates/account/password_reset.html:21
-msgid "Send me instructions!"
-msgstr "Envoyez-moi les instructions !"
-
-#: documents/templates/account/password_reset_done.html:5
-msgid "Paperless-ngx reset password sent"
-msgstr "Réinitialisation du mot de passe Paperless-ngx envoyé"
-
-#: documents/templates/account/password_reset_done.html:9
-msgid "Check your inbox."
-msgstr "Vérifiez votre boîte de réception."
-
-#: documents/templates/account/password_reset_done.html:13
-msgid "We've emailed you instructions for setting your password. You should receive the email shortly!"
-msgstr "Nous vous avons envoyé un courriel contenant des insutrctions pour définir votre mot de passe. Vous devriez le recevoir bientôt !"
-
-#: documents/templates/account/password_reset_from_key.html:5
-msgid "Paperless-ngx reset password confirmation"
-msgstr "Confirmation de la réinitialisation du mot de passe Paperless-ngx"
-
-#: documents/templates/account/password_reset_from_key.html:9
+#: documents/templates/registration/password_reset_confirm.html:42
 msgid "Set a new password."
 msgstr "Définir un nouveau mot de passe."
 
-#: documents/templates/account/password_reset_from_key.html:15
-msgid "request a new password reset"
-msgstr "redemander la réinitialisation du mot de passe"
+#: documents/templates/registration/password_reset_confirm.html:46
+msgid "Passwords did not match or too weak. Try again."
+msgstr "Les mots de passe ne correspondent pas ou sont trop faciles. Veuillez réessayer."
 
-#: documents/templates/account/password_reset_from_key.html:17
+#: documents/templates/registration/password_reset_confirm.html:49
 msgid "New Password"
 msgstr "Nouveau mot de passe"
 
-#: documents/templates/account/password_reset_from_key.html:18
+#: documents/templates/registration/password_reset_confirm.html:50
 msgid "Confirm Password"
 msgstr "Confirmation du mot de passe"
 
-#: documents/templates/account/password_reset_from_key.html:28
+#: documents/templates/registration/password_reset_confirm.html:61
 msgid "Change my password"
 msgstr "Changer mon mot de passe"
 
-#: documents/templates/account/password_reset_from_key_done.html:5
-msgid "Paperless-ngx reset password complete"
-msgstr "Mot de passe Paperless-ngx réinitialisé"
-
-#: documents/templates/account/password_reset_from_key_done.html:9
-msgid "Password reset complete."
-msgstr "Mot de passe réinitialisé."
+#: documents/templates/registration/password_reset_confirm.html:65
+msgid "request a new password reset"
+msgstr "redemander la réinitialisation du mot de passe"
 
 #: documents/templates/account/password_reset_from_key_done.html:14
 #, python-format
@@ -1098,47 +1088,21 @@ msgstr "Le lien de partage a expiré."
 msgid "Paperless-ngx social account sign in"
 msgstr "Connexion à Paperless-ngx avec un compte externe"
 
-#: documents/templates/socialaccount/authentication_error.html:10
-#, python-format
-msgid "An error occurred while attempting to login via your social network account. Back to the <a href=\"%(login_url)s\">login page</a>"
-msgstr "Une erreur est survenue lors de la tentative de connexion via votre compte social. Retournez à la <a href=\"%(login_url)s\">page de connexion</a>"
+#: documents/templates/registration/password_reset_form.html:41
+msgid "Enter your email address below, and we'll email instructions for setting a new one."
+msgstr "Entrez votre adresse électronique ci-dessous, et nous vous enverrons les instructions pour en définir un nouveau."
 
-#: documents/templates/socialaccount/login.html:10
-#, python-format
-msgid "You are about to connect a new third-party account from %(provider)s."
-msgstr "Vous vous apprêtez à connecter un nouveau compte tiers depuis %(provider)s."
+#: documents/templates/registration/password_reset_form.html:44
+msgid "An error occurred. Please try again."
+msgstr "Une erreur s'est produite. Veuillez réessayer."
 
-#: documents/templates/socialaccount/login.html:13
-msgid "Continue"
-msgstr "Continuer"
+#: documents/templates/registration/password_reset_form.html:47
+msgid "Email"
+msgstr "Adresse électronique"
 
-#: documents/templates/socialaccount/signup.html:5
-msgid "Paperless-ngx social account sign up"
-msgstr "Inscription à Paperless-ngx avec un compte externe"
-
-#: documents/templates/socialaccount/signup.html:10
-#, python-format
-msgid "You are about to use your %(provider_name)s account to login."
-msgstr "Vous vous apprêtez à utiliser votre compte %(provider_name)s pour vous connecter."
-
-#: documents/templates/socialaccount/signup.html:11
-msgid "As a final step, please complete the following form:"
-msgstr "Pour finir, veuillez remplir le formulaire suivant :"
-
-#: documents/validators.py:17
-#, python-brace-format
-msgid "Unable to parse URI {value}, missing scheme"
-msgstr "Impossible d'analyser l'URI {value}, schéma manquant"
-
-#: documents/validators.py:22
-#, python-brace-format
-msgid "Unable to parse URI {value}, missing net location or path"
-msgstr "Impossible d'analyser l'URI {value}, emplacement réseau ou chemin manquant"
-
-#: documents/validators.py:27
-#, python-brace-format
-msgid "Unable to parse URI {value}"
-msgstr "Impossible d'analyser l'URI {value}"
+#: documents/templates/registration/password_reset_form.html:54
+msgid "Send me instructions!"
+msgstr "Envoyez-moi les instructions !"
 
 #: paperless/apps.py:10
 msgid "Paperless"
@@ -1420,35 +1384,35 @@ msgstr "Chinois simplifié"
 msgid "Paperless-ngx administration"
 msgstr "Administration de Paperless-ngx"
 
-#: paperless_mail/admin.py:39
+#: paperless_mail/admin.py:41
 msgid "Authentication"
 msgstr "Authentification"
 
-#: paperless_mail/admin.py:42
+#: paperless_mail/admin.py:44
 msgid "Advanced settings"
 msgstr "Paramètres avancés"
 
-#: paperless_mail/admin.py:58
+#: paperless_mail/admin.py:60
 msgid "Filter"
 msgstr "Filtrage"
 
-#: paperless_mail/admin.py:61
+#: paperless_mail/admin.py:63
 msgid "Paperless will only process mails that match ALL of the filters given below."
 msgstr "Paperless ne traitera que les courriels correspondant à TOUS les filtres ci-dessous."
 
-#: paperless_mail/admin.py:78
+#: paperless_mail/admin.py:80
 msgid "Actions"
 msgstr "Actions"
 
-#: paperless_mail/admin.py:81
+#: paperless_mail/admin.py:83
 msgid "The action applied to the mail. This action is only performed when the mail body or attachments were consumed from the mail."
 msgstr "L'action appliquée au courriel. Cette action n'est effectuée que lorsque le corps du courriel ou les pièces jointes ont été consommés par le courriel."
 
-#: paperless_mail/admin.py:89
+#: paperless_mail/admin.py:91
 msgid "Metadata"
 msgstr "Métadonnées"
 
-#: paperless_mail/admin.py:92
+#: paperless_mail/admin.py:94
 msgid "Assign metadata to documents consumed from this rule automatically. If you do not assign tags, types or correspondents here, paperless will still process all matching rules that you have defined."
 msgstr "Affecter automatiquement des métadonnées aux documents traités à partir de cette règle. Si vous n'affectez pas d'étiquette, de type ou de correspondant ici, Paperless-ng appliquera toutes les autres règles de rapprochement que vous avez définies."
 
@@ -1614,15 +1578,15 @@ msgstr "filtrer le corps du message"
 
 #: paperless_mail/models.py:146
 msgid "filter attachment filename inclusive"
-msgstr "filtrer le nom de fichier de la pièce jointe de manière inclusive"
+msgstr ""
 
 #: paperless_mail/models.py:158
 msgid "filter attachment filename exclusive"
-msgstr "filtrer le nom de fichier de la pièce jointe de manière exclusive"
+msgstr ""
 
 #: paperless_mail/models.py:163
 msgid "Do not consume documents which entirely match this filename if specified. Wildcards such as *.pdf or *invoice* are allowed. Case insensitive."
-msgstr "N'importer que les documents qui correspondent intégralement à ce nom de fichier s'il est spécifié. Les caractères tels que *.pdf ou *facture* sont autorisés. La casse n'est pas prise en compte."
+msgstr ""
 
 #: paperless_mail/models.py:170
 msgid "maximum age"

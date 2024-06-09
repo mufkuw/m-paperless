@@ -442,7 +442,7 @@ SOCIALACCOUNT_PROVIDERS = json.loads(
     os.getenv("PAPERLESS_SOCIALACCOUNT_PROVIDERS", "{}"),
 )
 
-ACCOUNT_EMAIL_SUBJECT_PREFIX = "[Paperless-ngx] "
+ACCOUNT_EMAIL_SUBJECT_PREFIX = "[M-Paperless] "
 
 DISABLE_REGULAR_LOGIN = __get_boolean("PAPERLESS_DISABLE_REGULAR_LOGIN")
 
@@ -490,7 +490,7 @@ def _parse_remote_user_settings() -> str:
 HTTP_REMOTE_USER_HEADER_NAME = _parse_remote_user_settings()
 
 # X-Frame options for embedded PDF display:
-X_FRAME_OPTIONS = "ANY" if DEBUG else "SAMEORIGIN"
+X_FRAME_OPTIONS = "ANY" if DEBUG else "ANY"  #"SAMEORIGIN"
 
 
 # The next 3 settings can also be set using just PAPERLESS_URL
@@ -662,36 +662,6 @@ LANGUAGE_CODE = "en-us"
 LANGUAGES = [
     ("en-us", _("English (US)")),  # needs to be first to act as fallback language
     ("ar-ar", _("Arabic")),
-    ("af-za", _("Afrikaans")),
-    ("be-by", _("Belarusian")),
-    ("bg-bg", _("Bulgarian")),
-    ("ca-es", _("Catalan")),
-    ("cs-cz", _("Czech")),
-    ("da-dk", _("Danish")),
-    ("de-de", _("German")),
-    ("el-gr", _("Greek")),
-    ("en-gb", _("English (GB)")),
-    ("es-es", _("Spanish")),
-    ("fi-fi", _("Finnish")),
-    ("fr-fr", _("French")),
-    ("hu-hu", _("Hungarian")),
-    ("it-it", _("Italian")),
-    ("ja-jp", _("Japanese")),
-    ("lb-lu", _("Luxembourgish")),
-    ("no-no", _("Norwegian")),
-    ("nl-nl", _("Dutch")),
-    ("pl-pl", _("Polish")),
-    ("pt-br", _("Portuguese (Brazil)")),
-    ("pt-pt", _("Portuguese")),
-    ("ro-ro", _("Romanian")),
-    ("ru-ru", _("Russian")),
-    ("sk-sk", _("Slovak")),
-    ("sl-si", _("Slovenian")),
-    ("sr-cs", _("Serbian")),
-    ("sv-se", _("Swedish")),
-    ("tr-tr", _("Turkish")),
-    ("uk-ua", _("Ukrainian")),
-    ("zh-cn", _("Chinese Simplified")),
 ]
 
 LOCALE_PATHS = [os.path.join(BASE_DIR, "locale")]
@@ -1111,19 +1081,8 @@ def _get_nltk_language_setting(ocr_lang: str) -> Optional[str]:
     """
     ocr_lang = ocr_lang.split("+")[0]
     iso_code_to_nltk = {
-        "dan": "danish",
-        "nld": "dutch",
         "eng": "english",
-        "fin": "finnish",
-        "fra": "french",
-        "deu": "german",
-        "ita": "italian",
-        "nor": "norwegian",
-        "por": "portuguese",
-        "rus": "russian",
-        "spa": "spanish",
-        "swe": "swedish",
-        "tur": "turkish",
+        "ara": "arabic",
     }
 
     return iso_code_to_nltk.get(ocr_lang)
@@ -1144,7 +1103,7 @@ EMAIL_HOST_PASSWORD: Final[str] = os.getenv("PAPERLESS_EMAIL_HOST_PASSWORD", "")
 DEFAULT_FROM_EMAIL: Final[str] = os.getenv("PAPERLESS_EMAIL_FROM", EMAIL_HOST_USER)
 EMAIL_USE_TLS: Final[bool] = __get_boolean("PAPERLESS_EMAIL_USE_TLS")
 EMAIL_USE_SSL: Final[bool] = __get_boolean("PAPERLESS_EMAIL_USE_SSL")
-EMAIL_SUBJECT_PREFIX: Final[str] = "[Paperless-ngx] "
+EMAIL_SUBJECT_PREFIX: Final[str] = "[M-Paperless] "
 if DEBUG:  # pragma: no cover
     EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
     EMAIL_FILE_PATH = BASE_DIR / "sent_emails"

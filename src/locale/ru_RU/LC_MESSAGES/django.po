@@ -27,7 +27,7 @@ msgstr "владелец"
 
 #: documents/models.py:53 documents/models.py:946
 msgid "None"
-msgstr "Никакой"
+msgstr "Ничего"
 
 #: documents/models.py:54 documents/models.py:947
 msgid "Any word"
@@ -437,15 +437,15 @@ msgstr "больше похожих"
 
 #: documents/models.py:487
 msgid "has tags in"
-msgstr "имеет этикетки в"
+msgstr "имеет теги в"
 
 #: documents/models.py:488
 msgid "ASN greater than"
-msgstr "АН больше чем"
+msgstr "ASN больше чем"
 
 #: documents/models.py:489
 msgid "ASN less than"
-msgstr "АН меньше чем"
+msgstr "ASN меньше чем"
 
 #: documents/models.py:490
 msgid "storage path is"
@@ -481,7 +481,7 @@ msgstr "владелец"
 
 #: documents/models.py:498
 msgid "has owner in"
-msgstr "имеет владельца в"
+msgstr ""
 
 #: documents/models.py:499
 msgid "does not have owner"
@@ -545,7 +545,7 @@ msgstr "Подтверждено"
 
 #: documents/models.py:640
 msgid "If the task is acknowledged via the frontend or API"
-msgstr "Если задание подтверждено через внешний интерфейс или API"
+msgstr "Если задание подтверждено через интерфейс сайта или API"
 
 #: documents/models.py:646
 msgid "Task Filename"
@@ -557,7 +557,7 @@ msgstr "Имя файла, для которого была запущена з�
 
 #: documents/models.py:653
 msgid "Task Name"
-msgstr "Название задачи"
+msgstr "Название Задачи"
 
 #: documents/models.py:654
 msgid "Name of the Task which was run"
@@ -605,7 +605,7 @@ msgstr "Данные, возвращаемые задачей"
 
 #: documents/models.py:699
 msgid "Note for the document"
-msgstr "Заметка для документа"
+msgstr ""
 
 #: documents/models.py:723
 msgid "user"
@@ -629,19 +629,19 @@ msgstr "Оригинал"
 
 #: documents/models.py:749
 msgid "expiration"
-msgstr "истечение"
+msgstr "Срок действия"
 
 #: documents/models.py:756
 msgid "slug"
-msgstr "динамический идентификатор"
+msgstr ""
 
 #: documents/models.py:788
 msgid "share link"
-msgstr "ссылка для обмена"
+msgstr "Поделиться ссылкой"
 
 #: documents/models.py:789
 msgid "share links"
-msgstr "ссылки для обмена"
+msgstr ""
 
 #: documents/models.py:801
 msgid "String"
@@ -669,31 +669,31 @@ msgstr "С плавающей точкой"
 
 #: documents/models.py:807
 msgid "Monetary"
-msgstr "Валюта"
+msgstr ""
 
 #: documents/models.py:808
 msgid "Document Link"
-msgstr "Ярлык на документ"
+msgstr ""
 
 #: documents/models.py:820
 msgid "data type"
-msgstr "тип данных"
+msgstr "Тип данных"
 
 #: documents/models.py:828
 msgid "custom field"
-msgstr "спецполе"
+msgstr "Пользовательское поле"
 
 #: documents/models.py:829
 msgid "custom fields"
-msgstr "спецполя"
+msgstr "Пользовательские поля"
 
 #: documents/models.py:891
 msgid "custom field instance"
-msgstr "спецобразец поля"
+msgstr ""
 
 #: documents/models.py:892
 msgid "custom field instances"
-msgstr "спецобразцы поля"
+msgstr ""
 
 #: documents/models.py:954
 msgid "Consumption Started"
@@ -709,11 +709,11 @@ msgstr "Документ обновлен"
 
 #: documents/models.py:959
 msgid "Consume Folder"
-msgstr "Обработка из папки"
+msgstr ""
 
 #: documents/models.py:960
 msgid "Api Upload"
-msgstr "API загрузка"
+msgstr "Загрузка API"
 
 #: documents/models.py:961
 msgid "Mail Fetch"
@@ -963,111 +963,78 @@ msgstr ""
 msgid "Username"
 msgstr "Имя пользователя"
 
-#: documents/templates/account/login.html:20
-#: documents/templates/account/signup.html:17
+#: documents/templates/registration/login.html:56
 msgid "Password"
 msgstr "Пароль"
 
-#: documents/templates/account/login.html:30
+#: documents/templates/registration/login.html:66
 msgid "Sign in"
 msgstr "Вход"
 
-#: documents/templates/account/login.html:34
+#: documents/templates/registration/login.html:70
 msgid "Forgot your password?"
 msgstr "Забыли пароль?"
 
-#: documents/templates/account/login.html:45
-#: documents/templates/account/signup.html:49
-msgid "or sign in via"
-msgstr "или войдите в систему через"
+#: documents/templates/registration/password_reset_complete.html:14
+msgid "M-Paperless reset password complete"
+msgstr ""
 
-#: documents/templates/account/password_reset.html:5
-msgid "Paperless-ngx reset password request"
-msgstr "Запрос на сброс пароля Paperless-ngx"
+#: documents/templates/registration/password_reset_complete.html:40
+msgid "Password reset complete."
+msgstr "Изменение пароля прошло успешно."
 
-#: documents/templates/account/password_reset.html:9
-msgid "Enter your email address below, and we'll email instructions for setting a new one."
-msgstr "Введите ваш адрес электронной почты ниже, и мы отправим вам инструкции по установке нового пароля."
+#: documents/templates/registration/password_reset_complete.html:42
+#, python-format
+msgid "Your new password has been set. You can now <a href=\"%(login_url)s\">log in</a>"
+msgstr ""
 
-#: documents/templates/account/password_reset.html:12
-msgid "An error occurred. Please try again."
-msgstr "Произошла ошибка. Пожалуйста, попробуйте еще раз."
+#: documents/templates/registration/password_reset_confirm.html:14
+msgid "M-Paperless reset password confirmation"
+msgstr ""
 
-#: documents/templates/account/password_reset.html:15
-msgid "Email"
-msgstr "Электронная почта"
-
-#: documents/templates/account/password_reset.html:21
-msgid "Send me instructions!"
-msgstr "Отправьте мне инструкции!"
-
-#: documents/templates/account/password_reset_done.html:5
-msgid "Paperless-ngx reset password sent"
-msgstr "Пароль сброса Paperless-ngx отправлен"
-
-#: documents/templates/account/password_reset_done.html:9
-msgid "Check your inbox."
-msgstr "Проверьте ваш входящий ящик."
-
-#: documents/templates/account/password_reset_done.html:13
-msgid "We've emailed you instructions for setting your password. You should receive the email shortly!"
-msgstr "Мы отправили вам инструкции по установке нового пароля. Вы должны получить письмо в ближайшее время!"
-
-#: documents/templates/account/password_reset_from_key.html:5
-msgid "Paperless-ngx reset password confirmation"
-msgstr "Подтверждение сброса пароля Paperless-ngx"
-
-#: documents/templates/account/password_reset_from_key.html:9
+#: documents/templates/registration/password_reset_confirm.html:42
 msgid "Set a new password."
-msgstr "Установите новый пароль."
+msgstr "Придумайте новый пароль"
 
-#: documents/templates/account/password_reset_from_key.html:15
-msgid "request a new password reset"
-msgstr "запрос сброса пароля вновь"
+#: documents/templates/registration/password_reset_confirm.html:46
+msgid "Passwords did not match or too weak. Try again."
+msgstr ""
 
-#: documents/templates/account/password_reset_from_key.html:17
+#: documents/templates/registration/password_reset_confirm.html:49
 msgid "New Password"
 msgstr "Новый пароль"
 
-#: documents/templates/account/password_reset_from_key.html:18
+#: documents/templates/registration/password_reset_confirm.html:50
 msgid "Confirm Password"
 msgstr "Подтверждение пароля"
 
-#: documents/templates/account/password_reset_from_key.html:28
+#: documents/templates/registration/password_reset_confirm.html:61
 msgid "Change my password"
 msgstr "Сменить пароль"
 
-#: documents/templates/account/password_reset_from_key_done.html:5
-msgid "Paperless-ngx reset password complete"
-msgstr "Сброс пароля Paperless-ngx завершен"
+#: documents/templates/registration/password_reset_confirm.html:65
+msgid "request a new password reset"
+msgstr "запросить новый пароль"
 
-#: documents/templates/account/password_reset_from_key_done.html:9
-msgid "Password reset complete."
-msgstr "Сброс пароля завершен."
-
-#: documents/templates/account/password_reset_from_key_done.html:14
-#, python-format
-msgid "Your new password has been set. You can now <a href=\"%(login_url)s\">log in</a>"
-msgstr "Ваш новый пароль был установлен. Теперь вы можете <a href=\"%(login_url)s\">войти</a>"
-
-#: documents/templates/account/signup.html:5
-msgid "Paperless-ngx sign up"
+#: documents/templates/registration/password_reset_done.html:14
+msgid "M-Paperless reset password sent"
 msgstr ""
 
-#: documents/templates/account/signup.html:10
-#, python-format
-msgid "Already have an account? <a href=\"%(login_url)s\">Sign in</a>"
+#: documents/templates/registration/password_reset_done.html:40
+msgid "Check your inbox."
+msgstr "Проверье ваш почтовый ящик."
+
+#: documents/templates/registration/password_reset_done.html:41
+msgid "We've emailed you instructions for setting your password. You should receive the email shortly!"
 msgstr ""
 
-#: documents/templates/account/signup.html:16
-#: documents/templates/socialaccount/signup.html:14
-msgid "Email (optional)"
+#: documents/templates/registration/password_reset_form.html:14
+msgid "M-Paperless reset password request"
 msgstr ""
 
-#: documents/templates/account/signup.html:18
-msgid "Password (again)"
-msgstr ""
-
+#: documents/templates/registration/password_reset_form.html:41
+msgid "Enter your email address below, and we'll email instructions for setting a new one."
+msgstr "Введите ваш адрес электронной почты ниже, и мы отправим вам инструкции по установке нового пароля."
 #: documents/templates/account/signup.html:36
 #: documents/templates/socialaccount/signup.html:27
 msgid "Sign up"
@@ -1089,6 +1056,9 @@ msgstr "Вот ссылка на документацию."
 msgid "Share link was not found."
 msgstr "Ссылка для обмена не найдена."
 
+#: documents/templates/registration/password_reset_form.html:44
+msgid "An error occurred. Please try again."
+msgstr "Произошла ошибка. Пожалуйста, попробуйте снова."
 #: documents/templates/paperless-ngx/base.html:59
 msgid "Share link has expired."
 msgstr "Срок действия ссылки для обмена истёк."
@@ -1103,42 +1073,13 @@ msgstr "Paperless-ngx вход через сторонние сервисы"
 msgid "An error occurred while attempting to login via your social network account. Back to the <a href=\"%(login_url)s\">login page</a>"
 msgstr "Ошибка при входе в систему через учетную запись стороннего сервиса. Вернуться на <a href=\"%(login_url)s\">страницу входа</a>"
 
-#: documents/templates/socialaccount/login.html:10
-#, python-format
-msgid "You are about to connect a new third-party account from %(provider)s."
-msgstr "Вы собираетесь связать аккаунт стороннего сервиса через %(provider)s."
+#: documents/templates/registration/password_reset_form.html:47
+msgid "Email"
+msgstr "Электронная почта"
 
-#: documents/templates/socialaccount/login.html:13
-msgid "Continue"
-msgstr "Продолжить"
-
-#: documents/templates/socialaccount/signup.html:5
-msgid "Paperless-ngx social account sign up"
-msgstr "Paperless-ngx регистрация через сторонний сервис"
-
-#: documents/templates/socialaccount/signup.html:10
-#, python-format
-msgid "You are about to use your %(provider_name)s account to login."
-msgstr "Вы собираетесь войти через сторонний сервис %(provider_name)s."
-
-#: documents/templates/socialaccount/signup.html:11
-msgid "As a final step, please complete the following form:"
-msgstr "На завершение, пожалуйста заполните следующую форму:"
-
-#: documents/validators.py:17
-#, python-brace-format
-msgid "Unable to parse URI {value}, missing scheme"
-msgstr "Невозможно разобрать URI {value}, отсутствует схема"
-
-#: documents/validators.py:22
-#, python-brace-format
-msgid "Unable to parse URI {value}, missing net location or path"
-msgstr "Невозможно разобрать URI {value}, отсутствует расположение сети или путь"
-
-#: documents/validators.py:27
-#, python-brace-format
-msgid "Unable to parse URI {value}"
-msgstr "Невозможно разобрать URI {value}"
+#: documents/templates/registration/password_reset_form.html:54
+msgid "Send me instructions!"
+msgstr "Отправить мне инструкции!"
 
 #: paperless/apps.py:10
 msgid "Paperless"
@@ -1420,35 +1361,35 @@ msgstr "Китайский упрощенный"
 msgid "Paperless-ngx administration"
 msgstr "Администрирование Paperless-ngx"
 
-#: paperless_mail/admin.py:39
+#: paperless_mail/admin.py:41
 msgid "Authentication"
 msgstr "Аутентификация"
 
-#: paperless_mail/admin.py:42
+#: paperless_mail/admin.py:44
 msgid "Advanced settings"
 msgstr "Продвинутые настройки"
 
-#: paperless_mail/admin.py:58
+#: paperless_mail/admin.py:60
 msgid "Filter"
 msgstr "Фильтр"
 
-#: paperless_mail/admin.py:61
+#: paperless_mail/admin.py:63
 msgid "Paperless will only process mails that match ALL of the filters given below."
 msgstr "Paperless будет обрабатывать только те письма, которые соответствуют всем фильтрам, указанным ниже."
 
-#: paperless_mail/admin.py:78
+#: paperless_mail/admin.py:80
 msgid "Actions"
 msgstr "Действия"
 
-#: paperless_mail/admin.py:81
+#: paperless_mail/admin.py:83
 msgid "The action applied to the mail. This action is only performed when the mail body or attachments were consumed from the mail."
 msgstr "Действие, примененное к письму. Это действие выполняется только в том случае, если содержимое или вложения были извлечены из письма."
 
-#: paperless_mail/admin.py:89
+#: paperless_mail/admin.py:91
 msgid "Metadata"
 msgstr "Метаданные"
 
-#: paperless_mail/admin.py:92
+#: paperless_mail/admin.py:94
 msgid "Assign metadata to documents consumed from this rule automatically. If you do not assign tags, types or correspondents here, paperless will still process all matching rules that you have defined."
 msgstr "Автоматически назначать метаданные документам, полученным из этого правила. Если вы не назначаете здесь теги, типы или корреспонденты, paperless все равно будут обрабатывать все соответствующие правила, которые вы определили."
 
@@ -1554,7 +1495,7 @@ msgstr "Пометить почту, не обрабатывать помече�
 
 #: paperless_mail/models.py:83
 msgid "Tag the mail with specified tag, don't process tagged mails"
-msgstr "Отметить почту указанной этикеткой, не обрабатывать этикетированные письма"
+msgstr "Отметить почту указанным тегом, не обрабатывать помеченные письма"
 
 #: paperless_mail/models.py:86
 msgid "Use subject as title"
@@ -1566,7 +1507,7 @@ msgstr "Использовать имя вложенного файла как �
 
 #: paperless_mail/models.py:88
 msgid "Do not assign title from rule"
-msgstr "Использовать тему в качестве заголовки"
+msgstr ""
 
 #: paperless_mail/models.py:91
 msgid "Do not assign a correspondent"
@@ -1602,7 +1543,7 @@ msgstr "фильтр по отправителю"
 
 #: paperless_mail/models.py:125
 msgid "filter to"
-msgstr "фильтр по"
+msgstr "отфильтровать по"
 
 #: paperless_mail/models.py:132
 msgid "filter subject"
@@ -1614,15 +1555,15 @@ msgstr "фильтр по тексту сообщения"
 
 #: paperless_mail/models.py:146
 msgid "filter attachment filename inclusive"
-msgstr "фильтр по именю файла вложения (включительно)"
+msgstr ""
 
 #: paperless_mail/models.py:158
 msgid "filter attachment filename exclusive"
-msgstr "фильтр по именю файла вложения (исключительно)"
+msgstr ""
 
 #: paperless_mail/models.py:163
 msgid "Do not consume documents which entirely match this filename if specified. Wildcards such as *.pdf or *invoice* are allowed. Case insensitive."
-msgstr "Не используйте документы, полностью совпадающие с этим именем, если оно указано. Допускаются подстановочные знаки, такие как *.pdf или *invoice*. Нечувствительность к регистру."
+msgstr ""
 
 #: paperless_mail/models.py:170
 msgid "maximum age"
@@ -1642,7 +1583,7 @@ msgstr "Вложенные вложения включая встраиваем�
 
 #: paperless_mail/models.py:186
 msgid "consumption scope"
-msgstr "объем обработки"
+msgstr "рамки потребления"
 
 #: paperless_mail/models.py:192
 msgid "action"
@@ -1666,7 +1607,7 @@ msgstr "назначить корреспондента из"
 
 #: paperless_mail/models.py:245
 msgid "Assign the rule owner to documents"
-msgstr "Назначить документам правилавладелеца"
+msgstr ""
 
 #: paperless_mail/models.py:271
 msgid "uid"
@@ -1674,7 +1615,7 @@ msgstr "uid"
 
 #: paperless_mail/models.py:279
 msgid "subject"
-msgstr "тема"
+msgstr "предмет"
 
 #: paperless_mail/models.py:287
 msgid "received"

@@ -237,7 +237,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="3527354815023530656" datatype="html">
-        <source>Document <x id="PH" equiv-text="status.filename"/> was added to Paperless-ngx.</source>
+        <source>Document <x id="PH" equiv-text="status.filename"/> was added to M-Paperless.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.component.ts</context>
           <context context-type="linenumber">83</context>
@@ -278,7 +278,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="1218124467712564468" datatype="html">
-        <source>Document <x id="PH" equiv-text="status.filename"/> is being processed by Paperless-ngx.</source>
+        <source>Document <x id="PH" equiv-text="status.filename"/> is being processed by M-Paperless.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.component.ts</context>
           <context context-type="linenumber">122</context>
@@ -398,7 +398,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="9075755296812854717" datatype="html">
-        <source>Drag-and-drop documents here to start uploading or place them in the consume folder. You can also drag-and-drop documents anywhere on all other pages of the web app. Once you do, Paperless-ngx will start training its machine learning algorithms.</source>
+        <source>Drag-and-drop documents here to start uploading or place them in the consume folder. You can also drag-and-drop documents anywhere on all other pages of the web app. Once you do, M-Paperless will start training its machine learning algorithms.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.component.ts</context>
           <context context-type="linenumber">173</context>
@@ -483,7 +483,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="4270528545616947218" datatype="html">
-        <source>Lastly, on behalf of every contributor to this community-supported project, thank you for using Paperless-ngx!</source>
+        <source>Lastly, on behalf of every contributor to this community-supported project, thank you for using M-Paperless!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.component.ts</context>
           <context context-type="linenumber">240</context>
@@ -497,7 +497,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="8528041182664173532" datatype="html">
-        <source>Global app configuration options which apply to &lt;strong&gt;every&lt;/strong&gt; user of this install of Paperless-ngx. Options can also be set using environment variables or the configuration file but the value here will always take precedence.</source>
+        <source>Global app configuration options which apply to &lt;strong&gt;every&lt;/strong&gt; user of this install of M-Paperless. Options can also be set using environment variables or the configuration file but the value here will always take precedence.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/admin/config/config.component.html</context>
           <context context-type="linenumber">4</context>
@@ -2398,7 +2398,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="7931334600001636863" datatype="html">
-        <source>by Paperless-ngx</source>
+        <source>by M-Paperless</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/app-frame/app-frame.component.html</context>
           <context context-type="linenumber">20</context>
@@ -2630,7 +2630,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="9811291095862612" datatype="html">
-        <source>Paperless-ngx can automatically check for updates</source>
+        <source>M-Paperless can automatically check for updates</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/app-frame/app-frame.component.html</context>
           <context context-type="linenumber">296</context>
@@ -5000,7 +5000,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="5973078531069712831" datatype="html">
-        <source>Paperless-ngx Version</source>
+        <source>M-Paperless Version</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/common/system-status-dialog/system-status-dialog.component.html</context>
           <context context-type="linenumber">22</context>
@@ -5372,7 +5372,7 @@
         <note priority="1" from="description">this string is used to separate processing, failed and added on the file upload widget</note>
       </trans-unit>
       <trans-unit id="7915903586014997661" datatype="html">
-        <source>Paperless-ngx is running!</source>
+        <source>M-Paperless is running!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/dashboard/widgets/welcome-widget/welcome-widget.component.html</context>
           <context context-type="linenumber">2</context>
@@ -5386,14 +5386,14 @@
         </context-group>
       </trans-unit>
       <trans-unit id="4474647174688421179" datatype="html">
-        <source>More detail on how to use and configure Paperless-ngx is always available in the <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://docs.paperless-ngx.com&quot; target=&quot;_blank&quot;&gt;"/>documentation<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>.</source>
+        <source>More detail on how to use and configure M-Paperless is always available in the <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://docs.paperless-ngx.com&quot; target=&quot;_blank&quot;&gt;"/>documentation<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/dashboard/widgets/welcome-widget/welcome-widget.component.html</context>
           <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4294899532887357745" datatype="html">
-        <source>Thanks for being a part of the Paperless-ngx community!</source>
+        <source>Thanks for being a part of the M-Paperless community!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/dashboard/widgets/welcome-widget/welcome-widget.component.html</context>
           <context context-type="linenumber">7</context>
@@ -7559,7 +7559,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="1229748338333965418" datatype="html">
-        <source>Use workflows to customize the behavior of Paperless-ngx when events &apos;trigger&apos; a workflow.</source>
+        <source>Use workflows to customize the behavior of M-Paperless when events &apos;trigger&apos; a workflow.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/manage/workflows/workflows.component.html</context>
           <context context-type="linenumber">4</context>

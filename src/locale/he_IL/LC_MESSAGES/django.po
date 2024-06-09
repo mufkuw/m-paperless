@@ -48,9 +48,11 @@ msgstr "ביטוי רגולרי"
 #: documents/models.py:58 documents/models.py:951
 msgid "Fuzzy word"
 msgstr "מילה מעורפלת"
+msgstr "מילה מעורפלת"
 
 #: documents/models.py:59
 msgid "Automatic"
+msgstr "אוטומטי"
 msgstr "אוטומטי"
 
 #: documents/models.py:62 documents/models.py:416 documents/models.py:1267
@@ -434,6 +436,7 @@ msgstr "שאילתת טקסט מלא"
 #: documents/models.py:486
 msgid "more like this"
 msgstr "עוד כמו זה"
+msgstr "עוד כמו זה"
 
 #: documents/models.py:487
 msgid "has tags in"
@@ -613,31 +616,31 @@ msgstr "משתמש"
 
 #: documents/models.py:728
 msgid "note"
-msgstr "הערה"
+msgstr ""
 
 #: documents/models.py:729
 msgid "notes"
-msgstr "הערות"
+msgstr ""
 
 #: documents/models.py:737
 msgid "Archive"
-msgstr "ארכיון"
+msgstr ""
 
 #: documents/models.py:738
 msgid "Original"
-msgstr "מקור"
+msgstr ""
 
 #: documents/models.py:749
 msgid "expiration"
-msgstr "תפוגה"
+msgstr ""
 
 #: documents/models.py:756
 msgid "slug"
-msgstr "טוקן"
+msgstr ""
 
 #: documents/models.py:788
 msgid "share link"
-msgstr "שתף קישור"
+msgstr ""
 
 #: documents/models.py:789
 msgid "share links"
@@ -673,23 +676,23 @@ msgstr "כספי"
 
 #: documents/models.py:808
 msgid "Document Link"
-msgstr "קישור למסמך"
+msgstr ""
 
 #: documents/models.py:820
 msgid "data type"
-msgstr "סוג מידע:"
+msgstr ""
 
 #: documents/models.py:828
 msgid "custom field"
-msgstr "שדה מותאם אישית"
+msgstr ""
 
 #: documents/models.py:829
 msgid "custom fields"
-msgstr "שדות מותאמים אישית"
+msgstr ""
 
 #: documents/models.py:891
 msgid "custom field instance"
-msgstr "שדה מותאם אישית"
+msgstr ""
 
 #: documents/models.py:892
 msgid "custom field instances"
@@ -713,7 +716,7 @@ msgstr "עיבוד תיקיה"
 
 #: documents/models.py:960
 msgid "Api Upload"
-msgstr "העלאה באמצעות API"
+msgstr ""
 
 #: documents/models.py:961
 msgid "Mail Fetch"
@@ -1306,7 +1309,7 @@ msgstr "בלרוסית"
 
 #: paperless/settings.py:664
 msgid "Bulgarian"
-msgstr "בולגרית"
+msgstr ""
 
 #: paperless/settings.py:665
 msgid "Catalan"
@@ -1346,7 +1349,7 @@ msgstr "צרפתית"
 
 #: paperless/settings.py:674
 msgid "Hungarian"
-msgstr "הונגרית"
+msgstr ""
 
 #: paperless/settings.py:675
 msgid "Italian"
@@ -1420,35 +1423,35 @@ msgstr "סינית מפושטת"
 msgid "Paperless-ngx administration"
 msgstr "ניהול Paperless-ngx"
 
-#: paperless_mail/admin.py:39
+#: paperless_mail/admin.py:41
 msgid "Authentication"
 msgstr "אימות"
 
-#: paperless_mail/admin.py:42
+#: paperless_mail/admin.py:44
 msgid "Advanced settings"
 msgstr "הגדרות מתקדמות"
 
-#: paperless_mail/admin.py:58
+#: paperless_mail/admin.py:60
 msgid "Filter"
 msgstr "סינון"
 
-#: paperless_mail/admin.py:61
+#: paperless_mail/admin.py:63
 msgid "Paperless will only process mails that match ALL of the filters given below."
 msgstr "Paperless יעבד רק הודעות דוא״ל שעוברות את כל המסננים המפורטים להלן."
 
-#: paperless_mail/admin.py:78
+#: paperless_mail/admin.py:80
 msgid "Actions"
 msgstr "פעולות"
 
-#: paperless_mail/admin.py:81
+#: paperless_mail/admin.py:83
 msgid "The action applied to the mail. This action is only performed when the mail body or attachments were consumed from the mail."
 msgstr "הפעולה חלה על הדואר. פעולה זו מבוצעת רק כאשר גוף הדואר או הקבצים המצורפים נצרכו מהדואר."
 
-#: paperless_mail/admin.py:89
+#: paperless_mail/admin.py:91
 msgid "Metadata"
 msgstr "נתוני על"
 
-#: paperless_mail/admin.py:92
+#: paperless_mail/admin.py:94
 msgid "Assign metadata to documents consumed from this rule automatically. If you do not assign tags, types or correspondents here, paperless will still process all matching rules that you have defined."
 msgstr "שייך מטא נתונים למסמכים ההמתקבלים מהכלל הזה באופן אוטומטי. אם לא תשייך כאן תגיות, סוגים או מכותבים, Paperless עדיין יעבד את כל הכללים התואמים שהגדרת."
 
@@ -1502,7 +1505,7 @@ msgstr "סיסמה"
 
 #: paperless_mail/models.py:42
 msgid "Is token authentication"
-msgstr "אימות טוקן"
+msgstr ""
 
 #: paperless_mail/models.py:45
 msgid "character set"
@@ -1566,7 +1569,7 @@ msgstr "השתמש בשם הקובץ המצורף ככותרת"
 
 #: paperless_mail/models.py:88
 msgid "Do not assign title from rule"
-msgstr "אל תקצה כותרת מהכלל שהוגדר במערכת"
+msgstr ""
 
 #: paperless_mail/models.py:91
 msgid "Do not assign a correspondent"
@@ -1614,15 +1617,15 @@ msgstr "סנן 'גוף'"
 
 #: paperless_mail/models.py:146
 msgid "filter attachment filename inclusive"
-msgstr "סנן לפי 'שם קובץ מצורף'"
+msgstr ""
 
 #: paperless_mail/models.py:158
 msgid "filter attachment filename exclusive"
-msgstr "סנן ללא 'שם קובץ מצורף'"
+msgstr ""
 
 #: paperless_mail/models.py:163
 msgid "Do not consume documents which entirely match this filename if specified. Wildcards such as *.pdf or *invoice* are allowed. Case insensitive."
-msgstr "קבל רק מסמכים שתואמים לחלוטין את שם הקובץ הזה אם צוין. תווים כלליים כגון pdf.* או *חשבונית* מותרים. חסר רגישות תווים גדולים/קטנים (אנגלית)."
+msgstr ""
 
 #: paperless_mail/models.py:170
 msgid "maximum age"
@@ -1666,7 +1669,7 @@ msgstr "שייך מכותב מ-"
 
 #: paperless_mail/models.py:245
 msgid "Assign the rule owner to documents"
-msgstr "הקצה בעלות קבצים מתוך הכלל שהוגדר במערכת"
+msgstr ""
 
 #: paperless_mail/models.py:271
 msgid "uid"

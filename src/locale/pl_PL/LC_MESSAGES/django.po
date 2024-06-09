@@ -112,11 +112,11 @@ msgstr "ścieżka"
 
 #: documents/models.py:129 documents/models.py:156
 msgid "storage path"
-msgstr "ścieżka zapisu"
+msgstr "ścieżka przechowywania"
 
 #: documents/models.py:130
 msgid "storage paths"
-msgstr "ścieżki zapisu"
+msgstr "ścieżki składowania"
 
 #: documents/models.py:137
 msgid "Unencrypted"
@@ -197,7 +197,7 @@ msgstr "oryginalna nazwa pliku"
 
 #: documents/models.py:256
 msgid "The original name of the file when it was uploaded"
-msgstr "Oryginalna nazwa pliku w momencie jego przesyłania"
+msgstr "Oryginalna nazwa pliku, gdy został przesłany"
 
 #: documents/models.py:263
 msgid "archive serial number"
@@ -545,7 +545,7 @@ msgstr "Potwierdzono"
 
 #: documents/models.py:640
 msgid "If the task is acknowledged via the frontend or API"
-msgstr "Jeśli zadanie zostanie potwierdzone za pomocą interfejsu webowego lub API"
+msgstr "Jeśli zadanie jest potwierdzone przez frontend lub API"
 
 #: documents/models.py:646
 msgid "Task Filename"
@@ -553,7 +553,7 @@ msgstr "Nazwa Pliku Zadania"
 
 #: documents/models.py:647
 msgid "Name of the file which the Task was run for"
-msgstr "Nazwa pliku, dla którego zostało uruchomione zadanie"
+msgstr "Nazwa pliku, na którym zostało wykonane Zadanie"
 
 #: documents/models.py:653
 msgid "Task Name"
@@ -561,7 +561,7 @@ msgstr "Nazwa zadania"
 
 #: documents/models.py:654
 msgid "Name of the Task which was run"
-msgstr "Nazwa zadania, które zostało uruchomione"
+msgstr "Nazwa uruchomionego Zadania"
 
 #: documents/models.py:661
 msgid "Task State"
@@ -597,7 +597,7 @@ msgstr "Pole daty i czasu, gdy zadanie zakończono w UTC"
 
 #: documents/models.py:685
 msgid "Result Data"
-msgstr "Dane wynikowe"
+msgstr "Wynik"
 
 #: documents/models.py:687
 msgid "The data returned by the task"
@@ -605,7 +605,7 @@ msgstr "Dane zwrócone przez zadanie"
 
 #: documents/models.py:699
 msgid "Note for the document"
-msgstr "Notatka dla dokumentu"
+msgstr ""
 
 #: documents/models.py:723
 msgid "user"
@@ -629,35 +629,35 @@ msgstr "Oryginał"
 
 #: documents/models.py:749
 msgid "expiration"
-msgstr "wygaśnięcie"
+msgstr ""
 
 #: documents/models.py:756
 msgid "slug"
-msgstr "adres URL"
+msgstr ""
 
 #: documents/models.py:788
 msgid "share link"
-msgstr "udostępnij link"
+msgstr ""
 
 #: documents/models.py:789
 msgid "share links"
-msgstr "udostępnij linki"
+msgstr ""
 
 #: documents/models.py:801
 msgid "String"
-msgstr "Ciąg znaków"
+msgstr ""
 
 #: documents/models.py:802
 msgid "URL"
-msgstr "Adres URL"
+msgstr ""
 
 #: documents/models.py:803
 msgid "Date"
-msgstr "Data"
+msgstr ""
 
 #: documents/models.py:804
 msgid "Boolean"
-msgstr "Wartość logiczna"
+msgstr ""
 
 #: documents/models.py:805
 msgid "Integer"
@@ -665,15 +665,15 @@ msgstr "Liczba całkowita"
 
 #: documents/models.py:806
 msgid "Float"
-msgstr "Liczba rzeczywista"
+msgstr ""
 
 #: documents/models.py:807
 msgid "Monetary"
-msgstr "Format księgowy"
+msgstr ""
 
 #: documents/models.py:808
 msgid "Document Link"
-msgstr "Link do dokumentu"
+msgstr ""
 
 #: documents/models.py:820
 msgid "data type"
@@ -681,19 +681,19 @@ msgstr "typ danych"
 
 #: documents/models.py:828
 msgid "custom field"
-msgstr "pole dodatkowe"
+msgstr ""
 
 #: documents/models.py:829
 msgid "custom fields"
-msgstr "pola dodatkowe"
+msgstr ""
 
 #: documents/models.py:891
 msgid "custom field instance"
-msgstr "przypisane pole dodatkowe"
+msgstr ""
 
 #: documents/models.py:892
 msgid "custom field instances"
-msgstr "przypisanych pól dodatkowych"
+msgstr ""
 
 #: documents/models.py:954
 msgid "Consumption Started"
@@ -709,11 +709,11 @@ msgstr "Dokument zaktualizowano"
 
 #: documents/models.py:959
 msgid "Consume Folder"
-msgstr "Folder pobierania"
+msgstr ""
 
 #: documents/models.py:960
 msgid "Api Upload"
-msgstr "Przesyłanie przez API"
+msgstr ""
 
 #: documents/models.py:961
 msgid "Mail Fetch"
@@ -1307,7 +1307,7 @@ msgstr "Białoruski"
 
 #: paperless/settings.py:664
 msgid "Bulgarian"
-msgstr "Bułgarski"
+msgstr ""
 
 #: paperless/settings.py:665
 msgid "Catalan"
@@ -1327,7 +1327,7 @@ msgstr "Niemiecki"
 
 #: paperless/settings.py:669
 msgid "Greek"
-msgstr "Grecki"
+msgstr ""
 
 #: paperless/settings.py:670
 msgid "English (GB)"
@@ -1347,7 +1347,7 @@ msgstr "Francuski"
 
 #: paperless/settings.py:674
 msgid "Hungarian"
-msgstr "Węgierski"
+msgstr ""
 
 #: paperless/settings.py:675
 msgid "Italian"
@@ -1421,35 +1421,35 @@ msgstr "Chiński uproszczony"
 msgid "Paperless-ngx administration"
 msgstr "Administracja Paperless-ngx"
 
-#: paperless_mail/admin.py:39
+#: paperless_mail/admin.py:41
 msgid "Authentication"
 msgstr "Uwierzytelnianie"
 
-#: paperless_mail/admin.py:42
+#: paperless_mail/admin.py:44
 msgid "Advanced settings"
 msgstr "Ustawienia zaawansowane"
 
-#: paperless_mail/admin.py:58
+#: paperless_mail/admin.py:60
 msgid "Filter"
 msgstr "Filtry"
 
-#: paperless_mail/admin.py:61
+#: paperless_mail/admin.py:63
 msgid "Paperless will only process mails that match ALL of the filters given below."
 msgstr "Paperless przetworzy tylko wiadomości pasujące do WSZYSTKICH filtrów podanych poniżej."
 
-#: paperless_mail/admin.py:78
+#: paperless_mail/admin.py:80
 msgid "Actions"
 msgstr "Akcje"
 
-#: paperless_mail/admin.py:81
+#: paperless_mail/admin.py:83
 msgid "The action applied to the mail. This action is only performed when the mail body or attachments were consumed from the mail."
-msgstr "Akcja zastosowana do poczty. Ta akcja jest wykonywana tylko wtedy, gdy treść wiadomości czy też załączniki zostały pobrane z poczty elektronicznej."
+msgstr "Akcja zastosowana do wiadomości. Ta akcja jest wykonywana tylko wtedy, gdy przetworzono treść lub załączniki wiadomości."
 
-#: paperless_mail/admin.py:89
+#: paperless_mail/admin.py:91
 msgid "Metadata"
 msgstr "Metadane"
 
-#: paperless_mail/admin.py:92
+#: paperless_mail/admin.py:94
 msgid "Assign metadata to documents consumed from this rule automatically. If you do not assign tags, types or correspondents here, paperless will still process all matching rules that you have defined."
 msgstr "Przypisz metadane do dokumentów zużywanych z tej reguły automatycznie. Jeśli nie przypisujesz tutaj tagów, typów lub korespondentów, Paperless będzie nadal przetwarzał wszystkie zdefiniowane przez Ciebie reguły."
 
@@ -1503,7 +1503,7 @@ msgstr "hasło"
 
 #: paperless_mail/models.py:42
 msgid "Is token authentication"
-msgstr "Jest uwierzytelnienie tokenem"
+msgstr ""
 
 #: paperless_mail/models.py:45
 msgid "character set"
@@ -1567,7 +1567,7 @@ msgstr "Użyj nazwy pliku załącznika jako tytułu"
 
 #: paperless_mail/models.py:88
 msgid "Do not assign title from rule"
-msgstr "Nie przypisuj tytułu z reguły"
+msgstr ""
 
 #: paperless_mail/models.py:91
 msgid "Do not assign a correspondent"
@@ -1615,15 +1615,15 @@ msgstr "filtruj po treści"
 
 #: paperless_mail/models.py:146
 msgid "filter attachment filename inclusive"
-msgstr "uwzględnij nazwę załącznika wg filtru"
+msgstr ""
 
 #: paperless_mail/models.py:158
 msgid "filter attachment filename exclusive"
-msgstr "wyklucz nazwę załącznika wg filtru"
+msgstr ""
 
 #: paperless_mail/models.py:163
 msgid "Do not consume documents which entirely match this filename if specified. Wildcards such as *.pdf or *invoice* are allowed. Case insensitive."
-msgstr "Nie pobieraj dokumentów, które w pełni pasują do tej nazwy pliku, jeśli jest określona. Dozwolone są maski, takie jak *.pdf lub *faktura*. Bez uwzględniania wielkości liter."
+msgstr ""
 
 #: paperless_mail/models.py:170
 msgid "maximum age"
@@ -1643,7 +1643,7 @@ msgstr "Załączniki typu \"inline\" zawierają osadzone obrazy, więc najlepiej
 
 #: paperless_mail/models.py:186
 msgid "consumption scope"
-msgstr "zakres pobierania"
+msgstr "zakres konsumpcji"
 
 #: paperless_mail/models.py:192
 msgid "action"
@@ -1667,7 +1667,7 @@ msgstr "przypisz korespondenta z"
 
 #: paperless_mail/models.py:245
 msgid "Assign the rule owner to documents"
-msgstr "Przypisz właścicela reguły do dokumentów"
+msgstr ""
 
 #: paperless_mail/models.py:271
 msgid "uid"

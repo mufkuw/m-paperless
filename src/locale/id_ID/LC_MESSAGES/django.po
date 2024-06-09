@@ -48,9 +48,11 @@ msgstr "Ekspresi reguler"
 #: documents/models.py:58 documents/models.py:951
 msgid "Fuzzy word"
 msgstr "Kata samar"
+msgstr "Kata samar"
 
 #: documents/models.py:59
 msgid "Automatic"
+msgstr "Otomatis"
 msgstr "Otomatis"
 
 #: documents/models.py:62 documents/models.py:416 documents/models.py:1267
@@ -88,15 +90,15 @@ msgstr "tag kotak masuk"
 
 #: documents/models.py:106
 msgid "Marks this tag as an inbox tag: All newly consumed documents will be tagged with inbox tags."
-msgstr "Tandai label ini sebagai label kotak masuk: Semua dokumen baru akan dilabeli dengan label kotak masuk."
+msgstr "Tandai tag ini sebagai tag kotak masuk: Semua dokumen yang baru akan di tag dengan tag kotak masuk."
 
 #: documents/models.py:112
 msgid "tag"
-msgstr "label"
+msgstr "tag"
 
 #: documents/models.py:113 documents/models.py:185
 msgid "tags"
-msgstr "label"
+msgstr "tandai"
 
 #: documents/models.py:118 documents/models.py:167
 msgid "document type"
@@ -197,7 +199,7 @@ msgstr "nama berkas asli"
 
 #: documents/models.py:256
 msgid "The original name of the file when it was uploaded"
-msgstr "Nama berkas asli pada saat diunggah"
+msgstr "Nama awal berkas pada saat diunggah"
 
 #: documents/models.py:263
 msgid "archive serial number"
@@ -434,6 +436,7 @@ msgstr "kueri teks lengkap"
 #: documents/models.py:486
 msgid "more like this"
 msgstr "lebih seperti ini"
+msgstr "lebih seperti ini"
 
 #: documents/models.py:487
 msgid "has tags in"
@@ -577,7 +580,7 @@ msgstr "Dibuat TanggalWaktu"
 
 #: documents/models.py:668
 msgid "Datetime field when the task result was created in UTC"
-msgstr "Kolom tanggal dan waktu saat hasil selesai dibuat dalam UTC"
+msgstr ""
 
 #: documents/models.py:673
 msgid "Started DateTime"
@@ -585,7 +588,7 @@ msgstr "Dimulai TanggalWaktu"
 
 #: documents/models.py:674
 msgid "Datetime field when the task was started in UTC"
-msgstr "Kolom Tanggal dan waktu saat tugas dimulai dalam UTC"
+msgstr ""
 
 #: documents/models.py:679
 msgid "Completed DateTime"
@@ -593,7 +596,7 @@ msgstr "Selesai TanggalWaktu"
 
 #: documents/models.py:680
 msgid "Datetime field when the task was completed in UTC"
-msgstr "Kolom tanggal dan waktu saat hasil selesai dibuat dalam UTC"
+msgstr ""
 
 #: documents/models.py:685
 msgid "Result Data"
@@ -629,11 +632,11 @@ msgstr "Orisinil"
 
 #: documents/models.py:749
 msgid "expiration"
-msgstr "masa berlaku"
+msgstr ""
 
 #: documents/models.py:756
 msgid "slug"
-msgstr "topik konten"
+msgstr ""
 
 #: documents/models.py:788
 msgid "share link"
@@ -645,11 +648,11 @@ msgstr "bagikan tautan"
 
 #: documents/models.py:801
 msgid "String"
-msgstr "String"
+msgstr ""
 
 #: documents/models.py:802
 msgid "URL"
-msgstr "URL"
+msgstr ""
 
 #: documents/models.py:803
 msgid "Date"
@@ -657,23 +660,23 @@ msgstr "Tanggal"
 
 #: documents/models.py:804
 msgid "Boolean"
-msgstr "Boolean"
+msgstr ""
 
 #: documents/models.py:805
 msgid "Integer"
-msgstr "Bilangan bulat"
+msgstr ""
 
 #: documents/models.py:806
 msgid "Float"
-msgstr "Float"
+msgstr ""
 
 #: documents/models.py:807
 msgid "Monetary"
-msgstr "Keuangan"
+msgstr ""
 
 #: documents/models.py:808
 msgid "Document Link"
-msgstr "Tautan Dokumen"
+msgstr ""
 
 #: documents/models.py:820
 msgid "data type"
@@ -681,19 +684,19 @@ msgstr "jenis data"
 
 #: documents/models.py:828
 msgid "custom field"
-msgstr "kolom khusus"
+msgstr ""
 
 #: documents/models.py:829
 msgid "custom fields"
-msgstr "kolom khusus"
+msgstr ""
 
 #: documents/models.py:891
 msgid "custom field instance"
-msgstr "kolom Khusus Instansi"
+msgstr ""
 
 #: documents/models.py:892
 msgid "custom field instances"
-msgstr "kolom Khusus Instansi"
+msgstr ""
 
 #: documents/models.py:954
 msgid "Consumption Started"
@@ -709,7 +712,7 @@ msgstr "Dokumen diperbarui"
 
 #: documents/models.py:959
 msgid "Consume Folder"
-msgstr "Pengunaan Folder"
+msgstr ""
 
 #: documents/models.py:960
 msgid "Api Upload"
@@ -927,7 +930,7 @@ msgstr "Warna tidak valid."
 #: documents/serialisers.py:1234
 #, python-format
 msgid "File type %(type)s not supported"
-msgstr "Jenis berkas %(type)s tidak didukung"
+msgstr "Jenis file %(type)s tidak didukung"
 
 #: documents/serialisers.py:1343
 msgid "Invalid variable detected."
@@ -949,7 +952,7 @@ msgstr "Terima kasih telah menggunakan %(site_name)s!\n"
 msgid "Paperless-ngx sign in"
 msgstr "Masuk Paperless-ngx"
 
-#: documents/templates/account/login.html:10
+#: documents/templates/registration/login.html:41
 msgid "Please sign in."
 msgstr "Mohon masuk."
 
@@ -958,22 +961,27 @@ msgstr "Mohon masuk."
 msgid "Don't have an account yet? <a href=\"%(signup_url)s\">Sign up</a>"
 msgstr "Tidak memiliki akun? <a href=\"%(signup_url)s\">Daftar</a>"
 
-#: documents/templates/account/login.html:19
-#: documents/templates/account/signup.html:15
-#: documents/templates/socialaccount/signup.html:13
+#: documents/templates/registration/login.html:48
+msgid "Share link was not found."
+msgstr "Tautan tidak ditemukan."
+
+#: documents/templates/registration/login.html:52
+msgid "Share link has expired."
+msgstr "Tautan telah kedaluwarsa."
+
+#: documents/templates/registration/login.html:55
 msgid "Username"
 msgstr "Nama pengguna"
 
-#: documents/templates/account/login.html:20
-#: documents/templates/account/signup.html:17
+#: documents/templates/registration/login.html:56
 msgid "Password"
 msgstr "Kata sandi"
 
-#: documents/templates/account/login.html:30
+#: documents/templates/registration/login.html:66
 msgid "Sign in"
 msgstr "Masuk"
 
-#: documents/templates/account/login.html:34
+#: documents/templates/registration/login.html:70
 msgid "Forgot your password?"
 msgstr "Lupa kata sandi Anda?"
 
@@ -1421,35 +1429,35 @@ msgstr "Mandarin Sederhana"
 msgid "Paperless-ngx administration"
 msgstr "Administrasi Paperless-ngx"
 
-#: paperless_mail/admin.py:39
+#: paperless_mail/admin.py:41
 msgid "Authentication"
 msgstr "Autentikasi"
 
-#: paperless_mail/admin.py:42
+#: paperless_mail/admin.py:44
 msgid "Advanced settings"
 msgstr "Pengaturan lanjutan"
 
-#: paperless_mail/admin.py:58
+#: paperless_mail/admin.py:60
 msgid "Filter"
 msgstr "Saring"
 
-#: paperless_mail/admin.py:61
+#: paperless_mail/admin.py:63
 msgid "Paperless will only process mails that match ALL of the filters given below."
-msgstr "Paperless hanya akan memproses SEMUA surel yang cocok dengan filter yang diberikan."
+msgstr "Paperless hanya akan memproses SEMUA surat yang cocok dengan filter yang diberikan."
 
-#: paperless_mail/admin.py:78
+#: paperless_mail/admin.py:80
 msgid "Actions"
 msgstr "Aksi"
 
-#: paperless_mail/admin.py:81
+#: paperless_mail/admin.py:83
 msgid "The action applied to the mail. This action is only performed when the mail body or attachments were consumed from the mail."
 msgstr ""
 
-#: paperless_mail/admin.py:89
+#: paperless_mail/admin.py:91
 msgid "Metadata"
 msgstr "Metadata"
 
-#: paperless_mail/admin.py:92
+#: paperless_mail/admin.py:94
 msgid "Assign metadata to documents consumed from this rule automatically. If you do not assign tags, types or correspondents here, paperless will still process all matching rules that you have defined."
 msgstr ""
 
@@ -1459,11 +1467,11 @@ msgstr "Surat Paperless"
 
 #: paperless_mail/models.py:10
 msgid "mail account"
-msgstr "akun surel"
+msgstr "akun surat"
 
 #: paperless_mail/models.py:11
 msgid "mail accounts"
-msgstr "akun surel"
+msgstr "akun surat"
 
 #: paperless_mail/models.py:14
 msgid "No encryption"
@@ -1515,11 +1523,11 @@ msgstr ""
 
 #: paperless_mail/models.py:60
 msgid "mail rule"
-msgstr "peraturan surel"
+msgstr "peraturan surat"
 
 #: paperless_mail/models.py:61
 msgid "mail rules"
-msgstr "peraturan surel"
+msgstr "peraturan surat"
 
 #: paperless_mail/models.py:64 paperless_mail/models.py:75
 msgid "Only process attachments."
@@ -1543,7 +1551,7 @@ msgstr "Hapus"
 
 #: paperless_mail/models.py:80
 msgid "Move to specified folder"
-msgstr "Pindahkan ke folder yang ditentukan"
+msgstr ""
 
 #: paperless_mail/models.py:81
 msgid "Mark as read, don't process read mails"
@@ -1563,7 +1571,7 @@ msgstr "Gunakan subjek sebagai judul"
 
 #: paperless_mail/models.py:87
 msgid "Use attachment filename as title"
-msgstr "Gunakan nama berkas lampiran sebagai judul"
+msgstr ""
 
 #: paperless_mail/models.py:88
 msgid "Do not assign title from rule"
@@ -1575,11 +1583,11 @@ msgstr ""
 
 #: paperless_mail/models.py:92
 msgid "Use mail address"
-msgstr "Gunakan alamat surel"
+msgstr "Gunakan alamat surat"
 
 #: paperless_mail/models.py:93
 msgid "Use name (or mail address if not available)"
-msgstr "Gunakan nama (atau alamat surel jika tidak tersedia)"
+msgstr "Gunakan nama (atau alamat surat jika tidak tersedia)"
 
 #: paperless_mail/models.py:94
 msgid "Use correspondent selected below"
@@ -1623,7 +1631,7 @@ msgstr ""
 
 #: paperless_mail/models.py:163
 msgid "Do not consume documents which entirely match this filename if specified. Wildcards such as *.pdf or *invoice* are allowed. Case insensitive."
-msgstr "Jangan gunakan dokumen yang sepenuhnya cocok dengan nama berkas ini jika ditentukan. Wildcard seperti *.pdf atau *faktur* diperbolehkan. Tidak peka huruf besar kecil."
+msgstr ""
 
 #: paperless_mail/models.py:170
 msgid "maximum age"
@@ -1631,7 +1639,7 @@ msgstr "umur maksimal"
 
 #: paperless_mail/models.py:172
 msgid "Specified in days."
-msgstr "Ditentukan dalam hari."
+msgstr ""
 
 #: paperless_mail/models.py:176
 msgid "attachment type"
@@ -1667,7 +1675,7 @@ msgstr "tetapkan koresponden dari"
 
 #: paperless_mail/models.py:245
 msgid "Assign the rule owner to documents"
-msgstr "Tetapkan pemilik aturan ke dokumen"
+msgstr ""
 
 #: paperless_mail/models.py:271
 msgid "uid"

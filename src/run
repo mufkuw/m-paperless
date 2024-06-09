@@ -1,0 +1,8 @@
+cd /opt/paperless/src-ui
+./make
+
+cd /opt/paperless/src
+gunicorn -c /opt/paperless/gunicorn.conf.py paperless.asgi:application & \
+  python3 manage.py document_consumer & \
+  celery --app paperless worker -l INFO & \
+  celery --app paperless beat -l INFO &

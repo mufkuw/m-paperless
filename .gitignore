@@ -71,6 +71,8 @@ target/
 virtualenv
 /venv
 .venv/
+.local/
+nltk_data/
 /docker-compose.env
 /docker-compose.yml
 .ruff_cache/
@@ -85,7 +87,7 @@ scripts/nuke
 # Stored PDFs
 /media/
 /data/
-/paperless.conf
+#/paperless.conf
 /consume/
 /export/
 
@@ -97,3 +99,6 @@ scripts/nuke
 
 # celery schedule file
 celerybeat-schedule*
+sdb/
+
+.local

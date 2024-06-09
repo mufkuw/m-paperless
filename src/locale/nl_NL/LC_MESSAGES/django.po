@@ -605,7 +605,7 @@ msgstr "Gegevens geretourneerd door de taak"
 
 #: documents/models.py:699
 msgid "Note for the document"
-msgstr "Notitie bij het document"
+msgstr ""
 
 #: documents/models.py:723
 msgid "user"
@@ -613,7 +613,7 @@ msgstr "gebruiker"
 
 #: documents/models.py:728
 msgid "note"
-msgstr "notitie"
+msgstr ""
 
 #: documents/models.py:729
 msgid "notes"
@@ -629,15 +629,15 @@ msgstr "Origineel"
 
 #: documents/models.py:749
 msgid "expiration"
-msgstr "vervaldatum"
+msgstr ""
 
 #: documents/models.py:756
 msgid "slug"
-msgstr "slug"
+msgstr ""
 
 #: documents/models.py:788
 msgid "share link"
-msgstr "gedeelde link"
+msgstr ""
 
 #: documents/models.py:789
 msgid "share links"
@@ -673,7 +673,7 @@ msgstr "Monetair"
 
 #: documents/models.py:808
 msgid "Document Link"
-msgstr "Documentkoppeling"
+msgstr ""
 
 #: documents/models.py:820
 msgid "data type"
@@ -689,11 +689,11 @@ msgstr "Aangepaste velden"
 
 #: documents/models.py:891
 msgid "custom field instance"
-msgstr "aangepast veld instantie"
+msgstr ""
 
 #: documents/models.py:892
 msgid "custom field instances"
-msgstr "aangepast veld instanties"
+msgstr ""
 
 #: documents/models.py:954
 msgid "Consumption Started"
@@ -709,11 +709,11 @@ msgstr "Document bijgewerkt"
 
 #: documents/models.py:959
 msgid "Consume Folder"
-msgstr "Inname locatie"
+msgstr ""
 
 #: documents/models.py:960
 msgid "Api Upload"
-msgstr "API upload"
+msgstr ""
 
 #: documents/models.py:961
 msgid "Mail Fetch"
@@ -964,124 +964,78 @@ msgstr "Heb je nog geen account? <a href=\"%(signup_url)s\">Registreren</a>"
 msgid "Username"
 msgstr "Gebruikersnaam"
 
-#: documents/templates/account/login.html:20
-#: documents/templates/account/signup.html:17
+#: documents/templates/registration/login.html:56
 msgid "Password"
 msgstr "Wachtwoord"
 
-#: documents/templates/account/login.html:30
+#: documents/templates/registration/login.html:66
 msgid "Sign in"
 msgstr "Aanmelden"
 
-#: documents/templates/account/login.html:34
+#: documents/templates/registration/login.html:70
 msgid "Forgot your password?"
-msgstr "Wachtwoord vergeten?"
+msgstr ""
 
-#: documents/templates/account/login.html:45
-#: documents/templates/account/signup.html:49
-msgid "or sign in via"
-msgstr "of log in met"
+#: documents/templates/registration/password_reset_complete.html:14
+msgid "M-Paperless reset password complete"
+msgstr ""
 
-#: documents/templates/account/password_reset.html:5
-msgid "Paperless-ngx reset password request"
-msgstr "Paperless-ngx wachtwoord opnieuw instellen"
-
-#: documents/templates/account/password_reset.html:9
-msgid "Enter your email address below, and we'll email instructions for setting a new one."
-msgstr "Vul hieronder je e-mailadres in en ontvang instructies om een nieuw wachtwoord in te stellen."
-
-#: documents/templates/account/password_reset.html:12
-msgid "An error occurred. Please try again."
-msgstr "Er is een fout opgetreden. Probeer het opnieuw."
-
-#: documents/templates/account/password_reset.html:15
-msgid "Email"
-msgstr "E-mailadres"
-
-#: documents/templates/account/password_reset.html:21
-msgid "Send me instructions!"
-msgstr "Stuur e-mail met instructies!"
-
-#: documents/templates/account/password_reset_done.html:5
-msgid "Paperless-ngx reset password sent"
-msgstr "Paperless-ngx wachtwoordherstel verzonden"
-
-#: documents/templates/account/password_reset_done.html:9
-msgid "Check your inbox."
-msgstr "Controleer je inbox."
-
-#: documents/templates/account/password_reset_done.html:13
-msgid "We've emailed you instructions for setting your password. You should receive the email shortly!"
-msgstr "We hebben je per e-mail instructies gestuurd voor het instellen van je wachtwoord. Je zult de e-mail binnenkort moeten ontvangen!"
-
-#: documents/templates/account/password_reset_from_key.html:5
-msgid "Paperless-ngx reset password confirmation"
-msgstr "Paperless-ngx wachtwoordherstel bevestigen"
-
-#: documents/templates/account/password_reset_from_key.html:9
-msgid "Set a new password."
-msgstr "Stel een nieuw wachtwoord in."
-
-#: documents/templates/account/password_reset_from_key.html:15
-msgid "request a new password reset"
-msgstr "wachtwoordherstel aanvragen"
-
-#: documents/templates/account/password_reset_from_key.html:17
-msgid "New Password"
-msgstr "Nieuw wachtwoord"
-
-#: documents/templates/account/password_reset_from_key.html:18
-msgid "Confirm Password"
-msgstr "Bevestig wachtwoord"
-
-#: documents/templates/account/password_reset_from_key.html:28
-msgid "Change my password"
-msgstr "Verander mijn wachtwoord"
-
-#: documents/templates/account/password_reset_from_key_done.html:5
-msgid "Paperless-ngx reset password complete"
-msgstr "Paperless-ngx wachtwoord reset voltooid"
-
-#: documents/templates/account/password_reset_from_key_done.html:9
+#: documents/templates/registration/password_reset_complete.html:40
 msgid "Password reset complete."
-msgstr "Wachtwoord opnieuw instellen voltooid."
+msgstr ""
 
-#: documents/templates/account/password_reset_from_key_done.html:14
+#: documents/templates/registration/password_reset_complete.html:42
 #, python-format
 msgid "Your new password has been set. You can now <a href=\"%(login_url)s\">log in</a>"
-msgstr "Je nieuwe wachtwoord is ingesteld. Je kunt nu <a href=\"%(login_url)s\">inloggen</a>"
+msgstr ""
 
-#: documents/templates/account/signup.html:5
-msgid "Paperless-ngx sign up"
-msgstr "Paperless-ngx registratie"
+#: documents/templates/registration/password_reset_confirm.html:14
+msgid "M-Paperless reset password confirmation"
+msgstr ""
 
-#: documents/templates/account/signup.html:10
-#, python-format
-msgid "Already have an account? <a href=\"%(login_url)s\">Sign in</a>"
-msgstr "Heb je al een account? <a href=\"%(login_url)s\">Inloggen</a>"
+#: documents/templates/registration/password_reset_confirm.html:42
+msgid "Set a new password."
+msgstr ""
 
-#: documents/templates/account/signup.html:16
-#: documents/templates/socialaccount/signup.html:14
-msgid "Email (optional)"
-msgstr "E-mailadres (optioneel)"
+#: documents/templates/registration/password_reset_confirm.html:46
+msgid "Passwords did not match or too weak. Try again."
+msgstr ""
 
-#: documents/templates/account/signup.html:18
-msgid "Password (again)"
-msgstr "Wachtwoord (opnieuw)"
+#: documents/templates/registration/password_reset_confirm.html:49
+msgid "New Password"
+msgstr ""
 
-#: documents/templates/account/signup.html:36
-#: documents/templates/socialaccount/signup.html:27
-msgid "Sign up"
-msgstr "Registreren"
+#: documents/templates/registration/password_reset_confirm.html:50
+msgid "Confirm Password"
+msgstr ""
 
-#: documents/templates/index.html:61
-msgid "Paperless-ngx is loading..."
-msgstr "Paperless-ngx is aan het laden..."
+#: documents/templates/registration/password_reset_confirm.html:61
+msgid "Change my password"
+msgstr ""
 
-#: documents/templates/index.html:62
-msgid "Still here?! Hmm, something might be wrong."
-msgstr "Nog steeds hier?! Hmm, er kan iets mis zijn."
+#: documents/templates/registration/password_reset_confirm.html:65
+msgid "request a new password reset"
+msgstr ""
 
+#: documents/templates/registration/password_reset_done.html:14
+msgid "M-Paperless reset password sent"
+msgstr ""
+
+#: documents/templates/registration/password_reset_done.html:40
+msgid "Check your inbox."
+msgstr ""
+
+#: documents/templates/registration/password_reset_done.html:41
+msgid "We've emailed you instructions for setting your password. You should receive the email shortly!"
+msgstr ""
+
+#: documents/templates/registration/password_reset_form.html:14
+msgid "M-Paperless reset password request"
+msgstr ""
+
+#: documents/templates/registration/password_reset_form.html:41
+msgid "Enter your email address below, and we'll email instructions for setting a new one."
+msgstr ""
 #: documents/templates/index.html:62
 msgid "Here's a link to the docs."
 msgstr "Dit is een link naar de documentatie."
@@ -1099,47 +1053,17 @@ msgstr "Gedeelde link is verlopen."
 msgid "Paperless-ngx social account sign in"
 msgstr "Paperless-ngx sociaal account inloggen"
 
-#: documents/templates/socialaccount/authentication_error.html:10
-#, python-format
-msgid "An error occurred while attempting to login via your social network account. Back to the <a href=\"%(login_url)s\">login page</a>"
-msgstr "Er is een fout opgetreden tijdens het inloggen via je sociale netwerkaccount. Terug naar de <a href=\"%(login_url)s\">inlogpagina</a>"
+#: documents/templates/registration/password_reset_form.html:44
+msgid "An error occurred. Please try again."
+msgstr ""
 
-#: documents/templates/socialaccount/login.html:10
-#, python-format
-msgid "You are about to connect a new third-party account from %(provider)s."
-msgstr "Je staat op het punt om te verbinden met een nieuw extern account van %(provider)s."
+#: documents/templates/registration/password_reset_form.html:47
+msgid "Email"
+msgstr "E-mailadres"
 
-#: documents/templates/socialaccount/login.html:13
-msgid "Continue"
-msgstr "Doorgaan"
-
-#: documents/templates/socialaccount/signup.html:5
-msgid "Paperless-ngx social account sign up"
-msgstr "Paperless-ngx sociaal account registreren"
-
-#: documents/templates/socialaccount/signup.html:10
-#, python-format
-msgid "You are about to use your %(provider_name)s account to login."
-msgstr "Je staat op het punt om met je %(provider_name)s account in te loggen."
-
-#: documents/templates/socialaccount/signup.html:11
-msgid "As a final step, please complete the following form:"
-msgstr "Vul als laatste stap het volgende formulier in:"
-
-#: documents/validators.py:17
-#, python-brace-format
-msgid "Unable to parse URI {value}, missing scheme"
-msgstr "Kan URI {value} niet parseren, schema ontbreekt"
-
-#: documents/validators.py:22
-#, python-brace-format
-msgid "Unable to parse URI {value}, missing net location or path"
-msgstr "Kan URI {value} niet parseren, locatie of pad ontbreekt"
-
-#: documents/validators.py:27
-#, python-brace-format
-msgid "Unable to parse URI {value}"
-msgstr "Kan URI {value} niet parseren"
+#: documents/templates/registration/password_reset_form.html:54
+msgid "Send me instructions!"
+msgstr ""
 
 #: paperless/apps.py:10
 msgid "Paperless"
@@ -1299,7 +1223,7 @@ msgstr "Arabisch"
 
 #: paperless/settings.py:662
 msgid "Afrikaans"
-msgstr "Afrikaans"
+msgstr ""
 
 #: paperless/settings.py:663
 msgid "Belarusian"
@@ -1307,7 +1231,7 @@ msgstr "Wit-Russisch"
 
 #: paperless/settings.py:664
 msgid "Bulgarian"
-msgstr "Bulgaars"
+msgstr ""
 
 #: paperless/settings.py:665
 msgid "Catalan"
@@ -1327,7 +1251,7 @@ msgstr "Duits"
 
 #: paperless/settings.py:669
 msgid "Greek"
-msgstr "Grieks"
+msgstr ""
 
 #: paperless/settings.py:670
 msgid "English (GB)"
@@ -1347,7 +1271,7 @@ msgstr "Frans"
 
 #: paperless/settings.py:674
 msgid "Hungarian"
-msgstr "Hongaars"
+msgstr ""
 
 #: paperless/settings.py:675
 msgid "Italian"
@@ -1363,7 +1287,7 @@ msgstr "Luxemburgs"
 
 #: paperless/settings.py:678
 msgid "Norwegian"
-msgstr "Noors"
+msgstr ""
 
 #: paperless/settings.py:679
 msgid "Dutch"
@@ -1421,35 +1345,35 @@ msgstr "Chinees (vereenvoudigd)"
 msgid "Paperless-ngx administration"
 msgstr "Paperless-ngx administratie"
 
-#: paperless_mail/admin.py:39
+#: paperless_mail/admin.py:41
 msgid "Authentication"
 msgstr "Authenticatie"
 
-#: paperless_mail/admin.py:42
+#: paperless_mail/admin.py:44
 msgid "Advanced settings"
 msgstr "Geavanceerde instellingen"
 
-#: paperless_mail/admin.py:58
+#: paperless_mail/admin.py:60
 msgid "Filter"
 msgstr "Filter"
 
-#: paperless_mail/admin.py:61
+#: paperless_mail/admin.py:63
 msgid "Paperless will only process mails that match ALL of the filters given below."
 msgstr "Paperless verwerkt alleen e-mails die voldoen aan ALLE onderstaande filters."
 
-#: paperless_mail/admin.py:78
+#: paperless_mail/admin.py:80
 msgid "Actions"
 msgstr "Acties"
 
-#: paperless_mail/admin.py:81
+#: paperless_mail/admin.py:83
 msgid "The action applied to the mail. This action is only performed when the mail body or attachments were consumed from the mail."
 msgstr "De actie uitgevoerd op de email. Deze actie wordt alleen uitgevoerd wanneer de email inhoud of bijlagen van de email zijn geïmporteerd."
 
-#: paperless_mail/admin.py:89
+#: paperless_mail/admin.py:91
 msgid "Metadata"
 msgstr "Metadata"
 
-#: paperless_mail/admin.py:92
+#: paperless_mail/admin.py:94
 msgid "Assign metadata to documents consumed from this rule automatically. If you do not assign tags, types or correspondents here, paperless will still process all matching rules that you have defined."
 msgstr "Automatisch metadata toewijzen aan documenten vanuit deze regel. Indien je geen labels, documenttypes of correspondenten toewijst, zal Paperless nog steeds alle regels verwerken die je hebt gedefinieerd."
 
@@ -1503,7 +1427,7 @@ msgstr "wachtwoord"
 
 #: paperless_mail/models.py:42
 msgid "Is token authentication"
-msgstr "Gebruikt tokenauthenticatie"
+msgstr ""
 
 #: paperless_mail/models.py:45
 msgid "character set"
@@ -1567,7 +1491,7 @@ msgstr "Gebruik naam van bijlage als titel"
 
 #: paperless_mail/models.py:88
 msgid "Do not assign title from rule"
-msgstr "Titel niet toewijzen vanuit regel"
+msgstr ""
 
 #: paperless_mail/models.py:91
 msgid "Do not assign a correspondent"
@@ -1615,15 +1539,15 @@ msgstr "filter inhoud"
 
 #: paperless_mail/models.py:146
 msgid "filter attachment filename inclusive"
-msgstr "filter bijlagenaam bevat"
+msgstr ""
 
 #: paperless_mail/models.py:158
 msgid "filter attachment filename exclusive"
-msgstr "filter bijlagenaam bevat niet"
+msgstr ""
 
 #: paperless_mail/models.py:163
 msgid "Do not consume documents which entirely match this filename if specified. Wildcards such as *.pdf or *invoice* are allowed. Case insensitive."
-msgstr "Geen documenten verwerken die overeenkomen met deze bestandsnaam indien ingevuld. Je kunt wildcards gebruiken, zoals *.pdf of *factuur*. Dit is niet hoofdlettergevoelig."
+msgstr ""
 
 #: paperless_mail/models.py:170
 msgid "maximum age"
@@ -1667,7 +1591,7 @@ msgstr "wijs correspondent toe van"
 
 #: paperless_mail/models.py:245
 msgid "Assign the rule owner to documents"
-msgstr "Wijs de eigenaar van de regel toe aan documenten"
+msgstr ""
 
 #: paperless_mail/models.py:271
 msgid "uid"

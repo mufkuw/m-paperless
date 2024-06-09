@@ -1,6 +1,6 @@
 <div class="mb-3">
   @if (title) {
-    <label [for]="inputId">{{title}}</label>
+  <label [for]="inputId">{{title}}</label>
   }
 
   <div class="input-group" [class.is-invalid]="error">
@@ -13,7 +13,9 @@
 
     </ng-template>
 
-    <input #inputField class="form-control" [class.is-invalid]="error" [id]="inputId" [(ngModel)]="value" (change)="onChange(value)" [autoClose]="'outside'" [ngbPopover]="popContent" placement="bottom" popoverClass="shadow">
+    <input #inputField class="form-control" [class.is-invalid]="error" [id]="inputId" [(ngModel)]="value"
+      (change)="onChange(value)" [autoClose]="'outside'" [ngbPopover]="popContent" placement="bottom"
+      popoverClass="shadow">
 
     <button class="btn btn-outline-secondary" type="button" (click)="randomize()">
       <i-bs name="dice5"></i-bs>
@@ -21,7 +23,7 @@
 
   </div>
   @if (hint) {
-    <small class="form-text text-muted">{{hint}}</small>
+  <small class="form-text text-muted">{{hint}}</small>
   }
   <div class="invalid-feedback">
     {{error}}

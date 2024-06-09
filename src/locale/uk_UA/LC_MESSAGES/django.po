@@ -52,6 +52,7 @@ msgstr "Приблизний пошук"
 #: documents/models.py:59
 msgid "Automatic"
 msgstr "Автоматично"
+msgstr "Автоматично"
 
 #: documents/models.py:62 documents/models.py:416 documents/models.py:1267
 #: paperless_mail/models.py:18 paperless_mail/models.py:96
@@ -605,7 +606,7 @@ msgstr "Дані, які повернені завданням"
 
 #: documents/models.py:699
 msgid "Note for the document"
-msgstr "Примітка до документа"
+msgstr ""
 
 #: documents/models.py:723
 msgid "user"
@@ -613,7 +614,7 @@ msgstr "користувач"
 
 #: documents/models.py:728
 msgid "note"
-msgstr "примітка"
+msgstr ""
 
 #: documents/models.py:729
 msgid "notes"
@@ -629,15 +630,15 @@ msgstr "Оригінал"
 
 #: documents/models.py:749
 msgid "expiration"
-msgstr "закінчується"
+msgstr ""
 
 #: documents/models.py:756
 msgid "slug"
-msgstr "слаг"
+msgstr ""
 
 #: documents/models.py:788
 msgid "share link"
-msgstr "поділитися посиланням"
+msgstr ""
 
 #: documents/models.py:789
 msgid "share links"
@@ -673,27 +674,27 @@ msgstr "Монетарний"
 
 #: documents/models.py:808
 msgid "Document Link"
-msgstr "Посилання на документ"
+msgstr ""
 
 #: documents/models.py:820
 msgid "data type"
-msgstr "тип даних"
+msgstr ""
 
 #: documents/models.py:828
 msgid "custom field"
-msgstr "користувацьке поле"
+msgstr ""
 
 #: documents/models.py:829
 msgid "custom fields"
-msgstr "користувацькі поля"
+msgstr ""
 
 #: documents/models.py:891
 msgid "custom field instance"
-msgstr "спеціальний екземпляр поля"
+msgstr ""
 
 #: documents/models.py:892
 msgid "custom field instances"
-msgstr "спеціальні екземпляри поля"
+msgstr ""
 
 #: documents/models.py:954
 msgid "Consumption Started"
@@ -709,11 +710,11 @@ msgstr "Документ оновлено"
 
 #: documents/models.py:959
 msgid "Consume Folder"
-msgstr "Використати теку"
+msgstr ""
 
 #: documents/models.py:960
 msgid "Api Upload"
-msgstr "Завантаження API"
+msgstr ""
 
 #: documents/models.py:961
 msgid "Mail Fetch"
@@ -1307,7 +1308,7 @@ msgstr "Білоруська"
 
 #: paperless/settings.py:664
 msgid "Bulgarian"
-msgstr "Болгарська"
+msgstr ""
 
 #: paperless/settings.py:665
 msgid "Catalan"
@@ -1347,7 +1348,7 @@ msgstr "Французька"
 
 #: paperless/settings.py:674
 msgid "Hungarian"
-msgstr "Угорська"
+msgstr ""
 
 #: paperless/settings.py:675
 msgid "Italian"
@@ -1421,41 +1422,41 @@ msgstr "Китайська спрощена"
 msgid "Paperless-ngx administration"
 msgstr "Адміністрування Paperless-ngx"
 
-#: paperless_mail/admin.py:39
+#: paperless_mail/admin.py:41
 msgid "Authentication"
 msgstr "Автентифікація"
 
-#: paperless_mail/admin.py:42
+#: paperless_mail/admin.py:44
 msgid "Advanced settings"
 msgstr "Додаткові налаштування"
 
-#: paperless_mail/admin.py:58
+#: paperless_mail/admin.py:60
 msgid "Filter"
 msgstr "Фільтр"
 
-#: paperless_mail/admin.py:61
+#: paperless_mail/admin.py:63
 msgid "Paperless will only process mails that match ALL of the filters given below."
-msgstr "Paperless-ngx оброблятиме лише ті листи, які відповідають УСІМ фільтрам нижче."
+msgstr "M-Paperless оброблятиме лише ті листи, які відповідають УСІМ фільтрам нижче."
 
-#: paperless_mail/admin.py:78
+#: paperless_mail/admin.py:80
 msgid "Actions"
 msgstr "Дії"
 
-#: paperless_mail/admin.py:81
+#: paperless_mail/admin.py:83
 msgid "The action applied to the mail. This action is only performed when the mail body or attachments were consumed from the mail."
 msgstr "Дія застосовується до листа. Ця дія виконується лише коли тіло листа або вкладення були використані із листа."
 
-#: paperless_mail/admin.py:89
+#: paperless_mail/admin.py:91
 msgid "Metadata"
 msgstr "Метадані"
 
-#: paperless_mail/admin.py:92
+#: paperless_mail/admin.py:94
 msgid "Assign metadata to documents consumed from this rule automatically. If you do not assign tags, types or correspondents here, paperless will still process all matching rules that you have defined."
-msgstr "Автоматично призначати метадані до документів, отриманих з цього правила. Якщо ви тут не призначите теги, типи чи кореспондентів, Paperless-ngx все одно оброблятиме всі відповідні правила, які ви визначили."
+msgstr "Автоматично призначати метадані до документів, отриманих з цього правила. Якщо ви тут не призначите теги, типи чи кореспондентів, M-Paperless все одно оброблятиме всі відповідні правила, які ви визначили."
 
 #: paperless_mail/apps.py:11
 msgid "Paperless mail"
-msgstr "Пошта Paperless-ngx"
+msgstr "Пошта M-Paperless"
 
 #: paperless_mail/models.py:10
 msgid "mail account"
@@ -1503,7 +1504,7 @@ msgstr "пароль"
 
 #: paperless_mail/models.py:42
 msgid "Is token authentication"
-msgstr "Токен автентифікації"
+msgstr ""
 
 #: paperless_mail/models.py:45
 msgid "character set"
@@ -1567,7 +1568,7 @@ msgstr "Використовувати назву файлу як заголов
 
 #: paperless_mail/models.py:88
 msgid "Do not assign title from rule"
-msgstr "Не призначати заголовок від цього правила"
+msgstr ""
 
 #: paperless_mail/models.py:91
 msgid "Do not assign a correspondent"
@@ -1615,15 +1616,15 @@ msgstr "фільтрувати по тексту повідомлення"
 
 #: paperless_mail/models.py:146
 msgid "filter attachment filename inclusive"
-msgstr "фільтр враховує вкладену назву файлу"
+msgstr ""
 
 #: paperless_mail/models.py:158
 msgid "filter attachment filename exclusive"
-msgstr "фільтр не враховує вкладену назву файлу"
+msgstr ""
 
 #: paperless_mail/models.py:163
 msgid "Do not consume documents which entirely match this filename if specified. Wildcards such as *.pdf or *invoice* are allowed. Case insensitive."
-msgstr "Не використовуйте документи, які повністю відповідають цій назві файлу, якщо вона вказана. Допускаються символи підстановки, наприклад *.pdf або *рахунок-фактура*. Регістр не враховується."
+msgstr ""
 
 #: paperless_mail/models.py:170
 msgid "maximum age"
@@ -1667,7 +1668,7 @@ msgstr "призначити кореспондента з"
 
 #: paperless_mail/models.py:245
 msgid "Assign the rule owner to documents"
-msgstr "Призначити власника правила документів"
+msgstr ""
 
 #: paperless_mail/models.py:271
 msgid "uid"

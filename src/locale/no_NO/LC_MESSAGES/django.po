@@ -47,11 +47,11 @@ msgstr "Regulære uttrykk"
 
 #: documents/models.py:58 documents/models.py:951
 msgid "Fuzzy word"
-msgstr ""
+msgstr "Fuzzy word"
 
 #: documents/models.py:59
 msgid "Automatic"
-msgstr ""
+msgstr "Automatisk"
 
 #: documents/models.py:62 documents/models.py:416 documents/models.py:1267
 #: paperless_mail/models.py:18 paperless_mail/models.py:96
@@ -433,7 +433,7 @@ msgstr "full tekst spørring"
 
 #: documents/models.py:486
 msgid "more like this"
-msgstr ""
+msgstr "mer som dette"
 
 #: documents/models.py:487
 msgid "has tags in"
@@ -933,125 +933,109 @@ msgstr "Filtype %(type)s støttes ikke"
 msgid "Invalid variable detected."
 msgstr "Ugyldig variabel oppdaget."
 
-#: documents/templates/account/email/base_message.txt:1
-#, python-format
-msgid "Hello from %(site_name)s!"
-msgstr ""
+#: documents/templates/index.html:79
+msgid "M-Paperless is loading..."
+msgstr "M-Paperless laster..."
 
-#: documents/templates/account/email/base_message.txt:5
-#, python-format
-msgid "Thank you for using %(site_name)s!\n"
-"%(site_domain)s"
-msgstr ""
+#: documents/templates/index.html:80
+msgid "Still here?! Hmm, something might be wrong."
+msgstr "Fortsatt her?! Hmm, noe kan være galt."
 
-#: documents/templates/account/login.html:5
-msgid "Paperless-ngx sign in"
-msgstr "Paperless-ngx-tegn inn"
+#: documents/templates/index.html:80
+msgid "Here's a link to the docs."
+msgstr "Her er en lenke til dokkene."
 
-#: documents/templates/account/login.html:10
+#: documents/templates/registration/logged_out.html:14
+msgid "M-Paperless signed out"
+msgstr "M-Paperless logget ut"
+
+#: documents/templates/registration/logged_out.html:40
+msgid "You have been successfully logged out. Bye!"
+msgstr "Du har blitt logget ut. Av!"
+
+#: documents/templates/registration/logged_out.html:41
+msgid "Sign in again"
+msgstr "Logg inn igjen"
+
+#: documents/templates/registration/login.html:14
+msgid "M-Paperless sign in"
+msgstr "M-Paperless-tegn inn"
+
+#: documents/templates/registration/login.html:41
 msgid "Please sign in."
 msgstr "Vennligst logg inn."
 
-#: documents/templates/account/login.html:12
-#, python-format
-msgid "Don't have an account yet? <a href=\"%(signup_url)s\">Sign up</a>"
-msgstr ""
+#: documents/templates/registration/login.html:44
+msgid "Your username and password didn't match. Please try again."
+msgstr "Ditt brukernavn og passord stemte ikke. Prøv på nytt."
 
-#: documents/templates/account/login.html:19
-#: documents/templates/account/signup.html:15
-#: documents/templates/socialaccount/signup.html:13
+#: documents/templates/registration/login.html:48
+msgid "Share link was not found."
+msgstr "Delingskobling ble ikke funnet."
+
+#: documents/templates/registration/login.html:52
+msgid "Share link has expired."
+msgstr "Linken er utløpt."
+
+#: documents/templates/registration/login.html:55
 msgid "Username"
 msgstr "Brukernavn"
 
-#: documents/templates/account/login.html:20
-#: documents/templates/account/signup.html:17
+#: documents/templates/registration/login.html:56
 msgid "Password"
 msgstr "Passord"
 
-#: documents/templates/account/login.html:30
+#: documents/templates/registration/login.html:66
 msgid "Sign in"
 msgstr "Logg inn"
 
-#: documents/templates/account/login.html:34
+#: documents/templates/registration/login.html:70
 msgid "Forgot your password?"
 msgstr "Glemt passord?"
 
-#: documents/templates/account/login.html:45
-#: documents/templates/account/signup.html:49
-msgid "or sign in via"
-msgstr ""
+#: documents/templates/registration/password_reset_complete.html:14
+msgid "M-Paperless reset password complete"
+msgstr "M-Paperless tilbakestilling passord fullført"
 
-#: documents/templates/account/password_reset.html:5
-msgid "Paperless-ngx reset password request"
-msgstr "Paperless-ngx forespørsel om tilbakestilling av passord"
-
-#: documents/templates/account/password_reset.html:9
-msgid "Enter your email address below, and we'll email instructions for setting a new one."
-msgstr "Skriv inn e-postadressen din nedenfor, og du vil motta en e-post med instruksjoner for å angi et nytt."
-
-#: documents/templates/account/password_reset.html:12
-msgid "An error occurred. Please try again."
-msgstr "En feil oppstod. Vennligst prøv på nytt."
-
-#: documents/templates/account/password_reset.html:15
-msgid "Email"
-msgstr "E-post"
-
-#: documents/templates/account/password_reset.html:21
-msgid "Send me instructions!"
-msgstr "Send meg instruksjoner!"
-
-#: documents/templates/account/password_reset_done.html:5
-msgid "Paperless-ngx reset password sent"
-msgstr ""
-
-#: documents/templates/account/password_reset_done.html:9
-msgid "Check your inbox."
-msgstr "Sjekk innboksen din."
-
-#: documents/templates/account/password_reset_done.html:13
-msgid "We've emailed you instructions for setting your password. You should receive the email shortly!"
-msgstr "Vi har sendt deg instruksjoner for å sette ditt passord. Du burde snart motta en e-post!"
-
-#: documents/templates/account/password_reset_from_key.html:5
-msgid "Paperless-ngx reset password confirmation"
-msgstr "Paperless-ngx tilbakestilling av passord bekreftet"
-
-#: documents/templates/account/password_reset_from_key.html:9
-msgid "Set a new password."
-msgstr "Angi et nytt passord."
-
-#: documents/templates/account/password_reset_from_key.html:15
-msgid "request a new password reset"
-msgstr "be om tilbakestilling av passord"
-
-#: documents/templates/account/password_reset_from_key.html:17
-msgid "New Password"
-msgstr "Nytt passord"
-
-#: documents/templates/account/password_reset_from_key.html:18
-msgid "Confirm Password"
-msgstr "Bekreft passord"
-
-#: documents/templates/account/password_reset_from_key.html:28
-msgid "Change my password"
-msgstr "Endre passord"
-
-#: documents/templates/account/password_reset_from_key_done.html:5
-msgid "Paperless-ngx reset password complete"
-msgstr "Paperless-ngx tilbakestilling passord fullført"
-
-#: documents/templates/account/password_reset_from_key_done.html:9
+#: documents/templates/registration/password_reset_complete.html:40
 msgid "Password reset complete."
 msgstr "Tilbakestilling av passord fullført."
 
-#: documents/templates/account/password_reset_from_key_done.html:14
+#: documents/templates/registration/password_reset_complete.html:42
 #, python-format
 msgid "Your new password has been set. You can now <a href=\"%(login_url)s\">log in</a>"
 msgstr "Ditt nye passord er satt. Du kan nå <a href=\"%(login_url)s\">logge inn</a>"
 
-#: documents/templates/account/signup.html:5
-msgid "Paperless-ngx sign up"
+#: documents/templates/registration/password_reset_confirm.html:14
+msgid "M-Paperless reset password confirmation"
+msgstr "M-Paperless tilbakestilling av passord bekreftet"
+
+#: documents/templates/registration/password_reset_confirm.html:42
+msgid "Set a new password."
+msgstr "Angi et nytt passord."
+
+#: documents/templates/registration/password_reset_confirm.html:46
+msgid "Passwords did not match or too weak. Try again."
+msgstr "Passordene samsvarte ikke eller er for svake. Prøv igjen."
+
+#: documents/templates/registration/password_reset_confirm.html:49
+msgid "New Password"
+msgstr "Nytt passord"
+
+#: documents/templates/registration/password_reset_confirm.html:50
+msgid "Confirm Password"
+msgstr "Bekreft passord"
+
+#: documents/templates/registration/password_reset_confirm.html:61
+msgid "Change my password"
+msgstr "Endre passord"
+
+#: documents/templates/registration/password_reset_confirm.html:65
+msgid "request a new password reset"
+msgstr "be om tilbakestilling av passord"
+
+#: documents/templates/registration/password_reset_done.html:14
+msgid "M-Paperless reset password sent"
 msgstr ""
 
 #: documents/templates/account/signup.html:10
@@ -1420,35 +1404,35 @@ msgstr "Kinesisk forenklet"
 msgid "Paperless-ngx administration"
 msgstr "Paperless-ngx-administrasjon"
 
-#: paperless_mail/admin.py:39
+#: paperless_mail/admin.py:41
 msgid "Authentication"
 msgstr "Autentisering"
 
-#: paperless_mail/admin.py:42
+#: paperless_mail/admin.py:44
 msgid "Advanced settings"
 msgstr "Avanserte innstillinger"
 
-#: paperless_mail/admin.py:58
+#: paperless_mail/admin.py:60
 msgid "Filter"
 msgstr "Filtrer"
 
-#: paperless_mail/admin.py:61
+#: paperless_mail/admin.py:63
 msgid "Paperless will only process mails that match ALL of the filters given below."
 msgstr "Paperless vil kun behandle e-poster som samsvarer med ALLE filtrene som er gitt nedenfor."
 
-#: paperless_mail/admin.py:78
+#: paperless_mail/admin.py:80
 msgid "Actions"
 msgstr "Handlinger"
 
-#: paperless_mail/admin.py:81
+#: paperless_mail/admin.py:83
 msgid "The action applied to the mail. This action is only performed when the mail body or attachments were consumed from the mail."
 msgstr "Handlingen som gjelder for posten. Denne handlingen utføres bare når innholdet i posten eller vedlegget ble hentet fra posten."
 
-#: paperless_mail/admin.py:89
+#: paperless_mail/admin.py:91
 msgid "Metadata"
 msgstr "Nøkkeldata"
 
-#: paperless_mail/admin.py:92
+#: paperless_mail/admin.py:94
 msgid "Assign metadata to documents consumed from this rule automatically. If you do not assign tags, types or correspondents here, paperless will still process all matching rules that you have defined."
 msgstr "Tilordne metadata til dokumenter som brukes fra denne regelen automatisk. Hvis du ikke tilordner etiketter, typer eller korrespondenter her, vil papirløs fremdeles behandle alle matchende regler som du har definert."
 

@@ -48,9 +48,11 @@ msgstr "Регулярен израз"
 #: documents/models.py:58 documents/models.py:951
 msgid "Fuzzy word"
 msgstr "Неясна дума"
+msgstr "Неясна дума"
 
 #: documents/models.py:59
 msgid "Automatic"
+msgstr "Автоматично"
 msgstr "Автоматично"
 
 #: documents/models.py:62 documents/models.py:416 documents/models.py:1267
@@ -673,7 +675,7 @@ msgstr "Пари"
 
 #: documents/models.py:808
 msgid "Document Link"
-msgstr "Връзка към документ"
+msgstr ""
 
 #: documents/models.py:820
 msgid "data type"
@@ -949,7 +951,7 @@ msgstr "Благодари, че използвате %(site_name)s!\n"
 msgid "Paperless-ngx sign in"
 msgstr "Вписване в Paperless-ngx"
 
-#: documents/templates/account/login.html:10
+#: documents/templates/registration/login.html:41
 msgid "Please sign in."
 msgstr "Моля, впишете се."
 
@@ -958,22 +960,27 @@ msgstr "Моля, впишете се."
 msgid "Don't have an account yet? <a href=\"%(signup_url)s\">Sign up</a>"
 msgstr "Все още нямате профил? <a href=\"%(signup_url)s\">Регистрирайте се</a>"
 
-#: documents/templates/account/login.html:19
-#: documents/templates/account/signup.html:15
-#: documents/templates/socialaccount/signup.html:13
+#: documents/templates/registration/login.html:48
+msgid "Share link was not found."
+msgstr "Връзката за споделяне не беше открита."
+
+#: documents/templates/registration/login.html:52
+msgid "Share link has expired."
+msgstr "Връзката за споделяне е изтекла."
+
+#: documents/templates/registration/login.html:55
 msgid "Username"
 msgstr "Потребителско име"
 
-#: documents/templates/account/login.html:20
-#: documents/templates/account/signup.html:17
+#: documents/templates/registration/login.html:56
 msgid "Password"
 msgstr "Парола"
 
-#: documents/templates/account/login.html:30
+#: documents/templates/registration/login.html:66
 msgid "Sign in"
 msgstr "Вход"
 
-#: documents/templates/account/login.html:34
+#: documents/templates/registration/login.html:70
 msgid "Forgot your password?"
 msgstr "Забравена парола?"
 
@@ -1421,35 +1428,35 @@ msgstr "Китайски опростен"
 msgid "Paperless-ngx administration"
 msgstr "Paperless-ngx администрация"
 
-#: paperless_mail/admin.py:39
+#: paperless_mail/admin.py:41
 msgid "Authentication"
 msgstr "Удостоверяване"
 
-#: paperless_mail/admin.py:42
+#: paperless_mail/admin.py:44
 msgid "Advanced settings"
 msgstr "Разширени настройки"
 
-#: paperless_mail/admin.py:58
+#: paperless_mail/admin.py:60
 msgid "Filter"
 msgstr "Филтър"
 
-#: paperless_mail/admin.py:61
+#: paperless_mail/admin.py:63
 msgid "Paperless will only process mails that match ALL of the filters given below."
 msgstr "Paperless ще обработва само имейли, които отговарят на ВСИЧКИ филтри, дадени по-долу."
 
-#: paperless_mail/admin.py:78
+#: paperless_mail/admin.py:80
 msgid "Actions"
 msgstr "Действия"
 
-#: paperless_mail/admin.py:81
+#: paperless_mail/admin.py:83
 msgid "The action applied to the mail. This action is only performed when the mail body or attachments were consumed from the mail."
 msgstr "Действието се прилага към пощата. Това действие се извършва само когато тялото на пощата или прикачените файлове са били консумирани от пощата."
 
-#: paperless_mail/admin.py:89
+#: paperless_mail/admin.py:91
 msgid "Metadata"
 msgstr "Метаданни"
 
-#: paperless_mail/admin.py:92
+#: paperless_mail/admin.py:94
 msgid "Assign metadata to documents consumed from this rule automatically. If you do not assign tags, types or correspondents here, paperless will still process all matching rules that you have defined."
 msgstr "Автоматично присвояване на метаданни на документи, използвани от това правило. Ако не зададете етикети, типове или кореспонденти тук, paperless ще продължи да обработва всички съвпадащи правила, които сте дефинирали."
 
@@ -1615,15 +1622,15 @@ msgstr "филтриране на тяло"
 
 #: paperless_mail/models.py:146
 msgid "filter attachment filename inclusive"
-msgstr "филтриране по име на прикачен файл включително"
+msgstr ""
 
 #: paperless_mail/models.py:158
 msgid "filter attachment filename exclusive"
-msgstr "филтриране по име на прикачен файл изключително"
+msgstr ""
 
 #: paperless_mail/models.py:163
 msgid "Do not consume documents which entirely match this filename if specified. Wildcards such as *.pdf or *invoice* are allowed. Case insensitive."
-msgstr "Да не се консумират документи, които напълно съвпадат с това име на файл, ако е посочено. Позволени са заместващи символи като *.pdf или *invoice*. Не се отчитат големи и малки букви."
+msgstr ""
 
 #: paperless_mail/models.py:170
 msgid "maximum age"

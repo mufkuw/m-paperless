@@ -47,7 +47,7 @@ msgstr "Expressió Regular"
 
 #: documents/models.py:58 documents/models.py:951
 msgid "Fuzzy word"
-msgstr "Paraula Difusa"
+msgstr "Paraula difusa"
 
 #: documents/models.py:59
 msgid "Automatic"
@@ -673,7 +673,7 @@ msgstr "Monetari"
 
 #: documents/models.py:808
 msgid "Document Link"
-msgstr "Enllaç Document"
+msgstr ""
 
 #: documents/models.py:820
 msgid "data type"
@@ -949,7 +949,7 @@ msgstr "Gràcies per fer servir %(site_name)s!\n"
 msgid "Paperless-ngx sign in"
 msgstr "Paperless-ngx sign in"
 
-#: documents/templates/account/login.html:10
+#: documents/templates/registration/login.html:41
 msgid "Please sign in."
 msgstr "Siusplau valida't."
 
@@ -958,22 +958,27 @@ msgstr "Siusplau valida't."
 msgid "Don't have an account yet? <a href=\"%(signup_url)s\">Sign up</a>"
 msgstr "Encara no tens un compte? <a href=\"%(signup_url)s\">Registra't</a>"
 
-#: documents/templates/account/login.html:19
-#: documents/templates/account/signup.html:15
-#: documents/templates/socialaccount/signup.html:13
+#: documents/templates/registration/login.html:48
+msgid "Share link was not found."
+msgstr "No s'ha trobat aquest enllaç."
+
+#: documents/templates/registration/login.html:52
+msgid "Share link has expired."
+msgstr "L'enllaç ha caducat."
+
+#: documents/templates/registration/login.html:55
 msgid "Username"
 msgstr "Nom usuari"
 
-#: documents/templates/account/login.html:20
-#: documents/templates/account/signup.html:17
+#: documents/templates/registration/login.html:56
 msgid "Password"
 msgstr "Contrasenya"
 
-#: documents/templates/account/login.html:30
+#: documents/templates/registration/login.html:66
 msgid "Sign in"
 msgstr "Validació"
 
-#: documents/templates/account/login.html:34
+#: documents/templates/registration/login.html:70
 msgid "Forgot your password?"
 msgstr "Contrasenya oblidada?"
 
@@ -1094,52 +1099,25 @@ msgstr "No s'ha trobat aquest enllaç."
 msgid "Share link has expired."
 msgstr "L'enllaç ha caducat."
 
-#: documents/templates/socialaccount/authentication_error.html:5
-#: documents/templates/socialaccount/login.html:5
-msgid "Paperless-ngx social account sign in"
-msgstr "Paperless-ngx accés a través de compte social"
+#: documents/templates/registration/password_reset_form.html:14
+msgid "M-Paperless reset password request"
+msgstr "Sol·licitud de restabliment de la contrasenya"
 
-#: documents/templates/socialaccount/authentication_error.html:10
-#, python-format
-msgid "An error occurred while attempting to login via your social network account. Back to the <a href=\"%(login_url)s\">login page</a>"
-msgstr "Error al autenticar amb xarxa social. Torna a <a href=\"%(login_url)s\">pàgina de login</a>"
+#: documents/templates/registration/password_reset_form.html:41
+msgid "Enter your email address below, and we'll email instructions for setting a new one."
+msgstr "Introduïu la vostra adreça de correu electrònic a continuació i us enviarem les instruccions per configurar-ne una de nova."
 
-#: documents/templates/socialaccount/login.html:10
-#, python-format
-msgid "You are about to connect a new third-party account from %(provider)s."
-msgstr "Estàs a punt de connectar un nou proveïdor extern des de %(provider)s."
+#: documents/templates/registration/password_reset_form.html:44
+msgid "An error occurred. Please try again."
+msgstr "Error. Prova de nou."
 
-#: documents/templates/socialaccount/login.html:13
-msgid "Continue"
-msgstr "Continuar"
+#: documents/templates/registration/password_reset_form.html:47
+msgid "Email"
+msgstr "Email"
 
-#: documents/templates/socialaccount/signup.html:5
-msgid "Paperless-ngx social account sign up"
-msgstr "Paperless-ngx alta de xarxa social"
-
-#: documents/templates/socialaccount/signup.html:10
-#, python-format
-msgid "You are about to use your %(provider_name)s account to login."
-msgstr "Estàs a punt d'emprar el teu %(provider_name)s compte per a fer login."
-
-#: documents/templates/socialaccount/signup.html:11
-msgid "As a final step, please complete the following form:"
-msgstr "Com a pas final, completa el següent formulari:"
-
-#: documents/validators.py:17
-#, python-brace-format
-msgid "Unable to parse URI {value}, missing scheme"
-msgstr "No es pot analitzar l'URI {value}, falta l'esquema"
-
-#: documents/validators.py:22
-#, python-brace-format
-msgid "Unable to parse URI {value}, missing net location or path"
-msgstr "No es pot analitzar l'URI {value}, falta la ubicació o el camí de la xarxa"
-
-#: documents/validators.py:27
-#, python-brace-format
-msgid "Unable to parse URI {value}"
-msgstr "No es pot analitzar l'URI {value},"
+#: documents/templates/registration/password_reset_form.html:54
+msgid "Send me instructions!"
+msgstr "Enviar instruccions"
 
 #: paperless/apps.py:10
 msgid "Paperless"
@@ -1421,35 +1399,35 @@ msgstr "Xinès Simplificat"
 msgid "Paperless-ngx administration"
 msgstr "Administració Paperless-ngx"
 
-#: paperless_mail/admin.py:39
+#: paperless_mail/admin.py:41
 msgid "Authentication"
 msgstr "Autentificació"
 
-#: paperless_mail/admin.py:42
+#: paperless_mail/admin.py:44
 msgid "Advanced settings"
 msgstr "Opcions avançades"
 
-#: paperless_mail/admin.py:58
+#: paperless_mail/admin.py:60
 msgid "Filter"
 msgstr "Filtre"
 
-#: paperless_mail/admin.py:61
+#: paperless_mail/admin.py:63
 msgid "Paperless will only process mails that match ALL of the filters given below."
 msgstr "Només es processaran els correus que coincideixin amb TOTS els filtres indicats."
 
-#: paperless_mail/admin.py:78
+#: paperless_mail/admin.py:80
 msgid "Actions"
 msgstr "Accions"
 
-#: paperless_mail/admin.py:81
+#: paperless_mail/admin.py:83
 msgid "The action applied to the mail. This action is only performed when the mail body or attachments were consumed from the mail."
 msgstr "Acció aplicada al correu. Aquesta acció només es realitza quan el cos del correu o els fitxers adjunts s'han consumit."
 
-#: paperless_mail/admin.py:89
+#: paperless_mail/admin.py:91
 msgid "Metadata"
 msgstr "Matadades"
 
-#: paperless_mail/admin.py:92
+#: paperless_mail/admin.py:94
 msgid "Assign metadata to documents consumed from this rule automatically. If you do not assign tags, types or correspondents here, paperless will still process all matching rules that you have defined."
 msgstr "Assigna metadades als documents consumits d'aquesta regla automàticament. Si no assigneu etiquetes, tipus o corresponsals aquí, es processaran totes les regles de concordança que hàgiu definit."
 
@@ -1615,15 +1593,15 @@ msgstr "filtra cos"
 
 #: paperless_mail/models.py:146
 msgid "filter attachment filename inclusive"
-msgstr "filtra nom del fitxer adjunt incloent"
+msgstr ""
 
 #: paperless_mail/models.py:158
 msgid "filter attachment filename exclusive"
-msgstr "filtra nom del fitxer adjunt excloent"
+msgstr ""
 
 #: paperless_mail/models.py:163
 msgid "Do not consume documents which entirely match this filename if specified. Wildcards such as *.pdf or *invoice* are allowed. Case insensitive."
-msgstr "No consumeixis documents que coincideixin aquest nom d'arxiu especificat. Comodins com *.pdf o *factura* permessos. Cas insensitiu."
+msgstr ""
 
 #: paperless_mail/models.py:170
 msgid "maximum age"

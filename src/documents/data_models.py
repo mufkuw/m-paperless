@@ -50,13 +50,14 @@ class DocumentMetadataOverrides:
             self.storage_path_id = other.storage_path_id
         if other.owner_id is not None:
             self.owner_id = other.owner_id
-
+        
         # merge
         if self.tag_ids is None:
             self.tag_ids = other.tag_ids
         elif other.tag_ids is not None:
             self.tag_ids.extend(other.tag_ids)
             self.tag_ids = list(set(self.tag_ids))
+
 
         if self.view_users is None:
             self.view_users = other.view_users
