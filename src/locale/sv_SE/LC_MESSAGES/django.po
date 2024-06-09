@@ -1054,8 +1054,8 @@ msgid "M-Paperless reset password request"
 msgstr ""
 
 #: documents/templates/index.html:61
-msgid "Paperless-ngx is loading..."
-msgstr "Paperless-ngx laddar..."
+msgid "M-Paperless is loading..."
+msgstr "M-Paperless laddar..."
 
 #: documents/templates/index.html:62
 msgid "Still here?! Hmm, something might be wrong."
@@ -1075,7 +1075,7 @@ msgstr "Delningslänken har upphört att gälla."
 
 #: documents/templates/socialaccount/authentication_error.html:5
 #: documents/templates/socialaccount/login.html:5
-msgid "Paperless-ngx social account sign in"
+msgid "M-Paperless social account sign in"
 msgstr ""
 
 #: documents/templates/registration/password_reset_form.html:47
@@ -1363,8 +1363,8 @@ msgid "Chinese Simplified"
 msgstr "Kinesiska (förenklad)"
 
 #: paperless/urls.py:236
-msgid "Paperless-ngx administration"
-msgstr "Paperless-ngx administration"
+msgid "M-Paperless administration"
+msgstr "M-Paperless administration"
 
 #: paperless_mail/admin.py:41
 msgid "Authentication"

@@ -946,8 +946,8 @@ msgstr "Gràcies per fer servir %(site_name)s!\n"
 "%(site_domain)s"
 
 #: documents/templates/account/login.html:5
-msgid "Paperless-ngx sign in"
-msgstr "Paperless-ngx sign in"
+msgid "M-Paperless sign in"
+msgstr "M-Paperless sign in"
 
 #: documents/templates/registration/login.html:41
 msgid "Please sign in."
@@ -988,7 +988,7 @@ msgid "or sign in via"
 msgstr "o accedeix via"
 
 #: documents/templates/account/password_reset.html:5
-msgid "Paperless-ngx reset password request"
+msgid "M-Paperless reset password request"
 msgstr "Sol·licitud de restabliment de la contrasenya"
 
 #: documents/templates/account/password_reset.html:9
@@ -1008,7 +1008,7 @@ msgid "Send me instructions!"
 msgstr "Enviar instruccions"
 
 #: documents/templates/account/password_reset_done.html:5
-msgid "Paperless-ngx reset password sent"
+msgid "M-Paperless reset password sent"
 msgstr "S'ha enviat el restabliment de contrasenya"
 
 #: documents/templates/account/password_reset_done.html:9
@@ -1020,8 +1020,8 @@ msgid "We've emailed you instructions for setting your password. You should rece
 msgstr "Enviat per correu electrònic instruccions per configurar la vostra contrasenya. Hauríeu de rebre el correu electrònic en breu!"
 
 #: documents/templates/account/password_reset_from_key.html:5
-msgid "Paperless-ngx reset password confirmation"
-msgstr "Paperless-ngx confirmació de restabliment de contrasenya"
+msgid "M-Paperless reset password confirmation"
+msgstr "M-Paperless confirmació de restabliment de contrasenya"
 
 #: documents/templates/account/password_reset_from_key.html:9
 msgid "Set a new password."
@@ -1044,7 +1044,7 @@ msgid "Change my password"
 msgstr "Canvia contrasenya"
 
 #: documents/templates/account/password_reset_from_key_done.html:5
-msgid "Paperless-ngx reset password complete"
+msgid "M-Paperless reset password complete"
 msgstr "Contrasenya restablerta"
 
 #: documents/templates/account/password_reset_from_key_done.html:9
@@ -1057,8 +1057,8 @@ msgid "Your new password has been set. You can now <a href=\"%(login_url)s\">log
 msgstr "Contrasenya enviada. Pots iniciar <a href=\"%(login_url)s\">sessió</a>"
 
 #: documents/templates/account/signup.html:5
-msgid "Paperless-ngx sign up"
-msgstr "Registra't a Paperless-ngx"
+msgid "M-Paperless sign up"
+msgstr "Registra't a M-Paperless"
 
 #: documents/templates/account/signup.html:10
 #, python-format
@@ -1080,8 +1080,8 @@ msgid "Sign up"
 msgstr "Registra't"
 
 #: documents/templates/index.html:61
-msgid "Paperless-ngx is loading..."
-msgstr "Paperless-ngx carregant..."
+msgid "M-Paperless is loading..."
+msgstr "M-Paperless carregant..."
 
 #: documents/templates/index.html:62
 msgid "Still here?! Hmm, something might be wrong."
@@ -1396,8 +1396,8 @@ msgid "Chinese Simplified"
 msgstr "Xinès Simplificat"
 
 #: paperless/urls.py:236
-msgid "Paperless-ngx administration"
-msgstr "Administració Paperless-ngx"
+msgid "M-Paperless administration"
+msgstr "Administració M-Paperless"
 
 #: paperless_mail/admin.py:41
 msgid "Authentication"

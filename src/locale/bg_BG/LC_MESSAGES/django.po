@@ -948,8 +948,8 @@ msgstr "Благодари, че използвате %(site_name)s!\n"
 "%(site_domain)s"
 
 #: documents/templates/account/login.html:5
-msgid "Paperless-ngx sign in"
-msgstr "Вписване в Paperless-ngx"
+msgid "M-Paperless sign in"
+msgstr "Вписване в M-Paperless"
 
 #: documents/templates/registration/login.html:41
 msgid "Please sign in."
@@ -990,8 +990,8 @@ msgid "or sign in via"
 msgstr "или влезте чрез"
 
 #: documents/templates/account/password_reset.html:5
-msgid "Paperless-ngx reset password request"
-msgstr "Заявка за нулиране на парола за Paperless-ngx"
+msgid "M-Paperless reset password request"
+msgstr "Заявка за нулиране на парола за M-Paperless"
 
 #: documents/templates/account/password_reset.html:9
 msgid "Enter your email address below, and we'll email instructions for setting a new one."
@@ -1010,8 +1010,8 @@ msgid "Send me instructions!"
 msgstr "Изпрати ми указания!"
 
 #: documents/templates/account/password_reset_done.html:5
-msgid "Paperless-ngx reset password sent"
-msgstr "Изпратена е нова парола за Paperless-ngx"
+msgid "M-Paperless reset password sent"
+msgstr "Изпратена е нова парола за M-Paperless"
 
 #: documents/templates/account/password_reset_done.html:9
 msgid "Check your inbox."
@@ -1022,8 +1022,8 @@ msgid "We've emailed you instructions for setting your password. You should rece
 msgstr "Изпратихме ви по имейл инструкции за задаване на парола. Скоро трябва да получите имейла!"
 
 #: documents/templates/account/password_reset_from_key.html:5
-msgid "Paperless-ngx reset password confirmation"
-msgstr "Потвърждение за нулиране на паролата на Paperless-ngx"
+msgid "M-Paperless reset password confirmation"
+msgstr "Потвърждение за нулиране на паролата на M-Paperless"
 
 #: documents/templates/account/password_reset_from_key.html:9
 msgid "Set a new password."
@@ -1046,8 +1046,8 @@ msgid "Change my password"
 msgstr "Промяна на моята паролата"
 
 #: documents/templates/account/password_reset_from_key_done.html:5
-msgid "Paperless-ngx reset password complete"
-msgstr "Възстановяването на паролата в Paperless-ngx е завършено"
+msgid "M-Paperless reset password complete"
+msgstr "Възстановяването на паролата в M-Paperless е завършено"
 
 #: documents/templates/account/password_reset_from_key_done.html:9
 msgid "Password reset complete."
@@ -1059,7 +1059,7 @@ msgid "Your new password has been set. You can now <a href=\"%(login_url)s\">log
 msgstr "Вашата нова парола е зададена. Вече можете да <a href=\"%(login_url)s\">да влезете в системата</a>"
 
 #: documents/templates/account/signup.html:5
-msgid "Paperless-ngx sign up"
+msgid "M-Paperless sign up"
 msgstr ""
 
 #: documents/templates/account/signup.html:10
@@ -1082,8 +1082,8 @@ msgid "Sign up"
 msgstr "Нов профил"
 
 #: documents/templates/index.html:61
-msgid "Paperless-ngx is loading..."
-msgstr "Paperless-ngx се зарежда..."
+msgid "M-Paperless is loading..."
+msgstr "M-Paperless се зарежда..."
 
 #: documents/templates/index.html:62
 msgid "Still here?! Hmm, something might be wrong."
@@ -1103,7 +1103,7 @@ msgstr "Връзката за споделяне е изтекла."
 
 #: documents/templates/socialaccount/authentication_error.html:5
 #: documents/templates/socialaccount/login.html:5
-msgid "Paperless-ngx social account sign in"
+msgid "M-Paperless social account sign in"
 msgstr "Влизане посредством профил в социалните мрежи"
 
 #: documents/templates/socialaccount/authentication_error.html:10
@@ -1121,7 +1121,7 @@ msgid "Continue"
 msgstr "Продължи"
 
 #: documents/templates/socialaccount/signup.html:5
-msgid "Paperless-ngx social account sign up"
+msgid "M-Paperless social account sign up"
 msgstr ""
 
 #: documents/templates/socialaccount/signup.html:10
@@ -1425,8 +1425,8 @@ msgid "Chinese Simplified"
 msgstr "Китайски опростен"
 
 #: paperless/urls.py:236
-msgid "Paperless-ngx administration"
-msgstr "Paperless-ngx администрация"
+msgid "M-Paperless administration"
+msgstr "M-Paperless администрация"
 
 #: paperless_mail/admin.py:41
 msgid "Authentication"

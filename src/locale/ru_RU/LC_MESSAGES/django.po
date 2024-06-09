@@ -945,8 +945,8 @@ msgid "Thank you for using %(site_name)s!\n"
 msgstr ""
 
 #: documents/templates/account/login.html:5
-msgid "Paperless-ngx sign in"
-msgstr "Войти в Paperless-ngx"
+msgid "M-Paperless sign in"
+msgstr "Войти в M-Paperless"
 
 #: documents/templates/account/login.html:10
 msgid "Please sign in."
@@ -1041,8 +1041,8 @@ msgid "Sign up"
 msgstr "Зарегистрироваться"
 
 #: documents/templates/index.html:61
-msgid "Paperless-ngx is loading..."
-msgstr "Paperless-ngx загружается..."
+msgid "M-Paperless is loading..."
+msgstr "M-Paperless загружается..."
 
 #: documents/templates/index.html:62
 msgid "Still here?! Hmm, something might be wrong."
@@ -1065,8 +1065,8 @@ msgstr "Срок действия ссылки для обмена истёк."
 
 #: documents/templates/socialaccount/authentication_error.html:5
 #: documents/templates/socialaccount/login.html:5
-msgid "Paperless-ngx social account sign in"
-msgstr "Paperless-ngx вход через сторонние сервисы"
+msgid "M-Paperless social account sign in"
+msgstr "M-Paperless вход через сторонние сервисы"
 
 #: documents/templates/socialaccount/authentication_error.html:10
 #, python-format
@@ -1358,8 +1358,8 @@ msgid "Chinese Simplified"
 msgstr "Китайский упрощенный"
 
 #: paperless/urls.py:236
-msgid "Paperless-ngx administration"
-msgstr "Администрирование Paperless-ngx"
+msgid "M-Paperless administration"
+msgstr "Администрирование M-Paperless"
 
 #: paperless_mail/admin.py:41
 msgid "Authentication"

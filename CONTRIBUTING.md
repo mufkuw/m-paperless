@@ -65,7 +65,7 @@ This project does not specifically prohibit the use of AI-generated code _during
 1. Any code present in the final PR that was generated using AI sources should be clearly attributed as such and must not violate copyright protections.
 2. We will not accept PRs that are entirely or mostly AI-derived.
 
-# Translating Paperless-ngx
+# Translating M-Paperless
 
 Some notes about translation:
 
@@ -105,7 +105,7 @@ If not, let us know in the issue you created for the language, so that another d
 
 # Organization Structure & Membership
 
-Paperless-ngx is a community project. We do our best to delegate permission and responsibility among a team of people to ensure the longevity of the project.
+M-Paperless is a community project. We do our best to delegate permission and responsibility among a team of people to ensure the longevity of the project.
 
 ## Structure
 
@@ -140,7 +140,7 @@ The admins occasionally invite contributors directly if we believe having them o
 
 # Automatic Repository Maintenance
 
-The Paperless-ngx team appreciates all effort and interest from the community in filing bug reports, creating feature requests, sharing ideas and helping other
+The M-Paperless team appreciates all effort and interest from the community in filing bug reports, creating feature requests, sharing ideas and helping other
 community members. That said, in an effort to keep the repository organized and managebale the project uses automatic handling of certain areas:
 
 - Issues that cannot be reproduced will be marked 'stale' after 7 days of inactivity and closed after 14 further days of inactivity.

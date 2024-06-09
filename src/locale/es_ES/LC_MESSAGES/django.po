@@ -1044,7 +1044,7 @@ msgid "Your new password has been set. You can now <a href=\"%(login_url)s\">log
 msgstr "Se ha establecido tu nueva contraseña. Ahora puedes <a href=\"%(login_url)s\"> iniciar sesión </a>"
 
 #: documents/templates/account/signup.html:5
-msgid "Paperless-ngx sign up"
+msgid "M-Paperless sign up"
 msgstr ""
 
 #: documents/templates/account/signup.html:10
@@ -1067,8 +1067,8 @@ msgid "Sign up"
 msgstr "Registrarse"
 
 #: documents/templates/index.html:61
-msgid "Paperless-ngx is loading..."
-msgstr "Paperless-ngx está cargando..."
+msgid "M-Paperless is loading..."
+msgstr "M-Paperless está cargando..."
 
 #: documents/templates/index.html:62
 msgid "Still here?! Hmm, something might be wrong."
@@ -1088,8 +1088,8 @@ msgstr "El enlace ha expirado."
 
 #: documents/templates/socialaccount/authentication_error.html:5
 #: documents/templates/socialaccount/login.html:5
-msgid "Paperless-ngx social account sign in"
-msgstr "Acceso a Paperless-ngx con cuenta social"
+msgid "M-Paperless social account sign in"
+msgstr "Acceso a M-Paperless con cuenta social"
 
 #: documents/templates/socialaccount/authentication_error.html:10
 #, python-format
@@ -1106,8 +1106,8 @@ msgid "Continue"
 msgstr "Continuar"
 
 #: documents/templates/socialaccount/signup.html:5
-msgid "Paperless-ngx social account sign up"
-msgstr "Acceso a Paperless-ngx con cuenta social"
+msgid "M-Paperless social account sign up"
+msgstr "Acceso a M-Paperless con cuenta social"
 
 #: documents/templates/socialaccount/signup.html:10
 #, python-format
@@ -1410,8 +1410,8 @@ msgid "Chinese Simplified"
 msgstr "Chino simplificado"
 
 #: paperless/urls.py:236
-msgid "Paperless-ngx administration"
-msgstr "Administración de Paperless-ngx"
+msgid "M-Paperless administration"
+msgstr "Administración de M-Paperless"
 
 #: paperless_mail/admin.py:41
 msgid "Authentication"

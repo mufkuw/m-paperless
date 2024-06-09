@@ -452,7 +452,7 @@ operations, using the endpoint: `/api/bulk_edit_objects/`, which requires a json
 
 ## API Versioning
 
-The REST API is versioned since Paperless-ngx 1.3.0.
+The REST API is versioned since M-Paperless 1.3.0.
 
 - Versioning ensures that changes to the API don't break older
   clients.

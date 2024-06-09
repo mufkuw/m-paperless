@@ -35,7 +35,7 @@ then you might need to install the [Tesseract language
 files](https://packages.ubuntu.com/search?keywords=tesseract-ocr)
 marching your document's languages.
 
-As an example, if you are running Paperless-ngx from any Ubuntu or
+As an example, if you are running M-Paperless from any Ubuntu or
 Debian box, and your documents are written in Spanish you may need to
 run:
 
@@ -355,4 +355,4 @@ processing documents with this issue.
 
 ## Platform-Specific Deployment Troubleshooting
 
-A user-maintained wiki page is available to help troubleshoot issues that may arise when trying to deploy Paperless-ngx on specific platforms, for example SELinux. Please see [the wiki](https://github.com/paperless-ngx/paperless-ngx/wiki/Platform%E2%80%90Specific-Troubleshooting).
+A user-maintained wiki page is available to help troubleshoot issues that may arise when trying to deploy M-Paperless on specific platforms, for example SELinux. Please see [the wiki](https://github.com/paperless-ngx/paperless-ngx/wiki/Platform%E2%80%90Specific-Troubleshooting).

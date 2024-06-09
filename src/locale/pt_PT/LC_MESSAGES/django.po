@@ -1031,8 +1031,8 @@ msgid "Sign up"
 msgstr "Criar conta"
 
 #: documents/templates/index.html:61
-msgid "Paperless-ngx is loading..."
-msgstr "O Paperless-ngx está a carregar..."
+msgid "M-Paperless is loading..."
+msgstr "O M-Paperless está a carregar..."
 
 #: documents/templates/index.html:62
 msgid "Still here?! Hmm, something might be wrong."
@@ -1359,8 +1359,8 @@ msgid "Chinese Simplified"
 msgstr "Chinês Simplificado"
 
 #: paperless/urls.py:236
-msgid "Paperless-ngx administration"
-msgstr "Administração do Paperless-ngx"
+msgid "M-Paperless administration"
+msgstr "Administração do M-Paperless"
 
 #: paperless_mail/admin.py:41
 msgid "Authentication"

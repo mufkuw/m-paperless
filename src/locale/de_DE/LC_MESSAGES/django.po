@@ -1000,8 +1000,8 @@ msgid "or sign in via"
 msgstr "oder anmelden über"
 
 #: documents/templates/account/password_reset.html:5
-msgid "Paperless-ngx reset password request"
-msgstr "Paperless-ngx Kennwortrücksetzungsanfrage"
+msgid "M-Paperless reset password request"
+msgstr "M-Paperless Kennwortrücksetzungsanfrage"
 
 #: documents/templates/account/password_reset.html:9
 msgid "Enter your email address below, and we'll email instructions for setting a new one."
@@ -1020,8 +1020,8 @@ msgid "Send me instructions!"
 msgstr "Anweisungen senden!"
 
 #: documents/templates/account/password_reset_done.html:5
-msgid "Paperless-ngx reset password sent"
-msgstr "Paperless-ngx Kennwortrücksetzung gesendet"
+msgid "M-Paperless reset password sent"
+msgstr "M-Paperless Kennwortrücksetzung gesendet"
 
 #: documents/templates/account/password_reset_done.html:9
 msgid "Check your inbox."
@@ -1032,8 +1032,8 @@ msgid "We've emailed you instructions for setting your password. You should rece
 msgstr "Wir haben Ihnen Anweisungen zum Setzen Ihres neuen Kennworts gesendet. Sie sollten die E-Mail in Kürze erhalten!"
 
 #: documents/templates/account/password_reset_from_key.html:5
-msgid "Paperless-ngx reset password confirmation"
-msgstr "Paperless-ngx Kennwortrücksetzungsbestätigung"
+msgid "M-Paperless reset password confirmation"
+msgstr "M-Paperless Kennwortrücksetzungsbestätigung"
 
 #: documents/templates/account/password_reset_from_key.html:9
 msgid "Set a new password."
@@ -1056,8 +1056,8 @@ msgid "Change my password"
 msgstr "Mein Kennwort ändern"
 
 #: documents/templates/account/password_reset_from_key_done.html:5
-msgid "Paperless-ngx reset password complete"
-msgstr "Paperless-ngx Kennwort-Rücksetzung abgeschlossen"
+msgid "M-Paperless reset password complete"
+msgstr "M-Paperless Kennwort-Rücksetzung abgeschlossen"
 
 #: documents/templates/account/password_reset_from_key_done.html:9
 msgid "Password reset complete."
@@ -1069,8 +1069,8 @@ msgid "Your new password has been set. You can now <a href=\"%(login_url)s\">log
 msgstr "Ihr neues Kennwort wurde gesetzt. Sie können sich jetzt unter <a href=\"%(login_url)s\">anmelden</a>"
 
 #: documents/templates/account/signup.html:5
-msgid "Paperless-ngx sign up"
-msgstr "Paperless-ngx-Registrierung"
+msgid "M-Paperless sign up"
+msgstr "M-Paperless-Registrierung"
 
 #: documents/templates/account/signup.html:10
 #, python-format
@@ -1092,8 +1092,8 @@ msgid "Sign up"
 msgstr "Registrieren"
 
 #: documents/templates/index.html:61
-msgid "Paperless-ngx is loading..."
-msgstr "Paperless-ngx wird geladen..."
+msgid "M-Paperless is loading..."
+msgstr "M-Paperless wird geladen..."
 
 #: documents/templates/index.html:62
 msgid "Still here?! Hmm, something might be wrong."
@@ -1113,8 +1113,8 @@ msgstr "Freigabelink ist abgelaufen."
 
 #: documents/templates/socialaccount/authentication_error.html:5
 #: documents/templates/socialaccount/login.html:5
-msgid "Paperless-ngx social account sign in"
-msgstr "Paperless-ngx Drittanbieterkonto-Anmeldung"
+msgid "M-Paperless social account sign in"
+msgstr "M-Paperless Drittanbieterkonto-Anmeldung"
 
 #: documents/templates/socialaccount/authentication_error.html:10
 #, python-format
@@ -1284,7 +1284,7 @@ msgstr "Anwendungslogo"
 
 #: paperless/models.py:188
 msgid "paperless application settings"
-msgstr "Paperless-ngx-Anwendungseinstellungen"
+msgstr "M-Paperless-Anwendungseinstellungen"
 
 #: paperless/settings.py:660
 msgid "English (US)"
@@ -1415,8 +1415,8 @@ msgid "Chinese Simplified"
 msgstr "Chinesisch (vereinfacht)"
 
 #: paperless/urls.py:236
-msgid "Paperless-ngx administration"
-msgstr "Paperless-ngx Administration"
+msgid "M-Paperless administration"
+msgstr "M-Paperless Administration"
 
 #: paperless_mail/admin.py:41
 msgid "Authentication"
@@ -1432,7 +1432,7 @@ msgstr "Filter"
 
 #: paperless_mail/admin.py:63
 msgid "Paperless will only process mails that match ALL of the filters given below."
-msgstr "Paperless-ngx wird nur E-Mails verarbeiten, für die alle der unten angegebenen Filter zutreffen."
+msgstr "M-Paperless wird nur E-Mails verarbeiten, für die alle der unten angegebenen Filter zutreffen."
 
 #: paperless_mail/admin.py:80
 msgid "Actions"

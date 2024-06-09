@@ -945,8 +945,8 @@ msgid "Thank you for using %(site_name)s!\n"
 msgstr ""
 
 #: documents/templates/account/login.html:5
-msgid "Paperless-ngx sign in"
-msgstr "Paperless-ngx přihlášení"
+msgid "M-Paperless sign in"
+msgstr "M-Paperless přihlášení"
 
 #: documents/templates/account/login.html:10
 msgid "Please sign in."
@@ -1031,8 +1031,8 @@ msgstr ""
 #: documents/templates/registration/password_reset_form.html:14
 msgid "M-Paperless reset password request"
 #: documents/templates/index.html:61
-msgid "Paperless-ngx is loading..."
-msgstr "Paperless-ngx se načítá..."
+msgid "M-Paperless is loading..."
+msgstr "M-Paperless se načítá..."
 
 #: documents/templates/index.html:62
 msgid "Still here?! Hmm, something might be wrong."
@@ -1052,7 +1052,7 @@ msgstr "Platnost odkazu vypršela."
 
 #: documents/templates/socialaccount/authentication_error.html:5
 #: documents/templates/socialaccount/login.html:5
-msgid "Paperless-ngx social account sign in"
+msgid "M-Paperless social account sign in"
 msgstr ""
 
 #: documents/templates/registration/password_reset_form.html:41
@@ -1348,8 +1348,8 @@ msgid "Chinese Simplified"
 msgstr "Čínština (zjednodušená)"
 
 #: paperless/urls.py:236
-msgid "Paperless-ngx administration"
-msgstr "Správa Paperless-ngx"
+msgid "M-Paperless administration"
+msgstr "Správa M-Paperless"
 
 #: paperless_mail/admin.py:41
 msgid "Authentication"

@@ -948,8 +948,8 @@ msgid "Thank you for using %(site_name)s!\n"
 msgstr ""
 
 #: documents/templates/account/login.html:5
-msgid "Paperless-ngx sign in"
-msgstr "התחברות Paperless-ngx"
+msgid "M-Paperless sign in"
+msgstr "התחברות M-Paperless"
 
 #: documents/templates/account/login.html:10
 msgid "Please sign in."
@@ -985,7 +985,7 @@ msgid "or sign in via"
 msgstr ""
 
 #: documents/templates/account/password_reset.html:5
-msgid "Paperless-ngx reset password request"
+msgid "M-Paperless reset password request"
 msgstr "בקשה לאיפוס סיסמה"
 
 #: documents/templates/account/password_reset.html:9
@@ -1005,7 +1005,7 @@ msgid "Send me instructions!"
 msgstr "שלח לי את ההוראות!"
 
 #: documents/templates/account/password_reset_done.html:5
-msgid "Paperless-ngx reset password sent"
+msgid "M-Paperless reset password sent"
 msgstr "סיסמא לאיפוס נשלחה"
 
 #: documents/templates/account/password_reset_done.html:9
@@ -1017,7 +1017,7 @@ msgid "We've emailed you instructions for setting your password. You should rece
 msgstr "נשלח מייל עם הוראות להגדרת הסיסמה שלך. אתה צריך לקבל מייל בקרוב!"
 
 #: documents/templates/account/password_reset_from_key.html:5
-msgid "Paperless-ngx reset password confirmation"
+msgid "M-Paperless reset password confirmation"
 msgstr "אשור תהליך איפוס הסיסמה"
 
 #: documents/templates/account/password_reset_from_key.html:9
@@ -1041,7 +1041,7 @@ msgid "Change my password"
 msgstr "שנה את הסיסמא שלי"
 
 #: documents/templates/account/password_reset_from_key_done.html:5
-msgid "Paperless-ngx reset password complete"
+msgid "M-Paperless reset password complete"
 msgstr "תהליך איפוס הסיסמה הסתיים"
 
 #: documents/templates/account/password_reset_from_key_done.html:9
@@ -1054,7 +1054,7 @@ msgid "Your new password has been set. You can now <a href=\"%(login_url)s\">log
 msgstr "הסיסמה שלך הוגדרה בהצלחה במערכת. אתה יכול עתה להתחבר <a href=\"%(login_url)s\">התחבר</a>"
 
 #: documents/templates/account/signup.html:5
-msgid "Paperless-ngx sign up"
+msgid "M-Paperless sign up"
 msgstr ""
 
 #: documents/templates/account/signup.html:10
@@ -1077,8 +1077,8 @@ msgid "Sign up"
 msgstr "התחבר"
 
 #: documents/templates/index.html:61
-msgid "Paperless-ngx is loading..."
-msgstr "Paperless-ngx נטען..."
+msgid "M-Paperless is loading..."
+msgstr "M-Paperless נטען..."
 
 #: documents/templates/index.html:62
 msgid "Still here?! Hmm, something might be wrong."
@@ -1098,7 +1098,7 @@ msgstr "לינק לקישור הקובץ פג תוקף"
 
 #: documents/templates/socialaccount/authentication_error.html:5
 #: documents/templates/socialaccount/login.html:5
-msgid "Paperless-ngx social account sign in"
+msgid "M-Paperless social account sign in"
 msgstr ""
 
 #: documents/templates/socialaccount/authentication_error.html:10
@@ -1116,7 +1116,7 @@ msgid "Continue"
 msgstr ""
 
 #: documents/templates/socialaccount/signup.html:5
-msgid "Paperless-ngx social account sign up"
+msgid "M-Paperless social account sign up"
 msgstr ""
 
 #: documents/templates/socialaccount/signup.html:10
@@ -1420,8 +1420,8 @@ msgid "Chinese Simplified"
 msgstr "סינית מפושטת"
 
 #: paperless/urls.py:236
-msgid "Paperless-ngx administration"
-msgstr "ניהול Paperless-ngx"
+msgid "M-Paperless administration"
+msgstr "ניהול M-Paperless"
 
 #: paperless_mail/admin.py:41
 msgid "Authentication"
