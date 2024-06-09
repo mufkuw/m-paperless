@@ -279,69 +279,6 @@
               </a>
             </li>
             }
-            <li class="nav-item mt-2" tourAnchor="tour.outro">
-              <a class="px-3 py-2 text-muted small d-flex align-items-center flex-wrap text-decoration-none"
-                target="_blank" rel="noopener noreferrer" href="https://docs.paperless-ngx.com"
-                ngbPopover="Documentation" i18n-ngbPopover [disablePopover]="!slimSidebarEnabled" placement="end"
-                container="body" triggers="mouseenter:mouseleave" popoverClass="popover-slim">
-                <i-bs class="d-flex" name="question-circle"></i-bs><span class="ms-1">&nbsp;<ng-container
-                    i18n>Documentation</ng-container></span>
-              </a>
-            </li>
-            <li class="nav-item" [class.visually-hidden]="slimSidebarEnabled">
-              <div class="px-3 py-0 text-muted small d-flex align-items-center flex-wrap">
-                <div class="me-3">
-                  <a class="text-muted text-decoration-none" target="_blank" rel="noopener noreferrer"
-                    href="https://github.com/paperless-ngx/paperless-ngx" ngbPopover="GitHub" i18n-ngbPopover
-                    [disablePopover]="!slimSidebarEnabled" placement="end" container="body"
-                    triggers="mouseenter:mouseleave" popoverClass="popover-slim">
-                    {{ versionString }}
-                  </a>
-                </div>
-                @if (!settingsService.updateCheckingIsSet || appRemoteVersion) {
-                <div class="version-check">
-                  <ng-template #updateAvailablePopContent>
-                    <span class="small">M-Paperless {{ appRemoteVersion.version }} <ng-container i18n>is
-                        available.</ng-container><br /><ng-container i18n>Click to view.</ng-container></span>
-                  </ng-template>
-                  <ng-template #updateCheckingNotEnabledPopContent>
-                    <p class="small mb-2">
-                      <ng-container i18n>M-Paperless can automatically check for updates</ng-container>
-                    </p>
-                    <div class="btn-group btn-group-xs flex-fill w-100">
-                      <button class="btn btn-outline-primary" (click)="setUpdateChecking(true)">Enable</button>
-                      <button class="btn btn-outline-secondary" (click)="setUpdateChecking(false)">Disable</button>
-                    </div>
-                    <p class="small mb-0 mt-2">
-                      <a class="small text-decoration-none fst-italic" routerLink="/settings" fragment="update-checking"
-                        i18n>
-                        How does this work?
-                      </a>
-                    </p>
-                  </ng-template>
-                  @if (settingsService.updateCheckingIsSet) {
-                  @if (appRemoteVersion.update_available) {
-                  <a class="small text-decoration-none" target="_blank" rel="noopener noreferrer"
-                    href="https://github.com/paperless-ngx/paperless-ngx/releases"
-                    [ngbPopover]="updateAvailablePopContent" popoverClass="shadow" triggers="mouseenter:mouseleave"
-                    container="body">
-                    <i-bs width="1.2em" height="1.2em" name="info-circle"></i-bs>
-                    @if (appRemoteVersion?.update_available) {
-                    &nbsp;<ng-container i18n>Update available</ng-container>
-                    }
-                  </a>
-                  }
-                  } @else {
-                  <a class="small text-decoration-none" routerLink="/settings" fragment="update-checking"
-                    [ngbPopover]="updateCheckingNotEnabledPopContent" popoverClass="shadow" triggers="mouseenter"
-                    container="body">
-                    <i-bs width="1.2em" height="1.2em" name="info-circle"></i-bs>
-                  </a>
-                  }
-                </div>
-                }
-              </div>
-            </li>
           </ul>
         </div>
       </div>
