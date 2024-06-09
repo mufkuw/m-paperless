@@ -6,7 +6,7 @@
 physical documents into a searchable online archive so you can keep, well, _less paper_.
 
 [Get started](setup.md){ .md-button .md-button--primary .index-callout }
-[Demo](https://demo.paperless-ngx.com){ .md-button .md-button--secondary target=\_blank }
+[Demo](https://demo.M-Paperless.com){ .md-button .md-button--secondary target=\_blank }
 
 <div style="display: flex; justify-content: end; margin-top: -1.5rem;">
   <a href="https://m.do.co/c/8d70b916d462" target="_blank">
@@ -53,11 +53,11 @@ physical documents into a searchable online archive so you can keep, well, _less
 -   **Optimized** for multi core systems: M-Paperless consumes multiple documents in parallel.
 -   The integrated sanity checker makes sure that your document archive is in good health.
 
-[^1]: Office document and email consumption support is optional and provided by Apache Tika (see [configuration](https://docs.paperless-ngx.com/configuration/#tika))
+[^1]: Office document and email consumption support is optional and provided by Apache Tika (see [configuration](https://docs.M-Paperless.com/configuration/#tika))
 
 ## Paperless, a history
 
-M-Paperless is the official successor to the original [Paperless](https://github.com/the-paperless-project/paperless) & [Paperless-ng](https://github.com/jonaswinkler/paperless-ng) projects and is designed to distribute the responsibility of advancing and supporting the project among a team of people. [Consider joining us!](https://github.com/paperless-ngx/paperless-ngx#community-support)
+M-Paperless is the official successor to the original [Paperless](https://github.com/the-paperless-project/paperless) & [Paperless-ng](https://github.com/jonaswinkler/paperless-ng) projects and is designed to distribute the responsibility of advancing and supporting the project among a team of people. [Consider joining us!](https://github.com/M-Paperless/M-Paperless#community-support)
 
 Further discussion of the transition between these projects can be found at
 [ng#1599](https://github.com/jonaswinkler/paperless-ng/issues/1599) and [ng#1632](https://github.com/jonaswinkler/paperless-ng/issues/1632).
@@ -181,24 +181,24 @@ Mobile devices are supported.
 
 ## Support
 
-Community support is available via [GitHub Discussions](https://github.com/paperless-ngx/paperless-ngx/discussions/) and [the Matrix chat room](https://matrix.to/#/#paperless:matrix.org).
+Community support is available via [GitHub Discussions](https://github.com/M-Paperless/M-Paperless/discussions/) and [the Matrix chat room](https://matrix.to/#/#paperless:matrix.org).
 
 ### Feature Requests
 
-Feature requests can be submitted via [GitHub Discussions](https://github.com/paperless-ngx/paperless-ngx/discussions/categories/feature-requests) where you can search for existing ideas, add your own and vote for the ones you care about.
+Feature requests can be submitted via [GitHub Discussions](https://github.com/M-Paperless/M-Paperless/discussions/categories/feature-requests) where you can search for existing ideas, add your own and vote for the ones you care about.
 
 ### Bugs
 
-For bugs please [open an issue](https://github.com/paperless-ngx/paperless-ngx/issues) or [start a discussion](https://github.com/paperless-ngx/paperless-ngx/discussions/categories/support) if you have questions.
+For bugs please [open an issue](https://github.com/M-Paperless/M-Paperless/issues) or [start a discussion](https://github.com/M-Paperless/M-Paperless/discussions/categories/support) if you have questions.
 
 ## Contributing
 
-People interested in continuing the work on paperless-ngx are encouraged to reach out on [GitHub](https://github.com/paperless-ngx/paperless-ngx) or [the Matrix chat room](https://matrix.to/#/#paperless:matrix.org). If you would like to contribute to the project on an ongoing basis there are multiple teams (frontend, ci/cd, etc) that could use your help so please reach out!
+People interested in continuing the work on M-Paperless are encouraged to reach out on [GitHub](https://github.com/M-Paperless/M-Paperless) or [the Matrix chat room](https://matrix.to/#/#paperless:matrix.org). If you would like to contribute to the project on an ongoing basis there are multiple teams (frontend, ci/cd, etc) that could use your help so please reach out!
 
 ### Translation
 
-M-Paperless is available in many languages that are coordinated on [Crowdin](https://crwd.in/paperless-ngx). If you want to help out by translating paperless-ngx into your language, please head over to the [M-Paperless project at Crowdin](https://crwd.in/paperless-ngx), and thank you!
+M-Paperless is available in many languages that are coordinated on [Crowdin](https://crwd.in/M-Paperless). If you want to help out by translating M-Paperless into your language, please head over to the [M-Paperless project at Crowdin](https://crwd.in/M-Paperless), and thank you!
 
 ## Scanners & Software
 
-M-Paperless is compatible with many different scanners and scanning tools. A user-maintained list of scanners and other software is available on [the wiki](https://github.com/paperless-ngx/paperless-ngx/wiki/Scanner-&-Software-Recommendations).
+M-Paperless is compatible with many different scanners and scanning tools. A user-maintained list of scanners and other software is available on [the wiki](https://github.com/M-Paperless/M-Paperless/wiki/Scanner-&-Software-Recommendations).

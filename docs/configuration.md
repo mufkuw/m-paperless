@@ -189,7 +189,7 @@ configure their endpoints, and enable the feature.
 
 If you run paperless on docker, you can add those services to the
 Docker Compose file (see the provided
-[`docker-compose.sqlite-tika.yml`](https://github.com/paperless-ngx/paperless-ngx/blob/main/docker/compose/docker-compose.sqlite-tika.yml)
+[`docker-compose.sqlite-tika.yml`](https://github.com/M-Paperless/M-Paperless/blob/main/docker/compose/docker-compose.sqlite-tika.yml)
 file for reference).
 
 Add all three configuration parameters to your configuration. If using
@@ -333,7 +333,7 @@ not include a trailing slash. E.g. <https://paperless.domain.com>
     !!! note
 
         This value cannot contain a path (e.g. domain.com/path), even if
-        you are installing paperless-ngx at a subpath.
+        you are installing M-Paperless at a subpath.
 
 #### [`PAPERLESS_CSRF_TRUSTED_ORIGINS=<comma-separated-list>`](#PAPERLESS_CSRF_TRUSTED_ORIGINS) {#PAPERLESS_CSRF_TRUSTED_ORIGINS}
 
@@ -592,7 +592,7 @@ system. See the corresponding
 
 #### [`PAPERLESS_DISABLE_REGULAR_LOGIN=<bool>`](#PAPERLESS_DISABLE_REGULAR_LOGIN) {#PAPERLESS_DISABLE_REGULAR_LOGIN}
 
-: Disables the regular frontend username / password login, i.e. once you have setup SSO. Note that this setting does not disable the Django admin login. To prevent logins directly to Django, consider blocking `/admin/` in your [web server or reverse proxy configuration](https://github.com/paperless-ngx/paperless-ngx/wiki/Using-a-Reverse-Proxy-with-M-Paperless).
+: Disables the regular frontend username / password login, i.e. once you have setup SSO. Note that this setting does not disable the Django admin login. To prevent logins directly to Django, consider blocking `/admin/` in your [web server or reverse proxy configuration](https://github.com/M-Paperless/M-Paperless/wiki/Using-a-Reverse-Proxy-with-M-Paperless).
 
     Defaults to False
 

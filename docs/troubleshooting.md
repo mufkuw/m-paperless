@@ -355,4 +355,4 @@ processing documents with this issue.
 
 ## Platform-Specific Deployment Troubleshooting
 
-A user-maintained wiki page is available to help troubleshoot issues that may arise when trying to deploy M-Paperless on specific platforms, for example SELinux. Please see [the wiki](https://github.com/paperless-ngx/paperless-ngx/wiki/Platform%E2%80%90Specific-Troubleshooting).
+A user-maintained wiki page is available to help troubleshoot issues that may arise when trying to deploy M-Paperless on specific platforms, for example SELinux. Please see [the wiki](https://github.com/M-Paperless/M-Paperless/wiki/Platform%E2%80%90Specific-Troubleshooting).

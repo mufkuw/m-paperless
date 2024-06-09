@@ -7,7 +7,7 @@ If you want to implement something big:
 - Please start a discussion about that in the issues! Maybe something similar is already in development and we can make it happen together.
 - When making additions to the project, consider if the majority of users will benefit from your change. If not, you're probably better of forking the project.
 - Also consider if your change will get in the way of other users. A good change is a change that enhances the experience of some users who want that change and does not affect users who do not care about the change.
-- Please see the [paperless-ngx merge process](#merging-prs) below.
+- Please see the [M-Paperless merge process](#merging-prs) below.
 
 ## Python
 
@@ -27,11 +27,11 @@ Please format and test your code! I know it's a hassle, but it makes sure that y
 
 To test your code, execute `pytest` in the src/ directory. This also generates a html coverage report, which you can use to see if you missed anything important during testing.
 
-Before you can run `pytest`, ensure to [properly set up your local environment](https://docs.paperless-ngx.com/development/#initial-setup-and-first-start).
+Before you can run `pytest`, ensure to [properly set up your local environment](https://docs.M-Paperless.com/development/#initial-setup-and-first-start).
 
 ## More info:
 
-... is available [in the documentation](https://docs.paperless-ngx.com/development).
+... is available [in the documentation](https://docs.M-Paperless.com/development).
 
 # Merging PRs
 
@@ -50,10 +50,10 @@ Examples of `non-trivial` PRs might include:
 Our community review process for `non-trivial` PRs is the following:
 
 1. Must pass usual automated code tests and formatting checks.
-2. The PR will be assigned and pinged to the appropriately experienced team (i.e. @paperless-ngx/backend for backend changes).
+2. The PR will be assigned and pinged to the appropriately experienced team (i.e. @M-Paperless/backend for backend changes).
 3. Development team will check and test code manually (possibly over several days).
    - You may be asked to make changes or rebase.
-   - The team may ask for additional testing done by @paperless-ngx/test
+   - The team may ask for additional testing done by @M-Paperless/test
 4. **At least two** members of the team will approve and finally merge the request into `dev` 🎉.
 
 This process might be slow as community members have different schedules and time to dedicate to the Paperless project. However it ensures community code reviews are as brilliantly thorough as they once were with @jonaswinkler.
@@ -81,7 +81,7 @@ Some notes about translation:
 
 If a language has already been added, and you would like to contribute new translations or change existing translations, please read the "Translation" section in the README.md file for further details on that.
 
-If you would like the project to be translated to another language, first head over to https://crwd.in/paperless-ngx to check if that language has already been enabled for translation.
+If you would like the project to be translated to another language, first head over to https://crwd.in/M-Paperless to check if that language has already been enabled for translation.
 If not, please request the language to be added by creating an issue on GitHub. The issue should contain:
 
 - English name of the language (the localized name can be added on Crowdin).
@@ -109,24 +109,24 @@ M-Paperless is a community project. We do our best to delegate permission and re
 
 ## Structure
 
-As of writing, there are 21 members in paperless-ngx. 4 of these people have complete administrative privileges to the repo:
+As of writing, there are 21 members in M-Paperless. 4 of these people have complete administrative privileges to the repo:
 
 - [@shamoon](https://github.com/shamoon)
 - [@bauerj](https://github.com/bauerj)
 - [@qcasey](https://github.com/qcasey)
 - [@FrankStrieter](https://github.com/FrankStrieter)
 
-There are 5 teams collaborating on specific tasks within paperless-ngx:
+There are 5 teams collaborating on specific tasks within M-Paperless:
 
-- @paperless-ngx/backend (Python / django)
-- @paperless-ngx/frontend (JavaScript / Typescript)
-- @paperless-ngx/ci-cd (GitHub Actions / Deployment)
-- @paperless-ngx/issues (Issue triage)
-- @paperless-ngx/test (General testing for larger PRs)
+- @M-Paperless/backend (Python / django)
+- @M-Paperless/frontend (JavaScript / Typescript)
+- @M-Paperless/ci-cd (GitHub Actions / Deployment)
+- @M-Paperless/issues (Issue triage)
+- @M-Paperless/test (General testing for larger PRs)
 
 ## Permissions
 
-All team members are notified when mentioned or assigned to a relevant issue or pull request. Additionally, each team has slightly different access to paperless-ngx:
+All team members are notified when mentioned or assigned to a relevant issue or pull request. Additionally, each team has slightly different access to M-Paperless:
 
 - The **test** team has no special permissions.
 - The **issues** team has `triage` access. This means they can organize issues and pull requests.

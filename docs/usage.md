@@ -1,7 +1,7 @@
 # Usage Overview
 
 Paperless is an application that manages your personal documents. With
-the help of a document scanner (see [the scanners wiki](https://github.com/paperless-ngx/paperless-ngx/wiki/Scanner-&-Software-Recommendations)),
+the help of a document scanner (see [the scanners wiki](https://github.com/M-Paperless/M-Paperless/wiki/Scanner-&-Software-Recommendations)),
 paperless transforms your unwieldy physical document binders into a searchable archive
 and provides many utilities for finding and managing your documents.
 
@@ -109,12 +109,12 @@ process.
 
 ### Mobile upload {#usage-mobile_upload}
 
-Please see [the wiki](https://github.com/paperless-ngx/paperless-ngx/wiki/Related-Projects) for a user-maintained list of related projects and
+Please see [the wiki](https://github.com/M-Paperless/M-Paperless/wiki/Related-Projects) for a user-maintained list of related projects and
 software (e.g. for mobile devices) that is compatible with M-Paperless.
 
 ### IMAP (Email) {#usage-email}
 
-You can tell paperless-ngx to consume documents from your email
+You can tell M-Paperless to consume documents from your email
 accounts. This is a very flexible and powerful feature, if you regularly
 received documents via mail that you need to archive. The mail consumer
 can be configured via the frontend settings (/settings/mail) in the following
@@ -210,7 +210,7 @@ Permissions in M-Paperless are based around ['global' permissions](#global-permi
 ['object-level' permissions](#object-permissions). Global permissions determine which parts of the
 application a user can access (e.g. Documents, Tags, Settings) and object-level determine which
 objects are visible or editable. All objects have an 'owner' and 'view' and 'edit' permissions which
-can be granted to other users or groups. The paperless-ngx permissions system uses the built-in user
+can be granted to other users or groups. The M-Paperless permissions system uses the built-in user
 model of the backend framework, Django.
 
 !!! tip
@@ -453,11 +453,11 @@ M-Paperless added the ability to create shareable links to files in version 2.0.
 - Share links do not require a user to login and thus link directly to a file.
 - Links are unique and are of the form `{paperless-url}/share/{randomly-generated-slug}`.
 - Links can optionally have an expiration time set.
-- After a link expires or is deleted users will be redirected to the regular paperless-ngx login.
+- After a link expires or is deleted users will be redirected to the regular M-Paperless login.
 
 !!! tip
 
-    If your paperless-ngx instance is behind a reverse-proxy you may want to create an exception to bypass any authentication layers that are part of your setup in order to make links truly publicly-accessible. Of course, do so with caution.
+    If your M-Paperless instance is behind a reverse-proxy you may want to create an exception to bypass any authentication layers that are part of your setup in order to make links truly publicly-accessible. Of course, do so with caution.
 
 ## PDF Actions
 

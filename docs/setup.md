@@ -6,7 +6,7 @@ You can go multiple routes to setup and run Paperless:
 - [Pull the image from Docker Hub](#docker_hub)
 - [Build the Docker image yourself](#docker_build)
 - [Install Paperless directly on your system manually (bare metal)](#bare_metal)
-- A user-maintained list of commercial hosting providers can be found [in the wiki](https://github.com/paperless-ngx/paperless-ngx/wiki/Related-Projects)
+- A user-maintained list of commercial hosting providers can be found [in the wiki](https://github.com/M-Paperless/M-Paperless/wiki/Related-Projects)
 
 The Docker routes are quick & easy. These are the recommended routes.
 This configures all the stuff from the above automatically so that it
@@ -35,7 +35,7 @@ steps described in [Docker setup](#docker_hub) automatically.
 2.  Download and run the installation script:
 
     ```shell-session
-    $ bash -c "$(curl --location --silent --show-error https://raw.githubusercontent.com/paperless-ngx/paperless-ngx/main/install-paperless-ngx.sh)"
+    $ bash -c "$(curl --location --silent --show-error https://raw.githubusercontent.com/M-Paperless/M-Paperless/main/install-M-Paperless.sh)"
     ```
 
     !!! note
@@ -49,11 +49,11 @@ steps described in [Docker setup](#docker_hub) automatically.
     configuration files and consumption directory.
 
     ```shell-session
-    $ mkdir -v ~/paperless-ngx
+    $ mkdir -v ~/M-Paperless
     ```
 
 2.  Go to the [/docker/compose directory on the project
-    page](https://github.com/paperless-ngx/paperless-ngx/tree/main/docker/compose)
+    page](https://github.com/M-Paperless/M-Paperless/tree/main/docker/compose)
     and download one of the `docker-compose.*.yml` files,
     depending on which database backend you want to use. Rename this
     file to `docker-compose.yml`. If you want to enable
@@ -139,7 +139,7 @@ steps described in [Docker setup](#docker_hub) automatically.
 
     > ```
     > webserver:
-    >   image: ghcr.io/paperless-ngx/paperless-ngx:latest
+    >   image: ghcr.io/M-Paperless/M-Paperless:latest
     >   user: <user_id>
     > ```
 
@@ -207,7 +207,7 @@ steps described in [Docker setup](#docker_hub) automatically.
 1.  Clone the entire repository of paperless:
 
     ```shell-session
-    git clone https://github.com/paperless-ngx/paperless-ngx
+    git clone https://github.com/M-Paperless/M-Paperless
     ```
 
     The main branch always reflects the latest stable version.
@@ -222,7 +222,7 @@ steps described in [Docker setup](#docker_hub) automatically.
 
     ```yaml
     webserver:
-      image: ghcr.io/paperless-ngx/paperless-ngx:latest
+      image: ghcr.io/M-Paperless/M-Paperless:latest
     ```
 
     and replace it with a line that instructs Docker Compose to build
@@ -332,16 +332,16 @@ supported.
     ```
 
 5.  Get the release archive from
-    <https://github.com/paperless-ngx/paperless-ngx/releases> for example with
+    <https://github.com/M-Paperless/M-Paperless/releases> for example with
 
     ```shell-session
-    curl -O -L https://github.com/paperless-ngx/paperless-ngx/releases/download/v1.10.2/paperless-ngx-v1.10.2.tar.xz
+    curl -O -L https://github.com/M-Paperless/M-Paperless/releases/download/v1.10.2/M-Paperless-v1.10.2.tar.xz
     ```
 
     Extract the archive with
 
     ```shell-session
-    tar -xf paperless-ngx-v1.10.2.tar.xz
+    tar -xf M-Paperless-v1.10.2.tar.xz
     ```
 
     and copy the contents to the
@@ -490,7 +490,7 @@ supported.
         in front of gunicorn instead.
 
         For instructions on how to use nginx for that,
-        [see the wiki](https://github.com/paperless-ngx/paperless-ngx/wiki/Using-a-Reverse-Proxy-with-M-Paperless#nginx).
+        [see the wiki](https://github.com/M-Paperless/M-Paperless/wiki/Using-a-Reverse-Proxy-with-M-Paperless#nginx).
 
     !!! warning
 
@@ -556,21 +556,21 @@ image: jonaswinkler/paperless-ng:latest
 to
 
 ```
-image: ghcr.io/paperless-ngx/paperless-ngx:latest
+image: ghcr.io/M-Paperless/M-Paperless:latest
 ```
 
 and then run `docker compose up -d` which will pull the new image
 recreate the container. That's it!
 
 Users who installed with the bare-metal route should also update their
-Git clone to point to `https://github.com/paperless-ngx/paperless-ngx`,
+Git clone to point to `https://github.com/M-Paperless/M-Paperless`,
 e.g. using the command
-`git remote set-url origin https://github.com/paperless-ngx/paperless-ngx`
+`git remote set-url origin https://github.com/M-Paperless/M-Paperless`
 and then pull the latest version.
 
 ## Migrating from Paperless
 
-At its core, paperless-ngx is still paperless and fully compatible.
+At its core, M-Paperless is still paperless and fully compatible.
 However, some things have changed under the hood, so you need to adapt
 your setup depending on how you installed paperless.
 
@@ -591,9 +591,9 @@ installation. The important things to keep in mind are as follows:
   Docker Compose route takes care of that.
 - The layout of the folder structure for your documents and data
   remains the same, so you can just plug your old docker volumes into
-  paperless-ngx and expect it to find everything where it should be.
+  M-Paperless and expect it to find everything where it should be.
 
-Migration to paperless-ngx is then performed in a few simple steps:
+Migration to M-Paperless is then performed in a few simple steps:
 
 1.  Stop paperless.
 
@@ -603,23 +603,23 @@ Migration to paperless-ngx is then performed in a few simple steps:
     ```
 
 2.  Do a backup for two purposes: If something goes wrong, you still
-    have your data. Second, if you don't like paperless-ngx, you can
+    have your data. Second, if you don't like M-Paperless, you can
     switch back to paperless.
 
-3.  Download the latest release of paperless-ngx. You can either go with
+3.  Download the latest release of M-Paperless. You can either go with
     the Docker Compose files from
-    [here](https://github.com/paperless-ngx/paperless-ngx/tree/main/docker/compose)
+    [here](https://github.com/M-Paperless/M-Paperless/tree/main/docker/compose)
     or clone the repository to build the image yourself (see
     [above](#docker_build)). You can
-    either replace your current paperless folder or put paperless-ngx in
+    either replace your current paperless folder or put M-Paperless in
     a different location.
 
     !!! warning
 
         M-Paperless includes a `.env` file. This will set the project name
         for docker compose to `paperless`, which will also define the name
-        of the volumes by paperless-ngx. However, if you experience that
-        paperless-ngx is not using your old paperless volumes, verify the
+        of the volumes by M-Paperless. However, if you experience that
+        M-Paperless is not using your old paperless volumes, verify the
         names of your volumes with
 
         ``` shell-session
@@ -650,7 +650,7 @@ Migration to paperless-ngx is then performed in a few simple steps:
     This will migrate your database and create the search index. After
     that, paperless will take care of maintaining the index by itself.
 
-8.  Start paperless-ngx.
+8.  Start M-Paperless.
 
     ```bash
     $ docker compose up -d
@@ -682,7 +682,7 @@ commands as well.
 
     1. Otherwise, in the `docker-compose.yml` add a new service for
        Redis, following [the example compose
-       files](https://github.com/paperless-ngx/paperless-ngx/tree/main/docker/compose)
+       files](https://github.com/M-Paperless/M-Paperless/tree/main/docker/compose)
 
     1. Set the environment variable [`PAPERLESS_REDIS`](configuration.md#PAPERLESS_REDIS) so it points to
        the new Redis container
@@ -708,7 +708,7 @@ commands as well.
        value as `TZ`
 
 8.  Modify the `image:` to point to
-    `ghcr.io/paperless-ngx/paperless-ngx:latest` or a specific version
+    `ghcr.io/M-Paperless/M-Paperless:latest` or a specific version
     if preferred.
 9.  Start the containers as before, using `docker compose`.
 
@@ -795,8 +795,8 @@ For details, refer to [configuration](configuration.md).
 
 # Using nginx as a reverse proxy {#nginx}
 
-Please see [the wiki](https://github.com/paperless-ngx/paperless-ngx/wiki/Using-a-Reverse-Proxy-with-M-Paperless#nginx) for user-maintained documentation of using nginx with M-Paperless.
+Please see [the wiki](https://github.com/M-Paperless/M-Paperless/wiki/Using-a-Reverse-Proxy-with-M-Paperless#nginx) for user-maintained documentation of using nginx with M-Paperless.
 
 # Enhancing security {#security}
 
-Please see [the wiki](https://github.com/paperless-ngx/paperless-ngx/wiki/Using-Security-Tools-with-M-Paperless) for user-maintained documentation of how to configure security tools like Fail2ban with M-Paperless.
+Please see [the wiki](https://github.com/M-Paperless/M-Paperless/wiki/Using-Security-Tools-with-M-Paperless) for user-maintained documentation of how to configure security tools like Fail2ban with M-Paperless.

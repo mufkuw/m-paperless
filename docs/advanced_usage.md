@@ -217,7 +217,7 @@ will need to pass the scripts into the container via a host mount
 in your `docker-compose.yml`.
 
 Assuming you have
-`/home/paperless-ngx/scripts/post-consumption-example.sh` as a
+`/home/M-Paperless/scripts/post-consumption-example.sh` as a
 script which you'd like to run.
 
 You can pass that script into the consumer container via a host mount:
@@ -228,7 +228,7 @@ webserver:
   ...
   volumes:
     ...
-    - /home/paperless-ngx/scripts:/path/in/container/scripts/ # (1)!
+    - /home/M-Paperless/scripts:/path/in/container/scripts/ # (1)!
   environment: # (3)!
     ...
     PAPERLESS_POST_CONSUME_SCRIPT: /path/in/container/scripts/post-consumption-example.sh # (2)!
@@ -242,7 +242,7 @@ webserver:
 Troubleshooting:
 
 - Monitor the Docker Compose log
-  `cd ~/paperless-ngx; docker compose logs -f`
+  `cd ~/M-Paperless; docker compose logs -f`
 - Check your script's permission e.g. in case of permission error
   `sudo chmod 755 post-consumption-example.sh`
 - Pipe your scripts's output to a log file e.g.
