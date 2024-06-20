@@ -18,6 +18,7 @@ from django.utils import timezone
 from documents.loggers import LoggingMixin
 from documents.signals import document_consumer_declaration
 from documents.utils import copy_file_with_basic_stats
+from documents.utils import run_subprocess
 
 # This regular expression will try to find dates in the document at
 # hand and will match the following formats:
@@ -182,8 +183,12 @@ def run_convert(
 
     logger.debug("Execute: " + " ".join(args), extra={"group": logging_group})
 
-    if not subprocess.Popen(args, env=environment).wait() == 0:
-        raise ParseError(f"Convert failed at {args}")
+    try:
+        run_subprocess(args, environment, logger)
+    except subprocess.CalledProcessError as e:
+        raise ParseError(f"Convert failed at {args}") from e
+    except Exception as e:  # pragma: no cover
+        raise ParseError("Unknown error running convert") from e
 
 
 def get_default_thumbnail() -> Path:
@@ -206,9 +211,12 @@ def make_thumbnail_from_pdf_gs_fallback(in_path, temp_dir, logging_group=None) -
     # Ghostscript doesn't handle WebP outputs
     gs_out_path = os.path.join(temp_dir, "gs_out.png")
     cmd = [settings.GS_BINARY, "-q", "-sDEVICE=pngalpha", "-o", gs_out_path, in_path]
+
     try:
-        if not subprocess.Popen(cmd).wait() == 0:
-            raise ParseError(f"Thumbnail (gs) failed at {cmd}")
+        try:
+            run_subprocess(cmd, logger=logger)
+        except subprocess.CalledProcessError as e:
+            raise ParseError(f"Thumbnail (gs) failed at {cmd}") from e
         # then run convert on the output from gs to make WebP
         run_convert(
             density=300,
@@ -337,6 +345,7 @@ class DocumentParser(LoggingMixin):
 
     def __init__(self, logging_group, progress_callback=None):
         super().__init__()
+        self.renew_logging_group()
         self.logging_group = logging_group
         self.settings = self.get_settings()
         settings.SCRATCH_DIR.mkdir(parents=True, exist_ok=True)

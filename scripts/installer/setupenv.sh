@@ -1,7 +1,7 @@
 cd /opt/paperless
 #cp paperless.conf.example paperless.conf
-pyenv global 3.9.18
-pyenv local 3.9.18
+pyenv global 3.11.8
+pyenv local 3.11.8
 
 pipenv install
 pipenv requirements > req.txt
@@ -12,7 +12,7 @@ sudo -Hu paperless python3 -m nltk.downloader popular
 
 cd /opt/paperless/src
 sudo -Hu paperless python3 manage.py migrate
-sudo -Hu paperless python3 manage.py createsuperuser
+#sudo -Hu paperless python3 manage.py createsuperuser
 
 cd /opt/paperless/src-ui
 npm i -g npm@latest --force

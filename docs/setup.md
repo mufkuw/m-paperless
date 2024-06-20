@@ -6,6 +6,7 @@ You can go multiple routes to setup and run Paperless:
 - [Pull the image from Docker Hub](#docker_hub)
 - [Build the Docker image yourself](#docker_build)
 - [Install Paperless directly on your system manually (bare metal)](#bare_metal)
+- A user-maintained list of commercial hosting providers can be found [in the wiki](https://github.com/M-Paperless/M-Paperless/wiki/Related-Projects)
 
 The Docker routes are quick & easy. These are the recommended routes.
 This configures all the stuff from the above automatically so that it
@@ -34,7 +35,7 @@ steps described in [Docker setup](#docker_hub) automatically.
 2.  Download and run the installation script:
 
     ```shell-session
-    $ bash -c "$(curl --location --silent --show-error https://raw.githubusercontent.com/paperless-ngx/paperless-ngx/main/install-paperless-ngx.sh)"
+    $ bash -c "$(curl --location --silent --show-error https://raw.githubusercontent.com/M-Paperless/M-Paperless/main/install-M-Paperless.sh)"
     ```
 
     !!! note
@@ -48,11 +49,11 @@ steps described in [Docker setup](#docker_hub) automatically.
     configuration files and consumption directory.
 
     ```shell-session
-    $ mkdir -v ~/paperless-ngx
+    $ mkdir -v ~/M-Paperless
     ```
 
 2.  Go to the [/docker/compose directory on the project
-    page](https://github.com/paperless-ngx/paperless-ngx/tree/main/docker/compose)
+    page](https://github.com/M-Paperless/M-Paperless/tree/main/docker/compose)
     and download one of the `docker-compose.*.yml` files,
     depending on which database backend you want to use. Rename this
     file to `docker-compose.yml`. If you want to enable
@@ -138,7 +139,7 @@ steps described in [Docker setup](#docker_hub) automatically.
 
     > ```
     > webserver:
-    >   image: ghcr.io/paperless-ngx/paperless-ngx:latest
+    >   image: ghcr.io/M-Paperless/M-Paperless:latest
     >   user: <user_id>
     > ```
 
@@ -206,7 +207,7 @@ steps described in [Docker setup](#docker_hub) automatically.
 1.  Clone the entire repository of paperless:
 
     ```shell-session
-    git clone https://github.com/paperless-ngx/paperless-ngx
+    git clone https://github.com/M-Paperless/M-Paperless
     ```
 
     The main branch always reflects the latest stable version.
@@ -221,7 +222,7 @@ steps described in [Docker setup](#docker_hub) automatically.
 
     ```yaml
     webserver:
-      image: ghcr.io/paperless-ngx/paperless-ngx:latest
+      image: ghcr.io/M-Paperless/M-Paperless:latest
     ```
 
     and replace it with a line that instructs Docker Compose to build
@@ -299,8 +300,17 @@ supported.
     - `libatlas-base-dev`
     - `libxslt1-dev`
 
-    You will also need `build-essential`, `python3-setuptools` and
-    `python3-wheel` for installing some of the python dependencies.
+    You will also need these for installing some of the python dependencies:
+
+    - `build-essential`
+    - `python3-setuptools`
+    - `python3-wheel`
+
+    Use this list for your preferred package management:
+
+    ```
+    build-essential python3-setuptools python3-wheel
+    ```
 
 2.  Install `redis` >= 6.0 and configure it to start automatically.
 
@@ -322,16 +332,16 @@ supported.
     ```
 
 5.  Get the release archive from
-    <https://github.com/paperless-ngx/paperless-ngx/releases> for example with
+    <https://github.com/M-Paperless/M-Paperless/releases> for example with
 
     ```shell-session
-    curl -O -L https://github.com/paperless-ngx/paperless-ngx/releases/download/v1.10.2/paperless-ngx-v1.10.2.tar.xz
+    curl -O -L https://github.com/M-Paperless/M-Paperless/releases/download/v1.10.2/M-Paperless-v1.10.2.tar.xz
     ```
 
     Extract the archive with
 
     ```shell-session
-    tar -xf paperless-ngx-v1.10.2.tar.xz
+    tar -xf M-Paperless-v1.10.2.tar.xz
     ```
 
     and copy the contents to the
@@ -480,7 +490,7 @@ supported.
         in front of gunicorn instead.
 
         For instructions on how to use nginx for that,
-        [see the wiki](https://github.com/paperless-ngx/paperless-ngx/wiki/Using-a-Reverse-Proxy-with-Paperless-ngx#nginx).
+        [see the wiki](https://github.com/M-Paperless/M-Paperless/wiki/Using-a-Reverse-Proxy-with-M-Paperless#nginx).
 
     !!! warning
 
@@ -525,14 +535,14 @@ supported.
     instructions](https://www.nltk.org/data.html) for details on how to
     download the data.
 
-# Migrating to Paperless-ngx
+# Migrating to M-Paperless
 
 Migration is possible both from Paperless-ng or directly from the
 'original' Paperless.
 
 ## Migrating from Paperless-ng
 
-Paperless-ngx is meant to be a drop-in replacement for Paperless-ng and
+M-Paperless is meant to be a drop-in replacement for Paperless-ng and
 thus upgrading should be trivial for most users, especially when using
 docker. However, as with any major change, it is recommended to take a
 full backup first. Once you are ready, simply change the docker image to
@@ -546,21 +556,21 @@ image: jonaswinkler/paperless-ng:latest
 to
 
 ```
-image: ghcr.io/paperless-ngx/paperless-ngx:latest
+image: ghcr.io/M-Paperless/M-Paperless:latest
 ```
 
 and then run `docker compose up -d` which will pull the new image
 recreate the container. That's it!
 
 Users who installed with the bare-metal route should also update their
-Git clone to point to `https://github.com/paperless-ngx/paperless-ngx`,
+Git clone to point to `https://github.com/M-Paperless/M-Paperless`,
 e.g. using the command
-`git remote set-url origin https://github.com/paperless-ngx/paperless-ngx`
+`git remote set-url origin https://github.com/M-Paperless/M-Paperless`
 and then pull the latest version.
 
 ## Migrating from Paperless
 
-At its core, paperless-ngx is still paperless and fully compatible.
+At its core, M-Paperless is still paperless and fully compatible.
 However, some things have changed under the hood, so you need to adapt
 your setup depending on how you installed paperless.
 
@@ -581,9 +591,9 @@ installation. The important things to keep in mind are as follows:
   Docker Compose route takes care of that.
 - The layout of the folder structure for your documents and data
   remains the same, so you can just plug your old docker volumes into
-  paperless-ngx and expect it to find everything where it should be.
+  M-Paperless and expect it to find everything where it should be.
 
-Migration to paperless-ngx is then performed in a few simple steps:
+Migration to M-Paperless is then performed in a few simple steps:
 
 1.  Stop paperless.
 
@@ -593,23 +603,23 @@ Migration to paperless-ngx is then performed in a few simple steps:
     ```
 
 2.  Do a backup for two purposes: If something goes wrong, you still
-    have your data. Second, if you don't like paperless-ngx, you can
+    have your data. Second, if you don't like M-Paperless, you can
     switch back to paperless.
 
-3.  Download the latest release of paperless-ngx. You can either go with
+3.  Download the latest release of M-Paperless. You can either go with
     the Docker Compose files from
-    [here](https://github.com/paperless-ngx/paperless-ngx/tree/main/docker/compose)
+    [here](https://github.com/M-Paperless/M-Paperless/tree/main/docker/compose)
     or clone the repository to build the image yourself (see
     [above](#docker_build)). You can
-    either replace your current paperless folder or put paperless-ngx in
+    either replace your current paperless folder or put M-Paperless in
     a different location.
 
     !!! warning
 
-        Paperless-ngx includes a `.env` file. This will set the project name
+        M-Paperless includes a `.env` file. This will set the project name
         for docker compose to `paperless`, which will also define the name
-        of the volumes by paperless-ngx. However, if you experience that
-        paperless-ngx is not using your old paperless volumes, verify the
+        of the volumes by M-Paperless. However, if you experience that
+        M-Paperless is not using your old paperless volumes, verify the
         names of your volumes with
 
         ``` shell-session
@@ -640,7 +650,7 @@ Migration to paperless-ngx is then performed in a few simple steps:
     This will migrate your database and create the search index. After
     that, paperless will take care of maintaining the index by itself.
 
-8.  Start paperless-ngx.
+8.  Start M-Paperless.
 
     ```bash
     $ docker compose up -d
@@ -666,129 +676,55 @@ commands as well.
 1.  Stop and remove the paperless container
 2.  If using an external database, stop the container
 3.  Update Redis configuration
-    a) If `REDIS_URL` is already set, change it to [`PAPERLESS_REDIS`](configuration.md#PAPERLESS_REDIS)
-    and continue to step 4.
-    b) Otherwise, in the `docker-compose.yml` add a new service for
-    Redis, following [the example compose
-    files](https://github.com/paperless-ngx/paperless-ngx/tree/main/docker/compose)
-    c) Set the environment variable [`PAPERLESS_REDIS`](configuration.md#PAPERLESS_REDIS) so it points to
-    the new Redis container
+
+    1. If `REDIS_URL` is already set, change it to [`PAPERLESS_REDIS`](configuration.md#PAPERLESS_REDIS)
+       and continue to step 4.
+
+    1. Otherwise, in the `docker-compose.yml` add a new service for
+       Redis, following [the example compose
+       files](https://github.com/M-Paperless/M-Paperless/tree/main/docker/compose)
+
+    1. Set the environment variable [`PAPERLESS_REDIS`](configuration.md#PAPERLESS_REDIS) so it points to
+       the new Redis container
+
 4.  Update user mapping
-    a) If set, change the environment variable `PUID` to `USERMAP_UID`
-    b) If set, change the environment variable `PGID` to `USERMAP_GID`
+
+    1. If set, change the environment variable `PUID` to `USERMAP_UID`
+
+    1. If set, change the environment variable `PGID` to `USERMAP_GID`
+
 5.  Update configuration paths
-    a) Set the environment variable [`PAPERLESS_DATA_DIR`](configuration.md#PAPERLESS_DATA_DIR) to `/config`
+
+    1. Set the environment variable [`PAPERLESS_DATA_DIR`](configuration.md#PAPERLESS_DATA_DIR) to `/config`
+
 6.  Update media paths
-    a) Set the environment variable [`PAPERLESS_MEDIA_ROOT`](configuration.md#PAPERLESS_MEDIA_ROOT) to
-    `/data/media`
+
+    1. Set the environment variable [`PAPERLESS_MEDIA_ROOT`](configuration.md#PAPERLESS_MEDIA_ROOT) to
+       `/data/media`
+
 7.  Update timezone
-    a) Set the environment variable [`PAPERLESS_TIME_ZONE`](configuration.md#PAPERLESS_TIME_ZONE) to the same
-    value as `TZ`
+
+    1. Set the environment variable [`PAPERLESS_TIME_ZONE`](configuration.md#PAPERLESS_TIME_ZONE) to the same
+       value as `TZ`
+
 8.  Modify the `image:` to point to
-    `ghcr.io/paperless-ngx/paperless-ngx:latest` or a specific version
+    `ghcr.io/M-Paperless/M-Paperless:latest` or a specific version
     if preferred.
 9.  Start the containers as before, using `docker compose`.
 
 ## Moving data from SQLite to PostgreSQL or MySQL/MariaDB {#sqlite_to_psql}
 
-Moving your data from SQLite to PostgreSQL or MySQL/MariaDB is done via
-executing a series of django management commands as below. The commands
-below use PostgreSQL, but are applicable to MySQL/MariaDB with the
-
-!!! warning
-
-    Make sure that your SQLite database is migrated to the latest version.
-    Starting paperless will make sure that this is the case. If your try to
-    load data from an old database schema in SQLite into a newer database
-    schema in PostgreSQL, you will run into trouble.
-
-!!! warning
-
-    On some database fields, PostgreSQL enforces predefined limits on
-    maximum length, whereas SQLite does not. The fields in question are the
-    title of documents (128 characters), names of document types, tags and
-    correspondents (128 characters), and filenames (1024 characters). If you
-    have data in these fields that surpasses these limits, migration to
-    PostgreSQL is not possible and will fail with an error.
-
-!!! warning
-
-    MySQL is case insensitive by default, treating values like "Name" and
-    "NAME" as identical. See [MySQL caveats](advanced_usage.md#mysql-caveats) for details.
-
-!!! warning
-
-    MySQL also enforces limits on maximum lengths, but does so differently than
-    PostgreSQL.  It may not be possible to migrate to MySQL due to this.
-
-!!! warning
-
-    Using mariadb version 10.4+ is recommended. Using the `utf8mb3` character set on
-    an older system may fix issues that can arise while setting up Paperless-ngx but
-    `utf8mb3` can cause issues with consumption (where `utf8mb4` does not).
-
-1.  Stop paperless, if it is running.
-
-2.  Tell paperless to use PostgreSQL:
-
-    a) With docker, copy the provided `docker-compose.postgres.yml`
-    file to `docker-compose.yml`. Remember to adjust the consumption
-    directory, if necessary.
-    b) Without docker, configure the database in your `paperless.conf`
-    file. See [configuration](configuration.md) for
-    details.
-
-3.  Open a shell and initialize the database:
-
-    a) With docker, run the following command to open a shell within
-    the paperless container:
-
-        ``` shell-session
-        $ cd /path/to/paperless
-        $ docker compose run --rm webserver /bin/bash
-        ```
-
-        This will launch the container and initialize the PostgreSQL
-        database.
-
-    b) Without docker, remember to activate any virtual environment,
-    switch to the `src` directory and create the database schema:
-
-        ``` shell-session
-        $ cd /path/to/paperless/src
-        $ python3 manage.py migrate
-        ```
-
-        This will not copy any data yet.
-
-4.  Dump your data from SQLite:
-
-    ```shell-session
-    $ python3 manage.py dumpdata --database=sqlite --exclude=contenttypes --exclude=auth.Permission > data.json
-    ```
-
-5.  Load your data into PostgreSQL:
-
-    ```shell-session
-    $ python3 manage.py loaddata data.json
-    ```
-
-6.  If operating inside Docker, you may exit the shell now.
-
-    ```shell-session
-    $ exit
-    ```
-
-7.  Start paperless.
+The best way to migrate between database types is to perform an [export](administration.md#exporter) and then
+[import](administration.md#importer) into a clean installation of M-Paperless.
 
 ## Moving back to Paperless
 
-Lets say you migrated to Paperless-ngx and used it for a while, but
+Lets say you migrated to M-Paperless and used it for a while, but
 decided that you don't like it and want to move back (If you do, send
 me a mail about what part you didn't like!), you can totally do that
 with a few simple steps.
 
-Paperless-ngx modified the database schema slightly, however, these
+M-Paperless modified the database schema slightly, however, these
 changes can be reverted while keeping your current data, so that your
 current data will be compatible with original Paperless. Thumbnails
 were also changed from PNG to WEBP format and will need to be
@@ -809,7 +745,7 @@ $ python3 manage.py migrate documents 0023
 ```
 
 After regenerating thumbnails, you'll need to clear your cookies
-(Paperless-ngx comes with updated dependencies that do cookie-processing
+(M-Paperless comes with updated dependencies that do cookie-processing
 differently) and probably your cache as well.
 
 # Considerations for less powerful devices {#less-powerful-devices}
@@ -859,8 +795,8 @@ For details, refer to [configuration](configuration.md).
 
 # Using nginx as a reverse proxy {#nginx}
 
-Please see [the wiki](https://github.com/paperless-ngx/paperless-ngx/wiki/Using-a-Reverse-Proxy-with-Paperless-ngx#nginx) for user-maintained documentation of using nginx with Paperless-ngx.
+Please see [the wiki](https://github.com/M-Paperless/M-Paperless/wiki/Using-a-Reverse-Proxy-with-M-Paperless#nginx) for user-maintained documentation of using nginx with M-Paperless.
 
 # Enhancing security {#security}
 
-Please see [the wiki](https://github.com/paperless-ngx/paperless-ngx/wiki/Using-Security-Tools-with-Paperless-ngx) for user-maintained documentation of how to configure security tools like Fail2ban with Paperless-ngx.
+Please see [the wiki](https://github.com/M-Paperless/M-Paperless/wiki/Using-Security-Tools-with-M-Paperless) for user-maintained documentation of how to configure security tools like Fail2ban with M-Paperless.

@@ -177,19 +177,19 @@ configure their endpoints, and enable the feature.
 
 #### [`PAPERLESS_TIKA_ENDPOINT=<url>`](#PAPERLESS_TIKA_ENDPOINT) {#PAPERLESS_TIKA_ENDPOINT}
 
-: Set the endpoint URL were Paperless can reach your Tika server.
+: Set the endpoint URL where Paperless can reach your Tika server.
 
     Defaults to "<http://localhost:9998>".
 
 #### [`PAPERLESS_TIKA_GOTENBERG_ENDPOINT=<url>`](#PAPERLESS_TIKA_GOTENBERG_ENDPOINT) {#PAPERLESS_TIKA_GOTENBERG_ENDPOINT}
 
-: Set the endpoint URL were Paperless can reach your Gotenberg server.
+: Set the endpoint URL where Paperless can reach your Gotenberg server.
 
     Defaults to "<http://localhost:3000>".
 
 If you run paperless on docker, you can add those services to the
 Docker Compose file (see the provided
-[`docker-compose.sqlite-tika.yml`](https://github.com/paperless-ngx/paperless-ngx/blob/main/docker/compose/docker-compose.sqlite-tika.yml)
+[`docker-compose.sqlite-tika.yml`](https://github.com/M-Paperless/M-Paperless/blob/main/docker/compose/docker-compose.sqlite-tika.yml)
 file for reference).
 
 Add all three configuration parameters to your configuration. If using
@@ -202,7 +202,7 @@ and watch out for indentation if editing the YAML file.
 
 #### [`PAPERLESS_CONSUMPTION_DIR=<path>`](#PAPERLESS_CONSUMPTION_DIR) {#PAPERLESS_CONSUMPTION_DIR}
 
-: This where your documents should go to be consumed. Make sure that
+: This is where your documents should go to be consumed. Make sure that
 it exists and that the user running the paperless service can
 read/write its contents before you start Paperless.
 
@@ -264,7 +264,7 @@ directory. See [File name handling](advanced_usage.md#file-name-handling) for de
 : Tells paperless to replace placeholders in
 `PAPERLESS_FILENAME_FORMAT` that would resolve to
 'none' to be omitted from the resulting filename. This also holds
-true for directory names. See [File name handling](advanced_usage.md#file-name-handling) for
+true for directory names. See [File name handling](advanced_usage.md#empty-placeholders) for
 details.
 
     Defaults to `false` which disables this feature.
@@ -287,6 +287,12 @@ Unless you are using this in a bare metal install or other setup,
 this folder is no longer needed and can be removed manually.
 
 Defaults to `/usr/share/nltk_data`
+
+#### [`PAPERLESS_MODEL_FILE=<path>`](#PAPERLESS_MODEL_FILE) {#PAPERLESS_MODEL_FILE}
+
+: This is where paperless will store the classification model.
+
+    Defaults to `PAPERLESS_DATA_DIR/classification_model.pickle`.
 
 ## Logging
 
@@ -327,7 +333,7 @@ not include a trailing slash. E.g. <https://paperless.domain.com>
     !!! note
 
         This value cannot contain a path (e.g. domain.com/path), even if
-        you are installing paperless-ngx at a subpath.
+        you are installing M-Paperless at a subpath.
 
 #### [`PAPERLESS_CSRF_TRUSTED_ORIGINS=<comma-separated-list>`](#PAPERLESS_CSRF_TRUSTED_ORIGINS) {#PAPERLESS_CSRF_TRUSTED_ORIGINS}
 
@@ -491,8 +497,9 @@ followed by the normalized actual header name.
 #### [`PAPERLESS_LOGOUT_REDIRECT_URL=<str>`](#PAPERLESS_LOGOUT_REDIRECT_URL) {#PAPERLESS_LOGOUT_REDIRECT_URL}
 
 : URL to redirect the user to after a logout. This can be used
-together with PAPERLESS_ENABLE_HTTP_REMOTE_USER to
-redirect the user back to the SSO application's logout page.
+together with PAPERLESS_ENABLE_HTTP_REMOTE_USER and SSO to
+redirect the user back to the SSO application's logout page to
+complete the logout process.
 
     Defaults to None, which disables this feature.
 
@@ -555,13 +562,13 @@ system. See the corresponding
 
 #### [`PAPERLESS_SOCIALACCOUNT_ALLOW_SIGNUPS=<bool>`](#PAPERLESS_SOCIALACCOUNT_ALLOW_SIGNUPS) {#PAPERLESS_SOCIALACCOUNT_ALLOW_SIGNUPS}
 
-: Allow users to signup for a new Paperless-ngx account using any setup third party authentication systems.
+: Allow users to signup for a new M-Paperless account using any setup third party authentication systems.
 
     Defaults to True
 
 #### [`PAPERLESS_ACCOUNT_ALLOW_SIGNUPS=<bool>`](#PAPERLESS_ACCOUNT_ALLOW_SIGNUPS) {#PAPERLESS_ACCOUNT_ALLOW_SIGNUPS}
 
-: Allow users to signup for a new Paperless-ngx account.
+: Allow users to signup for a new M-Paperless account.
 
     Defaults to False
 
@@ -585,9 +592,14 @@ system. See the corresponding
 
 #### [`PAPERLESS_DISABLE_REGULAR_LOGIN=<bool>`](#PAPERLESS_DISABLE_REGULAR_LOGIN) {#PAPERLESS_DISABLE_REGULAR_LOGIN}
 
-: Disables the regular frontend username / password login, i.e. once you have setup SSO. Note that the Django admin login cannot be disabled.
+: Disables the regular frontend username / password login, i.e. once you have setup SSO. Note that this setting does not disable the Django admin login. To prevent logins directly to Django, consider blocking `/admin/` in your [web server or reverse proxy configuration](https://github.com/M-Paperless/M-Paperless/wiki/Using-a-Reverse-Proxy-with-M-Paperless).
 
     Defaults to False
+
+#### [`PAPERLESS_ACCOUNT_SESSION_REMEMBER=<bool>`](#PAPERLESS_ACCOUNT_SESSION_REMEMBER) {#PAPERLESS_ACCOUNT_SESSION_REMEMBER}
+
+: See the corresponding
+[django-allauth documentation](https://docs.allauth.org/en/latest/account/configuration.html)
 
 ## OCR settings {#ocr}
 
@@ -609,6 +621,8 @@ parsing documents.
     in which case Tesseract will use whatever language matches best.
     Keep in mind that Tesseract uses much more CPU time with multiple
     languages enabled.
+
+    If you are including languages that are not installed by default, you will need to also set [`PAPERLESS_OCR_LANGUAGES`](configuration.md#PAPERLESS_OCR_LANGUAGES) for docker deployments or install the tesseract language packages manually for bare metal installations.
 
     Defaults to "eng".
 
@@ -1080,7 +1094,7 @@ document text will be checked as normal.
 
 : Paperless searches an entire document for dates. The first date
 found will be used as the initial value for the created date. When
-this variable is greater than 0 (or left to it's default value),
+this variable is greater than 0 (or left to its default value),
 paperless will also suggest other dates found in the document, up to
 a maximum of this setting. Note that duplicates will be removed,
 which can result in fewer dates displayed in the frontend than this
@@ -1105,11 +1119,11 @@ This font can be changed here.
 
 #### [`PAPERLESS_IGNORE_DATES=<string>`](#PAPERLESS_IGNORE_DATES) {#PAPERLESS_IGNORE_DATES}
 
-: Paperless parses a documents creation date from filename and file
+: Paperless parses a document's creation date from filename and file
 content. You may specify a comma separated list of dates that should
 be ignored during this process. This is useful for special dates
 (like date of birth) that appear in documents regularly but are very
-unlikely to be the documents creation date.
+unlikely to be the document's creation date.
 
     The date is parsed using the order specified in PAPERLESS_DATE_ORDER
 
@@ -1236,7 +1250,7 @@ barcode.
 
 : Defines the upscale factor used in barcode detection.
 Improves the detection of small barcodes, i.e. with a value of 1.5 by
-upscaling the document beforce the detection process. Upscaling will
+upscaling the document before the detection process. Upscaling will
 only take place if value is bigger than 1.0. Otherwise upscaling will
 not be performed to save resources. Try using in combination with
 PAPERLESS_CONSUMER_BARCODE_DPI set to a value higher than default.
@@ -1270,7 +1284,7 @@ assigns or creates tags if a properly formatted barcode is detected.
 
 : Defines a dictionary of filter regex and substitute expressions.
 
-    Syntax: {"<regex>": "<substitute>" [,...]]}
+    Syntax: `{"<regex>": "<substitute>" [,...]]}`
 
     A barcode is considered for tagging if the barcode text matches
     at least one of the provided <regex> pattern.
@@ -1282,20 +1296,20 @@ assigns or creates tags if a properly formatted barcode is detected.
 
     Defaults to:
 
-    {"TAG:(.*)": "\\g<1>"} which defines
+    `{"TAG:(.*)": "\\g<1>"}` which defines
     - a regex TAG:(.*) which includes barcodes beginning with TAG:
       followed by any text that gets stored into match group #1 and
-    - a substitute \\g<1> that replaces the original barcode text
+    - a substitute `\\g<1>` that replaces the original barcode text
       by the content in match group #1.
     Consequently, the tag is the barcode text without its TAG: prefix.
 
     More examples:
 
-    {"ASN12.*": "JOHN", "ASN13.*": "SMITH"} for example maps
+    `{"ASN12.*": "JOHN", "ASN13.*": "SMITH"}` for example maps
     - ASN12nnnn barcodes to the tag JOHN and
     - ASN13nnnn barcodes to the tag SMITH.
 
-    {"T-J": "JOHN", "T-S": "SMITH", "T-D": "DOE"} directly maps
+    `{"T-J": "JOHN", "T-S": "SMITH", "T-D": "DOE"}` directly maps
     - T-J barcodes to the tag JOHN,
     - T-S barcodes to the tag SMITH and
     - T-D barcodes to the tag DOE.
@@ -1306,11 +1320,9 @@ assigns or creates tags if a properly formatted barcode is detected.
 
 #### [`PAPERLESS_AUDIT_LOG_ENABLED=<bool>`](#PAPERLESS_AUDIT_LOG_ENABLED) {#PAPERLESS_AUDIT_LOG_ENABLED}
 
-: Enables an audit trail for documents, document types, correspondents, and tags. Log entries can be viewed in the Django backend only.
+: Enables the audit trail for documents, document types, correspondents, and tags.
 
-    !!! warning
-
-        Once enabled cannot be disabled
+    Defaults to true.
 
 ## Collate Double-Sided Documents {#collate}
 
@@ -1449,7 +1461,7 @@ specified as "chi-tra".
     PAPERLESS_OCR_LANGUAGES=tur ces chi-tra
     ```
 
-    Make sure it's a space separated list when using several values.
+    Make sure it's a space-separated list when using several values.
 
     To actually use these languages, also set the default OCR language
     of paperless:
@@ -1480,9 +1492,9 @@ started by the container.
 
 ## Frontend Settings
 
-#### [`PAPERLESS_APP_TITLE=<bool>`](#PAPERLESS_APP_TITLE) {#PAPERLESS_APP_TITLE}
+#### [`PAPERLESS_APP_TITLE=<str>`](#PAPERLESS_APP_TITLE) {#PAPERLESS_APP_TITLE}
 
-: If set, overrides the default name "Paperless-ngx"
+: If set, overrides the default name "M-Paperless"
 
 #### [`PAPERLESS_APP_LOGO=<path>`](#PAPERLESS_APP_LOGO) {#PAPERLESS_APP_LOGO}
 

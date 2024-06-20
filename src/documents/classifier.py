@@ -155,8 +155,12 @@ class DocumentClassifier:
 
     def train(self):
         # Get non-inbox documents
-        docs_queryset = Document.objects.exclude(
-            tags__is_inbox_tag=True,
+        docs_queryset = (
+            Document.objects.exclude(
+                tags__is_inbox_tag=True,
+            )
+            .select_related("document_type", "correspondent", "storage_path")
+            .prefetch_related("tags")
         )
 
         # No documents exit to train against
@@ -237,14 +241,8 @@ class DocumentClassifier:
         num_storage_paths = len(set(labels_storage_path) | {-1}) - 1
 
         logger.debug(
-            "{} documents, {} tag(s), {} correspondent(s), "
-            "{} document type(s). {} storage path(es)".format(
-                docs_queryset.count(),
-                num_tags,
-                num_correspondents,
-                num_document_types,
-                num_storage_paths,
-            ),
+            f"{docs_queryset.count()} documents, {num_tags} tag(s), {num_correspondents} correspondent(s), "
+            f"{num_document_types} document type(s). {num_storage_paths} storage path(es)",
         )
 
         from sklearn.feature_extraction.text import CountVectorizer

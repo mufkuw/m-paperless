@@ -11,7 +11,7 @@ The API provides the following main endpoints:
 - `/api/correspondents/`: Full CRUD support.
 - `/api/custom_fields/`: Full CRUD support.
 - `/api/documents/`: Full CRUD support, except POSTing new documents.
-  See below.
+  See [below](#file-uploads).
 - `/api/document_types/`: Full CRUD support.
 - `/api/groups/`: Full CRUD support.
 - `/api/logs/`: Read-Only.
@@ -24,6 +24,7 @@ The API provides the following main endpoints:
 - `/api/tasks/`: Read-only.
 - `/api/users/`: Full CRUD support.
 - `/api/workflows/`: Full CRUD support.
+- `/api/search/` GET, see [below](#global-search).
 
 All of these endpoints except for the logging endpoint allow you to
 fetch (and edit and delete where appropriate) individual objects by
@@ -140,6 +141,7 @@ document. Paperless only reports PDF metadata at this point.
 
 - `/api/documents/<id>/notes/`: Retrieve notes for a document.
 - `/api/documents/<id>/share_links/`: Retrieve share links for a document.
+- `/api/documents/<id>/history/`: Retrieve history of changes for a document.
 
 ## Authorization
 
@@ -186,6 +188,38 @@ The REST api provides four different forms of authentication.
     If enabled (see
     [configuration](configuration.md#PAPERLESS_ENABLE_HTTP_REMOTE_USER_API)),
     you can authenticate against the API using Remote User auth.
+
+## Global search
+
+A global search endpoint is available at `/api/search/` and requires a search term
+of > 2 characters e.g. `?query=foo`. This endpoint returns a maximum of 3 results
+across nearly all objects, e.g. documents, tags, saved views, mail rules, etc.
+Results are only included if the requesting user has the appropriate permissions.
+
+Results are returned in the following format:
+
+```json
+{
+  total: number
+  documents: []
+  saved_views: []
+  correspondents: []
+  document_types: []
+  storage_paths: []
+  tags: []
+  users: []
+  groups: []
+  mail_accounts: []
+  mail_rules: []
+  custom_fields: []
+  workflows: []
+}
+```
+
+Global search first searches objects by name (or title for documents) matching the query.
+If the optional `db_only` parameter is set, only document titles will be searched. Otherwise,
+if the amount of documents returned by a simple title string search is < 3, results from the
+search index will also be included.
 
 ## Searching for documents
 
@@ -288,6 +322,8 @@ The endpoint supports the following optional form fields:
 - `tags`: Similar to correspondent. Specify this multiple times to
   have multiple tags added to the document.
 - `archive_serial_number`: An optional archive serial number to set.
+- `custom_fields`: An array of custom field ids to assign (with an empty
+  value) to the document.
 
 The endpoint will immediately return HTTP 200 if the document consumption
 process was started successfully, with the UUID of the consumption task
@@ -340,7 +376,7 @@ The API supports various bulk-editing operations which are executed asynchronous
 
 ### Documents
 
-For bulk operations on documents, use the endpoint `/api/bulk_edit/` which accepts
+For bulk operations on documents, use the endpoint `/api/documents/bulk_edit/` which accepts
 a json payload of the format:
 
 ```json
@@ -367,15 +403,36 @@ The following methods are supported:
   - Requires `parameters`: `{ "add_tags": [LIST_OF_TAG_IDS] }` and / or `{ "remove_tags": [LIST_OF_TAG_IDS] }`
 - `delete`
   - No `parameters` required
-- `redo_ocr`
+- `reprocess`
   - No `parameters` required
 - `set_permissions`
   - Requires `parameters`:
-    - `"permissions": PERMISSIONS_OBJ` (see format [above](#permissions)) and / or
+    - `"set_permissions": PERMISSIONS_OBJ` (see format [above](#permissions)) and / or
     - `"owner": OWNER_ID or null`
     - `"merge": true or false` (defaults to false)
   - The `merge` flag determines if the supplied permissions will overwrite all existing permissions (including
     removing them) or be merged with existing permissions.
+- `merge`
+  - No additional `parameters` required.
+  - The ordering of the merged document is determined by the list of IDs.
+  - Optional `parameters`:
+    - `"metadata_document_id": DOC_ID` apply metadata (tags, correspondent, etc.) from this document to the merged document.
+    - `"delete_originals": true` to delete the original documents. This requires the calling user being the owner of
+      all documents that are merged.
+- `split`
+  - Requires `parameters`:
+    - `"pages": [..]` The list should be a list of pages and/or a ranges, separated by commas e.g. `"[1,2-3,4,5-7]"`
+  - Optional `parameters`:
+    - `"delete_originals": true` to delete the original document after consumption. This requires the calling user being the owner of
+      the document.
+  - The split operation only accepts a single document.
+- `rotate`
+  - Requires `parameters`:
+    - `"degrees": DEGREES`. Must be an integer i.e. 90, 180, 270
+- `delete_pages`
+  - Requires `parameters`:
+    - `"pages": [..]` The list should be a list of integers e.g. `"[2,3,4]"`
+  - The delete_pages operation only accepts a single document.
 
 ### Objects
 
@@ -395,7 +452,7 @@ operations, using the endpoint: `/api/bulk_edit_objects/`, which requires a json
 
 ## API Versioning
 
-The REST API is versioned since Paperless-ngx 1.3.0.
+The REST API is versioned since M-Paperless 1.3.0.
 
 - Versioning ensures that changes to the API don't break older
   clients.

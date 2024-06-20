@@ -1,7 +1,7 @@
 # Usage Overview
 
 Paperless is an application that manages your personal documents. With
-the help of a document scanner (see [the scanners wiki](https://github.com/paperless-ngx/paperless-ngx/wiki/Scanner-&-Software-Recommendations)),
+the help of a document scanner (see [the scanners wiki](https://github.com/M-Paperless/M-Paperless/wiki/Scanner-&-Software-Recommendations)),
 paperless transforms your unwieldy physical document binders into a searchable archive
 and provides many utilities for finding and managing your documents.
 
@@ -70,7 +70,7 @@ following operations on your documents:
     original document that it found in the consumption directory or in the
     mail and will never overwrite that document. Archived versions are
     stored alongside the original versions. Any files found in the
-    consumption directory will stored inside the Paperless-ngx file
+    consumption directory will stored inside the M-Paperless file
     structure and will not be retained in the consumption directory.
 
 ### The consumption directory
@@ -81,7 +81,7 @@ for new additions to this directory. When it finds them,
 the consumer goes about the process of parsing them with the OCR,
 indexing what it finds, and storing it in the media directory. You should
 think of this folder as a temporary location, as files will be re-created
-inside Paperless-ngx and removed from the consumption folder.
+inside M-Paperless and removed from the consumption folder.
 
 Getting stuff into this directory is up to you. If you're running
 Paperless on your local computer, you might just want to drag and drop
@@ -96,7 +96,7 @@ Typically, you're looking at an FTP server like
 
     Files found in the consumption directory that are consumed will be
     removed from the consumption directory and stored inside the
-    Paperless-ngx file structure using any settings / storage paths
+    M-Paperless file structure using any settings / storage paths
     you have specified. This action is performed as safely as possible
     but this means it is expected that files in the consumption
     directory will no longer exist (there) after being consumed.
@@ -109,12 +109,12 @@ process.
 
 ### Mobile upload {#usage-mobile_upload}
 
-Please see [the wiki](https://github.com/paperless-ngx/paperless-ngx/wiki/Affiliated-Projects) for a user-maintained list of affiliated projects and
-software (e.g. for mobile devices) that is compatible with Paperless-ngx.
+Please see [the wiki](https://github.com/M-Paperless/M-Paperless/wiki/Related-Projects) for a user-maintained list of related projects and
+software (e.g. for mobile devices) that is compatible with M-Paperless.
 
 ### IMAP (Email) {#usage-email}
 
-You can tell paperless-ngx to consume documents from your email
+You can tell M-Paperless to consume documents from your email
 accounts. This is a very flexible and powerful feature, if you regularly
 received documents via mail that you need to archive. The mail consumer
 can be configured via the frontend settings (/settings/mail) in the following
@@ -206,12 +206,12 @@ for details.
 
 ## Permissions
 
-As of version 1.14.0 Paperless-ngx added core support for user / group permissions. Permissions is
-based around 'global' permissions as well as 'object-level' permissions. Global permissions designate
-which parts of the application a user can access (e.g. Documents, Tags, Settings) and object-level
-determine which objects are visible or editable. All objects have an 'owner' and 'view' and 'edit'
-permissions which can be granted to other users or groups. The paperless-ngx permissions system uses
-the built-in user model of the backend framework, Django.
+Permissions in M-Paperless are based around ['global' permissions](#global-permissions) as well as
+['object-level' permissions](#object-permissions). Global permissions determine which parts of the
+application a user can access (e.g. Documents, Tags, Settings) and object-level determine which
+objects are visible or editable. All objects have an 'owner' and 'view' and 'edit' permissions which
+can be granted to other users or groups. The M-Paperless permissions system uses the built-in user
+model of the backend framework, Django.
 
 !!! tip
 
@@ -219,36 +219,66 @@ the built-in user model of the backend framework, Django.
     for a Tag will _not_ affect the permissions of documents that have the Tag.
 
 Permissions can be set using the new "Permissions" tab when editing documents, or bulk-applied
-in the UI by selecting documents and choosing the "Permissions" button. Owner can also optionally
-be set for documents uploaded via the API. Documents consumed via the consumption dir currently
-do not have an owner set.
-
-!!! note
-
-    After migration to version 1.14.0 all existing documents, tags etc. will have no explicit owner
-    set which means they will be visible / editable by all users. Once an object has an owner set,
-    only the owner can explicitly grant / revoke permissions.
-
-!!! note
-
-    When first migrating to permissions it is recommended to use a 'superuser' account (which
-    would usually have been setup during installation) to ensure you have full permissions.
-
-    Note that superusers have access to all objects.
+in the UI by selecting documents and choosing the "Permissions" button.
 
 ### Default permissions
 
-Default permissions for documents can be set using workflows.
+[Workflows](#workflows) provide advanced ways to control permissions.
 
 For objects created via the web UI (tags, doc types, etc.) the default is to set the current user
-as owner and no extra permissions, but you explicitly set these under Settings > Permissions.
+as owner and no extra permissions, but you can explicitly set these under Settings > Permissions.
+
+Documents consumed via the consumption directory do not have an owner or additional permissions set by default, but again, can be controlled with [Workflows](#workflows).
 
 ### Users and Groups
 
-Paperless-ngx versions after 1.14.0 allow creating and editing users and groups via the 'frontend' UI.
-These can be found under Settings > Users & Groups, assuming the user has access. If a user is designated
+M-Paperless supports editing users and groups via the 'frontend' UI, which can be found under
+Settings > Users & Groups, assuming the user has access. If a user is designated
 as a member of a group those permissions will be inherited and this is reflected in the UI. Explicit
 permissions can be granted to limit access to certain parts of the UI (and corresponding API endpoints).
+
+!!! note
+
+    Superusers can access all parts of the front and backend application as well as any and all objects.
+
+#### Admin Status
+
+Admin status (Django 'staff status') grants access to viewing the paperless logs and the system status dialog
+as well as accessing the Django backend.
+
+#### Detailed Explanation of Global Permissions {#global-permissions}
+
+Global permissions define what areas of the app and API endpoints the user can access. For example, they
+determine if a user can create, edit, delete or view _any_ documents, but individual documents themselves
+still have "object-level" permissions.
+
+| Type          | Details                                                                                                                                                                                             |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| AppConfig     | _Change_ or higher permissions grants access to the "Application Configuration" area.                                                                                                               |
+| Correspondent | Grants global permissions to add, edit, delete or view Correspondents.                                                                                                                              |
+| CustomField   | Grants global permissions to add, edit, delete or view Custom Fields.                                                                                                                               |
+| Document      | Grants global permissions to add, edit, delete or view Documents.                                                                                                                                   |
+| DocumentType  | Grants global permissions to add, edit, delete or view Document Types.                                                                                                                              |
+| Group         | Grants global permissions to add, edit, delete or view Groups.                                                                                                                                      |
+| MailAccount   | Grants global permissions to add, edit, delete or view Mail Accounts.                                                                                                                               |
+| MailRule      | Grants global permissions to add, edit, delete or view Mail Rules.                                                                                                                                  |
+| Note          | Grants global permissions to add, edit, delete or view Notes.                                                                                                                                       |
+| PaperlessTask | Grants global permissions to view or dismiss (_Change_) File Tasks.                                                                                                                                 |
+| SavedView     | Grants global permissions to add, edit, delete or view Saved Views.                                                                                                                                 |
+| ShareLink     | Grants global permissions to add, delete or view Share Links.                                                                                                                                       |
+| StoragePath   | Grants global permissions to add, edit, delete or view Storage Paths.                                                                                                                               |
+| Tag           | Grants global permissions to add, edit, delete or view Tags.                                                                                                                                        |
+| UISettings    | Grants global permissions to add, edit, delete or view the UI settings that are used by the web app.<br/>Users expected to access the web UI should usually be granted at least _View_ permissions. |
+| User          | Grants global permissions to add, edit, delete or view Users.                                                                                                                                       |
+| Workflow      | Grants global permissions to add, edit, delete or view Workflows.<br/>Note that Workflows are global, in other words all users who can access workflows have access to the same set of them.        |
+
+#### Detailed Explanation of Object Permissions {#object-permissions}
+
+| Type  | Details                                                                                                                                                                                                                                                                                                                                  |
+| ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Owner | By default objects are only visible and editable by their owner.<br/>Only the object owner can grant permissions to other users or groups.<br/>Additionally, only document owners can create share links and add / remove custom fields.<br/>For backwards compatibility objects can have no owner which makes them visible to any user. |
+| View  | Confers the ability to view (not edit) a document, tag, etc.<br/>Users without 'view' (or higher) permissions will be shown _'Private'_ in place of the object name for example when viewing a document with a tag for which the user doesn't have permissions.                                                                          |
+| Edit  | Confers the ability to edit (and view) a document, tag, etc.                                                                                                                                                                                                                                                                             |
 
 ### Password reset
 
@@ -262,7 +292,7 @@ In order to enable the password reset feature you will need to setup an SMTP bac
 
     v2.3 added "Workflows" and existing "Consumption Templates" were converted automatically to the new more powerful format.
 
-Workflows allow hooking into the Paperless-ngx document pipeline, for example to alter what metadata (tags, doc types) and
+Workflows allow hooking into the M-Paperless document pipeline, for example to alter what metadata (tags, doc types) and
 permissions (owner, privileges) are assigned to documents. Workflows can have multiple 'triggers' and 'actions'. Triggers
 are events (with optional filtering rules) that will cause the workflow to be run and actions are the set of sequential
 actions to apply.
@@ -303,7 +333,7 @@ flowchart TD
     consumption --> |Yes| C[Workflow Actions Run]
     consumption --> |No| D
     C --> D[Document Added]
-    D -- Paperless-ngx 'matching' of tags, etc. --> added
+    D -- M-Paperless 'matching' of tags, etc. --> added
     added --> |Yes| F[Workflow Actions Run]
     added --> |No| G
     F --> G[Document Finalized]
@@ -386,18 +416,17 @@ documents (and superusers who can always access all parts of the app).
 
 ## Custom Fields {#custom-fields}
 
-Paperless-ngx supports the use of custom fields for documents as of v2.0, allowing a user
+M-Paperless supports the use of custom fields for documents as of v2.0, allowing a user
 to optionally attach data to documents which does not fit in the existing set of fields
-Paperless-ngx provides.
+M-Paperless provides.
 
 1. First, create a custom field (under "Manage"), with a given name and data type. This could be something like "Invoice Number" or "Date Paid", with a data type of "Number", "Date", "String", etc.
-2. Once created, a field can be used with documents and data stored. To do so, use the "Custom Fields" menu on the document detail page, choose your existing field and click "Add". Once the field is visible in the form you can enter the appropriate
-   data which will be validated according to the custom field "data type".
+2. Once created, a field can be used with documents and data stored. To do so, use the "Custom Fields" menu on the document detail page, choose your existing field from the dropdown. Once the field is visible in the form you can enter the appropriate data which will be validated according to the custom field "data type".
 3. Fields can be removed by hovering over the field name revealing a "Remove" button.
 
 !!! important
 
-    Added / removed fields, as well as any data is not saved to the document until you
+    Added / removed fields, as well as any data, is not saved to the document until you
     actually hit the "Save" button, similar to other changes on the document details page.
 
 !!! note
@@ -419,16 +448,35 @@ The following custom field types are supported:
 
 ## Share Links
 
-Paperless-ngx added the ability to create shareable links to files in version 2.0. You can find the button for this on the document detail screen.
+M-Paperless added the ability to create shareable links to files in version 2.0. You can find the button for this on the document detail screen.
 
 - Share links do not require a user to login and thus link directly to a file.
 - Links are unique and are of the form `{paperless-url}/share/{randomly-generated-slug}`.
 - Links can optionally have an expiration time set.
-- After a link expires or is deleted users will be redirected to the regular paperless-ngx login.
+- After a link expires or is deleted users will be redirected to the regular M-Paperless login.
 
 !!! tip
 
-    If your paperless-ngx instance is behind a reverse-proxy you may want to create an exception to bypass any authentication layers that are part of your setup in order to make links truly publicly-accessible. Of course, do so with caution.
+    If your M-Paperless instance is behind a reverse-proxy you may want to create an exception to bypass any authentication layers that are part of your setup in order to make links truly publicly-accessible. Of course, do so with caution.
+
+## PDF Actions
+
+M-Paperless supports four basic editing operations for PDFs (these operations currently cannot be performed on non-PDF files):
+
+- Merging documents: available when selecting multiple documents for 'bulk editing'.
+- Rotating documents: available when selecting multiple documents for 'bulk editing' and from an individual document's details page.
+- Splitting documents: available from an individual document's details page.
+- Deleting pages: available from an individual document's details page.
+
+!!! important
+
+    Note that rotation and deleting pages alter the M-Paperless _original_ file, which would, for example, invalidate a digital signature.
+
+## Document History
+
+As of version 2.7, M-Paperless automatically records all changes to a document and records this in an audit log. The feature requires [`PAPERLESS_AUDIT_LOG_ENABLED`](configuration.md#PAPERLESS_AUDIT_LOG_ENABLED) be enabled, which it is by default as of version 2.7.
+Changes to documents are visible under the "History" tab. Note that certain changes such as those made by workflows, record the 'actor'
+as "System".
 
 ## Best practices {#basic-searching}
 
@@ -502,6 +550,16 @@ collection.
 
 ## Searching {#basic-usage_searching}
 
+### Global search
+
+The top search bar in the web UI performs a "global" search of the various
+objects M-Paperless uses, including documents, tags, workflows, etc. Only
+objects for which the user has appropriate permissions are returned. For
+documents, if there are < 3 results, "advanced" search results (which use
+the document index) will also be included. This can be disabled under settings.
+
+### Document searches
+
 Paperless offers an extensive searching mechanism that is designed to
 allow you to quickly find a document you're looking for (for example,
 that thing that just broke and you bought a couple months ago, that
@@ -556,6 +614,12 @@ Whoosh's default query language. Head over to [Whoosh query
 language](https://whoosh.readthedocs.io/en/latest/querylang.html). For
 details on what date parsing utilities are available, see [Date
 parsing](https://whoosh.readthedocs.io/en/latest/dates.html#parsing-date-queries).
+
+## Keyboard shortcuts / hotkeys
+
+A list of available hotkeys can be shown on any page using <kbd>Shift</kbd> +
+<kbd>?</kbd>. The help dialog shows only the keys that are currently available
+based on which area of M-Paperless you are using.
 
 ## The recommended workflow {#usage-recommended-workflow}
 
@@ -658,7 +722,7 @@ how regularly you intend to scan documents and use paperless.
 
 ## Architecture
 
-Paperless-ngx consists of the following components:
+M-Paperless consists of the following components:
 
 - **The webserver:** This serves the administration pages, the API,
   and the new frontend. This is the main tool you'll be using to interact

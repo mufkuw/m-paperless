@@ -52,6 +52,12 @@ import { StoragePath } from 'src/app/data/storage-path'
 import { CorrespondentEditDialogComponent } from '../../common/edit-dialog/correspondent-edit-dialog/correspondent-edit-dialog.component'
 import { DocumentTypeEditDialogComponent } from '../../common/edit-dialog/document-type-edit-dialog/document-type-edit-dialog.component'
 import { StoragePathEditDialogComponent } from '../../common/edit-dialog/storage-path-edit-dialog/storage-path-edit-dialog.component'
+import { IsNumberPipe } from 'src/app/pipes/is-number.pipe'
+import { RotateConfirmDialogComponent } from '../../common/confirm-dialog/rotate-confirm-dialog/rotate-confirm-dialog.component'
+import { MergeConfirmDialogComponent } from '../../common/confirm-dialog/merge-confirm-dialog/merge-confirm-dialog.component'
+import { CustomFieldsService } from 'src/app/services/rest/custom-fields.service'
+import { CustomField, CustomFieldDataType } from 'src/app/data/custom-field'
+import { CustomFieldEditDialogComponent } from '../../common/edit-dialog/custom-field-edit-dialog/custom-field-edit-dialog.component'
 
 const selectionData: SelectionData = {
   selected_tags: [
@@ -64,6 +70,10 @@ const selectionData: SelectionData = {
   selected_storage_paths: [
     { id: 66, document_count: 3 },
     { id: 55, document_count: 0 },
+  ],
+  selected_custom_fields: [
+    { id: 77, document_count: 3 },
+    { id: 88, document_count: 0 },
   ],
 }
 
@@ -79,6 +89,7 @@ describe('BulkEditorComponent', () => {
   let correspondentsService: CorrespondentService
   let documentTypeService: DocumentTypeService
   let storagePathService: StoragePathService
+  let customFieldsService: CustomFieldsService
   let httpTestingController: HttpTestingController
 
   beforeEach(async () => {
@@ -97,6 +108,9 @@ describe('BulkEditorComponent', () => {
         PermissionsGroupComponent,
         PermissionsUserComponent,
         SwitchComponent,
+        RotateConfirmDialogComponent,
+        IsNumberPipe,
+        MergeConfirmDialogComponent,
       ],
       providers: [
         PermissionsService,
@@ -142,6 +156,18 @@ describe('BulkEditorComponent', () => {
               }),
           },
         },
+        {
+          provide: CustomFieldsService,
+          useValue: {
+            listAll: () =>
+              of({
+                results: [
+                  { id: 77, name: 'customfield1' },
+                  { id: 88, name: 'customfield2' },
+                ],
+              }),
+          },
+        },
         FilterPipe,
         SettingsService,
         {
@@ -183,6 +209,7 @@ describe('BulkEditorComponent', () => {
     correspondentsService = TestBed.inject(CorrespondentService)
     documentTypeService = TestBed.inject(DocumentTypeService)
     storagePathService = TestBed.inject(StoragePathService)
+    customFieldsService = TestBed.inject(CustomFieldsService)
     httpTestingController = TestBed.inject(HttpTestingController)
 
     fixture = TestBed.createComponent(BulkEditorComponent)
@@ -254,6 +281,22 @@ describe('BulkEditorComponent', () => {
       .mockReturnValue(of(selectionData))
     component.openStoragePathDropdown()
     expect(component.storagePathsSelectionModel.selectionSize()).toEqual(1)
+  })
+
+  it('should apply selection data to custom fields menu', () => {
+    jest.spyOn(permissionsService, 'currentUserCan').mockReturnValue(true)
+    fixture.detectChanges()
+    expect(
+      component.customFieldsSelectionModel.getSelectedItems()
+    ).toHaveLength(0)
+    jest
+      .spyOn(documentListViewService, 'selected', 'get')
+      .mockReturnValue(new Set([3, 5, 7]))
+    jest
+      .spyOn(documentService, 'getSelectionData')
+      .mockReturnValue(of(selectionData))
+    component.openCustomFieldsDropdown()
+    expect(component.customFieldsSelectionModel.selectionSize()).toEqual(1)
   })
 
   it('should execute modify tags bulk operation', () => {
@@ -673,6 +716,122 @@ describe('BulkEditorComponent', () => {
     )
   })
 
+  it('should execute modify custom fields bulk operation', () => {
+    jest.spyOn(permissionsService, 'currentUserCan').mockReturnValue(true)
+    jest
+      .spyOn(documentListViewService, 'documents', 'get')
+      .mockReturnValue([{ id: 3 }, { id: 4 }])
+    jest
+      .spyOn(documentListViewService, 'selected', 'get')
+      .mockReturnValue(new Set([3, 4]))
+    jest
+      .spyOn(permissionsService, 'currentUserHasObjectPermissions')
+      .mockReturnValue(true)
+    component.showConfirmationDialogs = false
+    fixture.detectChanges()
+    component.setCustomFields({
+      itemsToAdd: [{ id: 101 }],
+      itemsToRemove: [{ id: 102 }],
+    })
+    let req = httpTestingController.expectOne(
+      `${environment.apiBaseUrl}documents/bulk_edit/`
+    )
+    req.flush(true)
+    expect(req.request.body).toEqual({
+      documents: [3, 4],
+      method: 'modify_custom_fields',
+      parameters: { add_custom_fields: [101], remove_custom_fields: [102] },
+    })
+    httpTestingController.match(
+      `${environment.apiBaseUrl}documents/?page=1&page_size=50&ordering=-created&truncate_content=true`
+    ) // list reload
+    httpTestingController.match(
+      `${environment.apiBaseUrl}documents/?page=1&page_size=100000&fields=id`
+    ) // listAllFilteredIds
+  })
+
+  it('should execute modify custom fields bulk operation with confirmation dialog if enabled', () => {
+    let modal: NgbModalRef
+    modalService.activeInstances.subscribe((m) => (modal = m[0]))
+    jest.spyOn(permissionsService, 'currentUserCan').mockReturnValue(true)
+    jest
+      .spyOn(documentListViewService, 'documents', 'get')
+      .mockReturnValue([{ id: 3 }, { id: 4 }])
+    jest
+      .spyOn(documentListViewService, 'selected', 'get')
+      .mockReturnValue(new Set([3, 4]))
+    jest
+      .spyOn(permissionsService, 'currentUserHasObjectPermissions')
+      .mockReturnValue(true)
+    component.showConfirmationDialogs = true
+    fixture.detectChanges()
+    component.setCustomFields({
+      itemsToAdd: [{ id: 101 }],
+      itemsToRemove: [{ id: 102 }],
+    })
+    expect(modal).not.toBeUndefined()
+    modal.componentInstance.confirm()
+    httpTestingController
+      .expectOne(`${environment.apiBaseUrl}documents/bulk_edit/`)
+      .flush(true)
+    httpTestingController.match(
+      `${environment.apiBaseUrl}documents/?page=1&page_size=50&ordering=-created&truncate_content=true`
+    ) // list reload
+    httpTestingController.match(
+      `${environment.apiBaseUrl}documents/?page=1&page_size=100000&fields=id`
+    ) // listAllFilteredIds
+
+    // coverage for modal messages
+    component.setCustomFields({
+      itemsToAdd: [{ id: 101 }],
+      itemsToRemove: [],
+    })
+    component.setCustomFields({
+      itemsToAdd: [{ id: 101 }, { id: 102 }],
+      itemsToRemove: [],
+    })
+    component.setCustomFields({
+      itemsToAdd: [],
+      itemsToRemove: [{ id: 101 }, { id: 102 }],
+    })
+    component.setCustomFields({
+      itemsToAdd: [{ id: 100 }],
+      itemsToRemove: [{ id: 101 }, { id: 102 }],
+    })
+  })
+
+  it('should set modal dialog text accordingly for custom fields edit confirmation', () => {
+    let modal: NgbModalRef
+    modalService.activeInstances.subscribe((m) => (modal = m[m.length - 1]))
+    jest.spyOn(permissionsService, 'currentUserCan').mockReturnValue(true)
+    jest
+      .spyOn(documentListViewService, 'documents', 'get')
+      .mockReturnValue([{ id: 3 }, { id: 4 }])
+    jest
+      .spyOn(documentListViewService, 'selected', 'get')
+      .mockReturnValue(new Set([3, 4]))
+    jest
+      .spyOn(permissionsService, 'currentUserHasObjectPermissions')
+      .mockReturnValue(true)
+    component.showConfirmationDialogs = true
+    fixture.detectChanges()
+    component.setCustomFields({
+      itemsToAdd: [],
+      itemsToRemove: [{ id: 101, name: 'CustomField 101' }],
+    })
+    expect(modal.componentInstance.message).toEqual(
+      'This operation will remove the custom field "CustomField 101" from 2 selected document(s).'
+    )
+    modal.close()
+    component.setCustomFields({
+      itemsToAdd: [{ id: 101, name: 'CustomField 101' }],
+      itemsToRemove: [],
+    })
+    expect(modal.componentInstance.message).toEqual(
+      'This operation will assign the custom field "CustomField 101" to 2 selected document(s).'
+    )
+  })
+
   it('should only execute bulk operations when changes are detected', () => {
     component.setTags({
       itemsToAdd: [],
@@ -687,6 +846,10 @@ describe('BulkEditorComponent', () => {
       itemsToRemove: [],
     })
     component.setStoragePaths({
+      itemsToAdd: [],
+      itemsToRemove: [],
+    })
+    component.setCustomFields({
       itemsToAdd: [],
       itemsToRemove: [],
     })
@@ -798,7 +961,7 @@ describe('BulkEditorComponent', () => {
       .mockReturnValue(true)
     component.showConfirmationDialogs = true
     fixture.detectChanges()
-    component.redoOcrSelected()
+    component.reprocessSelected()
     expect(modal).not.toBeUndefined()
     modal.componentInstance.confirm()
     let req = httpTestingController.expectOne(
@@ -807,8 +970,104 @@ describe('BulkEditorComponent', () => {
     req.flush(true)
     expect(req.request.body).toEqual({
       documents: [3, 4],
-      method: 'redo_ocr',
+      method: 'reprocess',
       parameters: {},
+    })
+    httpTestingController.match(
+      `${environment.apiBaseUrl}documents/?page=1&page_size=50&ordering=-created&truncate_content=true`
+    ) // list reload
+    httpTestingController.match(
+      `${environment.apiBaseUrl}documents/?page=1&page_size=100000&fields=id`
+    ) // listAllFilteredIds
+  })
+
+  it('should support rotate', () => {
+    let modal: NgbModalRef
+    modalService.activeInstances.subscribe((m) => (modal = m[0]))
+    jest.spyOn(permissionsService, 'currentUserCan').mockReturnValue(true)
+    jest
+      .spyOn(documentListViewService, 'documents', 'get')
+      .mockReturnValue([{ id: 3 }, { id: 4 }])
+    jest
+      .spyOn(documentListViewService, 'selected', 'get')
+      .mockReturnValue(new Set([3, 4]))
+    jest
+      .spyOn(permissionsService, 'currentUserHasObjectPermissions')
+      .mockReturnValue(true)
+    fixture.detectChanges()
+    component.rotateSelected()
+    expect(modal).not.toBeUndefined()
+    modal.componentInstance.rotate()
+    modal.componentInstance.confirm()
+    let req = httpTestingController.expectOne(
+      `${environment.apiBaseUrl}documents/bulk_edit/`
+    )
+    req.flush(true)
+    expect(req.request.body).toEqual({
+      documents: [3, 4],
+      method: 'rotate',
+      parameters: { degrees: 90 },
+    })
+    httpTestingController.match(
+      `${environment.apiBaseUrl}documents/?page=1&page_size=50&ordering=-created&truncate_content=true`
+    ) // list reload
+    httpTestingController.match(
+      `${environment.apiBaseUrl}documents/?page=1&page_size=100000&fields=id`
+    ) // listAllFilteredIds
+  })
+
+  it('should support merge', () => {
+    let modal: NgbModalRef
+    modalService.activeInstances.subscribe((m) => (modal = m[0]))
+    jest.spyOn(permissionsService, 'currentUserCan').mockReturnValue(true)
+    jest
+      .spyOn(documentListViewService, 'documents', 'get')
+      .mockReturnValue([{ id: 3 }, { id: 4 }])
+    jest.spyOn(documentService, 'getFew').mockReturnValue(
+      of({
+        all: [3, 4],
+        count: 2,
+        results: [{ id: 3 }, { id: 4 }],
+      })
+    )
+    jest
+      .spyOn(documentListViewService, 'selected', 'get')
+      .mockReturnValue(new Set([3, 4]))
+    jest
+      .spyOn(permissionsService, 'currentUserHasObjectPermissions')
+      .mockReturnValue(true)
+    fixture.detectChanges()
+    component.mergeSelected()
+    expect(modal).not.toBeUndefined()
+    modal.componentInstance.metadataDocumentID = 3
+    modal.componentInstance.confirm()
+    let req = httpTestingController.expectOne(
+      `${environment.apiBaseUrl}documents/bulk_edit/`
+    )
+    req.flush(true)
+    expect(req.request.body).toEqual({
+      documents: [3, 4],
+      method: 'merge',
+      parameters: { metadata_document_id: 3 },
+    })
+    httpTestingController.match(
+      `${environment.apiBaseUrl}documents/?page=1&page_size=50&ordering=-created&truncate_content=true`
+    ) // list reload
+    httpTestingController.match(
+      `${environment.apiBaseUrl}documents/?page=1&page_size=100000&fields=id`
+    ) // listAllFilteredIds
+
+    // Test with Delete Originals enabled
+    modal.componentInstance.deleteOriginals = true
+    modal.componentInstance.confirm()
+    req = httpTestingController.expectOne(
+      `${environment.apiBaseUrl}documents/bulk_edit/`
+    )
+    req.flush(true)
+    expect(req.request.body).toEqual({
+      documents: [3, 4],
+      method: 'merge',
+      parameters: { metadata_document_id: 3, delete_originals: true },
     })
     httpTestingController.match(
       `${environment.apiBaseUrl}documents/?page=1&page_size=50&ordering=-created&truncate_content=true`
@@ -1095,5 +1354,57 @@ describe('BulkEditorComponent', () => {
       newStoragePath.id
     )
     expect(component.storagePaths).toEqual(storagePaths.results)
+  })
+
+  it('should support create new custom field', () => {
+    const name = 'New Custom Field'
+    const newCustomField = { id: 101, name: 'New Custom Field' }
+    const customFields: Results<CustomField> = {
+      results: [
+        {
+          id: 1,
+          name: 'Custom Field 1',
+          data_type: CustomFieldDataType.String,
+        },
+        {
+          id: 2,
+          name: 'Custom Field 2',
+          data_type: CustomFieldDataType.String,
+        },
+      ],
+      count: 2,
+      all: [1, 2],
+    }
+
+    const modalInstance = {
+      componentInstance: {
+        dialogMode: EditDialogMode.CREATE,
+        object: { name },
+        succeeded: of(newCustomField),
+      },
+    }
+    const customFieldsListAllSpy = jest.spyOn(customFieldsService, 'listAll')
+    customFieldsListAllSpy.mockReturnValue(of(customFields))
+
+    const customFieldsSelectionModelToggleSpy = jest.spyOn(
+      component.customFieldsSelectionModel,
+      'toggle'
+    )
+
+    const modalServiceOpenSpy = jest.spyOn(modalService, 'open')
+    modalServiceOpenSpy.mockReturnValue(modalInstance as any)
+
+    component.createCustomField(name)
+
+    expect(modalServiceOpenSpy).toHaveBeenCalledWith(
+      CustomFieldEditDialogComponent,
+      { backdrop: 'static' }
+    )
+    expect(customFieldsListAllSpy).toHaveBeenCalled()
+
+    expect(customFieldsSelectionModelToggleSpy).toHaveBeenCalledWith(
+      newCustomField.id
+    )
+    expect(component.customFields).toEqual(customFields.results)
   })
 })

@@ -24,13 +24,13 @@
   <ngb-pagination class="col-auto" [pageSize]="25" [collectionSize]="collectionSize" [(page)]="page" [maxSize]="5" (pageChange)="reloadData()" size="sm" aria-label="Pagination"></ngb-pagination>
 </div>
 
-<div class="card border mb-3">
+<div class="card border table-responsive mb-3">
   <table class="table table-striped align-middle shadow-sm mb-0">
     <thead>
       <tr>
         <th scope="col">
           <div class="form-check m-0 ms-2 me-n2">
-            <input type="checkbox" class="form-check-input" id="all-objects" [disabled]="data.length === 0" (click)="toggleAll($event); $event.stopPropagation();">
+            <input type="checkbox" class="form-check-input" id="all-objects" [(ngModel)]="togggleAll" [disabled]="data.length === 0" (click)="toggleAll($event); $event.stopPropagation();">
             <label class="form-check-label" for="all-objects"></label>
           </div>
         </th>
@@ -74,7 +74,7 @@
           }
           <td scope="row">
             <div class="btn-group d-block d-sm-none">
-              <div ngbDropdown class="d-inline-block">
+              <div ngbDropdown container="body" class="d-inline-block">
                 <button type="button" class="btn btn-link" id="actionsMenuMobile" (click)="$event.stopPropagation()" ngbDropdownToggle>
                   <i-bs name="three-dots-vertical"></i-bs>
                 </button>

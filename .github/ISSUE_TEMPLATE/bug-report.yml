@@ -7,9 +7,9 @@ body:
     attributes:
       value: |
         ### ⚠️ Please remember: issues are for *bugs*
-        That is, something you believe affects every single user of Paperless-ngx, not just you. If you're not sure, start with one of the other options below.
+        That is, something you believe affects every single user of M-Paperless, not just you. If you're not sure, start with one of the other options below.
 
-        Also, note that **Paperless-ngx does not perform OCR itself**, that is handled by other tools. Problems with OCR of specific files should likely be raised 'upstream', see https://github.com/ocrmypdf/OCRmyPDF/issues or https://github.com/tesseract-ocr/tesseract/issues
+        Also, note that **M-Paperless does not perform OCR itself**, that is handled by other tools. Problems with OCR of specific files should likely be raised 'upstream', see https://github.com/ocrmypdf/OCRmyPDF/issues or https://github.com/tesseract-ocr/tesseract/issues
   - type: markdown
     attributes:
       value: |
@@ -22,7 +22,7 @@ body:
         - [Existing issues and discussions](https://github.com/paperless-ngx/paperless-ngx/search?q=&type=issues).
         - Disable any custom container initialization scripts, if using
 
-        If you encounter issues while installing or configuring Paperless-ngx, please post in the ["Support" section of the discussions](https://github.com/paperless-ngx/paperless-ngx/discussions/new?category=support).
+        If you encounter issues while installing or configuring M-Paperless, please post in the ["Support" section of the discussions](https://github.com/paperless-ngx/paperless-ngx/discussions/new?category=support).
   - type: textarea
     id: description
     attributes:
@@ -62,7 +62,7 @@ body:
   - type: input
     id: version
     attributes:
-      label: Paperless-ngx version
+      label: M-Paperless version
       placeholder: e.g. 1.6.0
     validations:
       required: true
@@ -86,6 +86,12 @@ body:
       description: Note there are significant differences from the official image and linuxserver.io, please check if your issue is specific to the third-party image.
     validations:
       required: true
+  - type: textarea
+    id: system-status
+    attributes:
+      label: System status
+      description: If available, copy & paste the system status output from Settings > System Status > Copy
+      render: json
   - type: input
     id: browser
     attributes:
@@ -97,17 +103,12 @@ body:
     attributes:
       label: Configuration changes
       description: Any configuration changes you made in `docker-compose.yml`, `docker-compose.env` or `paperless.conf`.
-  - type: input
-    id: other
-    attributes:
-      label: Other
-      description: Any other relevant details.
   - type: checkboxes
     id: required-checks
     attributes:
       label: Please confirm the following
       options:
-        - label: I believe this issue is a bug that affects all users of Paperless-ngx, not something specific to my installation.
+        - label: I believe this issue is a bug that affects all users of M-Paperless, not something specific to my installation.
           required: true
         - label: I have already searched for relevant existing issues and discussions before opening this report.
           required: true

@@ -1,7 +1,7 @@
 # Development
 
 This section describes the steps you need to take to start development
-on Paperless-ngx.
+on M-Paperless.
 
 Check out the source from GitHub. The repository is organized in the
 following way:
@@ -12,7 +12,7 @@ following way:
 - `feature-X` contains bigger changes that will be in some release, but
   not necessarily the next one.
 
-When making functional changes to Paperless-ngx, _always_ make your changes
+When making functional changes to M-Paperless, _always_ make your changes
 on the `dev` branch.
 
 Apart from that, the folder structure is as follows:
@@ -24,17 +24,17 @@ Apart from that, the folder structure is as follows:
   development.
 - `docker/` - Files required to build the docker image.
 
-## Contributing to Paperless-ngx
+## Contributing to M-Paperless
 
-Maybe you've been using Paperless-ngx for a while and want to add a feature
+Maybe you've been using M-Paperless for a while and want to add a feature
 or two, or maybe you've come across a bug that you have some ideas how
 to solve. The beauty of open source software is that you can see what's
 wrong and help to get it fixed for everyone!
 
 Before contributing please review our [code of
-conduct](https://github.com/paperless-ngx/paperless-ngx/blob/main/CODE_OF_CONDUCT.md)
+conduct](https://github.com/M-Paperless/M-Paperless/blob/main/CODE_OF_CONDUCT.md)
 and other important information in the [contributing
-guidelines](https://github.com/paperless-ngx/paperless-ngx/blob/main/CONTRIBUTING.md).
+guidelines](https://github.com/M-Paperless/M-Paperless/blob/main/CONTRIBUTING.md).
 
 ## Code formatting with pre-commit hooks
 
@@ -47,7 +47,7 @@ early on.
 Once installed, hooks will run when you commit. If the formatting isn't
 quite right or a linter catches something, the commit will be rejected.
 You'll need to look at the output and fix the issue. Some hooks, such
-as the Python formatting tool `black`, will format failing
+as the Python linting and formatting tool `ruff`, will format failing
 files, so all you need to do is `git add` those files again
 and retry your commit.
 
@@ -243,7 +243,7 @@ that authentication is working.
 
 ## Localization
 
-Paperless-ngx is available in many different languages. Since Paperless-ngx
+M-Paperless is available in many different languages. Since M-Paperless
 consists both of a Django application and an AngularJS front end, both
 these parts have to be translated separately.
 
@@ -370,16 +370,16 @@ Building the image works as with any image:
 docker build --file Dockerfile --tag paperless:local --progress simple .
 ```
 
-## Extending Paperless-ngx
+## Extending M-Paperless
 
-Paperless-ngx does not have any fancy plugin systems and will probably never
+M-Paperless does not have any fancy plugin systems and will probably never
 have. However, some parts of the application have been designed to allow
 easy integration of additional features without any modification to the
 base code.
 
 ### Making custom parsers
 
-Paperless-ngx uses parsers to add documents. A parser is
+M-Paperless uses parsers to add documents. A parser is
 responsible for:
 
 - Retrieving the content from the original
@@ -387,14 +387,14 @@ responsible for:
 - _optional:_ Retrieving a created date from the original
 - _optional:_ Creating an archived document from the original
 
-Custom parsers can be added to Paperless-ngx to support more file types. In
+Custom parsers can be added to M-Paperless to support more file types. In
 order to do that, you need to write the parser itself and announce its
-existence to Paperless-ngx.
+existence to M-Paperless.
 
 The parser itself must extend `documents.parsers.DocumentParser` and
 must implement the methods `parse` and `get_thumbnail`. You can provide
 your own implementation to `get_date` if you don't want to rely on
-Paperless-ngx' default date guessing mechanisms.
+M-Paperless' default date guessing mechanisms.
 
 ```python
 class MyCustomParser(DocumentParser):
@@ -426,7 +426,7 @@ to be empty and removed after consumption finished. You can use that
 directory to store any intermediate files and also use it to store the
 thumbnail / archived document.
 
-After that, you need to announce your parser to Paperless-ngx. You need to
+After that, you need to announce your parser to M-Paperless. You need to
 connect a handler to the `document_consumer_declaration` signal. Have a
 look in the file `src/paperless_tesseract/apps.py` on how that's done.
 The handler is a method that returns information about your parser:
@@ -446,10 +446,10 @@ def myparser_consumer_declaration(sender, **kwargs):
 - `parser` is a reference to a class that extends `DocumentParser`.
 - `weight` is used whenever two or more parsers are able to parse a
   file: The parser with the higher weight wins. This can be used to
-  override the parsers provided by Paperless-ngx.
+  override the parsers provided by M-Paperless.
 - `mime_types` is a dictionary. The keys are the mime types your
   parser supports and the value is the default file extension that
-  Paperless-ngx should use when storing files and serving them for
+  M-Paperless should use when storing files and serving them for
   download. We could guess that from the file extensions, but some
   mime types have many extensions associated with them and the Python
   methods responsible for guessing the extension do not always return

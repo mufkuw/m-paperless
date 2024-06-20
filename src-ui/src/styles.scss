@@ -89,7 +89,7 @@ table .btn-link {
   color: var(--pngx-primary-text-contrast) !important;
 }
 
-.navbar .dropdown .btn {
+.navbar .dropdown>.btn {
   color: var(--pngx-primary-text-contrast) !important;
 }
 
@@ -259,7 +259,7 @@ a.btn-link:focus-visible,
     position: relative;
     flex: 1 1 auto;
     margin-bottom: 0;
-    min-height: calc(1.5em + 0.75rem + 5px);
+    min-height: calc(1em + 0.75rem + 5px);
     line-height: 1.5;
 
     .ng-select-container {
@@ -268,16 +268,26 @@ a.btn-link:focus-visible,
 
     .ng-select-container .ng-value-container .ng-input {
       top: 7px;
+
+      input {
+        min-width: 10px;
+      }
     }
 
     .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
-      background-color: var(--pngx-bg-alt) !important;
+      background-color: var(--pngx-bg-darker) !important;
       color: var(--pngx-body-color-accent) !important;
     }
 
     .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected,
     .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected.ng-option-marked {
-      background: none;
+      font-weight: bold;
+      background-color: var(--pngx-bg-alt2) !important;
+    }
+
+    &.ng-select-multiple .ng-select-container .ng-value-container .ng-placeholder,
+    .ng-select-container .ng-value-container .ng-placeholder {
+      top: 7px;
     }
   }
 
@@ -333,6 +343,14 @@ textarea,
 
   @media(max-width: 768px) {
     font-size: 1rem;
+  }
+}
+
+@media(max-width: 768px) {
+  .input-group-sm .btn-sm {
+    // accommodate larger font size on mobile
+    padding-top: .35rem;
+    padding-bottom: .35rem;
   }
 }
 
@@ -469,7 +487,7 @@ ul.pagination {
 
     &:hover,
     &:focus {
-      background-color: var(--pngx-bg-alt);
+      background-color: var(--pngx-bg-darker);
       color: var(--bs-body-color);
     }
 

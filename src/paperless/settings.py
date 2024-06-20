@@ -112,7 +112,7 @@ def __get_list(
         return []
 
 
-def _parse_redis_url(env_redis: Optional[str]) -> tuple[str]:
+def _parse_redis_url(env_redis: Optional[str]) -> tuple[str, str]:
     """
     Gets the Redis information from the environment or a default and handles
     converting from incompatible django_channels and celery formats.
@@ -171,8 +171,7 @@ def _parse_beat_schedule() -> dict:
             "task": "paperless_mail.tasks.process_mail_accounts",
             "options": {
                 # 1 minute before default schedule sends again
-                "expires": 9.0
-                * 60.0,
+                "expires": 9.0 * 60.0,
             },
         },
         {
@@ -183,8 +182,7 @@ def _parse_beat_schedule() -> dict:
             "task": "documents.tasks.train_classifier",
             "options": {
                 # 1 minute before default schedule sends again
-                "expires": 59.0
-                * 60.0,
+                "expires": 59.0 * 60.0,
             },
         },
         {
@@ -195,9 +193,7 @@ def _parse_beat_schedule() -> dict:
             "task": "documents.tasks.index_optimize",
             "options": {
                 # 1 hour before default schedule sends again
-                "expires": 23.0
-                * 60.0
-                * 60.0,
+                "expires": 23.0 * 60.0 * 60.0,
             },
         },
         {
@@ -208,9 +204,7 @@ def _parse_beat_schedule() -> dict:
             "task": "documents.tasks.sanity_check",
             "options": {
                 # 1 hour before default schedule sends again
-                "expires": ((7.0 * 24.0) - 1.0)
-                * 60.0
-                * 60.0,
+                "expires": ((7.0 * 24.0) - 1.0) * 60.0 * 60.0,
             },
         },
     ]
@@ -262,7 +256,10 @@ TRASH_DIR = os.getenv("PAPERLESS_TRASH_DIR")
 # threads.
 MEDIA_LOCK = MEDIA_ROOT / "media.lock"
 INDEX_DIR = DATA_DIR / "index"
-MODEL_FILE = DATA_DIR / "classification_model.pickle"
+MODEL_FILE = __get_path(
+    "PAPERLESS_MODEL_FILE",
+    DATA_DIR / "classification_model.pickle",
+)
 
 LOGGING_DIR = __get_path("PAPERLESS_LOGGING_DIR", DATA_DIR / "log")
 
@@ -456,6 +453,8 @@ ACCOUNT_EMAIL_VERIFICATION = os.getenv(
     "optional",
 )
 
+ACCOUNT_SESSION_REMEMBER = __get_boolean("PAPERLESS_ACCOUNT_SESSION_REMEMBER")
+
 if AUTO_LOGIN_USERNAME:
     _index = MIDDLEWARE.index("django.contrib.auth.middleware.AuthenticationMiddleware")
     # This overrides everything the auth middleware is doing but still allows
@@ -617,7 +616,7 @@ def _parse_db_settings() -> dict:
             }
 
         else:  # Default to PostgresDB
-            engine = "django.db.backends.postgresql_psycopg2"
+            engine = "django.db.backends.postgresql"
             options = {
                 "sslmode": os.getenv("PAPERLESS_DBSSLMODE", "prefer"),
                 "sslrootcert": os.getenv("PAPERLESS_DBSSLROOTCERT", None),
@@ -790,9 +789,9 @@ CACHES = {
 }
 
 if DEBUG and os.getenv("PAPERLESS_CACHE_BACKEND") is None:
-    CACHES["default"][
-        "BACKEND"
-    ] = "django.core.cache.backends.locmem.LocMemCache"  # pragma: no cover
+    CACHES["default"]["BACKEND"] = (
+        "django.core.cache.backends.locmem.LocMemCache"  # pragma: no cover
+    )
 
 
 def default_threads_per_worker(task_workers) -> int:
@@ -1013,7 +1012,7 @@ TIKA_GOTENBERG_ENDPOINT = os.getenv(
 if TIKA_ENABLED:
     INSTALLED_APPS.append("paperless_tika.apps.PaperlessTikaConfig")
 
-AUDIT_LOG_ENABLED = __get_boolean("PAPERLESS_AUDIT_LOG_ENABLED", "NO")
+AUDIT_LOG_ENABLED = __get_boolean("PAPERLESS_AUDIT_LOG_ENABLED", "true")
 if AUDIT_LOG_ENABLED:
     INSTALLED_APPS.append("auditlog")
     MIDDLEWARE.append("auditlog.middleware.AuditlogMiddleware")
