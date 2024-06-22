@@ -1,11 +1,11 @@
 cd /opt/paperless
 #cp paperless.conf.example paperless.conf
-pyenv global 3.11.8
-pyenv local 3.11.8
+pyenv global 3.11.6
+pyenv local 3.11.6
 
 pipenv install
 pipenv requirements > req.txt
-#pip install -r req.txt
+pip install -r req.txt
 sudo -Hu paperless pip3 install -r req.txt --break-system-packages
 
 sudo -Hu paperless python3 -m nltk.downloader popular
@@ -17,7 +17,7 @@ sudo -Hu paperless python3 manage.py migrate
 cd /opt/paperless/src-ui
 npm i -g npm@latest --force
 npm install -g @angular/cli
-npm install
+npm install --force
 ng build --configuration production
 
 
