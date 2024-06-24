@@ -1896,10 +1896,11 @@ class CustomFieldViewSet(ModelViewSet):
     def customfield_values(self, request):
         field =  request.GET.get('field')
         # Convert queryset to list for JSON serialization
-        filtered_distinct_values = list(set(item.value for item in CustomFieldInstance.objects.filter(field=field)))
-    
+        filtered_distinct_values = list(set([item.value for item in CustomFieldInstance.objects.filter(field=field) if item.field.data_type=='string' and item.value!=None]))
+        
+   
         # Return JSON response
-        return JsonResponse(filtered_distinct_values,safe=False)
+        return JsonResponse({'count' :len(filtered_distinct_values), 'results' : filtered_distinct_values},safe=False)
 
 class SystemStatusView(PassUserMixin):
     permission_classes = (IsAuthenticated,)
