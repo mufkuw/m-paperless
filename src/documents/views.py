@@ -163,6 +163,8 @@ from paperless_mail.models import MailRule
 from paperless_mail.serialisers import MailAccountSerializer
 from paperless_mail.serialisers import MailRuleSerializer
 
+from django.http import JsonResponse
+
 if settings.AUDIT_LOG_ENABLED:
     from auditlog.models import LogEntry
 
@@ -1889,7 +1891,20 @@ class CustomFieldViewSet(ModelViewSet):
     model = CustomField
 
     queryset = CustomField.objects.all().order_by("-created")
-
+    
+    @action(detail=False,methods=['GET'])
+    def customfield_values(self, request):
+        field =  request.GET.get('field')
+        query =  request.GET.get('query')
+        if query == None:
+            query=''
+            
+        # Convert queryset to list for JSON serialization
+        filtered_distinct_values = list(set([item.value for item in CustomFieldInstance.objects.filter(field=field,value_text__contains=query) if item.field.data_type=='stringselect' and item.value!=None]))
+        
+   
+        # Return JSON response
+        return JsonResponse({'count' :len(filtered_distinct_values), 'results' : filtered_distinct_values},safe=False)
 
 class SystemStatusView(PassUserMixin):
     permission_classes = (IsAuthenticated,)

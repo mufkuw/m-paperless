@@ -500,6 +500,7 @@ class CustomFieldInstanceSerializer(serializers.ModelSerializer):
             CustomField.FieldDataType.FLOAT: "value_float",
             CustomField.FieldDataType.MONETARY: "value_monetary",
             CustomField.FieldDataType.DOCUMENTLINK: "value_document_ids",
+            CustomField.FieldDataType.STRINGSELECT: "value_text",
         }
         # An instance is attached to a document
         document: Document = validated_data["document"]

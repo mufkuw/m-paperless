@@ -806,6 +806,7 @@ class CustomField(models.Model):
         FLOAT = ("float", _("Float"))
         MONETARY = ("monetary", _("Monetary"))
         DOCUMENTLINK = ("documentlink", _("Document Link"))
+        STRINGSELECT = ("stringselect", _("String Select"))
 
     created = models.DateTimeField(
         _("created"),
@@ -907,6 +908,8 @@ class CustomFieldInstance(models.Model):
         A little shorthand/quick way to get what is actually here
         """
         if self.field.data_type == CustomField.FieldDataType.STRING:
+            return self.value_text
+        if self.field.data_type == CustomField.FieldDataType.STRINGSELECT:
             return self.value_text
         elif self.field.data_type == CustomField.FieldDataType.URL:
             return self.value_url

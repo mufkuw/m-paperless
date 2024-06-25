@@ -107,6 +107,7 @@ import { CustomFieldsDropdownComponent } from './components/common/custom-fields
 import { ProfileEditDialogComponent } from './components/common/profile-edit-dialog/profile-edit-dialog.component'
 import { PdfViewerModule } from 'ng2-pdf-viewer'
 import { DocumentLinkComponent } from './components/common/input/document-link/document-link.component'
+import { TextSelectComponent } from './components/common/input/text-select/text-select.component'
 import { PreviewPopupComponent } from './components/common/preview-popup/preview-popup.component'
 import { SwitchComponent } from './components/common/input/switch/switch.component'
 import { ConfigComponent } from './components/admin/config/config.component'
@@ -481,6 +482,7 @@ function initializeApp(settings: SettingsService) {
     CustomFieldsDropdownComponent,
     ProfileEditDialogComponent,
     DocumentLinkComponent,
+    TextSelectComponent,
     PreviewPopupComponent,
     SwitchComponent,
     ConfigComponent,
@@ -544,4 +546,4 @@ function initializeApp(settings: SettingsService) {
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

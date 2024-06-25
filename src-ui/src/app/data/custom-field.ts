@@ -2,6 +2,7 @@ import { ObjectWithId } from './object-with-id'
 
 export enum CustomFieldDataType {
   String = 'string',
+  StringSelect = 'stringselect',
   Url = 'url',
   Date = 'date',
   Boolean = 'boolean',
@@ -35,6 +36,10 @@ export const DATA_TYPE_LABELS = [
   {
     id: CustomFieldDataType.String,
     name: $localize`Text`,
+  },
+  {
+    id: CustomFieldDataType.StringSelect,
+    name: $localize`Text Select`,
   },
   {
     id: CustomFieldDataType.Url,
