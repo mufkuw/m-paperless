@@ -1900,7 +1900,7 @@ class CustomFieldViewSet(ModelViewSet):
             query=''
             
         # Convert queryset to list for JSON serialization
-        filtered_distinct_values = list(set([item.value for item in CustomFieldInstance.objects.filter(field=field,value_text__contains=query) if item.field.data_type=='string' and item.value!=None]))
+        filtered_distinct_values = list(set([item.value for item in CustomFieldInstance.objects.filter(field=field,value_text__contains=query) if item.field.data_type=='stringselect' and item.value!=None]))
         
    
         # Return JSON response

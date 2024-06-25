@@ -142,6 +142,11 @@
               <div [formGroup]="customFieldFormFields.controls[i]">
                 @switch (getCustomFieldFromInstance(fieldInstance)?.data_type) {
                 @case (CustomFieldDataType.String) {
+                <pngx-input-text formControlName="value" [title]="getCustomFieldFromInstance(fieldInstance)?.name"
+                  [parentDocumentID]="documentId" [removable]="userIsOwner" (removed)="removeField(fieldInstance)"
+                  [horizontal]="true" [error]="getCustomFieldError(i)"></pngx-input-text>
+                }
+                @case (CustomFieldDataType.StringSelect) {
                 <pngx-input-text-select formControlName="value"
                   [title]="getCustomFieldFromInstance(fieldInstance)?.name" [parentDocumentID]="documentId"
                   [field]="getCustomFieldFromInstance(fieldInstance)?.id" [removable]="userIsOwner"
