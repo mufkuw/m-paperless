@@ -13,11 +13,14 @@ export class CustomFieldsService extends AbstractPaperlessService<CustomField> {
     super(http, 'custom_fields')
   }
 
-  getCustomFieldValues(field: Number): Observable<Results<string>> {
+  getCustomFieldValues(field: Number, query: String): Observable<Results<string>> {
     let httpParams = new HttpParams();
     httpParams = httpParams.set('field', field.toString())
+    httpParams = httpParams.set('query', query.toString())
+
     return this.http.get<Results<string>>(this.getResourceUrl(null, 'customfield_values'), {
       params: httpParams,
     })
+
   }
 }

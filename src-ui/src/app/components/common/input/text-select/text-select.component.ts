@@ -88,10 +88,10 @@ export class TextSelectComponent
         takeUntil(this.unsubscribeNotifier),
         tap(() => (this.loading = true)),
         switchMap((title) =>
-          this.customFieldService.getCustomFieldValues(this.field)
+          this.customFieldService.getCustomFieldValues(this.field, title ?? "")
             .pipe(
               map((results) =>
-                results.results.filter(s => s !== title)
+                results.results
               ),
               catchError(() => of([])), // empty on error
               tap(() => (this.loading = false))

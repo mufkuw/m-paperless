@@ -1895,8 +1895,12 @@ class CustomFieldViewSet(ModelViewSet):
     @action(detail=False,methods=['GET'])
     def customfield_values(self, request):
         field =  request.GET.get('field')
+        query =  request.GET.get('query')
+        if query == None:
+            query=''
+            
         # Convert queryset to list for JSON serialization
-        filtered_distinct_values = list(set([item.value for item in CustomFieldInstance.objects.filter(field=field) if item.field.data_type=='string' and item.value!=None]))
+        filtered_distinct_values = list(set([item.value for item in CustomFieldInstance.objects.filter(field=field,value_text__contains=query) if item.field.data_type=='string' and item.value!=None]))
         
    
         # Return JSON response
