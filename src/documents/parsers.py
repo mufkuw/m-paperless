@@ -56,8 +56,12 @@ from documents.utils import run_subprocess
 #     r"(\b|(?!=([_-])))(\b[0-9]{1,2}[ \.\/-][a-zA-Z]{3}[ \.\/-][0-9]{4})(\b|(?=([_-])))",  # noqa: E501
 # )
 
+# DATE_REGEX = re.compile(
+#     r"(?i)\b(\d{2}|\d{4})(\s+)?[\.\-\/](\s+)?(\d{1,2})(\s+)?[\.\-\/](\s+)?(\d{2}|\d{4})\b|\b(\d{1,2})(?:.+)?(jan\w+|feb\w+|mar\w+|apr\w+|may\w+|jun\w+|jul\w+|aug\w+|sep\w+|oct\w+|nov\w+|dec\w+)(?:.+)?(\d{4})\b|\b(jan\w+|feb\w+|mar\w+|apr\w+|may\w+|jun\w+|jul\w+|aug\w+|sep\w+|oct\w+|nov\w+|dec\w+)(?:.+)?(\d{2})(?:.+)?(\d{4})\b",
+# )
+
 DATE_REGEX = re.compile(
-    r"(?i)\b(\d{2}|\d{4})(\s+)?[\.\-\/](\s+)?(\d{1,2})(\s+)?[\.\-\/](\s+)?(\d{2}|\d{4})\b|\b(\d{1,2})(?:.+)?(jan\w+|feb\w+|mar\w+|apr\w+|may\w+|jun\w+|jul\w+|aug\w+|sep\w+|oct\w+|nov\w+|dec\w+)(?:.+)?(\d{4})\b|\b(jan\w+|feb\w+|mar\w+|apr\w+|may\w+|jun\w+|jul\w+|aug\w+|sep\w+|oct\w+|nov\w+|dec\w+)(?:.+)?(\d{2})(?:.+)?(\d{4})\b",
+    r"(?i)(?:\b|[a-zA-Z])(?:\d{4}|\d{1,2})(?:\s+)?(?=[\.\-\/])[\.\-\/](?:\s+)?\d{1,2}(?:\s+)?(?=[\.\-\/])[\.\-\/](?:\s+)?(?:\d{4}|\d{1,2})|\d{1,2}(?:\s+)?(?=[\.\-\/])[\.\-\/](?:\s+)?(?:(jan(?:\w+)?|feb(?:\w+)?|mar(?:\w+)?|apr(?:\w+)?|may(?:\w+)?|jun(?:\w+)?|jul(?:\w+)?|aug(?:\w+)?|sep(?:\w+)?|oct(?:\w+)?|nov(?:\w+)?|dec\w+))(?:\s+)?(?=[\.\-\/])[\.\-\/](?:\s+)?(?:\d{4}|\d{2})|\d{1,2}(?:\s+|,.+|\..+|\-.+|\/.+|\\.+)?(?:jan(?:\w+)?|feb(?:\w+)?|mar(?:\w+)?|apr(?:\w+)?|may(?:\w+)?|jun(?:\w+)?|jul(?:\w+)?|aug(?:\w+)?|sep(?:\w+)?|oct(?:\w+)?|nov(?:\w+)?|dec\w+)(?:.+)?(?:\d{4}|\d{2})|(?:(jan(?:\w+)?|feb(?:\w+)?|mar(?:\w+)?|apr(?:\w+)?|may(?:\w+)?|jun(?:\w+)?|jul(?:\w+)?|aug(?:\w+)?|sep(?:\w+)?|oct(?:\w+)?|nov(?:\w+)?|dec\w+))(?:\s+|,.+|\..+|\-.+|\/.+|\\.+)?(?:\d{4}|\d{2})(?=\b|[a-zA-Z])",
 )
 
 # 
