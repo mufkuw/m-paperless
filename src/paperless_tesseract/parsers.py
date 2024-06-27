@@ -447,10 +447,30 @@ class RasterisedDocumentParser(DocumentParser):
                 self.text = ""
 
 
+def fix_reversed_numbers(text):
+  """
+  Corrects reversed digits that appear after Arabic characters.
+
+  Args:
+      text: The text string to be processed.
+
+  Returns:
+      The corrected text string with potentially reversed digits fixed.
+  """
+    #pattern = r"[ء-ي].+?((?:\d+|\\)).+?[ء-ي]"  # Matches digits preceded by Arabic characters
+  pattern = r"(\d+)"  # Matches digits preceded by Arabic characters
+  
+  def replace(match):
+      digits = match.group(1)
+      return ' ' + digits[::-1] + ' '  # Reverse the order
+  
+  return re.sub(pattern, replace, text)
+
 def post_process_text(text):
     if not text:
         return None
-
+    #text = text.replace('\u200e','')
+    #text  = fix_reversed_numbers(text)
     collapsed_spaces = re.sub(r"([^\S\r\n]+)", " ", text)
     no_leading_whitespace = re.sub(r"([\n\r]+)([^\S\n\r]+)", "\\1", collapsed_spaces)
     no_trailing_whitespace = re.sub(r"([^\S\n\r]+)$", "", no_leading_whitespace)
@@ -459,3 +479,4 @@ def post_process_text(text):
     # replace \0 prevents issues with saving to postgres.
     # text may contain \0 when this character is present in PDF files.
     return no_trailing_whitespace.strip().replace("\0", " ")
+    #return text.strip().replace("\0", " ")
