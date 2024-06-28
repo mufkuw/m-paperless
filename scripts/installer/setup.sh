@@ -54,6 +54,7 @@ curl https://get.docker.com/ | sudo -u paperless bash
 
 sudo ln -s /opt/paperless/server.nginx.conf /etc/nginx/sites-enabled/paperless.conf
 sudo rm /etc/nginx/sites-enabled/default
+sudo chmod 777 /opt/paperless/update-ip.sh
 
 sudo docker run -d --restart=always -p 9998:9998 apache/tika:latest
 sudo docker run -d --restart=always -p 3000:3000 gotenberg/gotenberg:latest
