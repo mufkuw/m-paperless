@@ -358,7 +358,7 @@ class RasterisedDocumentParser(DocumentParser):
         images = convert_from_path(pdf_path)
         
         if self.settings.pages is not None and self.settings.pages > 0:
-            images = images[:pages]
+            images = images[:self.settings.pages]
 
         # Perform OCR on the images
         ocr_results = []
