@@ -4,12 +4,12 @@ import tempfile
 from pathlib import Path
 from typing import TYPE_CHECKING
 from typing import Optional
-
 from django.conf import settings
 from PIL import Image
 
 #keep this imports to subvert pdf extart to to different function
 #############
+import openai
 import pytesseract
 from pdf2image import convert_from_path
 ###################
@@ -23,6 +23,8 @@ from paperless.config import OcrConfig
 from paperless.models import ArchiveFileChoices
 from paperless.models import CleanChoices
 from paperless.models import ModeChoices
+
+
 
 
 class NoTextFoundException(Exception):
@@ -323,10 +325,40 @@ class RasterisedDocumentParser(DocumentParser):
 
 
 ##new extract function
+
+    
+
+    def get_explanation(self, text: str) -> str:
+        try:
+            # Define the prompt
+            prompt = text
+
+            # Generate the explanation using OpenAI API
+            response = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",  # You can change this to the desired model
+                messages=[
+                    {"role": "system", "content": "Thoroughly extract key info as key=value or in abstract form if not possible"},
+                    {"role": "user", "content": prompt}
+                ],
+                max_tokens=4096,
+                temperature=0.12
+            )
+
+            # Extract and return the generated text
+            explanation = response['choices'][0]['message']['content'].strip()
+            return explanation
+
+        except Exception as e:
+            print(f"An error occurred: {str(e)}")
+            return ""
+
     def extract_text_from_pdf(self,pdf_path):
 
         # Convert PDF to images
         images = convert_from_path(pdf_path)
+        
+        if self.settings.pages is not None and self.settings.pages > 0:
+            images = images[:pages]
 
         # Perform OCR on the images
         ocr_results = []
@@ -336,7 +368,10 @@ class RasterisedDocumentParser(DocumentParser):
 
         # Join the results into a single string
         ocr_text = " ".join(ocr_results)
-        return post_process_text(ocr_text)
+        ex = self.get_explanation(ocr_text)
+        valueable_data = ex + '\n\n\n' + ocr_text 
+        
+        return post_process_text(valueable_data)
 ############
 
 
