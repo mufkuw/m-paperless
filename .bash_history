@@ -1,13 +1,3 @@
-ls
-cd consume
-ls
-ls -la
-cd 'staff civil id 2'
-ls
-cd
-ls
-nano paperless.conf
-journalctl restart m-*
 reboot
 logout
 ls
@@ -408,3 +398,103 @@ kill 51977
 sudo kill 51977
 clear
 sudo service m-webserver status
+sudo server m-webserver restart
+sudo service m-webserver restart
+sudo service m-webserver restart
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status --wait
+sudo service m-webserver status --wait
+sudo service m-webserver status --wait
+sudo service m-webserver status --wait
+sudo service m-webserver status --wait
+sudo service m-webserver status --wait
+sudo service m-webserver status --wait
+sudo service m-webserver status --wait
+sudo service m-webserver status --wait
+sudo service m-webserver status --wait
+sudo service m-webserver status --wait
+sudo service m-webserver status --wait
+sudo service m-webserver status --wait
+sudo service m-webserver status --wait
+sudo service m-webserver status --wait
+sudo service m-webserver status --wait
+sudo service m-webserver restart
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+cd src
+ls
+test.py /opt/paperless/media/documents/originals/0000006.png >> a.txt
+python test.py /opt/paperless/media/documents/originals/0000006.png >> a.txt
+python test.py /opt/paperless/media/documents/originals/0000006.png >> a.txt
+python test.py /opt/paperless/media/documents/originals/0000006.png > a.txt
+python test.py /opt/paperless/media/documents/originals/0000006.png >> a.txt
+python test.py /opt/paperless/media/documents/originals/0000006.png >> a.txt
+python test.py  > a.txt
+sudo service m-webserver restart
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+clear
+clear
+sudo service m-webserver status
+clear
+clear
+sudo service m-webserver restart
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver restrat
+sudo service m-webserver restart
+reboot
+exit
