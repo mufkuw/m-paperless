@@ -102,3 +102,9 @@ celerybeat-schedule*
 sdb/
 
 .local
+.npm
+.vscode-server
+.bash*
+.sudo*
+.wget*
+.pyenv
