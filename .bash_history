@@ -257,3 +257,154 @@ cd src
 python manage.py createsuperuser
 cd
 exit
+nano paperless.conf
+tesseract
+where tesseract
+which tesseract
+cd /usr/bin/tesseract
+clear
+tesseract --help
+tesseract --list-langs
+ps
+lsps
+top
+clear
+exit
+pwd
+git config --global --add safe.directory /opt/paperless
+git config --global --add user.name "Muffaddal Kalla"
+git config --global --add user.email "muf@bqa.la"
+sudo server m-webserver restart
+sudo servvice m-webserver restart
+sudo service m-webserver restart
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+netstat -plnt
+sudo kill 43765
+sudo service m-webserver status
+sudo service m-webserver restart
+sudo service m-webserver status
+sudo service m-webserver status
+sudo kill 44754
+sudo kill 44833
+sudo service m-webserver status
+sudo service m-webserver restart
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver restart
+sudo service m-webserver restart
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver restart
+sudo service m-webserver status
+sudo kill -9 `sudo lsof -n -i | grep gunicorn | awk '{print $2}'`
+sudo service m-webserver restart
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver restart
+sudo service m-webserver status
+ls
+cd src
+
+python test.py
+pip install pytesseract
+python test.py
+python test.py
+python test.py >> a.txt
+python test.py >> a.txt
+clear
+sudo service m-webserver restart
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+sudo service m-webserver status
+kill 51977
+sudo kill 51977
+clear
+sudo service m-webserver status

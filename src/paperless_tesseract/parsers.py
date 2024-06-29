@@ -8,6 +8,12 @@ from typing import Optional
 from django.conf import settings
 from PIL import Image
 
+#keep this imports to subvert pdf extart to to different function
+#############
+import pytesseract
+from pdf2image import convert_from_path
+###################
+
 from documents.parsers import DocumentParser
 from documents.parsers import ParseError
 from documents.parsers import make_thumbnail_from_pdf
@@ -315,6 +321,25 @@ class RasterisedDocumentParser(DocumentParser):
 
         return ocrmypdf_args
 
+
+##new extract function
+    def extract_text_from_pdf(self,pdf_path):
+
+        # Convert PDF to images
+        images = convert_from_path(pdf_path)
+
+        # Perform OCR on the images
+        ocr_results = []
+        for image in images:
+            text = pytesseract.image_to_string(image, lang=self.settings.language)  # Specify language if needed, e.g., 'ara' for Arabic
+            ocr_results.append(text)
+
+        # Join the results into a single string
+        ocr_text = " ".join(ocr_results)
+        return post_process_text(ocr_text)
+############
+
+
     def parse(self, document_path: Path, mime_type, file_name=None):
         # This forces tesseract to use one core per page.
         os.environ["OMP_THREAD_LIMIT"] = "1"
@@ -370,7 +395,10 @@ class RasterisedDocumentParser(DocumentParser):
             if self.settings.skip_archive_file != ArchiveFileChoices.ALWAYS:
                 self.archive_path = archive_path
 
-            self.text = self.extract_text(sidecar_file, archive_path)
+            ## suberting function to different extractor
+            #self.text = self.extract_text(sidecar_file, archive_path)
+            self.text = self.extract_text_from_pdf(archive_path)
+            ##########################
 
             if not self.text:
                 raise NoTextFoundException("No text was found in the original document")
@@ -447,30 +475,11 @@ class RasterisedDocumentParser(DocumentParser):
                 self.text = ""
 
 
-def fix_reversed_numbers(text):
-  """
-  Corrects reversed digits that appear after Arabic characters.
-
-  Args:
-      text: The text string to be processed.
-
-  Returns:
-      The corrected text string with potentially reversed digits fixed.
-  """
-    #pattern = r"[ء-ي].+?((?:\d+|\\)).+?[ء-ي]"  # Matches digits preceded by Arabic characters
-  pattern = r"(\d+)"  # Matches digits preceded by Arabic characters
-  
-  def replace(match):
-      digits = match.group(1)
-      return ' ' + digits[::-1] + ' '  # Reverse the order
-  
-  return re.sub(pattern, replace, text)
-
 def post_process_text(text):
     if not text:
         return None
     #text = text.replace('\u200e','')
-    #text  = fix_reversed_numbers(text)
+    #text  = correct_numbers(text)
     collapsed_spaces = re.sub(r"([^\S\r\n]+)", " ", text)
     no_leading_whitespace = re.sub(r"([\n\r]+)([^\S\n\r]+)", "\\1", collapsed_spaces)
     no_trailing_whitespace = re.sub(r"([^\S\n\r]+)$", "", no_leading_whitespace)
