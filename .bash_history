@@ -1,26 +1,3 @@
-reboot
-logout
-ls
-cd consume
-ls
-cd Acounts
-cd Accounts
-ls
-ls -la
-nano a.m
-ls -la
-ls -la
-rm -a
-rm *
-ls
-touch a.b
-ls -la
-rm -a
-rm -R *
-ls -la
-ls -la
-ls
-cd /consume
 cd /opt/
 ls
 cd paperless
@@ -498,3 +475,26 @@ sudo service m-webserver restrat
 sudo service m-webserver restart
 reboot
 exit
+cd src-ui
+./make
+./make
+cd
+cd src
+cd
+pip install pytesseract openai
+cd
+sudo ./restart
+sudo ./restart
+sudo ./restart
+sudo ./restart
+sudo ./restart
+nano /etc/ImageMagick-6/policy.xml
+sudo nano /etc/ImageMagick-6/policy.xml
+sudo ./restart
+sudo ./restart
+sudo ./restart
+pip install openai==0.28
+sudo ./restart
+sudo ./restart
+/bin/python3 /opt/paperless/.vscode-server/extensions/ms-python.python-2024.8.1/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.8.1/python_files/deactivate/bash/envVars.txt
+/bin/python3 /opt/paperless/.vscode-server/extensions/ms-python.python-2024.8.1/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.8.1/python_files/deactivate/bash/envVars.txt
