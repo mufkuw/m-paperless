@@ -58,3 +58,9 @@ sudo chmod 777 /opt/paperless/update-ip.sh
 
 sudo docker run -d --restart=always -p 9998:9998 apache/tika:latest
 sudo docker run -d --restart=always -p 3000:3000 gotenberg/gotenberg:latest
+
+# Loop through all matching policy.xml files in /etc/ImageMagick-*
+for file in /etc/ImageMagick-*/policy.xml; do
+  # Use sed to replace the line
+  sed -i 's|<policy domain="coder" rights="none" pattern="PDF" />|<policy domain="coder" rights="read|write" pattern="PDF" />|' "$file"
+done

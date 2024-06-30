@@ -544,6 +544,8 @@ SECRET_KEY = os.getenv(
     "e11fl1oa-*ytql8p)(06fbj4ukrlo+n7k&q5+$1md7i+mge=ee",
 )
 
+
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
@@ -902,6 +904,9 @@ CONSUMER_COLLATE_DOUBLE_SIDED_TIFF_SUPPORT: Final[bool] = __get_boolean(
 )
 
 OCR_PAGES = __get_optional_int("PAPERLESS_OCR_PAGES")
+OPENAI_KEY = os.getenv("PAPERLESS_OPENAI_KEY","")
+
+
 
 # The default language that tesseract will attempt to use when parsing
 # documents.  It should be a 3-letter language code consistent with ISO 639.

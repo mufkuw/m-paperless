@@ -133,7 +133,7 @@ export class ConfigComponent
   }
 
   getDocsUrl(key: string) {
-    return `https://docs.m-paperless.com/configuration/#${key}`
+    return `#${key}`
   }
 
   public saveConfig() {

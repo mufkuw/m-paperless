@@ -12,7 +12,10 @@ from PIL import Image
 import openai
 import pytesseract
 from pdf2image import convert_from_path
+
 ###################
+
+openai.api_key=settings.OPENAI_KEY
 
 from documents.parsers import DocumentParser
 from documents.parsers import ParseError
@@ -325,9 +328,6 @@ class RasterisedDocumentParser(DocumentParser):
 
 
 ##new extract function
-
-    
-
     def get_explanation(self, text: str) -> str:
         try:
             # Define the prompt
@@ -349,13 +349,13 @@ class RasterisedDocumentParser(DocumentParser):
             return explanation
 
         except Exception as e:
-            print(f"An error occurred: {str(e)}")
+            self.log.error(f"An error occurred: {str(e)}")
             return ""
 
     def extract_text_from_pdf(self,pdf_path):
 
         # Convert PDF to images
-        images = convert_from_path(pdf_path)
+        images = convert_from_path(pdf_path,dpi=300)
         
         if self.settings.pages is not None and self.settings.pages > 0:
             images = images[:self.settings.pages]
@@ -370,6 +370,8 @@ class RasterisedDocumentParser(DocumentParser):
         ocr_text = " ".join(ocr_results)
         ex = self.get_explanation(ocr_text)
         valueable_data = ex + '\n\n\n' + ocr_text 
+        
+        self.log.debug(valueable_data)
         
         return post_process_text(valueable_data)
 ############
@@ -432,7 +434,10 @@ class RasterisedDocumentParser(DocumentParser):
 
             ## suberting function to different extractor
             #self.text = self.extract_text(sidecar_file, archive_path)
+            self.log.debug(f"Extracting Text from PDF")
             self.text = self.extract_text_from_pdf(archive_path)
+            if len(self.text) >0: 
+                self.log.debug(f"Extracting Text from PDF .. Success")
             ##########################
 
             if not self.text:

@@ -109,3 +109,4 @@ sdb/
 .wget*
 .pyenv
 .dotnet
+paperless.conf
