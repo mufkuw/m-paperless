@@ -110,3 +110,4 @@ sdb/
 .pyenv
 .dotnet
 paperless.conf
+.bash_history

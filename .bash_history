@@ -1,156 +1,3 @@
-cd paperless
-ls
-cd consume
-ls
-cd Accounts
-ls
-ls -la
-rm *
-ls
-ls -la
-rm -R *
-ls -la
-cd chques
-ls
-cd cheques
-ls
-ls -la
-cd ..
-ls
-cd STATEMENT
-ls
-ls -la
-rm *
-ls -la
-top
-ls
-cd /opt/paperless
-ls
-cd accounts
-ls
-cd consume
-cd Acounts
-ls
-ls
-cd Accounts
-ls
-clear
-ls
-mkdir a
-ls -la
-ls -la
-ls
-rm -R *
-ls -la
-cd ..
-ls
-ls -la
-chmod -R g+s,u+s *
-ls
-ls -la
-cd Accounts
-ls
-ls -la
-rm -R b
-ls
-ls
-ls -la
-rm -R b
-ls -la
-ls
-cd b
-ls
-cd ..
-rm -R b
-ls -la
-cd..
-ls
-cd .
-cd ..
-ls
-cd..
-ls -la
-cd accounts
-ls
-cd Accounts
-ls
-mkdir a
-ls -la
-ls -la
-rm a.mmm
-ls -la
-ls
-cd consujme
-cd consume
-ls
-cd Accounts
-ls
-cd test
-ls
-ls -la
-ls -la
-cd 'New Folder'
-ls
-cd *
-ls
-ls -lka
-cd ..
-ls
-ls -la
-ls -l
-cd ccc
-ls
-cd ..
-ls
-cd bbb
-s
-ls
-mkdir a
-ls -la
-logout
-ls
-cd src
-ls
-clear
-python3 manage.py document_retagger
-python3 manage.py document_retagger -c
-python3 manage.py document_retagger -c
-python3 manage.py document_retagger -c
-python3 manage.py document_retagger -c
-python3 manage.py document_retagger -c
-python3 manage.py document_retagger -c
-cd src
-python3 manage.py document_retagger -c
-clear
-ls
-systemctl start m-consumer 
-sudo systemctl start m-consumer 
-logout
-cd /opt/paperless
-cd src
-python3 manage.py document_retagger -c
-python3 manage.py document_retagger -c
-python3 manage.py document_retagger -c
-python3 manage.py document_retagger -c
-python3 manage.py document_retagger -c
-python3 manage.py document_retagger -c
-clear
-ls
-cd /opt/paperless
-ls
-cd src
-ls
-python3 manage.py document_retagger -c
-python3 manage.py document_retagger -c
-python3 manage.py document_retagger -c
-sudo ./restart
-clear
-ls
-exit
-sudo apt update
-sudo apt install vsftpd
-sudo nano /etc/vsftpd.conf
-sudo systemctl restart vsftpd
 sudo adduser --shell /bin/false --home /opt/paperless/consume/ftpuser1 --no-create-home ftpuser1
 mkdir /opt/paperless/consume/ftpuser1
 sudo passwd ftpuser1
@@ -497,4 +344,157 @@ sudo ./restart
 /bin/python3 /opt/paperless/.vscode-server/extensions/ms-python.python-2024.8.1/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.8.1/python_files/deactivate/bash/envVars.txt
 /bin/python3 /opt/paperless/.vscode-server/extensions/ms-python.python-2024.8.1/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.8.1/python_files/deactivate/bash/envVars.txt
 sudo ./restart
+/bin/python3 /opt/paperless/.vscode-server/extensions/ms-python.python-2024.8.1/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.8.1/python_files/deactivate/bash/envVars.txt
+cd
+clear
+ls
+mkdir training
+cd training
+ls
+mkdir tessdata
+cd tessdata
+ls
+clear
+ls
+nano train.sh
+chmod +x train.sh
+./train.sh
+./train
+./train.sh
+ls
+./train.sh
+./train.sh
+./train.sh
+clear
+./train.sh
+./train.sh
+./train.sh
+./train.sh
+sudo ./train.sh
+sudo ./train.sh
+mkdir tmp
+sudo ./train.sh
+sudo ./train.sh
+sudo ./train.sh
+sudo ./train.sh
+sudo ./train.sh
+sudo ./train.sh
+sudo ./train.sh
+sudo ./train.sh
+sudo ./train.sh
+sudo ./train.sh
+sudo ./train.sh
+ls
+cd train_data
+ls
+cd ..
+clear
+./train.sh
+./train.sh
+clear
+./train.sh
+ls
+clear
+ls
+rm -t train_data
+rm -r train_data
+clear
+ls
+ls -la
+sudo rm -R train_data
+sudo rm -R output
+ls
+clear
+ls
+./train.sh
+clear
+./train.sh
+./train.sh
+./train.sh
+./train.sh
+./train.sh
+./train.sh
+./train.sh
+./train.sh
+./train.sh
+./train.sh
+./train.sh
+./train.sh
+./train.sh
+./train.sh
+./train.sh
+q
+cd /usr/shared/tesseract
+cd /usr
+cd /usrshared
+cd /usr/shared
+ls
+cd share
+ls
+cd tesseract
+cd tesseract-ocr
+ls
+cd 5
+ls
+cd tessdata
+ls
+ls -la
+ls
+mv ara.traineddata ara_old.traineddata
+sudo mv ara.traineddata ara_old.traineddata
+sudo cp /opt/paperless/training/tessdata/ara.traineddata .
+ls -la
+sudo cp /opt/paperless/training/tessdata/eng.traineddata .
+sudo cp /opt/paperless/training/tessdata/mirc.traineddata .
+ls
+clear
+cd
+clear
+ls
+/restart
+./restart
+sudo ./restart
+sudo ./restart
+cd /usr/share/tesseract-ocr
+ls
+cd 5
+ls
+cd tessdata
+ls
+cp /opt/paperless/training/tessdata/e13b.traineddata .
+sudo cp /opt/paperless/training/tessdata/e13b.traineddata .
+sudo cp /opt/paperless/training/tessdata/e13b.traineddata .cd
+cd
+clear
+sudo ./restart
+sudo ./restart
+$(tesseract --print-parameters | grep -oP '(?<=TESSDATA_PREFIX=).+')
+echo $(tesseract --print-parameters | grep -oP '(?<=TESSDATA_PREFIX=).+')
+tesseract --print-parameters
+tesseract --print-parameters | grep tessdata
+tesseract --print-parameters | grep tess
+tesseract --print-parameters | grep data
+echo $(tesseract -v)
+tesseract -v
+tesseract --print-parameters
+find | grep \/tessdata
+find / | grep \/tessdata
+find /usr/share | grep \/tessdata
+find / | grep \/tessdata | head -1
+find / | grep \/tessdata | head 1
+find / | grep -o \/tessdata | head 1
+find / | grep -o -m 1 \/tessdata | head 1
+find / | grep -o -m 1 \/tessdata
+find / | grep -m `\/tessdata
+find / | grep -m 1 \/tessdata
+find / | grep -m 1 \/tessdata | head -1
+find / | grep -m 1 \/tessdata | head 1
+find / | grep -m 1 \/tessdata | head -1
+grep -m 1 \/tessdata | head -1
+find /usr/share | grep -m 1 \/tessdata | head -1
+find /usr/share | grep -m 1 \/tessdata | head -2
+find /usr/share | grep -m 1 \/tessdata 
+find /usr/share | grep -m 1 \/tessdata 
+$(find /usr/share | grep -m 1 \/tessdata)
+sudo cp /opt/paperless/resources/tessdata/*.traineddata  $(find /usr/share | grep -m 1 \/tessdata)
 /bin/python3 /opt/paperless/.vscode-server/extensions/ms-python.python-2024.8.1/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.8.1/python_files/deactivate/bash/envVars.txt
