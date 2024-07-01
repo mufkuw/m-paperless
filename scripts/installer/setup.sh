@@ -64,3 +64,5 @@ for file in /etc/ImageMagick-*/policy.xml; do
   # Use sed to replace the line
   sed -i 's|<policy domain="coder" rights="none" pattern="PDF" />|<policy domain="coder" rights="read|write" pattern="PDF" />|' "$file"
 done
+
+sudo cp /opt/paperless/resources/tessdata/*.traineddata  $(find /usr/share | grep -m 1 \/tessdata)

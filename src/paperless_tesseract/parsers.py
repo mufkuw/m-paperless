@@ -371,7 +371,7 @@ class RasterisedDocumentParser(DocumentParser):
         ex = self.get_explanation(ocr_text)
         valueable_data = ex + '\n\n\n' + ocr_text 
         
-        self.log.debug(valueable_data)
+        #self.log.debug(valueable_data)
         
         return post_process_text(valueable_data)
 ############

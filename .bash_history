@@ -1,5 +1,3 @@
-cd /opt/
-ls
 cd paperless
 ls
 cd consume
@@ -497,4 +495,6 @@ pip install openai==0.28
 sudo ./restart
 sudo ./restart
 /bin/python3 /opt/paperless/.vscode-server/extensions/ms-python.python-2024.8.1/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.8.1/python_files/deactivate/bash/envVars.txt
+/bin/python3 /opt/paperless/.vscode-server/extensions/ms-python.python-2024.8.1/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.8.1/python_files/deactivate/bash/envVars.txt
+sudo ./restart
 /bin/python3 /opt/paperless/.vscode-server/extensions/ms-python.python-2024.8.1/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.8.1/python_files/deactivate/bash/envVars.txt

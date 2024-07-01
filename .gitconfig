@@ -1,7 +1,10 @@
 [safe]
 	directory = /opt/paperless
 	directory = /opt/paperless
+	directory = /opt/paperless
 [user]
+	name = Muffaddal Kalla
+	email = muf@bqa.la
 	name = Muffaddal Kalla
 	email = muf@bqa.la
 	name = Muffaddal Kalla
