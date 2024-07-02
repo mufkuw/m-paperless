@@ -1,6 +1,6 @@
 su - paperless <<EOF
 
-pipenv requirements >> req.txt
+pipenv requirements > req.txt
 pip install --upgrade pip
 pip install --upgrade setuptools
 pip install -r req.txt --force || exit
