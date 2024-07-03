@@ -1,19 +1,3 @@
-sudo adduser --shell /bin/false --home /opt/paperless/consume/ftpuser1 --no-create-home ftpuser1
-mkdir /opt/paperless/consume/ftpuser1
-sudo passwd ftpuser1
-sudo chmod 755 /opt/paperless/consume/ftpuser1
-cd /opt/paperless
-ls
-cd consume
-ls
-cd ftpuser1
-ls
-clar
-clear
-ls
-cd ..
-ls -la
-cd
 sudo usermod -aG paperless ftpuser1
 lsusers
 sudo lsusers
@@ -498,3 +482,19 @@ find /usr/share | grep -m 1 \/tessdata
 $(find /usr/share | grep -m 1 \/tessdata)
 sudo cp /opt/paperless/resources/tessdata/*.traineddata  $(find /usr/share | grep -m 1 \/tessdata)
 /bin/python3 /opt/paperless/.vscode-server/extensions/ms-python.python-2024.8.1/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.8.1/python_files/deactivate/bash/envVars.txt
+git rm -rf --cached .
+git add .
+git add .
+ls -la
+cd ..
+ls
+chown -R paperless:paperless paperless
+sudo chown -R paperless:paperless paperless
+git remote update origin --prune
+cd
+ls
+git remote update origin --prune
+./restart
+sudo ./restart
+reboot
+exit
