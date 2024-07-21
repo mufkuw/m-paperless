@@ -907,6 +907,10 @@ OCR_PAGES = __get_optional_int("PAPERLESS_OCR_PAGES")
 OPENAI_KEY = os.getenv("PAPERLESS_OPENAI_KEY","")
 
 
+DOCUMENT_LOCATION_FORMAT = os.getenv("PAPERLESS_DOCUMENT_LOCATION_FORMAT","")
+DOCUMENT_LOCATION_MARKER = os.getenv("DOCUMENT_LOCATION_MARKER","")
+
+
 
 # The default language that tesseract will attempt to use when parsing
 # documents.  It should be a 3-letter language code consistent with ISO 639.

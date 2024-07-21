@@ -137,6 +137,11 @@ class Document(ModelWithOwner):
         (STORAGE_TYPE_UNENCRYPTED, _("Unencrypted")),
         (STORAGE_TYPE_GPG, _("Encrypted with GNU Privacy Guard")),
     )
+    
+    def __init__(self, *args, **kwargs):
+        super(Document, self).__init__(*args, **kwargs)
+        self._post_save_flag = False
+
 
     correspondent = models.ForeignKey(
         Correspondent,
@@ -844,6 +849,7 @@ class CustomFieldInstance(models.Model):
     A single instance of a field, attached to a CustomField for the name and type
     and attached to a single Document to be metadata for it
     """
+
 
     created = models.DateTimeField(
         _("created"),
