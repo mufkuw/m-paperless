@@ -45,9 +45,7 @@ def update_document_content_for_location(sender, document:Document, **kwargs):
             instance._post_save_flag = False
             return
         
-        logger.info(data)
-        
-        
+       
         try:
             template = settings.DOCUMENT_LOCATION_FORMAT.format(**data)
 
