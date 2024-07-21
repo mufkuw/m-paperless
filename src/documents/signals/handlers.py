@@ -1,6 +1,7 @@
 import logging
 import os
 import re
+import re
 import shutil
 from typing import Optional
 
@@ -30,6 +31,7 @@ from documents.consumer import parse_doc_title_w_placeholders
 from documents.file_handling import create_source_path_directory
 from documents.file_handling import delete_empty_directories
 from documents.file_handling import generate_unique_filename
+from documents.models import CustomField, CustomFieldInstance
 from documents.models import CustomField, CustomFieldInstance
 from documents.models import Document
 from documents.models import MatchingModel
@@ -359,6 +361,12 @@ def cleanup_document_deletion(sender, instance, using, **kwargs):
                 os.path.dirname(instance.archive_path),
                 root=settings.ARCHIVE_DIR,
             )
+
+
+
+
+
+        
 
 
 
