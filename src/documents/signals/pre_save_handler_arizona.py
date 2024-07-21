@@ -25,9 +25,9 @@ def update_document_content_for_location(sender, document:Document, **kwargs):
         # logger.info(result)
         
         regex = r"\{(.+?)\}"
+        test_str = settings.DOCUMENT_LOCATION_FORMAT
 
-        test_str = settings.DOCUMENT_LOCATION_MARKER
-        logger.info("Updating Location based on " + test_str)
+        logger.info(settings.DOCUMENT_LOCATION_FORMAT)
         
         data = dict([(match.group(1),'') for i,match in enumerate(list(re.finditer(regex, test_str, re.MULTILINE)),start=1)])
         
