@@ -56,7 +56,8 @@ def update_document_content_for_location(sender, document:Document, **kwargs):
                 instance.content = result + "|<<Location : "+ template +">>|"
             else:
                 instance.content = result
-        except:
+        except Exception as e:
+            logger.warn(e)
             instance.content = result
 
 
