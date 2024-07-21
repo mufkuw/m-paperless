@@ -18,7 +18,6 @@ def update_document_content_for_location(sender, document:Document, **kwargs):
     if not instance._post_save_flag:
         instance._post_save_flag = True
         
-        logger.info("Post Save Operation Signal Processing ...")
         regex = r"\|\<\<Location(?:\s|\:)(.+?)\>\>\|"
         substr=""
         result = re.sub(regex, substr, instance.content, 0, re.MULTILINE) 
@@ -28,6 +27,8 @@ def update_document_content_for_location(sender, document:Document, **kwargs):
         regex = r"\{(.+?)\}"
 
         test_str = settings.DOCUMENT_LOCATION_MARKER
+        logger.info("Updating Location based on " + test_str)
+        
         data = dict([(match.group(1),'') for i,match in enumerate(list(re.finditer(regex, test_str, re.MULTILINE)),start=1)])
         
         fields = [item.id for item in CustomField.objects.filter(name__contains=settings.DOCUMENT_LOCATION_MARKER)]
