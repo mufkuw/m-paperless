@@ -109,6 +109,5 @@ sdb/
 .wget*
 .pyenv
 .dotnet
-paperless.conf
+./paperless.conf
 .bash_history
-
