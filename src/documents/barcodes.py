@@ -378,6 +378,12 @@ class BarcodePlugin(ConsumeTaskPlugin):
 
         document_paths = []
         fname = self.input_doc.original_file.stem
+        
+        
+        new_doc_path =  "_".join(self.input_doc.original_file.parts[:-1])
+        new_doc_path = new_doc_path.replace("/", "")
+        new_doc_path = new_doc_path.replace("_opt_paperless_consume", "")
+        
         with Pdf.open(self.pdf_file) as input_pdf:
             # Start with an empty document
             current_document: list[Page] = []
@@ -411,7 +417,7 @@ class BarcodePlugin(ConsumeTaskPlugin):
                 dst = Pdf.new()
                 dst.pages.extend(document)
 
-                output_filename = f"{fname}_document_{doc_idx}.pdf"
+                output_filename = f"{fname}_document_{new_doc_path}_{doc_idx}.pdf"
 
                 logger.debug(f"pdf no:{doc_idx} has {len(dst.pages)} pages")
                 savepath = Path(self.temp_dir.name) / output_filename
