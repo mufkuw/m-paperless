@@ -1,24 +1,3 @@
-sudo usermod -aG paperless ftpuser1
-lsusers
-sudo lsusers
-sudo lsuser
-sudo ls
-sudo usrs
-sudo users
-clear
-ls
-cd /etc/vsftpd/
-tail -f /var/log/vsftpd.log
-sudo tail -f /var/log/vsftpd.log
-cat passwd
-cat /etc/passwd
-sudo usermod -aG paperless ftpuser1
-cat /etc/passwd
-cat /etc/gpasswd
-cat /etc/passwd
-groups
-groups ftpuser1
-clear
 su ftpuser1
 su ftpuser1 -c 'touch a.txt'
 su ftpuser1 -c 'touch a.txt'
@@ -497,4 +476,25 @@ git remote update origin --prune
 ./restart
 sudo ./restart
 reboot
+exit
+ls
+clear
+ls
+clear
+ls
+cd scripts
+ls
+cd installer
+ls
+./update-gs.sh
+gs -v
+clear
+ls
+clear
+cd
+clear
+ls
+EXIT
+exit
+ls
 exit
