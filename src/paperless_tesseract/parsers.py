@@ -355,7 +355,7 @@ class RasterisedDocumentParser(DocumentParser):
     def extract_text_from_pdf(self,pdf_path):
 
         # Convert PDF to images
-        images = convert_from_path(pdf_path,dpi=300)
+        images = convert_from_path(pdf_path,dpi=300,first_page=1,last_page=self.settings.pages)
         
         if self.settings.pages is not None and self.settings.pages > 0:
             images = images[:self.settings.pages]

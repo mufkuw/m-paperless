@@ -1,100 +1,3 @@
-sudo usermod -aG paperless ftpuser1
-lsusers
-sudo lsusers
-sudo lsuser
-sudo ls
-sudo usrs
-sudo users
-clear
-ls
-cd /etc/vsftpd/
-tail -f /var/log/vsftpd.log
-sudo tail -f /var/log/vsftpd.log
-cat passwd
-cat /etc/passwd
-sudo usermod -aG paperless ftpuser1
-cat /etc/passwd
-cat /etc/gpasswd
-cat /etc/passwd
-groups
-groups ftpuser1
-clear
-su ftpuser1
-su ftpuser1 -c 'touch a.txt'
-su ftpuser1 -c 'touch a.txt'
-su ftpuser1 -c 'touch a.txt'
-ls
-cd consume
-ls
-cd ftpuser1
-ls
-ls
-cd
-cat /etc/passwd
-cd /opt/paperless/consume/ftpuser1
-cd 
-clear
-ls
-su - ftpuser
-su - ftpuser1
-exit
-ls
-clear
-clear
-ls
-sudo ufw
-sudo uwf
-clear
-ls
-cd
-ls
-exit
-cd src
-python manage.py createsuperuser
-cd
-exit
-nano paperless.conf
-tesseract
-where tesseract
-which tesseract
-cd /usr/bin/tesseract
-clear
-tesseract --help
-tesseract --list-langs
-ps
-lsps
-top
-clear
-exit
-pwd
-git config --global --add safe.directory /opt/paperless
-git config --global --add user.name "Muffaddal Kalla"
-git config --global --add user.email "muf@bqa.la"
-sudo server m-webserver restart
-sudo servvice m-webserver restart
-sudo service m-webserver restart
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-netstat -plnt
-sudo kill 43765
-sudo service m-webserver status
 sudo service m-webserver restart
 sudo service m-webserver status
 sudo service m-webserver status
@@ -498,3 +401,100 @@ git remote update origin --prune
 sudo ./restart
 reboot
 exit
+clear
+systemctl m-* restart
+systemctl restart m-*
+sudo systemctl restart m-*
+clear
+sudo systemctl restart m-*
+systemctl daemon-reload
+sudo systemctl daemon-reload
+systemctl daemon-reload
+sudo systemctl restart m-*
+clear
+ls
+cd src
+ls
+python manage.py createsuperuser
+clear
+systectl restart m-*
+sudo systemctl restart m-*
+ls
+sudo systemctl restart m-*
+sudo systemctl restart m-*
+sudo systemctl restart m-*
+sudo systemctl restart m-*
+sudo status restart m-*
+sudo systemctl status  m-*
+sudo systemctl status  m-*
+sudo status restart m-*
+sudo systemctl restart m-*
+sudo status restart m-*
+sudo systemctl status  m-*
+sudo systemctl status  m-*
+sudo systemctl restart m-*
+sudo systemctl status  m-*
+manage.py shell
+pythong manage.py shell
+python manage.py shell
+clear
+systemctl restart m-*
+sudo systemctl restart m-*
+sudo systemctl restart m-*
+sudo systemctl restart m-*
+sudo systemctl restart m-*
+sudo systemctl restart m-*
+sudo systemctl restart m-*
+sudo systemctl restart m-*
+sudo systemctl restart m-*
+sudo systemctl restart m-*
+sudo systemctl restart m-*
+sudo systemctl restart m-*
+sudo systemctl restart m-*
+sudo systemctl restart m-*
+sudo systemctl restart m-*
+sudo systemctl restart m-*
+sudo systemctl restart m-*
+sudo systemctl restart m-*
+sudo systemctl restart m-*
+sudo systemctl restart m-*
+sudo systemctl status m-*
+sudo systemctl status m-*
+sudo systemctl restart m-*
+sudo systemctl status m-*
+sudo systemctl restart m-*
+sudo systemctl status m-*
+sudo systemctl restart m-*
+sudo systemctl status m-*
+sudo systemctl restart m-*
+sudo systemctl status m-*
+sudo systemctl restart m-*
+sudo systemctl status m-*
+sudo systemctl restart m-*
+sudo systemctl status m-*
+sudo systemctl restart m-*
+sudo systemctl restart m-*
+sudo systemctl status m-*
+sudo systemctl restart m-*
+sudo systemctl status m-*
+sudo systemctl restart m-*
+sudo systemctl status m-*
+sudo systemctl restart m-*
+sudo systemctl status m-*
+sudo systemctl restart m-*
+sudo systemctl status m-*
+sudo systemctl status m-*
+sudo systemctl restart m-*
+sudo systemctl restart m-*
+git config pull.rebase false
+git config pull.rebase false
+git reset --merge
+sudo systemctl restart m-*
+sudo systemctl restart m-*
+sudo systemctl restart m-*
+sudo systemctl restart m-*
+sudo systemctl restart m-*
+sudo systemctl restart m-*
+sudo systemctl restart m-*
+sudo systemctl restart m-*
+/bin/python3 /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/deactivate/bash/envVars.txt
