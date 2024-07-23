@@ -1,25 +1,3 @@
-su ftpuser1
-su ftpuser1 -c 'touch a.txt'
-su ftpuser1 -c 'touch a.txt'
-su ftpuser1 -c 'touch a.txt'
-ls
-cd consume
-ls
-cd ftpuser1
-ls
-ls
-cd
-cat /etc/passwd
-cd /opt/paperless/consume/ftpuser1
-cd 
-clear
-ls
-su - ftpuser
-su - ftpuser1
-exit
-ls
-clear
-clear
 ls
 sudo ufw
 sudo uwf
@@ -498,3 +476,25 @@ EXIT
 exit
 ls
 exit
+sodu systemctl restart m-*
+sudo  systemctl restart m-*
+ls
+cd src
+ls
+python manage.py migrate
+clear
+ls
+systemctl restart m-*
+sudo systemctl restart m-*
+clear
+sudo systemctl restart m-*
+clear
+ls
+cd
+sudo systemctl restart m-*
+clear
+/bin/python3 /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/deactivate/bash/envVars.txt
+/bin/python3 /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/deactivate/bash/envVars.txt
+sudo systemctl restart m-*
+clear
+/bin/python3 /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/deactivate/bash/envVars.txt
