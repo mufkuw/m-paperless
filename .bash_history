@@ -1,8 +1,3 @@
-ls
-sudo ufw
-sudo uwf
-clear
-ls
 cd
 ls
 exit
@@ -498,3 +493,8 @@ clear
 sudo systemctl restart m-*
 clear
 /bin/python3 /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/deactivate/bash/envVars.txt
+/bin/python3 /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/deactivate/bash/envVars.txt
+systemctl restart m-*
+sudo systemctl restart m-*
+/bin/python3 /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/deactivate/bash/envVars.txt
+sudo systemctl restart m-*

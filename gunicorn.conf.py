@@ -7,7 +7,7 @@ bind = f'{os.getenv("PAPERLESS_BIND_ADDR", "[::]")}:{os.getenv("PAPERLESS_PORT",
 
 workers = int(os.getenv("PAPERLESS_WEBSERVER_WORKERS", 1))
 worker_class = "paperless.workers.ConfigurableWorker"
-timeout = 20
+timeout = 3600
 preload_app = True
 
 # https://docs.gunicorn.org/en/stable/faq.html#blocking-os-fchmod

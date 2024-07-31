@@ -1188,8 +1188,18 @@ class GlobalSearchView(PassUserMixin):
                 "view_document",
                 Document,
             )
+            
+            regex = r"(?i)id(\d+)"
+
+            # You can manually specify the number of replacements by changing the 4th argument
+            query_match = re.match(regex,query)
+            id_query='0'
+            if query_match != None:
+                id_query = query_match.group(1)
+            
+            query = re.sub(regex, "--X--", query, 0, re.MULTILINE)
             # First search by title
-            docs = all_docs.filter(title__icontains=query)
+            docs = all_docs.filter(Q(title__icontains=query)|Q(id=id_query))
             if not db_only and len(docs) < OBJECT_LIMIT:
                 # If we don't have enough results, search by content
                 from documents import index
