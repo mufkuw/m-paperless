@@ -1,30 +1,3 @@
-sudo service m-webserver restart
-sudo service m-webserver status
-sudo service m-webserver status
-sudo kill 44754
-sudo kill 44833
-sudo service m-webserver status
-sudo service m-webserver restart
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
 sudo service m-webserver status
 sudo service m-webserver status
 sudo service m-webserver status
@@ -498,3 +471,30 @@ sudo systemctl restart m-*
 sudo systemctl restart m-*
 sudo systemctl restart m-*
 /bin/python3 /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/deactivate/bash/envVars.txt
+ls
+cd ..
+ls
+cd paperless-backup
+ls
+cd data
+ls
+ls -la
+cd ..
+ls
+ls
+ls -la
+cp -R media/* ../paperless/media/
+cp -R data/* ../paperless/data/
+cd ..
+cd paperless
+ls
+cd media
+ls
+cd documents
+ls
+cd archive
+ls
+cd ..
+clear
+s
+exit
