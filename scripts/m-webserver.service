@@ -8,10 +8,12 @@ Requires=redis.service
 [Service]
 User=paperless
 Group=paperless
+#Restart=always
+#RestartSec=5
 ExecStartPre=/opt/paperless/update-ip.sh
 WorkingDirectory=/opt/paperless/src
 Environment = "PATH=/opt/paperless/.pyenv/shims:/opt/paperless/.pyenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-ExecStart=/opt/paperless/.pyenv/shims/gunicorn -c /opt/paperless/gunicorn.conf.py paperless.asgi:application
+ExecStart=/opt/paperless/.pyenv/shims/gunicorn -c /opt/paperless/gunicorn.conf.py --timeout 600 paperless.asgi:application
 
 [Install]
 WantedBy=multi-user.target

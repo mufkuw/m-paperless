@@ -5,6 +5,8 @@ Requires=redis.service
 [Service]
 User=paperless
 Group=paperless
+#Restart=always
+#RestartSec=5
 WorkingDirectory=/opt/paperless/src
 #Environment="PATH=/root/.pyenv/shims:/root/.pyenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 Environment = "PATH=/opt/paperless/.pyenv/shims:/opt/paperless/.pyenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"

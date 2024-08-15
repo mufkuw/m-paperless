@@ -1,107 +1,3 @@
-cd
-ls
-exit
-cd src
-python manage.py createsuperuser
-cd
-exit
-nano paperless.conf
-tesseract
-where tesseract
-which tesseract
-cd /usr/bin/tesseract
-clear
-tesseract --help
-tesseract --list-langs
-ps
-lsps
-top
-clear
-exit
-pwd
-git config --global --add safe.directory /opt/paperless
-git config --global --add user.name "Muffaddal Kalla"
-git config --global --add user.email "muf@bqa.la"
-sudo server m-webserver restart
-sudo servvice m-webserver restart
-sudo service m-webserver restart
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-netstat -plnt
-sudo kill 43765
-sudo service m-webserver status
-sudo service m-webserver restart
-sudo service m-webserver status
-sudo service m-webserver status
-sudo kill 44754
-sudo kill 44833
-sudo service m-webserver status
-sudo service m-webserver restart
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
 sudo service m-webserver status
 sudo service m-webserver status
 sudo service m-webserver status
@@ -498,3 +394,107 @@ systemctl restart m-*
 sudo systemctl restart m-*
 /bin/python3 /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/deactivate/bash/envVars.txt
 sudo systemctl restart m-*
+sudo systemctl restart m-*
+/bin/python3 /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/deactivate/bash/envVars.txt
+ls
+clear
+ls
+clear
+ls
+exit
+ls
+cd sda
+ls
+cd data
+ls
+ls -la
+ls -la
+ls -lah
+cd ..
+ls
+cd meida
+ls
+cd media
+ls
+cd documents
+ls
+cd originals
+ls
+ls -la
+cd ..
+cd ..
+cd ..
+clear
+ls
+journal -f
+journalctl -f
+journalctl -f | grep m-pa
+ls
+cd ..
+ls
+nano gunicorn.conf.py
+reboot
+sudo reboot
+clea
+top
+lscpu
+/bin/python3 /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/deactivate/bash/envVars.txt
+clear
+ls
+cd /var/log
+ls
+ls -la
+jouralctl -f
+journalctl 
+journalctl | grep 'worker lost'
+journalctl | grep worker
+journalctl -f
+ls
+su root
+su root
+su root
+/opt/paperless/.pyenv/versions/3.11.6/bin/python /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/deactivate/bash/envVars.txt
+sytstemctl restart m-*
+sudo sytstemctl restart m-*
+sudo systemctl restart m-*
+/opt/paperless/.pyenv/versions/3.11.6/bin/python /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/deactivate/bash/envVars.txt
+top -1
+/opt/paperless/.pyenv/versions/3.11.6/bin/python /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/deactivate/bash/envVars.txt
+sudo systemctl restart m-*
+sudo systemctl restart m-*
+top -1
+sudo systemctl restart m-*
+journalctl -f
+sudo systemctl status m-*
+systemctl daemon-reload
+sudo systemctl daemon-reload
+sudo systemctl status m-*
+sudo systemctl status m-*
+service m-queue restart
+sudo service m-queue restart
+sudo systemctl status m-*
+journalctl -f
+systemctl list-units --type=service --all --no-pager | awk 'NR>1 {print $1, $3}' | column -t
+systemctl list-units --type=service --all --no-pager
+systemctl  -type=service --all --no-pager
+systemctl  --type=service --all --no-pager
+systemctl  --type=service
+systemctl  --type=service | grep m-*
+systemctl  --type=service | grep m\-*
+/opt/paperless/.pyenv/versions/3.11.6/bin/python /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/deactivate/bash/envVars.txt
+sudo systemctl status m-*
+service m-queue restart
+sudo service m-queue restart
+sudo systemctl status m-*
+clear
+ls
+systemctl relaod daemons
+systemctl relaod daemon
+systemctl reload daemon
+sudo systemctl reload daemon
+sudo systemctl daemon-reload
+clear
+reboot
+sudo reboot
+/opt/paperless/.pyenv/versions/3.11.6/bin/python /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/deactivate/bash/envVars.txt
+/opt/paperless/.pyenv/versions/3.11.6/bin/python /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/deactivate/bash/envVars.txt
