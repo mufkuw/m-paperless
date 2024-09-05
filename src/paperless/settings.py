@@ -417,8 +417,11 @@ CHANNEL_LAYERS = {
 # Security                                                                    #
 ###############################################################################
 
+from .ldap_settings import *
+
 AUTHENTICATION_BACKENDS = [
     "guardian.backends.ObjectPermissionBackend",
+    'django_auth_ldap.backend.LDAPBackend',  # LDAP authentication
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
 ]

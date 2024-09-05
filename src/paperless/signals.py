@@ -3,6 +3,7 @@ import logging
 from django.conf import settings
 from python_ipware import IpWare
 
+
 logger = logging.getLogger("paperless.auth")
 
 
@@ -30,3 +31,4 @@ def handle_failed_login(sender, credentials, request, **kwargs):
             log_output += f" from private IP `{client_ip}`."
 
     logger.info(log_output)
+

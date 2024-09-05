@@ -111,3 +111,5 @@ sdb/
 .dotnet
 ./paperless.conf
 .bash_history
+src/documents/scripts/post.d/sync_to_sharepoint/config_alherzkuwait.py
+src/documents/scripts/post.d/sync_to_sharepoint/config_sitccokw.py

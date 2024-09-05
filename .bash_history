@@ -1,91 +1,3 @@
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver restart
-sudo service m-webserver restart
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver restart
-sudo service m-webserver status
-sudo kill -9 `sudo lsof -n -i | grep gunicorn | awk '{print $2}'`
-sudo service m-webserver restart
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver restart
-sudo service m-webserver status
-ls
-cd src
-
-python test.py
-pip install pytesseract
-python test.py
-python test.py
-python test.py >> a.txt
-python test.py >> a.txt
-clear
-sudo service m-webserver restart
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-kill 51977
-sudo kill 51977
-clear
-sudo service m-webserver status
-sudo server m-webserver restart
-sudo service m-webserver restart
-sudo service m-webserver restart
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
 sudo service m-webserver status --wait
 sudo service m-webserver status --wait
 sudo service m-webserver status --wait
@@ -498,3 +410,91 @@ cd ..
 clear
 s
 exit
+clear
+pip paddlepaddle paddleocr
+pip install  paddlepaddle paddleocr
+pip install  --upgrade pip
+pip install  --upgrade setuptools
+sudo systemctl restart m-*
+sudo systemctl restart m-*
+journalctl -f
+pythong
+python
+pip install paddlepaddle==2.5.2
+python
+clear
+ls
+journalctl -f
+pip install paddlepaddle==2.6.0
+
+journalctl -f
+pip install paddlepaddle==2.5.7
+pip install paddlepaddle==2.5.2
+sudo systemctl restart m-*
+journalctl -f
+sudo systemctl restart m-*
+pip install paddlepaddle==2.6.1
+sudo systemctl restart m-*
+journalctl -f
+sudo systemctl restart m-*
+journalctl -f
+journalctl -f
+journalctl -f
+sudo systemctl restart m-*
+journalctl -f
+ls
+pip install unicodedata
+pip install unicodedata
+python
+python
+sudo systemctl restart m-*
+journalctl -f
+sudo systemctl restart m-*
+journalctl -f
+/opt/paperless/.pyenv/versions/3.11.6/bin/python /opt/paperless/.vscode-server/extensions/ms-python.python-2024.12.1-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.12.1-linux-x64/python_files/deactivate/bash/envVars.txt
+ls
+which python
+pip install django-auth-ldap python-ldap
+sudo apt-get install libsasl2-dev python-dev libldap2-dev libssl-dev
+sudo apt-get install libsasl2-dev libldap2-dev libssl-dev
+clear
+ls
+pip install django-auth-ldap python-ldap
+clear
+systemctl restart m-*
+sudo systemctl restart m-*
+ppls11
+clear
+sudo systemctl restart m-*
+sudo systemctl status m-*
+sudo systemctl restart m-*
+sudo systemctl status m-*
+clear
+sudo systemctl restart m-*
+sudo systemctl status m-*
+sudo systemctl restart m-*
+sudo systemctl status m-*
+sudo systemctl restart m-*
+sudo systemctl status m-*
+sudo systemctl restart m-*
+sudo systemctl status m-*
+sudo systemctl restart m-*
+sudo systemctl status m-*
+sudo systemctl restart m-*
+sudo systemctl restart m-*
+sudo systemctl status m-*
+clear
+sudo systemctl restart m-*
+sudo systemctl status m-*
+sudo systemctl status m-*
+journalctl -f
+sudo systemctl restart m-*
+sudo systemctl status m-*
+journalctl -f
+sudo systemctl restart m-*
+journalctl -f
+sudo systemctl restart m-*
+sudo systemctl status m-*
+sudo systemctl restart m-*
+journalctl -f
+/opt/paperless/.pyenv/shims/python /opt/paperless/.vscode-server/extensions/ms-python.python-2024.12.1-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.12.1-linux-x64/python_files/deactivate/bash/envVars.txt

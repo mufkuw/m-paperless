@@ -7,6 +7,8 @@ from typing import Optional
 from django.conf import settings
 from PIL import Image
 
+from .newocr import *
+
 #keep this imports to subvert pdf extart to to different function
 #############
 import openai
@@ -374,6 +376,34 @@ class RasterisedDocumentParser(DocumentParser):
         #self.log.debug(valueable_data)
         
         return post_process_text(valueable_data)
+    
+    
+    def extract_text_from_pdf_paddle(self,pdf_path):
+
+        self.log.debug("Calling Paddle OCR")
+
+        # Convert PDF to images
+        images = convert_from_path(pdf_path,dpi=300,first_page=1,last_page=self.settings.pages)
+        
+        if self.settings.pages is not None and self.settings.pages > 0:
+            images = images[:self.settings.pages]
+
+        ndiamges = [np.array(i) for i in images]
+
+        self.log.debug("Converting Images to ND-Array")
+
+
+        
+        result = ocr_images(ndiamges)
+        
+        result = ["\n".join(r[2]) for r in result]
+        
+        valueable_data = "\n".join(result)
+        
+        self.log.debug("Consisting valueable data")
+        
+        return post_process_text(valueable_data)
+    
 ############
 
 
@@ -435,7 +465,7 @@ class RasterisedDocumentParser(DocumentParser):
             ## suberting function to different extractor
             #self.text = self.extract_text(sidecar_file, archive_path)
             self.log.debug(f"Extracting Text from PDF")
-            self.text = self.extract_text_from_pdf(archive_path)
+            self.text = self.extract_text_from_pdf_paddle(archive_path)
             if len(self.text) >0: 
                 self.log.debug(f"Extracting Text from PDF .. Success")
             ##########################

@@ -46,6 +46,7 @@ from documents.permissions import set_permissions_for_object
 logger = logging.getLogger("paperless.handlers")
 
 from .pre_save_handler_arizona import *
+from .ldap_user_create import *
 
 def add_inbox_tags(sender, document: Document, logging_group=None, **kwargs):
     if document.owner is not None:
