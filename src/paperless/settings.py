@@ -9,8 +9,6 @@ from os import PathLike
 from pathlib import Path
 from platform import machine
 from typing import Final
-from typing import Optional
-from typing import Union
 from urllib.parse import urlparse
 
 from celery.schedules import crontab
@@ -57,7 +55,7 @@ def __get_int(key: str, default: int) -> int:
     return int(os.getenv(key, default))
 
 
-def __get_optional_int(key: str) -> Optional[int]:
+def __get_optional_int(key: str) -> int | None:
     """
     Returns None if the environment key is not present, otherwise an integer
     """
@@ -75,7 +73,7 @@ def __get_float(key: str, default: float) -> float:
 
 def __get_path(
     key: str,
-    default: Union[PathLike, str],
+    default: PathLike | str,
 ) -> Path:
     """
     Return a normalized, absolute path based on the environment variable or a default,
@@ -86,7 +84,7 @@ def __get_path(
     return Path(default).resolve()
 
 
-def __get_optional_path(key: str) -> Optional[Path]:
+def __get_optional_path(key: str) -> Path | None:
     """
     Returns None if the environment key is not present, otherwise a fully resolved Path
     """
@@ -97,7 +95,7 @@ def __get_optional_path(key: str) -> Optional[Path]:
 
 def __get_list(
     key: str,
-    default: Optional[list[str]] = None,
+    default: list[str] | None = None,
     sep: str = ",",
 ) -> list[str]:
     """
@@ -112,7 +110,7 @@ def __get_list(
         return []
 
 
-def _parse_redis_url(env_redis: Optional[str]) -> tuple[str, str]:
+def _parse_redis_url(env_redis: str | None) -> tuple[str, str]:
     """
     Gets the Redis information from the environment or a default and handles
     converting from incompatible django_channels and celery formats.
@@ -207,6 +205,17 @@ def _parse_beat_schedule() -> dict:
                 "expires": ((7.0 * 24.0) - 1.0) * 60.0 * 60.0,
             },
         },
+        {
+            "name": "Empty trash",
+            "env_key": "PAPERLESS_EMPTY_TRASH_TASK_CRON",
+            # Default daily at 01:00
+            "env_default": "0 1 * * *",
+            "task": "documents.tasks.empty_trash",
+            "options": {
+                # 1 hour before default schedule sends again
+                "expires": 23.0 * 60.0 * 60.0,
+            },
+        },
     ]
     for task in tasks:
         # Either get the environment setting or use the default
@@ -250,7 +259,11 @@ DATA_DIR = __get_path("PAPERLESS_DATA_DIR", BASE_DIR.parent / "data")
 
 NLTK_DIR = __get_path("PAPERLESS_NLTK_DIR", "/usr/share/nltk_data")
 
-TRASH_DIR = os.getenv("PAPERLESS_TRASH_DIR")
+# Check deprecated setting first
+EMPTY_TRASH_DIR = os.getenv(
+    "PAPERLESS_TRASH_DIR",
+    os.getenv("PAPERLESS_EMPTY_TRASH_DIR"),
+)
 
 # Lock file for synchronizing changes to the MEDIA directory across multiple
 # threads.
@@ -354,7 +367,10 @@ def _parse_base_paths() -> tuple[str, str, str, str, str]:
     base_url = (script_name or "") + "/"
     login_url = base_url + "accounts/login/"
     login_redirect_url = base_url + "dashboard"
-    logout_redirect_url = os.getenv("PAPERLESS_LOGOUT_REDIRECT_URL", base_url)
+    logout_redirect_url = os.getenv(
+        "PAPERLESS_LOGOUT_REDIRECT_URL",
+        login_url + "?loggedout=1",
+    )
     return script_name, base_url, login_url, login_redirect_url, logout_redirect_url
 
 
@@ -445,6 +461,7 @@ SOCIALACCOUNT_PROVIDERS = json.loads(
 ACCOUNT_EMAIL_SUBJECT_PREFIX = "[Paperless-ngx] "
 
 DISABLE_REGULAR_LOGIN = __get_boolean("PAPERLESS_DISABLE_REGULAR_LOGIN")
+REDIRECT_LOGIN_TO_SSO = __get_boolean("PAPERLESS_REDIRECT_LOGIN_TO_SSO")
 
 AUTO_LOGIN_USERNAME = os.getenv("PAPERLESS_AUTO_LOGIN_USERNAME")
 
@@ -453,7 +470,11 @@ ACCOUNT_EMAIL_VERIFICATION = os.getenv(
     "optional",
 )
 
-ACCOUNT_SESSION_REMEMBER = __get_boolean("PAPERLESS_ACCOUNT_SESSION_REMEMBER")
+ACCOUNT_SESSION_REMEMBER = __get_boolean("PAPERLESS_ACCOUNT_SESSION_REMEMBER", "True")
+SESSION_EXPIRE_AT_BROWSER_CLOSE = not ACCOUNT_SESSION_REMEMBER
+SESSION_COOKIE_AGE = int(
+    os.getenv("PAPERLESS_SESSION_COOKIE_AGE", 60 * 60 * 24 * 7 * 3),
+)
 
 if AUTO_LOGIN_USERNAME:
     _index = MIDDLEWARE.index("django.contrib.auth.middleware.AuthenticationMiddleware")
@@ -507,7 +528,7 @@ if DEBUG:
     CORS_ALLOWED_ORIGINS.append("http://localhost:4200")
 
 ALLOWED_HOSTS = __get_list("PAPERLESS_ALLOWED_HOSTS", ["*"])
-if ["*"] != ALLOWED_HOSTS:
+if ALLOWED_HOSTS != ["*"]:
     # always allow localhost. Necessary e.g. for healthcheck in docker.
     ALLOWED_HOSTS.append("localhost")
 
@@ -677,6 +698,7 @@ LANGUAGES = [
     ("hu-hu", _("Hungarian")),
     ("it-it", _("Italian")),
     ("ja-jp", _("Japanese")),
+    ("ko-kr", _("Korean")),
     ("lb-lu", _("Luxembourgish")),
     ("no-no", _("Norwegian")),
     ("nl-nl", _("Dutch")),
@@ -905,6 +927,15 @@ CONSUMER_BARCODE_UPSCALE: Final[float] = __get_float(
 
 CONSUMER_BARCODE_DPI: Final[int] = __get_int("PAPERLESS_CONSUMER_BARCODE_DPI", 300)
 
+CONSUMER_BARCODE_MAX_PAGES: Final[int] = __get_int(
+    "PAPERLESS_CONSUMER_BARCODE_MAX_PAGES",
+    0,
+)
+
+CONSUMER_BARCODE_RETAIN_SPLIT_PAGES = __get_boolean(
+    "PAPERLESS_CONSUMER_BARCODE_RETAIN_SPLIT_PAGES",
+)
+
 CONSUMER_ENABLE_TAG_BARCODE: Final[bool] = __get_boolean(
     "PAPERLESS_CONSUMER_ENABLE_TAG_BARCODE",
 )
@@ -930,6 +961,8 @@ CONSUMER_COLLATE_DOUBLE_SIDED_SUBDIR_NAME: Final[str] = os.getenv(
 CONSUMER_COLLATE_DOUBLE_SIDED_TIFF_SUPPORT: Final[bool] = __get_boolean(
     "PAPERLESS_CONSUMER_COLLATE_DOUBLE_SIDED_TIFF_SUPPORT",
 )
+
+CONSUMER_PDF_RECOVERABLE_MIME_TYPES = ("application/octet-stream",)
 
 OCR_PAGES = __get_optional_int("PAPERLESS_OCR_PAGES")
 
@@ -958,7 +991,7 @@ OCR_ROTATE_PAGES_THRESHOLD: Final[float] = __get_float(
     12.0,
 )
 
-OCR_MAX_IMAGE_PIXELS: Final[Optional[int]] = __get_optional_int(
+OCR_MAX_IMAGE_PIXELS: Final[int | None] = __get_optional_int(
     "PAPERLESS_OCR_MAX_IMAGE_PIXELS",
 )
 
@@ -969,7 +1002,7 @@ OCR_COLOR_CONVERSION_STRATEGY = os.getenv(
 
 OCR_USER_ARGS = os.getenv("PAPERLESS_OCR_USER_ARGS")
 
-MAX_IMAGE_PIXELS: Final[Optional[int]] = __get_optional_int(
+MAX_IMAGE_PIXELS: Final[int | None] = __get_optional_int(
     "PAPERLESS_MAX_IMAGE_PIXELS",
 )
 
@@ -1097,7 +1130,7 @@ APP_LOGO = os.getenv("PAPERLESS_APP_LOGO", None)
 ###############################################################################
 
 
-def _get_nltk_language_setting(ocr_lang: str) -> Optional[str]:
+def _get_nltk_language_setting(ocr_lang: str) -> str | None:
     """
     Maps an ISO-639-1 language code supported by Tesseract into
     an optional NLTK language name.  This is the set of common supported
@@ -1107,6 +1140,10 @@ def _get_nltk_language_setting(ocr_lang: str) -> Optional[str]:
 
     NLTK Languages:
       - https://www.nltk.org/api/nltk.stem.snowball.html#nltk.stem.snowball.SnowballStemmer
+      - https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/tokenizers/punkt.zip
+      - https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/corpora/stopwords.zip
+
+    The common intersection between all languages in those 3 is handled here
 
     """
     ocr_lang = ocr_lang.split("+")[0]
@@ -1123,7 +1160,6 @@ def _get_nltk_language_setting(ocr_lang: str) -> Optional[str]:
         "rus": "russian",
         "spa": "spanish",
         "swe": "swedish",
-        "tur": "turkish",
     }
 
     return iso_code_to_nltk.get(ocr_lang)
@@ -1131,7 +1167,7 @@ def _get_nltk_language_setting(ocr_lang: str) -> Optional[str]:
 
 NLTK_ENABLED: Final[bool] = __get_boolean("PAPERLESS_ENABLE_NLTK", "yes")
 
-NLTK_LANGUAGE: Optional[str] = _get_nltk_language_setting(OCR_LANGUAGE)
+NLTK_LANGUAGE: str | None = _get_nltk_language_setting(OCR_LANGUAGE)
 
 ###############################################################################
 # Email (SMTP) Backend                                                        #
@@ -1148,3 +1184,38 @@ EMAIL_SUBJECT_PREFIX: Final[str] = "[Paperless-ngx] "
 if DEBUG:  # pragma: no cover
     EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
     EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
+
+###############################################################################
+# Email Preprocessors                                                         #
+###############################################################################
+
+EMAIL_GNUPG_HOME: Final[str | None] = os.getenv("PAPERLESS_EMAIL_GNUPG_HOME")
+EMAIL_ENABLE_GPG_DECRYPTOR: Final[bool] = __get_boolean(
+    "PAPERLESS_ENABLE_GPG_DECRYPTOR",
+)
+
+
+###############################################################################
+# Soft Delete                                                                 #
+###############################################################################
+EMPTY_TRASH_DELAY = max(__get_int("PAPERLESS_EMPTY_TRASH_DELAY", 30), 1)
+
+
+###############################################################################
+# Oauth Email                                                                 #
+###############################################################################
+OAUTH_CALLBACK_BASE_URL = os.getenv("PAPERLESS_OAUTH_CALLBACK_BASE_URL")
+GMAIL_OAUTH_CLIENT_ID = os.getenv("PAPERLESS_GMAIL_OAUTH_CLIENT_ID")
+GMAIL_OAUTH_CLIENT_SECRET = os.getenv("PAPERLESS_GMAIL_OAUTH_CLIENT_SECRET")
+GMAIL_OAUTH_ENABLED = bool(
+    (OAUTH_CALLBACK_BASE_URL or PAPERLESS_URL)
+    and GMAIL_OAUTH_CLIENT_ID
+    and GMAIL_OAUTH_CLIENT_SECRET,
+)
+OUTLOOK_OAUTH_CLIENT_ID = os.getenv("PAPERLESS_OUTLOOK_OAUTH_CLIENT_ID")
+OUTLOOK_OAUTH_CLIENT_SECRET = os.getenv("PAPERLESS_OUTLOOK_OAUTH_CLIENT_SECRET")
+OUTLOOK_OAUTH_ENABLED = bool(
+    (OAUTH_CALLBACK_BASE_URL or PAPERLESS_URL)
+    and OUTLOOK_OAUTH_CLIENT_ID
+    and OUTLOOK_OAUTH_CLIENT_SECRET,
+)

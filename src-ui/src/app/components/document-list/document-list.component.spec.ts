@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { DocumentListComponent } from './document-list.component'
-import { HttpClientTestingModule } from '@angular/common/http/testing'
+import { provideHttpClientTesting } from '@angular/common/http/testing'
 import { RouterTestingModule } from '@angular/router/testing'
 import { routes } from 'src/app/app-routing.module'
 import { FilterEditorComponent } from './filter-editor/filter-editor.component'
@@ -60,7 +60,11 @@ import { SafeHtmlPipe } from 'src/app/pipes/safehtml.pipe'
 import { SaveViewConfigDialogComponent } from './save-view-config-dialog/save-view-config-dialog.component'
 import { TextComponent } from '../common/input/text/text.component'
 import { CheckComponent } from '../common/input/check/check.component'
-import { HttpErrorResponse } from '@angular/common/http'
+import {
+  HttpErrorResponse,
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http'
 import { PermissionsGuard } from 'src/app/guards/permissions.guard'
 import { SettingsService } from 'src/app/services/settings.service'
 import { SETTINGS_KEYS } from 'src/app/data/ui-settings'
@@ -134,17 +138,7 @@ describe('DocumentListComponent', () => {
         SafeHtmlPipe,
         IsNumberPipe,
       ],
-      providers: [
-        FilterPipe,
-        CustomDatePipe,
-        DatePipe,
-        DocumentTitlePipe,
-        UsernamePipe,
-        SafeHtmlPipe,
-        PermissionsGuard,
-      ],
       imports: [
-        HttpClientTestingModule,
         RouterTestingModule.withRoutes(routes),
         FormsModule,
         ReactiveFormsModule,
@@ -155,6 +149,17 @@ describe('DocumentListComponent', () => {
         NgxBootstrapIconsModule.pick(allIcons),
         NgSelectModule,
         NgbTypeaheadModule,
+      ],
+      providers: [
+        FilterPipe,
+        CustomDatePipe,
+        DatePipe,
+        DocumentTitlePipe,
+        UsernamePipe,
+        SafeHtmlPipe,
+        PermissionsGuard,
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
       ],
     }).compileComponents()
 
@@ -297,7 +302,7 @@ describe('DocumentListComponent', () => {
     displayModeButtons[0].triggerEventHandler('change')
     fixture.detectChanges()
     expect(component.list.displayMode).toEqual('table')
-    expect(fixture.debugElement.queryAll(By.css('tr'))).toHaveLength(3)
+    expect(fixture.debugElement.queryAll(By.css('tr'))).toHaveLength(4)
 
     displayModeButtons[1].nativeElement.checked = true
     displayModeButtons[1].triggerEventHandler('change')
@@ -597,7 +602,7 @@ describe('DocumentListComponent', () => {
 
     expect(
       fixture.debugElement.queryAll(By.directive(SortableDirective))
-    ).toHaveLength(9)
+    ).toHaveLength(10)
 
     expect(component.notesEnabled).toBeTruthy()
     settingsService.set(SETTINGS_KEYS.NOTES_ENABLED, false)
@@ -605,14 +610,14 @@ describe('DocumentListComponent', () => {
     expect(component.notesEnabled).toBeFalsy()
     expect(
       fixture.debugElement.queryAll(By.directive(SortableDirective))
-    ).toHaveLength(8)
+    ).toHaveLength(9)
 
     // insufficient perms
     jest.spyOn(permissionService, 'currentUserCan').mockReturnValue(false)
     fixture.detectChanges()
     expect(
       fixture.debugElement.queryAll(By.directive(SortableDirective))
-    ).toHaveLength(4)
+    ).toHaveLength(5)
   })
 
   it('should support toggle on document objects', () => {

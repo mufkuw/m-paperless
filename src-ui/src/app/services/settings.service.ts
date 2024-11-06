@@ -10,7 +10,7 @@ import {
 } from '@angular/core'
 import { Meta } from '@angular/platform-browser'
 import { CookieService } from 'ngx-cookie-service'
-import { first, Observable, tap } from 'rxjs'
+import { catchError, first, Observable, of, tap } from 'rxjs'
 import {
   BRIGHTNESS,
   estimateBrightnessForColor,
@@ -144,6 +144,12 @@ const LANGUAGE_OPTIONS = [
     dateInputFormat: 'yyyy/mm/dd',
   },
   {
+    code: 'ko-kr',
+    name: $localize`Korean`,
+    englishName: 'Korean',
+    dateInputFormat: 'yyyy-mm-dd',
+  },
+  {
     code: 'lb-lu',
     name: $localize`Luxembourgish`,
     englishName: 'Luxembourgish',
@@ -268,7 +274,7 @@ export class SettingsService {
   public get allDisplayFields(): Array<{ id: DisplayField; name: string }> {
     return this._allDisplayFields
   }
-  public displayFieldsInitialized: boolean = false
+  public displayFieldsInit: EventEmitter<boolean> = new EventEmitter()
 
   constructor(
     rendererFactory: RendererFactory2,
@@ -288,6 +294,19 @@ export class SettingsService {
   public initializeSettings(): Observable<UiSettings> {
     return this.http.get<UiSettings>(this.baseUrl).pipe(
       first(),
+      catchError((error) => {
+        setTimeout(() => {
+          this.toastService.showError('Error loading settings', error)
+        }, 500)
+        return of({
+          settings: {
+            documentListSize: 10,
+            update_checking: { backend_setting: 'default' },
+          },
+          user: {},
+          permissions: [],
+        })
+      }),
       tap((uisettings) => {
         Object.assign(this.settings, uisettings.settings)
         if (this.get(SETTINGS_KEYS.APP_TITLE)?.length) {
@@ -326,6 +345,7 @@ export class SettingsService {
             DisplayField.CREATED,
             DisplayField.ADDED,
             DisplayField.ASN,
+            DisplayField.PAGE_COUNT,
             DisplayField.SHARED,
           ].includes(field.id)
         ) {
@@ -362,10 +382,10 @@ export class SettingsService {
             }
           })
         )
-        this.displayFieldsInitialized = true
+        this.displayFieldsInit.emit(true)
       })
     } else {
-      this.displayFieldsInitialized = true
+      this.displayFieldsInit.emit(true)
     }
   }
 

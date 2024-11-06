@@ -1,4 +1,4 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing'
+import { provideHttpClientTesting } from '@angular/common/http/testing'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap'
@@ -23,6 +23,8 @@ import { TagsComponent } from '../../input/tags/tags.component'
 import { TextComponent } from '../../input/text/text.component'
 import { EditDialogMode } from '../edit-dialog.component'
 import { MailRuleEditDialogComponent } from './mail-rule-edit-dialog.component'
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
+import { SwitchComponent } from '../../input/switch/switch.component'
 
 describe('MailRuleEditDialogComponent', () => {
   let component: MailRuleEditDialogComponent
@@ -42,7 +44,9 @@ describe('MailRuleEditDialogComponent', () => {
         TagsComponent,
         SafeHtmlPipe,
         CheckComponent,
+        SwitchComponent,
       ],
+      imports: [FormsModule, ReactiveFormsModule, NgSelectModule, NgbModule],
       providers: [
         NgbActiveModal,
         {
@@ -63,13 +67,8 @@ describe('MailRuleEditDialogComponent', () => {
             listAll: () => of([]),
           },
         },
-      ],
-      imports: [
-        HttpClientTestingModule,
-        FormsModule,
-        ReactiveFormsModule,
-        NgSelectModule,
-        NgbModule,
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
       ],
     }).compileComponents()
 

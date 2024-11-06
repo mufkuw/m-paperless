@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing'
 import { DocumentListViewService } from './document-list-view.service'
 import {
-  HttpClientTestingModule,
   HttpTestingController,
+  provideHttpClientTesting,
 } from '@angular/common/http/testing'
 import { environment } from 'src/environments/environment'
 import { Subscription } from 'rxjs'
@@ -24,6 +24,7 @@ import {
   DisplayField,
   DEFAULT_DISPLAY_FIELDS,
 } from '../data/document'
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 
 const documents = [
   {
@@ -91,13 +92,16 @@ describe('DocumentListViewService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DocumentListViewService, PermissionsGuard, SettingsService],
-      imports: [
-        HttpClientTestingModule,
-        RouterTestingModule.withRoutes(routes),
-      ],
       declarations: [ConfirmDialogComponent],
       teardown: { destroyAfterEach: true },
+      imports: [RouterTestingModule.withRoutes(routes)],
+      providers: [
+        DocumentListViewService,
+        PermissionsGuard,
+        SettingsService,
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+      ],
     })
 
     sessionStorage.clear()
@@ -595,14 +599,17 @@ describe('DocumentListViewService', () => {
   it('should not filter out custom fields if settings not initialized', () => {
     const customFields = ['custom_field_1', 'custom_field_2']
     documentListViewService.displayFields = customFields as any
-    settingsService.displayFieldsInitialized = false
     expect(documentListViewService.displayFields).toEqual(customFields)
     jest.spyOn(settingsService, 'allDisplayFields', 'get').mockReturnValue([
       { id: DisplayField.ADDED, name: 'Added' },
       { id: DisplayField.TITLE, name: 'Title' },
       { id: 'custom_field_1', name: 'Custom Field 1' },
     ] as any)
-    settingsService.displayFieldsInitialized = true
+    settingsService.displayFieldsInit.emit(true)
+    expect(documentListViewService.displayFields).toEqual(['custom_field_1'])
+
+    // will now filter on set
+    documentListViewService.displayFields = customFields as any
     expect(documentListViewService.displayFields).toEqual(['custom_field_1'])
   })
 })

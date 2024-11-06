@@ -2,13 +2,14 @@ import hashlib
 import itertools
 import logging
 import os
-from typing import Optional
+import tempfile
 
 from celery import chain
 from celery import chord
 from celery import group
 from celery import shared_task
 from django.conf import settings
+from django.contrib.auth.models import User
 from django.db.models import Q
 
 from documents.data_models import ConsumableDocument
@@ -158,13 +159,20 @@ def modify_custom_fields(doc_ids: list[int], add_custom_fields, remove_custom_fi
 
 @shared_task
 def delete(doc_ids: list[int]):
-    Document.objects.filter(id__in=doc_ids).delete()
+    try:
+        Document.objects.filter(id__in=doc_ids).delete()
 
-    from documents import index
+        from documents import index
 
-    with index.open_index_writer() as writer:
-        for id in doc_ids:
-            index.remove_document_by_id(writer, id)
+        with index.open_index_writer() as writer:
+            for id in doc_ids:
+                index.remove_document_by_id(writer, id)
+    except Exception as e:
+        if "Data too long for column" in str(e):
+            logger.warning(
+                "Detected a possible incompatible database column. See https://docs.paperless-ngx.com/troubleshooting/#convert-uuid-field",
+            )
+        logger.error(f"Error deleting documents: {e!s}")
 
     return "OK"
 
@@ -240,8 +248,9 @@ def rotate(doc_ids: list[int], degrees: int):
 
 def merge(
     doc_ids: list[int],
-    metadata_document_id: Optional[int] = None,
+    metadata_document_id: int | None = None,
     delete_originals: bool = False,
+    user: User = None,
 ):
     logger.info(
         f"Attempting to merge {len(doc_ids)} documents into a single document.",
@@ -269,7 +278,7 @@ def merge(
         return "OK"
 
     filepath = os.path.join(
-        settings.SCRATCH_DIR,
+        tempfile.mkdtemp(dir=settings.SCRATCH_DIR),
         f"{'_'.join([str(doc_id) for doc_id in doc_ids])[:100]}_merged.pdf",
     )
     merged_pdf.remove_unreferenced_resources()
@@ -283,6 +292,9 @@ def merge(
             overrides.title = metadata_document.title + " (merged)"
     else:
         overrides = DocumentMetadataOverrides()
+
+    if user is not None:
+        overrides.owner_id = user.id
 
     logger.info("Adding merged document to the task queue.")
 
@@ -305,7 +317,12 @@ def merge(
     return "OK"
 
 
-def split(doc_ids: list[int], pages: list[list[int]], delete_originals: bool = False):
+def split(
+    doc_ids: list[int],
+    pages: list[list[int]],
+    delete_originals: bool = False,
+    user: User = None,
+):
     logger.info(
         f"Attempting to split document {doc_ids[0]} into {len(pages)} documents",
     )
@@ -321,7 +338,7 @@ def split(doc_ids: list[int], pages: list[list[int]], delete_originals: bool = F
                 for page in split_doc:
                     dst.pages.append(pdf.pages[page - 1])
                 filepath = os.path.join(
-                    settings.SCRATCH_DIR,
+                    tempfile.mkdtemp(dir=settings.SCRATCH_DIR),
                     f"{doc.id}_{split_doc[0]}-{split_doc[-1]}.pdf",
                 )
                 dst.remove_unreferenced_resources()
@@ -330,6 +347,8 @@ def split(doc_ids: list[int], pages: list[list[int]], delete_originals: bool = F
 
                 overrides = DocumentMetadataOverrides().from_document(doc)
                 overrides.title = f"{doc.title} (split {idx + 1})"
+                if user is not None:
+                    overrides.owner_id = user.id
                 logger.info(
                     f"Adding split document with pages {split_doc} to the task queue.",
                 )
@@ -374,6 +393,8 @@ def delete_pages(doc_ids: list[int], pages: list[int]):
             pdf.remove_unreferenced_resources()
             pdf.save()
             doc.checksum = hashlib.md5(doc.source_path.read_bytes()).hexdigest()
+            if doc.page_count is not None:
+                doc.page_count = doc.page_count - len(pages)
             doc.save()
             update_document_archive_file.delay(document_id=doc.id)
             logger.info(f"Deleted pages {pages} from document {doc.id}")

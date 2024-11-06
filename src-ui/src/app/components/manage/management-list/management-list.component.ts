@@ -44,6 +44,8 @@ export interface ManagementListColumn {
   valueFn: any
 
   rendersHtml?: boolean
+
+  hideOnMobile?: boolean
 }
 
 @Directive()
@@ -132,6 +134,7 @@ export abstract class ManagementListComponent<T extends ObjectWithId>
 
   reloadData() {
     this.isLoading = true
+    this.clearSelection()
     this.service
       .listFiltered(
         this.page,

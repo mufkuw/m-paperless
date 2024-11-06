@@ -327,13 +327,8 @@ export class DocumentDetailComponent
         switchMap((paramMap) => {
           const documentId = +paramMap.get('id')
           this.docChangeNotifier.next(documentId)
-          return this.documentsService.get(documentId)
-        })
-      )
-      .pipe(
-        switchMap((doc) => {
-          this.documentId = doc.id
-          this.previewUrl = this.documentsService.getPreviewUrl(this.documentId)
+          // Dont wait to get the preview
+          this.previewUrl = this.documentsService.getPreviewUrl(documentId)
           this.http.get(this.previewUrl, { responseType: 'text' }).subscribe({
             next: (res) => {
               this.previewText = res.toString()
@@ -344,6 +339,12 @@ export class DocumentDetailComponent
               }`
             },
           })
+          return this.documentsService.get(documentId)
+        })
+      )
+      .pipe(
+        switchMap((doc) => {
+          this.documentId = doc.id
           this.downloadUrl = this.documentsService.getDownloadUrl(
             this.documentId
           )
@@ -651,6 +652,31 @@ export class DocumentDetailComponent
       })
   }
 
+  createDisabled(dataType: DataType) {
+    switch (dataType) {
+      case DataType.Correspondent:
+        return !this.permissionsService.currentUserCan(
+          PermissionAction.Add,
+          PermissionType.Correspondent
+        )
+      case DataType.DocumentType:
+        return !this.permissionsService.currentUserCan(
+          PermissionAction.Add,
+          PermissionType.DocumentType
+        )
+      case DataType.StoragePath:
+        return !this.permissionsService.currentUserCan(
+          PermissionAction.Add,
+          PermissionType.StoragePath
+        )
+      case DataType.Tag:
+        return !this.permissionsService.currentUserCan(
+          PermissionAction.Add,
+          PermissionType.Tag
+        )
+    }
+  }
+
   discard() {
     this.documentsService
       .get(this.documentId)
@@ -684,7 +710,10 @@ export class DocumentDetailComponent
         next: (docValues) => {
           // in case data changed while saving eg removing inbox_tags
           this.documentForm.patchValue(docValues)
-          this.store.next(this.documentForm.value)
+          const newValues = Object.assign({}, this.documentForm.value)
+          newValues.tags = [...docValues.tags]
+          newValues.custom_fields = [...docValues.custom_fields]
+          this.store.next(newValues)
           this.openDocumentService.setDirty(this.document, false)
           this.openDocumentService.save()
           this.toastService.showInfo($localize`Document saved successfully.`)
@@ -773,11 +802,11 @@ export class DocumentDetailComponent
     let modal = this.modalService.open(ConfirmDialogComponent, {
       backdrop: 'static',
     })
-    modal.componentInstance.title = $localize`Confirm delete`
-    modal.componentInstance.messageBold = $localize`Do you really want to delete document "${this.document.title}"?`
-    modal.componentInstance.message = $localize`The files for this document will be deleted permanently. This operation cannot be undone.`
+    modal.componentInstance.title = $localize`Confirm`
+    modal.componentInstance.messageBold = $localize`Do you really want to move the document "${this.document.title}" to the trash?`
+    modal.componentInstance.message = $localize`Documents can be restored prior to permanent deletion.`
     modal.componentInstance.btnClass = 'btn-danger'
-    modal.componentInstance.btnCaption = $localize`Delete document`
+    modal.componentInstance.btnCaption = $localize`Move to trash`
     this.subscribeModalDelete(modal) // so can be re-subscribed if error
   }
 
@@ -994,10 +1023,14 @@ export class DocumentDetailComponent
     }
     return (
       !this.document ||
-      this.permissionsService.currentUserHasObjectPermissions(
+      (this.permissionsService.currentUserCan(
         PermissionAction.Change,
-        doc
-      )
+        PermissionType.Document
+      ) &&
+        this.permissionsService.currentUserHasObjectPermissions(
+          PermissionAction.Change,
+          doc
+        ))
     )
   }
 

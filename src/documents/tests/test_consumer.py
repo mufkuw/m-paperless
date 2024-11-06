@@ -235,6 +235,8 @@ class FaultyGenericExceptionParser(_BaseTestParser):
 
 def fake_magic_from_file(file, mime=False):
     if mime:
+        if file.name.startswith("invalid_pdf"):
+            return "application/octet-stream"
         if os.path.splitext(file)[1] == ".pdf":
             return "application/pdf"
         elif os.path.splitext(file)[1] == ".png":
@@ -319,6 +321,18 @@ class TestConsumer(
             / "0000001.pdf"
         )
         dst = self.dirs.scratch_dir / "sample.pdf"
+        shutil.copy(src, dst)
+        return dst
+
+    def get_test_file2(self):
+        src = (
+            Path(__file__).parent
+            / "samples"
+            / "documents"
+            / "originals"
+            / "0000002.pdf"
+        )
+        dst = self.dirs.scratch_dir / "sample2.pdf"
         shutil.copy(src, dst)
         return dst
 
@@ -642,6 +656,47 @@ class TestConsumer(
         with self.get_consumer(self.get_test_file()) as consumer:
             consumer.run()
 
+    def testDuplicateInTrash(self):
+        with self.get_consumer(self.get_test_file()) as consumer:
+            consumer.run()
+
+        Document.objects.all().delete()
+
+        with self.get_consumer(self.get_test_file()) as consumer:
+            with self.assertRaisesMessage(ConsumerError, "document is in the trash"):
+                consumer.run()
+
+    def testAsnExists(self):
+        with self.get_consumer(
+            self.get_test_file(),
+            DocumentMetadataOverrides(asn=123),
+        ) as consumer:
+            consumer.run()
+
+        with self.get_consumer(
+            self.get_test_file2(),
+            DocumentMetadataOverrides(asn=123),
+        ) as consumer:
+            with self.assertRaisesMessage(ConsumerError, "ASN 123 already exists"):
+                consumer.run()
+
+    def testAsnExistsInTrash(self):
+        with self.get_consumer(
+            self.get_test_file(),
+            DocumentMetadataOverrides(asn=123),
+        ) as consumer:
+            consumer.run()
+
+            document = Document.objects.first()
+            document.delete()
+
+        with self.get_consumer(
+            self.get_test_file2(),
+            DocumentMetadataOverrides(asn=123),
+        ) as consumer:
+            with self.assertRaisesMessage(ConsumerError, "document is in the trash"):
+                consumer.run()
+
     @mock.patch("documents.parsers.document_consumer_declaration.send")
     def testNoParsers(self, m):
         m.return_value = []
@@ -898,6 +953,27 @@ class TestConsumer(
         self.assertEqual(doc3.archive_filename, "simple.png.pdf")
 
         sanity_check()
+
+    @mock.patch("documents.consumer.run_subprocess")
+    def test_try_to_clean_invalid_pdf(self, m):
+        shutil.copy(
+            Path(__file__).parent / "samples" / "invalid_pdf.pdf",
+            settings.CONSUMPTION_DIR / "invalid_pdf.pdf",
+        )
+        with self.get_consumer(
+            settings.CONSUMPTION_DIR / "invalid_pdf.pdf",
+        ) as consumer:
+            # fails because no qpdf
+            self.assertRaises(ConsumerError, consumer.run)
+
+            m.assert_called_once()
+
+            args, _ = m.call_args
+
+            command = args[0]
+
+            self.assertEqual(command[0], "qpdf")
+            self.assertEqual(command[1], "--replace-input")
 
 
 @mock.patch("documents.consumer.magic.from_file", fake_magic_from_file)

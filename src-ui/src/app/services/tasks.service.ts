@@ -50,6 +50,7 @@ export class TasksService {
   constructor(private http: HttpClient) {}
 
   public reload() {
+    if (this.loading) return
     this.loading = true
 
     this.http
@@ -66,7 +67,7 @@ export class TasksService {
       .post(`${this.baseUrl}acknowledge_tasks/`, {
         tasks: [...task_ids],
       })
-      .pipe(takeUntil(this.unsubscribeNotifer), first())
+      .pipe(first())
       .subscribe((r) => {
         this.reload()
       })

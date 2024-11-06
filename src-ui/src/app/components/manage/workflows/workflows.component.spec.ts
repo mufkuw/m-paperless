@@ -1,4 +1,4 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing'
+import { provideHttpClientTesting } from '@angular/common/http/testing'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { By } from '@angular/platform-browser'
@@ -25,6 +25,8 @@ import {
 } from 'src/app/data/workflow-trigger'
 import { WorkflowActionType } from 'src/app/data/workflow-action'
 import { NgxBootstrapIconsModule, allIcons } from 'ngx-bootstrap-icons'
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
+import { EditDialogMode } from '../../common/edit-dialog/edit-dialog.component'
 
 const workflows: Workflow[] = [
   {
@@ -85,6 +87,14 @@ describe('WorkflowsComponent', () => {
         PageHeaderComponent,
         ConfirmDialogComponent,
       ],
+      imports: [
+        NgbPaginationModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgbModalModule,
+        NgbPopoverModule,
+        NgxBootstrapIconsModule.pick(allIcons),
+      ],
       providers: [
         {
           provide: PermissionsService,
@@ -94,15 +104,8 @@ describe('WorkflowsComponent', () => {
             currentUserOwnsObject: () => true,
           },
         },
-      ],
-      imports: [
-        HttpClientTestingModule,
-        NgbPaginationModule,
-        FormsModule,
-        ReactiveFormsModule,
-        NgbModalModule,
-        NgbPopoverModule,
-        NgxBootstrapIconsModule.pick(allIcons),
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
       ],
     })
 
@@ -171,6 +174,19 @@ describe('WorkflowsComponent', () => {
     expect(reloadSpy).toHaveBeenCalled()
   })
 
+  it('should support copy', () => {
+    let modal: NgbModalRef
+    modalService.activeInstances.subscribe((m) => (modal = m[m.length - 1]))
+
+    const copyButton = fixture.debugElement.queryAll(By.css('button'))[6]
+    copyButton.triggerEventHandler('click')
+
+    expect(modal).not.toBeUndefined()
+    const editDialog = modal.componentInstance as WorkflowEditDialogComponent
+    expect(editDialog.object.name).toEqual(workflows[0].name + ' (copy)')
+    expect(editDialog.dialogMode).toEqual(EditDialogMode.CREATE)
+  })
+
   it('should support delete, show notification on error / success', () => {
     let modal: NgbModalRef
     modalService.activeInstances.subscribe((m) => (modal = m[m.length - 1]))
@@ -178,7 +194,7 @@ describe('WorkflowsComponent', () => {
     const deleteSpy = jest.spyOn(workflowService, 'delete')
     const reloadSpy = jest.spyOn(component, 'reload')
 
-    const deleteButton = fixture.debugElement.queryAll(By.css('button'))[4]
+    const deleteButton = fixture.debugElement.queryAll(By.css('button'))[5]
     deleteButton.triggerEventHandler('click')
 
     expect(modal).not.toBeUndefined()
@@ -194,5 +210,28 @@ describe('WorkflowsComponent', () => {
     deleteSpy.mockReturnValueOnce(of(true))
     editDialog.confirmClicked.emit()
     expect(reloadSpy).toHaveBeenCalled()
+  })
+
+  it('should update workflow when enable is toggled', () => {
+    const patchSpy = jest.spyOn(workflowService, 'patch')
+    const toggleInput = fixture.debugElement.query(
+      By.css('input[type="checkbox"]')
+    )
+    const toastErrorSpy = jest.spyOn(toastService, 'showError')
+    const toastInfoSpy = jest.spyOn(toastService, 'showInfo')
+    // fail first
+    patchSpy.mockReturnValueOnce(
+      throwError(() => new Error('Error getting config'))
+    )
+    toggleInput.nativeElement.click()
+    expect(patchSpy).toHaveBeenCalled()
+    expect(toastErrorSpy).toHaveBeenCalled()
+    // succeed second
+    patchSpy.mockReturnValueOnce(of(workflows[0]))
+    toggleInput.nativeElement.click()
+    patchSpy.mockReturnValueOnce(of({ ...workflows[0], enabled: false }))
+    toggleInput.nativeElement.click()
+    expect(patchSpy).toHaveBeenCalled()
+    expect(toastInfoSpy).toHaveBeenCalled()
   })
 })

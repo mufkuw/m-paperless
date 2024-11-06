@@ -1,6 +1,6 @@
 import {
   HttpTestingController,
-  HttpClientTestingModule,
+  provideHttpClientTesting,
 } from '@angular/common/http/testing'
 import {
   ComponentFixture,
@@ -11,7 +11,7 @@ import {
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { NgSelectModule } from '@ng-select/ng-select'
-import { IMAPSecurity } from 'src/app/data/mail-account'
+import { IMAPSecurity, MailAccountType } from 'src/app/data/mail-account'
 import { IfOwnerDirective } from 'src/app/directives/if-owner.directive'
 import { IfPermissionsDirective } from 'src/app/directives/if-permissions.directive'
 import { SettingsService } from 'src/app/services/settings.service'
@@ -23,6 +23,7 @@ import { SelectComponent } from '../../input/select/select.component'
 import { TextComponent } from '../../input/text/text.component'
 import { EditDialogMode } from '../edit-dialog.component'
 import { MailAccountEditDialogComponent } from './mail-account-edit-dialog.component'
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 
 describe('MailAccountEditDialogComponent', () => {
   let component: MailAccountEditDialogComponent
@@ -42,13 +43,11 @@ describe('MailAccountEditDialogComponent', () => {
         PermissionsFormComponent,
         PasswordComponent,
       ],
-      providers: [NgbActiveModal],
-      imports: [
-        HttpClientTestingModule,
-        FormsModule,
-        ReactiveFormsModule,
-        NgSelectModule,
-        NgbModule,
+      imports: [FormsModule, ReactiveFormsModule, NgSelectModule, NgbModule],
+      providers: [
+        NgbActiveModal,
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
       ],
     }).compileComponents()
 
@@ -83,6 +82,7 @@ describe('MailAccountEditDialogComponent', () => {
       imap_port: 443,
       imap_security: IMAPSecurity.SSL,
       is_token: false,
+      account_type: MailAccountType.IMAP,
     }
 
     // success

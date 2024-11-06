@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common'
-import { HttpClientTestingModule } from '@angular/common/http/testing'
+import { provideHttpClientTesting } from '@angular/common/http/testing'
 import {
   ComponentFixture,
   TestBed,
@@ -41,6 +41,7 @@ import { MATCH_LITERAL } from 'src/app/data/matching-model'
 import { PermissionsDialogComponent } from '../../common/permissions-dialog/permissions-dialog.component'
 import { NgxBootstrapIconsModule, allIcons } from 'ngx-bootstrap-icons'
 import { BulkEditObjectOperation } from 'src/app/services/rest/abstract-name-filter-service'
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 
 const tags: Tag[] = [
   {
@@ -48,16 +49,19 @@ const tags: Tag[] = [
     name: 'Tag1 Foo',
     matching_algorithm: MATCH_LITERAL,
     match: 'foo',
+    document_count: 35,
   },
   {
     id: 2,
     name: 'Tag2',
     matching_algorithm: MATCH_NONE,
+    document_count: 0,
   },
   {
     id: 3,
     name: 'Tag3',
     matching_algorithm: MATCH_AUTO,
+    document_count: 5,
   },
 ]
 
@@ -81,15 +85,19 @@ describe('ManagementListComponent', () => {
         ConfirmDialogComponent,
         PermissionsDialogComponent,
       ],
-      providers: [DatePipe, PermissionsGuard],
       imports: [
-        HttpClientTestingModule,
         NgbPaginationModule,
         FormsModule,
         ReactiveFormsModule,
         NgbModalModule,
         RouterTestingModule.withRoutes(routes),
         NgxBootstrapIconsModule.pick(allIcons),
+      ],
+      providers: [
+        DatePipe,
+        PermissionsGuard,
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
       ],
     }).compileComponents()
 
@@ -175,7 +183,7 @@ describe('ManagementListComponent', () => {
     const toastInfoSpy = jest.spyOn(toastService, 'showInfo')
     const reloadSpy = jest.spyOn(component, 'reloadData')
 
-    const editButton = fixture.debugElement.queryAll(By.css('button'))[7]
+    const editButton = fixture.debugElement.queryAll(By.css('button'))[6]
     editButton.triggerEventHandler('click')
 
     expect(modal).not.toBeUndefined()
@@ -200,7 +208,7 @@ describe('ManagementListComponent', () => {
     const deleteSpy = jest.spyOn(tagService, 'delete')
     const reloadSpy = jest.spyOn(component, 'reloadData')
 
-    const deleteButton = fixture.debugElement.queryAll(By.css('button'))[8]
+    const deleteButton = fixture.debugElement.queryAll(By.css('button'))[7]
     deleteButton.triggerEventHandler('click')
 
     expect(modal).not.toBeUndefined()
@@ -220,7 +228,7 @@ describe('ManagementListComponent', () => {
 
   it('should support quick filter for objects', () => {
     const qfSpy = jest.spyOn(documentListViewService, 'quickFilter')
-    const filterButton = fixture.debugElement.queryAll(By.css('button'))[6]
+    const filterButton = fixture.debugElement.queryAll(By.css('button'))[8]
     filterButton.triggerEventHandler('click')
     expect(qfSpy).toHaveBeenCalledWith([
       { rule_type: FILTER_HAS_TAGS_ALL, value: tags[0].id.toString() },
