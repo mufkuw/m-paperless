@@ -1,500 +1,500 @@
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver restart
-sudo service m-webserver restart
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver restart
-sudo service m-webserver status
-sudo kill -9 `sudo lsof -n -i | grep gunicorn | awk '{print $2}'`
-sudo service m-webserver restart
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver restart
-sudo service m-webserver status
+cd sda
 ls
-cd src
-
-python test.py
-pip install pytesseract
-python test.py
-python test.py
-python test.py >> a.txt
-python test.py >> a.txt
-clear
-sudo service m-webserver restart
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-kill 51977
-sudo kill 51977
-clear
-sudo service m-webserver status
-sudo server m-webserver restart
-sudo service m-webserver restart
-sudo service m-webserver restart
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status --wait
-sudo service m-webserver status --wait
-sudo service m-webserver status --wait
-sudo service m-webserver status --wait
-sudo service m-webserver status --wait
-sudo service m-webserver status --wait
-sudo service m-webserver status --wait
-sudo service m-webserver status --wait
-sudo service m-webserver status --wait
-sudo service m-webserver status --wait
-sudo service m-webserver status --wait
-sudo service m-webserver status --wait
-sudo service m-webserver status --wait
-sudo service m-webserver status --wait
-sudo service m-webserver status --wait
-sudo service m-webserver status --wait
-sudo service m-webserver restart
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-cd src
+ls -la
+df
+df -h
+du -h
+cd ..
 ls
-test.py /opt/paperless/media/documents/originals/0000006.png >> a.txt
-python test.py /opt/paperless/media/documents/originals/0000006.png >> a.txt
-python test.py /opt/paperless/media/documents/originals/0000006.png >> a.txt
-python test.py /opt/paperless/media/documents/originals/0000006.png > a.txt
-python test.py /opt/paperless/media/documents/originals/0000006.png >> a.txt
-python test.py /opt/paperless/media/documents/originals/0000006.png >> a.txt
-python test.py  > a.txt
-sudo service m-webserver restart
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
+ls
+tar -czf sda.tar.gz sda
+tar -vczf sda.tar.gz sda
 clear
+ls
+df
+df /h
+df -h
+umount sda
+sudo umount sda
 clear
-sudo service m-webserver status
+ls
+ls -la
 clear
-clear
-sudo service m-webserver restart
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver status
-sudo service m-webserver restrat
-sudo service m-webserver restart
-reboot
-exit
-cd src-ui
-./make
-./make
+ls
+cd sda
+ls
+cd ..
+cear
 cd
-cd src
-cd
-pip install pytesseract openai
-cd
-sudo ./restart
-sudo ./restart
-sudo ./restart
-sudo ./restart
-sudo ./restart
-nano /etc/ImageMagick-6/policy.xml
-sudo nano /etc/ImageMagick-6/policy.xml
-sudo ./restart
-sudo ./restart
-sudo ./restart
-pip install openai==0.28
-sudo ./restart
-sudo ./restart
-/bin/python3 /opt/paperless/.vscode-server/extensions/ms-python.python-2024.8.1/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.8.1/python_files/deactivate/bash/envVars.txt
-/bin/python3 /opt/paperless/.vscode-server/extensions/ms-python.python-2024.8.1/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.8.1/python_files/deactivate/bash/envVars.txt
-sudo ./restart
-/bin/python3 /opt/paperless/.vscode-server/extensions/ms-python.python-2024.8.1/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.8.1/python_files/deactivate/bash/envVars.txt
-cd
+sudo fdisk /dev/sda
+sudo fdisk /dev/sdb
+sudo fdisk /dev/sda
+sudo fdisk /dev/sda
+apt install parted
+sudo apt install parted
+parted /dev/sda
+sudo parted /dev/sda
+sudo parted
+sudo resize2fs /dev/sda
+sudo parted
+fdisk
+sudo fdisk
+sudo fdisk /dev/sda
+sudo fdisk /dev/sda
+sudo resize2fs /dev/sda
+blkid /dev/sda
+sudo blkid /dev/sda
+sudo ntfsresize /dev/sdaX
+sudo ntfsresize /dev/sda
+apt install ntfsresize
+sudo apt install ntfsresize
+sudo apt-get install ntfs-3g
+sudo apt-get install fatresize
+sudo blkid /dev/sdasudo fatresize -s MAX /dev/sda
+sudo fatresize -s MAX /dev/sda
+sudo fatresize -s max /dev/sda
 clear
 ls
-mkdir training
-cd training
-ls
-mkdir tessdata
-cd tessdata
-ls
+fdisk /dev/sda
+sudo fdisk /dev/sda
+clear
+lks
 clear
 ls
-nano train.sh
-chmod +x train.sh
-./train.sh
-./train
-./train.sh
-ls
-./train.sh
-./train.sh
-./train.sh
+umount a
+umount /a
+umount -a
+root mount -a
+mount -a
 clear
-./train.sh
-./train.sh
-./train.sh
-./train.sh
-sudo ./train.sh
-sudo ./train.sh
-mkdir tmp
-sudo ./train.sh
-sudo ./train.sh
-sudo ./train.sh
-sudo ./train.sh
-sudo ./train.sh
-sudo ./train.sh
-sudo ./train.sh
-sudo ./train.sh
-sudo ./train.sh
-sudo ./train.sh
-sudo ./train.sh
 ls
-cd train_data
+sudo blkid /dev/sda
+sudo blkid /dev/sda1
+sudo fdisk
+sudo fdisk dev/sda
+sudo fdisk /dev/sda
+sudo blkid /dev/sda1
+nano /etc/fstab
+uuid
+sudo uuid
+lsblk
+lsblk -o
+lsblk -o NAME,UUID
+nano /etc/fstab
+sudo nano /etc/fstab
+mount -a
+sudo mount -a
+systemctl daemon-reload
+sudo systemctl daemon-reload
+sudo mount -a
+cd sa
+cd sda
 ls
 cd ..
 clear
-./train.sh
-./train.sh
-clear
-./train.sh
 ls
 clear
 ls
-rm -t train_data
-rm -r train_data
-clear
-ls
-ls -la
-sudo rm -R train_data
-sudo rm -R output
-ls
-clear
-ls
-./train.sh
-clear
-./train.sh
-./train.sh
-./train.sh
-./train.sh
-./train.sh
-./train.sh
-./train.sh
-./train.sh
-./train.sh
-./train.sh
-./train.sh
-./train.sh
-./train.sh
-./train.sh
-./train.sh
-q
-cd /usr/shared/tesseract
-cd /usr
-cd /usrshared
-cd /usr/shared
-ls
-cd share
-ls
-cd tesseract
-cd tesseract-ocr
-ls
-cd 5
-ls
-cd tessdata
-ls
-ls -la
-ls
-mv ara.traineddata ara_old.traineddata
-sudo mv ara.traineddata ara_old.traineddata
-sudo cp /opt/paperless/training/tessdata/ara.traineddata .
-ls -la
-sudo cp /opt/paperless/training/tessdata/eng.traineddata .
-sudo cp /opt/paperless/training/tessdata/mirc.traineddata .
-ls
-clear
-cd
-clear
-ls
-/restart
-./restart
-sudo ./restart
-sudo ./restart
-cd /usr/share/tesseract-ocr
-ls
-cd 5
-ls
-cd tessdata
-ls
-cp /opt/paperless/training/tessdata/e13b.traineddata .
-sudo cp /opt/paperless/training/tessdata/e13b.traineddata .
-sudo cp /opt/paperless/training/tessdata/e13b.traineddata .cd
-cd
-clear
-sudo ./restart
-sudo ./restart
-$(tesseract --print-parameters | grep -oP '(?<=TESSDATA_PREFIX=).+')
-echo $(tesseract --print-parameters | grep -oP '(?<=TESSDATA_PREFIX=).+')
-tesseract --print-parameters
-tesseract --print-parameters | grep tessdata
-tesseract --print-parameters | grep tess
-tesseract --print-parameters | grep data
-echo $(tesseract -v)
-tesseract -v
-tesseract --print-parameters
-find | grep \/tessdata
-find / | grep \/tessdata
-find /usr/share | grep \/tessdata
-find / | grep \/tessdata | head -1
-find / | grep \/tessdata | head 1
-find / | grep -o \/tessdata | head 1
-find / | grep -o -m 1 \/tessdata | head 1
-find / | grep -o -m 1 \/tessdata
-find / | grep -m `\/tessdata
-find / | grep -m 1 \/tessdata
-find / | grep -m 1 \/tessdata | head -1
-find / | grep -m 1 \/tessdata | head 1
-find / | grep -m 1 \/tessdata | head -1
-grep -m 1 \/tessdata | head -1
-find /usr/share | grep -m 1 \/tessdata | head -1
-find /usr/share | grep -m 1 \/tessdata | head -2
-find /usr/share | grep -m 1 \/tessdata 
-find /usr/share | grep -m 1 \/tessdata 
-$(find /usr/share | grep -m 1 \/tessdata)
-sudo cp /opt/paperless/resources/tessdata/*.traineddata  $(find /usr/share | grep -m 1 \/tessdata)
-/bin/python3 /opt/paperless/.vscode-server/extensions/ms-python.python-2024.8.1/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.8.1/python_files/deactivate/bash/envVars.txt
-git rm -rf --cached .
-git add .
-git add .
-ls -la
 cd ..
 ls
-chown -R paperless:paperless paperless
-sudo chown -R paperless:paperless paperless
-git remote update origin --prune
 cd
+clear
 ls
-git remote update origin --prune
-./restart
-sudo ./restart
-reboot
-exit
+umount sda
+sudo umount sda
+clear
+ls
+fdisk
+sudo fdisk /dev/sda
+sudo mkfs.ext4 /dev/sda1
+lsblk -o NAME,UUID
+nano /etc/fstab
+sudo mount -a
+cd sda
+ls
+cd bin
+ls
+cd ..
+clear
+ls
+cd '?
+'
+ls
+cd '?'
+ls
+cd ..
+cd 
+ls
+cd /
+ls
+sudo umount sdb
+cd
+sudo umount sda
+cd sda
+ls
+cd ..
+clea
+clear
+ls
 ls
 clear
 ls
+sudo uuid
+lsblk -o NAME,UUID
+nano /etc/fsta
+nano /etc/fstab
+sudo nano /etc/fstab
+sudo mount -a
+systemctl daemon-reload
+sudo systemctl daemon-reload
+sudo mount -a
+cd sda
+ls
+claer
+clear
+ls
+cd .
+clear
+cd sda
+df -h
+du -h
+clear
+ls
+cd ..
+clear
+ls
+ls -la
+tar -xzvf sda.tar.gz
+cd sda
+ls
+mkdir a
+cd ..
+clear
+ls
+ls
+cd sda
+ls
+ls -lah
+cd ..
+ls
+ls -lah
+chown -R paperless:paperless sda 
+sudo chown -R paperless:paperless sda 
+ls
+tar -xzvf sda.tar.gz
+ls
+ls -la
+du  -h
+df -h
+ls
+ls -la
+ls -lah
+ls -lah
+ls -lah sda.tar.gz
+watch -n 10 'ls -lah sda.tar.gz'
+ls
+cd sda
+ls
+cd data
+ls
+cd ..
+cd media
+ls
+cd
+clear
+ls
+ls
+clear
+ls
+cd sda
+ls
+cd media
+ls
+cd ..
+cd documents
+ls
+cd documents
+cd media
+ls
+cd docuemnts
+ls
+cd documetns
+cd documents
+ls
+cd 
+clear
+s
+du
+df
+df -h
+df -h
+df -h
+ls
+cd sda
+ls
+cd data
+ls
+cd ..
+df -h
+cd ..
+ls
+tar -xzvf sda.tar.gz
+clear
+ls
+df -f sda
+df -h sda
+clear
+clear
+ls
+du -h
+clear
+ls
+df -a
+df -ah
+ls
+ls -la
+mv sda.tar.gz sda
+ls
+df -h
+clear
+ls
+ls
+ls -la
 clear
 ls
 cd scripts
 ls
 cd installer
 ls
-./update-gs.sh
-gs -v
+nano setupenv.sh
+nano setup.sh
+nano setupenv.sh
+clear
+ls
+nano setup.sh
+clear
+ls
+df -h
+reboot
+sudo reboot
+clear
+ls
+ls -la
+clear
+docker
+docker ls
+docker
+docker containers ls
+docker container ls
+sudo docker container ls
+clear
+ls
+nano paperless.conf
+clear
+ls
+redis
+clear
 clear
 ls
 clear
+ls
+service m-queue status
+sudo service m-queue status
+clear
+ls
+sudo service m-consumer status
+sudo service m-consumer start
+sudo service m-consumer status
+systectl status m-*
+sudo systenctl status m-*
+sudo systemctl status m-*
+journalctl -f
+/opt/paperless/.pyenv/shims/python /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/deactivate/bash/envVars.txt
+/opt/paperless/.pyenv/shims/python /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/deactivate/bash/envVars.txt
+systemctl status m-*
+systemctl restart m-*
+sudo systemctl restart m-*
+systemctl status m-*
+clear
+journalct -f
+journalctl -f
+clear
+reboot
+sudo reboot
+clear
+ls
+cd consume
+df
+df -h
+du -h
+ls
+cd AGCO
+ls
+cd Projects
+ls
+cd Submittals
+ls
+ls -la
+cd '951700-22-C-0304-Kuwait Transmitting Station Expansion Project'
+ls
+ls -la
+ls -lah
 cd
 clear
 ls
-EXIT
-exit
 ls
-exit
-sodu systemctl restart m-*
-sudo  systemctl restart m-*
+sudo systemctl m-* restart
+sudo systemctl restart m-*
+clear
 ls
+systctl -f
+journalctl -f
+journalctl -f
+/opt/paperless/.pyenv/shims/celery --app paperless worker --loglevel DEBUG
+cd src
+/opt/paperless/.pyenv/shims/celery --app paperless worker --loglevel DEBUG
+/opt/paperless/.pyenv/shims/python3 manage.py document_consumer
+systemctl m-consumer start
+sudo systemctl m-consumer start
+sudo systemctl start m-consumer
+sudo systemctl sttus m-consumer
+sudo systemctl status m-consumer
+/opt/paperless/.pyenv/shims/python /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/deactivate/bash/envVars.txt
+clear
+service m-consumer status
+sudo service m-consumer status
+sudo service m-consumer restart
+sudo service m-queue restart
+sudo service m-consumer restart
+sudo service m-schedule restart
+sudo service m-scheduler restart
+cd /opt/paperless/consume
+/opt/paperless/.pyenv/shims/python /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/deactivate/bash/envVars.txt
+top
+top -1
+clear
+journalctl -f
+sudo reboot
+clear
+ls
+top -
+top -1
+journalctl -f
+journalctl -f | grep m-paperless
+clear
+sudo service m-consumer restart
+sudo service m-consumer restart
+sudo service m-consumer restart
+clear
+ls
+clear
+netstat -plnt
+clear
+cd consume
+ls
+du -h
+clear
+ls
+service m-consumer restart
+sudo service m-consumer restart
+clear
+clear
+ls
+ls -la
+clear
+cd src
+cd ..
+clear
+systemctl restart m-consumer
+sudo systemctl restart m-consumer
 cd src
 ls
-python manage.py migrate
+cd ..
+cd logs
+cd sda
+ls
+cd data
+ls
+cd log
+ls
 clear
 ls
-systemctl restart m-*
-sudo systemctl restart m-*
+ls -la
+tail -f paperless.log
+cd 
 clear
-sudo systemctl restart m-*
-clear
+cd consume
+find GOV00111112.pdf
+find | grep GOV00111112
+cd ./AGCO/Projects/North Runway Claim/
+cd './AGCO/Projects/North Runway Claim/'
 ls
 cd
-sudo systemctl restart m-*
+cd sda/data/log
+tail -f paperles.log
+tail -f paperless.log
+cd
 clear
-/bin/python3 /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/deactivate/bash/envVars.txt
-/bin/python3 /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/deactivate/bash/envVars.txt
-sudo systemctl restart m-*
-clear
-/bin/python3 /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/deactivate/bash/envVars.txt
-/bin/python3 /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/deactivate/bash/envVars.txt
-systemctl restart m-*
-sudo systemctl restart m-*
-/bin/python3 /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/deactivate/bash/envVars.txt
-sudo systemctl restart m-*
-sudo systemctl restart m-*
-/bin/python3 /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/deactivate/bash/envVars.txt
-ls
+df
+df -h
+cd 
 clear
 ls
-clear
-ls
-exit
+sudo reboot
+/opt/paperless/.pyenv/shims/python /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/deactivate/bash/envVars.txt
 ls
 cd sda
 ls
 cd data
 ls
-ls -la
-ls -la
-ls -lah
-cd ..
+cd log
 ls
-cd meida
-ls
-cd media
-ls
-cd documents
-ls
-cd originals
-ls
-ls -la
-cd ..
-cd ..
-cd ..
+tail -f paperless.log
+systemctl restart m-consumer
+sudo systemctl restart m-consumer
+tail -f paperless.log
+sudo systemctl restart m-consumer
+tail -f paperless.log
 clear
 ls
-journal -f
-journalctl -f
-journalctl -f | grep m-pa
+sudo systemctl restart m-consumer
 ls
-cd ..
-ls
-nano gunicorn.conf.py
-reboot
-sudo reboot
-clea
-top
+sudo systemctl restart m-consumer
+systemctl m-consumer restart
+sudo systemctl restart m-consumer
+/opt/paperless/.pyenv/shims/python /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/deactivate/bash/envVars.txt
+sudo systemctl restart m-consumer
+sudo systemctl restart m-consumer
+clear
+cd consume
+find . 
+find . -type f
+systemctl restart m-*
+sudo systemctl restart m-*
+/opt/paperless/.pyenv/shims/python /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/deactivate/bash/envVars.txt
+clear
 lscpu
-/bin/python3 /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/deactivate/bash/envVars.txt
+top
 clear
-ls
-cd /var/log
-ls
-ls -la
-jouralctl -f
-journalctl 
-journalctl | grep 'worker lost'
-journalctl | grep worker
-journalctl -f
-ls
-su root
-su root
-su root
-/opt/paperless/.pyenv/versions/3.11.6/bin/python /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/deactivate/bash/envVars.txt
-sytstemctl restart m-*
-sudo sytstemctl restart m-*
+systemctl status m-*
+systemctl restart m-consumer
+sudo systemctl restart m-consumer
+systemctl restart m-*
 sudo systemctl restart m-*
-/opt/paperless/.pyenv/versions/3.11.6/bin/python /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/deactivate/bash/envVars.txt
-top -1
-/opt/paperless/.pyenv/versions/3.11.6/bin/python /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/deactivate/bash/envVars.txt
-sudo systemctl restart m-*
-sudo systemctl restart m-*
-top -1
-sudo systemctl restart m-*
-journalctl -f
-sudo systemctl status m-*
-systemctl daemon-reload
-sudo systemctl daemon-reload
-sudo systemctl status m-*
-sudo systemctl status m-*
-service m-queue restart
-sudo service m-queue restart
 sudo systemctl status m-*
 journalctl -f
-systemctl list-units --type=service --all --no-pager | awk 'NR>1 {print $1, $3}' | column -t
-systemctl list-units --type=service --all --no-pager
-systemctl  -type=service --all --no-pager
-systemctl  --type=service --all --no-pager
-systemctl  --type=service
-systemctl  --type=service | grep m-*
-systemctl  --type=service | grep m\-*
-/opt/paperless/.pyenv/versions/3.11.6/bin/python /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/deactivate/bash/envVars.txt
-sudo systemctl status m-*
-service m-queue restart
-sudo service m-queue restart
-sudo systemctl status m-*
+clear
+journalctl -f
 clear
 ls
-systemctl relaod daemons
-systemctl relaod daemon
-systemctl reload daemon
-sudo systemctl reload daemon
-sudo systemctl daemon-reload
+/opt/paperless/.pyenv/shims/python /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/deactivate/bash/envVars.txt
+sudo systemctl restart m-consumer
+/opt/paperless/.pyenv/shims/python /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/deactivate/bash/envVars.txt
 clear
-reboot
-sudo reboot
-/opt/paperless/.pyenv/versions/3.11.6/bin/python /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/deactivate/bash/envVars.txt
-/opt/paperless/.pyenv/versions/3.11.6/bin/python /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/deactivate/bash/envVars.txt
+journalctl -f
+sudo systemctl status m-*
+sudo systemctl restart m-consumer
+journalctl -f
+sudo systemctl status m-*
+clear
+/opt/paperless/.pyenv/shims/python /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2024.10.0-linux-x64/python_files/deactivate/bash/envVars.txt
