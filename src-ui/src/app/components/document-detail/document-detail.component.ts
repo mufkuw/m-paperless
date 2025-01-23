@@ -110,8 +110,7 @@ enum ZoomSetting {
 })
 export class DocumentDetailComponent
   extends ComponentWithPermissions
-  implements OnInit, OnDestroy, DirtyComponent
-{
+  implements OnInit, OnDestroy, DirtyComponent {
   @ViewChild('inputTitle')
   titleInput: TextComponent
 
@@ -121,6 +120,9 @@ export class DocumentDetailComponent
   error: any
 
   networkActive = false
+
+  searchQuery: string[] = [];
+  searchPages: number[] = [];
 
   documentId: number
   document: Document
@@ -339,9 +341,8 @@ export class DocumentDetailComponent
               this.previewText = res.toString()
             },
             error: (err) => {
-              this.previewText = $localize`An error occurred loading content: ${
-                err.message ?? err.toString()
-              }`
+              this.previewText = $localize`An error occurred loading content: ${err.message ?? err.toString()
+                }`
             },
           })
           this.downloadUrl = this.documentsService.getDownloadUrl(
@@ -378,7 +379,7 @@ export class DocumentDetailComponent
                 this.documentForm.get('permissions_form').value['owner']
               openDocument['permissions'] =
                 this.documentForm.get('permissions_form').value[
-                  'set_permissions'
+                'set_permissions'
                 ]
               delete openDocument['permissions_form']
             }
@@ -445,6 +446,50 @@ export class DocumentDetailComponent
       )
       .subscribe({
         next: ({ doc, dirty }) => {
+
+
+          function parseAdvanceQuery(query) {
+            // Remove parentheses and split by logical operators (AND, OR)
+            const cleanedQuery = query.replace(/[()]/g, ''); // Remove parentheses
+            const keywords = cleanedQuery
+              .split(/AND|OR/) // Split by AND or OR
+              .map(keyword => keyword.trim()) // Trim whitespace from each keyword
+              .filter(keyword => keyword); // Remove empty strings if any
+            return keywords;
+          }
+
+          function extractPages(content, types) {
+            // Join the types array into a string separated by '|' for regex
+
+            if (types.length == 0) return []
+
+            var typePattern = types.join('|');
+
+            // Create the regex with the dynamic type pattern
+            var regex = new RegExp(`<MPLSPGST(?<page>\\d+)>.*?(?:${typePattern}).*?<MPLSPGED\\1>`, 'gm');
+
+            const pages = [];
+            var match: RegExpExecArray;
+
+            var cn = content.replace(/\n/g, '<CR>').replace(/\r/g, '<LF>')
+
+            // Apply the regex to the content and extract 'page' group values
+            while ((match = regex.exec(cn)) !== null) {
+              // If a match is found, extract the 'page' group and add to the pages array
+              if (match.groups && match.groups.page) {
+                pages.push(match.groups.page);
+              }
+            }
+            return pages;
+          }
+
+          var params = this.route.snapshot.queryParams
+
+          if (params['title_content']) this.searchQuery.push(params['title_content'])
+          if (params['query']) this.searchQuery.push(...parseAdvanceQuery(params['query']));
+
+          this.searchPages = extractPages(doc.content, this.searchQuery)
+
           this.openDocumentService.setDirty(doc, dirty)
         },
         error: (error) => {
@@ -455,6 +500,9 @@ export class DocumentDetailComponent
       })
 
     this.route.paramMap.subscribe((paramMap) => {
+
+
+
       const section = paramMap.get('section')
       if (section) {
         const navIDKey: string = Object.keys(DocumentDetailNavIDs).find(
@@ -465,10 +513,28 @@ export class DocumentDetailComponent
         }
       } else if (paramMap.get('id')) {
         this.router.navigate(['documents', +paramMap.get('id'), 'details'], {
+          queryParamsHandling: 'merge',
           replaceUrl: true,
         })
       }
     })
+
+
+    this.route.queryParams.subscribe(params => {
+
+
+
+      //var pages = extractPages(this.document.content ?? "None", this.queryParams);
+
+      // const openDocument = this.openDocumentService.getOpenDocument(
+
+      // )
+
+      console.log(this.documentId)
+
+    });
+
+
 
     this.hotKeyService
       .addShortcut({
@@ -519,7 +585,7 @@ export class DocumentDetailComponent
         'documents',
         this.documentId,
         foundNavIDkey.toLowerCase(),
-      ])
+      ], { queryParamsHandling: 'preserve' })
   }
 
   updateComponent(doc: Document) {
@@ -871,6 +937,10 @@ export class DocumentDetailComponent
       })
   }
 
+  gotoPdfPage(page) {
+    this.previewCurrentPage = page;
+  }
+
   pdfPreviewLoaded(pdf: PDFDocumentProxy) {
     this.previewNumPages = pdf.numPages
     if (this.password) this.requiresPassword = false
@@ -922,7 +992,7 @@ export class DocumentDetailComponent
     this.previewZoomScale = ZoomSetting.PageWidth
     this.previewZoomSetting =
       Object.values(ZoomSetting)[
-        Math.min(Object.values(ZoomSetting).length - 1, currentIndex + 1)
+      Math.min(Object.values(ZoomSetting).length - 1, currentIndex + 1)
       ]
   }
 

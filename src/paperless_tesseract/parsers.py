@@ -1,3 +1,4 @@
+import concurrent.futures
 import os
 import re
 import tempfile
@@ -12,7 +13,7 @@ from PIL import Image
 import openai
 import pytesseract
 from pdf2image import convert_from_path
-
+from PyPDF2 import PdfReader
 ###################
 
 openai.api_key=settings.OPENAI_KEY
@@ -166,7 +167,7 @@ class RasterisedDocumentParser(DocumentParser):
                 # This happens when there's already text in the input file.
                 # The sidecar file will only contain text for OCR'ed pages.
                 self.log.debug("Using text from sidecar file")
-                return post_process_text(text)
+                return self.post_process_text(text)
             else:
                 self.log.debug("Incomplete sidecar file: discarding.")
 
@@ -195,7 +196,7 @@ class RasterisedDocumentParser(DocumentParser):
                 )
                 text = self.read_file_handle_unicode_errors(Path(tmp.name))
 
-            return post_process_text(text)
+            return self.post_process_text(text)
 
         except Exception:
             #  If pdftotext fails, fall back to OCR.
@@ -226,6 +227,12 @@ class RasterisedDocumentParser(DocumentParser):
             "language": self.settings.language,
             "output_type": self.settings.output_type,
             "progress_bar": False,
+            "tesseract_oem":3,
+            "tesseract_pagesegmode":6,
+            #"config" :  r'--oem 3 --psm 6'
+            #"--tesseract-oem" : 3,
+            #"--tesseract-psm" : 6,
+            #r'--oem 3 --psm 6'
         }
 
         if "pdfa" in ocrmypdf_args["output_type"]:
@@ -329,6 +336,10 @@ class RasterisedDocumentParser(DocumentParser):
 
 ##new extract function
     def get_explanation(self, text: str) -> str:
+        
+        if not settings.OPENAI_KEY:
+            return ""
+        
         try:
             # Define the prompt
             prompt = text
@@ -352,19 +363,27 @@ class RasterisedDocumentParser(DocumentParser):
             self.log.error(f"An error occurred: {str(e)}")
             return ""
 
-    def extract_text_from_pdf(self,pdf_path):
+    def extract_text_from_pdf_old(self,pdf_path):
 
-        # Convert PDF to images
-        images = convert_from_path(pdf_path,dpi=300,first_page=1,last_page=self.settings.pages)
+        batch_size = 25
+        pdf = PdfReader(pdf_path)
+        total_pages = len(pdf.pages)
         
-        if self.settings.pages is not None and self.settings.pages > 0:
-            images = images[:self.settings.pages]
-
-        # Perform OCR on the images
         ocr_results = []
-        for image in images:
-            text = pytesseract.image_to_string(image, lang=self.settings.language)  # Specify language if needed, e.g., 'ara' for Arabic
-            ocr_results.append(text)
+        
+        for start_page in range(0, total_pages, batch_size):
+            end_page = min(start_page + batch_size, total_pages)
+            images = convert_from_path(pdf_path, dpi=250, first_page=start_page+1, last_page=end_page)
+            p=0
+            self.log.debug(f"Reading Pages {start_page} to {end_page}")
+            for image in images:
+                try:
+                    text = f"<MPLSPGST{p+start_page}>{pytesseract.image_to_string(image, lang=self.settings.language)}<MPLSPGED{p+start_page}>"  # Specify language if needed, e.g., 'ara' for Arabic
+                    ocr_results.append(text)
+                except Exception as ex:
+                    self.log.warn(f"Skipping some pages {p+start_page} due to error {str(ex)}")
+                
+                p=p+1
 
         # Join the results into a single string
         ocr_text = " ".join(ocr_results)
@@ -373,7 +392,78 @@ class RasterisedDocumentParser(DocumentParser):
         
         #self.log.debug(valueable_data)
         
-        return post_process_text(valueable_data)
+        return self.post_process_text(valueable_data)
+
+
+    def extract_text_from_pdf(self, pdf_path, num_threads=4):
+        batch_size = 25
+        pdf = PdfReader(pdf_path)
+        total_pages = len(pdf.pages)
+        
+        def process_batch(start_page, end_page):
+            images = convert_from_path(pdf_path, dpi=300, first_page=start_page + 1, last_page=end_page)
+            ocr_results_batch = []
+            for p, image in enumerate(images):
+                try:
+                    self.log.debug(f"Start Reading Pages {start_page + p + 1} of {end_page}")
+                    custom_config =  r'--oem 1 --psm 12'
+                    
+                    languages = self.settings.language.split('+')
+                    
+                    text = ""
+                    
+                    for language in languages:
+                        # Perform OCR with detailed data
+                        ocr_data = pytesseract.image_to_data(image, output_type=pytesseract.Output.DICT, lang=language)
+
+                        # Loop through the detected text and filter based on confidence
+                        filtered_text = []
+                        for i in range(len(ocr_data['text'])):
+                            ocr_text = ocr_data['text'][i]
+                            ocr_text = ocr_text.strip()
+                            confidence = int(ocr_data['conf'][i])  # Confidence score as integer
+                            if ocr_text.strip() and confidence >= 45:  # Filter by confidence threshold
+                                filtered_text.append(ocr_text)
+
+
+                        #text = f"{text}\n{pytesseract.image_to_string(image,config=custom_config, lang=language)}"
+                        text = f"{text}\n<{language}>{' '.join(filtered_text)}</{language}>"
+                        text = text.replace("\r\n\r\n", "\r\n").replace("\r\n\r\n", "\r\n")
+                        text = text.replace("\n\n", "\n").replace("\n\n", "\n")
+                    
+                    
+                    text = f"\r\n<MPLSPGST{p+start_page+1}>\r\n{text}\r\n<MPLSPGED{p+start_page+1}>"  # Specify language if needed, e.g., 'ara' for Arabic
+                    #text = pytesseract.image_to_string(image, config=custom_config , lang=self.settings.language)  # Specify language if needed, e.g., 'ara' for Arabic
+                    self.log.debug(f"Reading Page {start_page + p + 1} -- Done")
+                    ocr_results_batch.append((start_page + p + 1, text))
+                except Exception as ex:
+                    self.log.warn(f"Skipping page {start_page + p + 1} due to error {str(ex)}")
+            return ocr_results_batch
+
+        ocr_results = []
+        with concurrent.futures.ThreadPoolExecutor(max_workers=num_threads) as executor:
+            futures = []
+            for start_page in range(0, total_pages, batch_size):
+                end_page = min(start_page + batch_size, total_pages)
+                futures.append(executor.submit(process_batch, start_page, end_page))
+            
+            for future in concurrent.futures.as_completed(futures):
+                try:
+                    ocr_results.extend(future.result())
+                except Exception as ex:
+                    self.log.warn(f"Error in OCR processing: {str(ex)}")
+        
+        # Sort the results by page number
+        ocr_results.sort(key=lambda x: x[0])
+        
+        # Join the sorted results into a single string
+        ocr_text = " ".join([text for _, text in ocr_results])
+        ex = self.get_explanation(ocr_text)
+        valuable_data = ex + '\n\n\n' + ocr_text 
+        
+        return self.post_process_text(valuable_data)
+
+
 ############
 
 
@@ -515,17 +605,17 @@ class RasterisedDocumentParser(DocumentParser):
                 self.text = ""
 
 
-def post_process_text(text):
-    if not text:
-        return None
-    #text = text.replace('\u200e','')
-    #text  = correct_numbers(text)
-    collapsed_spaces = re.sub(r"([^\S\r\n]+)", " ", text)
-    no_leading_whitespace = re.sub(r"([\n\r]+)([^\S\n\r]+)", "\\1", collapsed_spaces)
-    no_trailing_whitespace = re.sub(r"([^\S\n\r]+)$", "", no_leading_whitespace)
+    def post_process_text(self,text):
+        if not text:
+            return None
+        #text = text.replace('\u200e','')
+        #text  = correct_numbers(text)
+        collapsed_spaces = re.sub(r"([^\S\r\n]+)", " ", text)
+        no_leading_whitespace = re.sub(r"([\n\r]+)([^\S\n\r]+)", "\\1", collapsed_spaces)
+        no_trailing_whitespace = re.sub(r"([^\S\n\r]+)$", "", no_leading_whitespace)
 
-    # TODO: this needs a rework
-    # replace \0 prevents issues with saving to postgres.
-    # text may contain \0 when this character is present in PDF files.
-    return no_trailing_whitespace.strip().replace("\0", " ")
-    #return text.strip().replace("\0", " ")
+        # TODO: this needs a rework
+        # replace \0 prevents issues with saving to postgres.
+        # text may contain \0 when this character is present in PDF files.
+        return no_trailing_whitespace.strip().replace("\0", " ")
+        #return text.strip().replace("\0", " ")
