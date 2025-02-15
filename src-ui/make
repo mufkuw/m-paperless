@@ -1,1 +1,1 @@
-ng build --configuration production
+ng build --watch --configuration production 

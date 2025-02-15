@@ -228,7 +228,7 @@ class RasterisedDocumentParser(DocumentParser):
             "output_type": self.settings.output_type,
             "progress_bar": False,
             "tesseract_oem":3,
-            "tesseract_pagesegmode":6,
+            "tesseract_pagesegmode":3,
             #"config" :  r'--oem 3 --psm 6'
             #"--tesseract-oem" : 3,
             #"--tesseract-psm" : 6,
@@ -401,12 +401,12 @@ class RasterisedDocumentParser(DocumentParser):
         total_pages = len(pdf.pages)
         
         def process_batch(start_page, end_page):
-            images = convert_from_path(pdf_path, dpi=300, first_page=start_page + 1, last_page=end_page)
+            images = convert_from_path(pdf_path, dpi=450, first_page=start_page + 1, last_page=end_page)
             ocr_results_batch = []
             for p, image in enumerate(images):
                 try:
                     self.log.debug(f"Start Reading Pages {start_page + p + 1} of {end_page}")
-                    custom_config =  r'--oem 1 --psm 12'
+                    custom_config =  r'--oem 3 --psm 12'
                     
                     languages = self.settings.language.split('+')
                     
@@ -414,17 +414,28 @@ class RasterisedDocumentParser(DocumentParser):
                     
                     for language in languages:
                         # Perform OCR with detailed data
-                        ocr_data = pytesseract.image_to_data(image, output_type=pytesseract.Output.DICT, lang=language)
+                        ocr_data = pytesseract.image_to_data(image, config=custom_config, output_type=pytesseract.Output.DICT, lang=language)
 
                         # Loop through the detected text and filter based on confidence
                         filtered_text = []
-                        for i in range(len(ocr_data['text'])):
-                            ocr_text = ocr_data['text'][i]
-                            ocr_text = ocr_text.strip()
-                            confidence = int(ocr_data['conf'][i])  # Confidence score as integer
-                            if ocr_text.strip() and confidence >= 45:  # Filter by confidence threshold
-                                filtered_text.append(ocr_text)
+                        confidence_scores = []  # To store confidence scores for valid text
 
+                        for i in range(len(ocr_data['text'])):
+                            ocr_text = ocr_data['text'][i].strip()
+                            confidence = int(ocr_data['conf'][i])  # Confidence score as integer
+
+                            if ocr_text and confidence > 0:  # Exclude empty text and invalid confidence scores
+                                confidence_scores.append(confidence)
+                                if confidence >= 5:  # Filter by confidence threshold
+                                    filtered_text.append(ocr_text)
+
+                        # Calculate the average confidence
+                        if confidence_scores:  # Ensure there are valid scores to avoid division by zero
+                            confidence_weight = (sum(confidence_scores) / len(confidence_scores)) * len(ocr_data['text'])
+                        else:
+                            confidence_weight = 0  # Default if no valid confidence scores
+                            
+                        self.log.debug(f"OCR Confidience Weight {language} - {confidence_weight}" )
 
                         #text = f"{text}\n{pytesseract.image_to_string(image,config=custom_config, lang=language)}"
                         text = f"{text}\n<{language}>{' '.join(filtered_text)}</{language}>"
@@ -432,8 +443,8 @@ class RasterisedDocumentParser(DocumentParser):
                         text = text.replace("\n\n", "\n").replace("\n\n", "\n")
                     
                     
-                    text = f"\r\n<MPLSPGST{p+start_page+1}>\r\n{text}\r\n<MPLSPGED{p+start_page+1}>"  # Specify language if needed, e.g., 'ara' for Arabic
                     #text = pytesseract.image_to_string(image, config=custom_config , lang=self.settings.language)  # Specify language if needed, e.g., 'ara' for Arabic
+                    text = f"\r\n<MPLSPGST{p+start_page+1}>\r\n{text}\r\n<MPLSPGED{p+start_page+1}>"  # Specify language if needed, e.g., 'ara' for Arabic
                     self.log.debug(f"Reading Page {start_page + p + 1} -- Done")
                     ocr_results_batch.append((start_page + p + 1, text))
                 except Exception as ex:
