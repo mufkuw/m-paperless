@@ -198,6 +198,18 @@ Docker, this may be the `environment` key of the webserver or a
 containing the configuration parameters. Be sure to use the correct format
 and watch out for indentation if editing the YAML file.
 
+### Email Parsing
+
+#### [`PAPERLESS_EMAIL_PARSE_DEFAULT_LAYOUT=<int>`(#PAPERLESS_EMAIL_PARSE_DEFAULT_LAYOUT) {#PAPERLESS_EMAIL_PARSE_DEFAULT_LAYOUT}
+
+: The default layout to use for emails that are consumed as documents. Must be one of the integer choices below. Note that mail
+rules can specify this setting, thus this fallback is used for the default selection and for .eml files consumed by other means.
+
+    - `1` = Text, then HTML
+    - `2` = HTML, then text
+    - `3` = HTML only
+    - `4` = Text only
+
 ## Paths and folders
 
 #### [`PAPERLESS_CONSUMPTION_DIR=<path>`](#PAPERLESS_CONSUMPTION_DIR) {#PAPERLESS_CONSUMPTION_DIR}
@@ -596,7 +608,7 @@ system. See the corresponding
 
 : Disables the regular frontend username / password login, i.e. once you have setup SSO. Note that this setting does not disable the Django admin login nor logging in with local credentials via the API. To prevent access to the Django admin, consider blocking `/admin/` in your [web server or reverse proxy configuration](https://github.com/paperless-ngx/paperless-ngx/wiki/Using-a-Reverse-Proxy-with-Paperless-ngx).
 
-You can optionally also automatically redirect users to the SSO login with [PAPERLESS_REDIRECT_LOGIN_TO_SSO](#PAPERLESS_REDIRECT_LOGIN_TO_SSO)
+    You can optionally also automatically redirect users to the SSO login with [PAPERLESS_REDIRECT_LOGIN_TO_SSO](#PAPERLESS_REDIRECT_LOGIN_TO_SSO)
 
     Defaults to False
 
@@ -1073,8 +1085,6 @@ or hidden folders some tools use to store data.
     If you have problems that your Barcodes/QR-Codes are not detected
     (especially with bad scan quality and/or small codes), try the other one.
 
-    zxing is not available on all platforms.
-
 #### [`PAPERLESS_PRE_CONSUME_SCRIPT=<filename>`](#PAPERLESS_PRE_CONSUME_SCRIPT) {#PAPERLESS_PRE_CONSUME_SCRIPT}
 
 : After some initial validation, Paperless can trigger an arbitrary
@@ -1216,6 +1226,10 @@ consumers working on the same file. Configure this to prevent that.
 : The base URL for the OAuth callback. This is used to construct the full URL for the OAuth callback. This should be the URL that the Paperless instance is accessible at. If not set, defaults to the `PAPERLESS_URL` setting. At least one of these settings must be set to enable OAuth Email setup.
 
     Defaults to none (thus will use [PAPERLESS_URL](#PAPERLESS_URL)).
+
+!!! note
+
+    This setting only applies to OAuth Email setup (not to the SSO setup).
 
 #### [`PAPERLESS_GMAIL_OAUTH_CLIENT_ID=<str>`](#PAPERLESS_GMAIL_OAUTH_CLIENT_ID) {#PAPERLESS_GMAIL_OAUTH_CLIENT_ID}
 
@@ -1582,9 +1596,11 @@ started by the container.
 
 #### [`PAPERLESS_SUPERVISORD_WORKING_DIR=<defined>`](#PAPERLESS_SUPERVISORD_WORKING_DIR) {#PAPERLESS_SUPERVISORD_WORKING_DIR}
 
-: If this environment variable is defined, the `supervisord.log` and `supervisord.pid` file will be created under the specified path in `PAPERLESS_SUPERVISORD_WORKING_DIR`. Setting `PAPERLESS_SUPERVISORD_WORKING_DIR=/tmp` and `PYTHONPYCACHEPREFIX=/tmp/pycache` would allow paperless to work on a read-only filesystem.
+!!! warning
 
-    Please take note that the `PAPERLESS_DATA_DIR` and `PAPERLESS_MEDIA_ROOT` paths still have to be writable, just like the `PAPERLESS_SUPERVISORD_WORKING_DIR`. The can be archived by using bind or volume mounts. Only works in the container is run as user *paperless*
+        This option is deprecated and has no effect.  For read only file system support,
+        see [S6_READ_ONLY_ROOT](https://github.com/just-containers/s6-overlay#customizing-s6-overlay-behaviour)
+        from s6-overlay.
 
 ## Frontend Settings
 

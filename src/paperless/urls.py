@@ -14,7 +14,8 @@ from django.utils.translation import gettext_lazy as _
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.views.generic import RedirectView
 from django.views.static import serve
-from rest_framework.authtoken import views
+from drf_spectacular.views import SpectacularAPIView
+from drf_spectacular.views import SpectacularSwaggerView
 from rest_framework.routers import DefaultRouter
 
 from documents.views import BulkDownloadView
@@ -50,6 +51,7 @@ from paperless.views import DisconnectSocialAccountView
 from paperless.views import FaviconView
 from paperless.views import GenerateAuthTokenView
 from paperless.views import GroupViewSet
+from paperless.views import PaperlessObtainAuthTokenView
 from paperless.views import ProfileView
 from paperless.views import SocialAccountProvidersView
 from paperless.views import TOTPView
@@ -157,7 +159,7 @@ urlpatterns = [
                 ),
                 path(
                     "token/",
-                    views.obtain_auth_token,
+                    PaperlessObtainAuthTokenView.as_view(),
                 ),
                 re_path(
                     "^profile/",
@@ -202,6 +204,27 @@ urlpatterns = [
                     r"^oauth/callback/",
                     OauthCallbackView.as_view(),
                     name="oauth_callback",
+                ),
+                re_path(
+                    "^schema/",
+                    include(
+                        [
+                            re_path(
+                                "^$",
+                                SpectacularAPIView.as_view(),
+                                name="schema",
+                            ),
+                            re_path(
+                                "^view/",
+                                SpectacularSwaggerView.as_view(),
+                                name="swagger-ui",
+                            ),
+                        ],
+                    ),
+                ),
+                re_path(
+                    "^$",  # Redirect to the API swagger view
+                    RedirectView.as_view(url="schema/view/"),
                 ),
                 *api_router.urls,
             ],

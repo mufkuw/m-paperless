@@ -295,9 +295,9 @@ class TestMigrations(TransactionTestCase):
     def setUp(self):
         super().setUp()
 
-        assert (
-            self.migrate_from and self.migrate_to
-        ), f"TestCase '{type(self).__name__}' must define migrate_from and migrate_to properties"
+        assert self.migrate_from and self.migrate_to, (
+            f"TestCase '{type(self).__name__}' must define migrate_from and migrate_to properties"
+        )
         self.migrate_from = [(self.app, self.migrate_from)]
         if self.dependencies is not None:
             self.migrate_from.extend(self.dependencies)
@@ -340,11 +340,16 @@ class GetConsumerMixin:
         filepath: Path,
         overrides: DocumentMetadataOverrides | None = None,
         source: DocumentSource = DocumentSource.ConsumeFolder,
+        mailrule_id: int | None = None,
     ) -> Generator[ConsumerPlugin, None, None]:
         # Store this for verification
         self.status = DummyProgressManager(filepath.name, None)
         reader = ConsumerPlugin(
-            ConsumableDocument(source, original_file=filepath),
+            ConsumableDocument(
+                source,
+                original_file=filepath,
+                mailrule_id=mailrule_id or None,
+            ),
             overrides or DocumentMetadataOverrides(),
             self.status,  # type: ignore
             self.dirs.scratch_dir,

@@ -16,10 +16,10 @@ from django.core.validators import DecimalValidator
 from django.core.validators import MaxLengthValidator
 from django.core.validators import RegexValidator
 from django.core.validators import integer_validator
-from django.utils import timezone
 from django.utils.crypto import get_random_string
 from django.utils.text import slugify
 from django.utils.translation import gettext as _
+from drf_spectacular.utils import extend_schema_field
 from drf_writable_nested.serializers import NestedUpdateMixin
 from guardian.core import ObjectPermissionChecker
 from guardian.shortcuts import get_users_with_perms
@@ -87,7 +87,7 @@ class DynamicFieldsModelSerializer(serializers.ModelSerializer):
 class MatchingModelSerializer(serializers.ModelSerializer):
     document_count = serializers.IntegerField(read_only=True)
 
-    def get_slug(self, obj):
+    def get_slug(self, obj) -> str:
         return slugify(obj.name)
 
     slug = SerializerMethodField()
@@ -180,7 +180,45 @@ class SerializerWithPerms(serializers.Serializer):
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop("user", None)
         self.full_perms = kwargs.pop("full_perms", False)
+        self.all_fields = kwargs.pop("all_fields", False)
         super().__init__(*args, **kwargs)
+
+
+@extend_schema_field(
+    field={
+        "type": "object",
+        "properties": {
+            "view": {
+                "type": "object",
+                "properties": {
+                    "users": {
+                        "type": "array",
+                        "items": {"type": "integer"},
+                    },
+                    "groups": {
+                        "type": "array",
+                        "items": {"type": "integer"},
+                    },
+                },
+            },
+            "change": {
+                "type": "object",
+                "properties": {
+                    "users": {
+                        "type": "array",
+                        "items": {"type": "integer"},
+                    },
+                    "groups": {
+                        "type": "array",
+                        "items": {"type": "integer"},
+                    },
+                },
+            },
+        },
+    },
+)
+class SetPermissionsSerializer(serializers.DictField):
+    pass
 
 
 class OwnedObjectSerializer(
@@ -191,16 +229,50 @@ class OwnedObjectSerializer(
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        try:
-            if self.full_perms:
-                self.fields.pop("user_can_change")
-                self.fields.pop("is_shared_by_requester")
-            else:
-                self.fields.pop("permissions")
-        except KeyError:
-            pass
+        if not self.all_fields:
+            try:
+                if self.full_perms:
+                    self.fields.pop("user_can_change")
+                    self.fields.pop("is_shared_by_requester")
+                else:
+                    self.fields.pop("permissions")
+            except KeyError:
+                pass
 
-    def get_permissions(self, obj):
+    @extend_schema_field(
+        field={
+            "type": "object",
+            "properties": {
+                "view": {
+                    "type": "object",
+                    "properties": {
+                        "users": {
+                            "type": "array",
+                            "items": {"type": "integer"},
+                        },
+                        "groups": {
+                            "type": "array",
+                            "items": {"type": "integer"},
+                        },
+                    },
+                },
+                "change": {
+                    "type": "object",
+                    "properties": {
+                        "users": {
+                            "type": "array",
+                            "items": {"type": "integer"},
+                        },
+                        "groups": {
+                            "type": "array",
+                            "items": {"type": "integer"},
+                        },
+                    },
+                },
+            },
+        },
+    )
+    def get_permissions(self, obj) -> dict:
         view_codename = f"view_{obj.__class__.__name__.lower()}"
         change_codename = f"change_{obj.__class__.__name__.lower()}"
 
@@ -229,7 +301,7 @@ class OwnedObjectSerializer(
             },
         }
 
-    def get_user_can_change(self, obj):
+    def get_user_can_change(self, obj) -> bool:
         checker = ObjectPermissionChecker(self.user) if self.user is not None else None
         return (
             obj.owner is None
@@ -272,7 +344,7 @@ class OwnedObjectSerializer(
 
         return set(user_permission_pks) | set(group_permission_pks)
 
-    def get_is_shared_by_requester(self, obj: Document):
+    def get_is_shared_by_requester(self, obj: Document) -> bool:
         # First check the context to see if `shared_object_pks` is set by the parent.
         shared_object_pks = self.context.get("shared_object_pks")
         # If not just check if the current object is shared.
@@ -284,7 +356,7 @@ class OwnedObjectSerializer(
     user_can_change = SerializerMethodField(read_only=True)
     is_shared_by_requester = SerializerMethodField(read_only=True)
 
-    set_permissions = serializers.DictField(
+    set_permissions = SetPermissionsSerializer(
         label="Set permissions",
         allow_empty=True,
         required=False,
@@ -381,7 +453,7 @@ class DocumentTypeSerializer(MatchingModelSerializer, OwnedObjectSerializer):
         )
 
 
-class ColorField(serializers.Field):
+class DeprecatedColors:
     COLOURS = (
         (1, "#a6cee3"),
         (2, "#1f78b4"),
@@ -398,14 +470,21 @@ class ColorField(serializers.Field):
         (13, "#cccccc"),
     )
 
+
+@extend_schema_field(
+    serializers.ChoiceField(
+        choices=DeprecatedColors.COLOURS,
+    ),
+)
+class ColorField(serializers.Field):
     def to_internal_value(self, data):
-        for id, color in self.COLOURS:
+        for id, color in DeprecatedColors.COLOURS:
             if id == data:
                 return color
         raise serializers.ValidationError
 
     def to_representation(self, value):
-        for id, color in self.COLOURS:
+        for id, color in DeprecatedColors.COLOURS:
             if color == value:
                 return id
         return 1
@@ -434,7 +513,7 @@ class TagSerializerVersion1(MatchingModelSerializer, OwnedObjectSerializer):
 
 
 class TagSerializer(MatchingModelSerializer, OwnedObjectSerializer):
-    def get_text_color(self, obj):
+    def get_text_color(self, obj) -> str:
         try:
             h = obj.color.lstrip("#")
             rgb = tuple(int(h[i : i + 2], 16) / 256 for i in (0, 2, 4))
@@ -496,6 +575,15 @@ class StoragePathField(serializers.PrimaryKeyRelatedField):
 
 
 class CustomFieldSerializer(serializers.ModelSerializer):
+    def __init__(self, *args, **kwargs):
+        context = kwargs.get("context")
+        self.api_version = int(
+            context.get("request").version
+            if context and context.get("request")
+            else settings.REST_FRAMEWORK["DEFAULT_VERSION"],
+        )
+        super().__init__(*args, **kwargs)
+
     data_type = serializers.ChoiceField(
         choices=CustomField.FieldDataType,
         read_only=False,
@@ -575,6 +663,38 @@ class CustomFieldSerializer(serializers.ModelSerializer):
             )
         return super().validate(attrs)
 
+    def to_internal_value(self, data):
+        ret = super().to_internal_value(data)
+
+        if (
+            self.api_version < 7
+            and ret.get("data_type", "") == CustomField.FieldDataType.SELECT
+            and isinstance(ret.get("extra_data", {}).get("select_options"), list)
+        ):
+            ret["extra_data"]["select_options"] = [
+                {
+                    "label": option,
+                    "id": get_random_string(length=16),
+                }
+                for option in ret["extra_data"]["select_options"]
+            ]
+
+        return ret
+
+    def to_representation(self, instance):
+        ret = super().to_representation(instance)
+
+        if (
+            self.api_version < 7
+            and instance.data_type == CustomField.FieldDataType.SELECT
+        ):
+            # Convert the select options with ids to a list of strings
+            ret["extra_data"]["select_options"] = [
+                option["label"] for option in ret["extra_data"]["select_options"]
+            ]
+
+        return ret
+
 
 class ReadWriteSerializerMethodField(serializers.SerializerMethodField):
     """
@@ -606,7 +726,7 @@ class CustomFieldInstanceSerializer(serializers.ModelSerializer):
 
         if custom_field.data_type == CustomField.FieldDataType.DOCUMENTLINK:
             # prior to update so we can look for any docs that are going to be removed
-            self.reflect_doclinks(document, custom_field, validated_data["value"])
+            bulk_edit.reflect_doclinks(document, custom_field, validated_data["value"])
 
         # Actually update or create the instance, providing the value
         # to fill in the correct attribute based on the type
@@ -617,7 +737,7 @@ class CustomFieldInstanceSerializer(serializers.ModelSerializer):
         )
         return instance
 
-    def get_value(self, obj: CustomFieldInstance):
+    def get_value(self, obj: CustomFieldInstance) -> str | int | float | dict | None:
         return obj.value
 
     def validate(self, data):
@@ -682,88 +802,49 @@ class CustomFieldInstanceSerializer(serializers.ModelSerializer):
 
         return data
 
-    def reflect_doclinks(
-        self,
-        document: Document,
-        field: CustomField,
-        target_doc_ids: list[int],
-    ):
-        """
-        Add or remove 'symmetrical' links to `document` on all `target_doc_ids`
-        """
-
-        if target_doc_ids is None:
-            target_doc_ids = []
-
-        # Check if any documents are going to be removed from the current list of links and remove the symmetrical links
-        current_field_instance = CustomFieldInstance.objects.filter(
-            field=field,
-            document=document,
-        ).first()
-        if (
-            current_field_instance is not None
-            and current_field_instance.value is not None
-        ):
-            for doc_id in current_field_instance.value:
-                if doc_id not in target_doc_ids:
-                    self.remove_doclink(document, field, doc_id)
-
-        # Create an instance if target doc doesn't have this field or append it to an existing one
-        existing_custom_field_instances = {
-            custom_field.document_id: custom_field
-            for custom_field in CustomFieldInstance.objects.filter(
-                field=field,
-                document_id__in=target_doc_ids,
-            )
-        }
-        custom_field_instances_to_create = []
-        custom_field_instances_to_update = []
-        for target_doc_id in target_doc_ids:
-            target_doc_field_instance = existing_custom_field_instances.get(
-                target_doc_id,
-            )
-            if target_doc_field_instance is None:
-                custom_field_instances_to_create.append(
-                    CustomFieldInstance(
-                        document_id=target_doc_id,
-                        field=field,
-                        value_document_ids=[document.id],
-                    ),
-                )
-            elif target_doc_field_instance.value is None:
-                target_doc_field_instance.value_document_ids = [document.id]
-                custom_field_instances_to_update.append(target_doc_field_instance)
-            elif document.id not in target_doc_field_instance.value:
-                target_doc_field_instance.value_document_ids.append(document.id)
-                custom_field_instances_to_update.append(target_doc_field_instance)
-
-        CustomFieldInstance.objects.bulk_create(custom_field_instances_to_create)
-        CustomFieldInstance.objects.bulk_update(
-            custom_field_instances_to_update,
-            ["value_document_ids"],
+    def get_api_version(self):
+        return int(
+            self.context.get("request").version
+            if self.context.get("request")
+            else settings.REST_FRAMEWORK["DEFAULT_VERSION"],
         )
-        Document.objects.filter(id__in=target_doc_ids).update(modified=timezone.now())
 
-    @staticmethod
-    def remove_doclink(
-        document: Document,
-        field: CustomField,
-        target_doc_id: int,
-    ):
-        """
-        Removes a 'symmetrical' link to `document` from the target document's existing custom field instance
-        """
-        target_doc_field_instance = CustomFieldInstance.objects.filter(
-            document_id=target_doc_id,
-            field=field,
-        ).first()
+    def to_internal_value(self, data):
+        ret = super().to_internal_value(data)
+
         if (
-            target_doc_field_instance is not None
-            and document.id in target_doc_field_instance.value
+            self.get_api_version() < 7
+            and ret.get("field").data_type == CustomField.FieldDataType.SELECT
+            and ret.get("value") is not None
         ):
-            target_doc_field_instance.value.remove(document.id)
-            target_doc_field_instance.save()
-        Document.objects.filter(id=target_doc_id).update(modified=timezone.now())
+            # Convert the index of the option in the field.extra_data["select_options"]
+            # list to the options unique id
+            ret["value"] = ret.get("field").extra_data["select_options"][ret["value"]][
+                "id"
+            ]
+
+        return ret
+
+    def to_representation(self, instance):
+        ret = super().to_representation(instance)
+
+        if (
+            self.get_api_version() < 7
+            and instance.field.data_type == CustomField.FieldDataType.SELECT
+        ):
+            # return the index of the option in the field.extra_data["select_options"] list
+            ret["value"] = next(
+                (
+                    idx
+                    for idx, option in enumerate(
+                        instance.field.extra_data["select_options"],
+                    )
+                    if option["id"] == instance.value
+                ),
+                None,
+            )
+
+        return ret
 
     class Meta:
         model = CustomFieldInstance
@@ -807,13 +888,13 @@ class DocumentSerializer(
         required=False,
     )
 
-    def get_page_count(self, obj):
+    def get_page_count(self, obj) -> int | None:
         return obj.page_count
 
-    def get_original_file_name(self, obj):
+    def get_original_file_name(self, obj) -> str | None:
         return obj.original_filename
 
-    def get_archived_file_name(self, obj):
+    def get_archived_file_name(self, obj) -> str | None:
         if obj.has_archive_version:
             return obj.get_public_filename(archive=True)
         else:
@@ -866,7 +947,7 @@ class DocumentSerializer(
                 ):
                     # Doc link field is being removed entirely
                     for doc_id in custom_field_instance.value:
-                        CustomFieldInstanceSerializer.remove_doclink(
+                        bulk_edit.remove_doclink(
                             instance,
                             custom_field_instance.field,
                             doc_id,
@@ -910,7 +991,7 @@ class DocumentSerializer(
 
         # return full permissions if we're doing a PATCH or PUT
         context = kwargs.get("context")
-        if (
+        if context is not None and (
             context.get("request").method == "PATCH"
             or context.get("request").method == "PUT"
         ):
@@ -920,7 +1001,6 @@ class DocumentSerializer(
 
     class Meta:
         model = Document
-        depth = 1
         fields = (
             "id",
             "correspondent",
@@ -1605,7 +1685,6 @@ class UiSettingsViewSerializer(serializers.ModelSerializer):
 class TasksViewSerializer(OwnedObjectSerializer):
     class Meta:
         model = PaperlessTask
-        depth = 1
         fields = (
             "id",
             "task_id",
@@ -1622,7 +1701,7 @@ class TasksViewSerializer(OwnedObjectSerializer):
 
     type = serializers.SerializerMethodField()
 
-    def get_type(self, obj):
+    def get_type(self, obj) -> str:
         # just file tasks, for now
         return "file"
 
@@ -1630,7 +1709,7 @@ class TasksViewSerializer(OwnedObjectSerializer):
     created_doc_re = re.compile(r"New document id (\d+) created")
     duplicate_doc_re = re.compile(r"It is a duplicate of .* \(#(\d+)\)")
 
-    def get_related_document(self, obj):
+    def get_related_document(self, obj) -> str | None:
         result = None
         re = None
         match obj.status:
@@ -1876,6 +1955,7 @@ class WorkflowActionWebhookSerializer(serializers.ModelSerializer):
             "id",
             "url",
             "use_params",
+            "as_json",
             "params",
             "body",
             "headers",

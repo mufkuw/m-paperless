@@ -13,6 +13,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms'
 import { NgbAccordionModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap'
+import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { first } from 'rxjs'
 import { Correspondent } from 'src/app/data/correspondent'
 import { CustomField, CustomFieldDataType } from 'src/app/data/custom-field'
@@ -154,6 +155,7 @@ const TRIGGER_MATCHING_ALGORITHMS = MATCHING_ALGORITHMS.filter(
     NgbAccordionModule,
     NgTemplateOutlet,
     DragDropModule,
+    NgxBootstrapIconsModule,
   ],
 })
 export class WorkflowEditDialogComponent
@@ -469,6 +471,7 @@ export class WorkflowEditDialogComponent
           id: new FormControl(action.webhook?.id),
           url: new FormControl(action.webhook?.url),
           use_params: new FormControl(action.webhook?.use_params),
+          as_json: new FormControl(action.webhook?.as_json),
           params: new FormControl(action.webhook?.params),
           body: new FormControl(action.webhook?.body),
           headers: new FormControl(action.webhook?.headers),
@@ -586,6 +589,7 @@ export class WorkflowEditDialogComponent
         id: null,
         url: null,
         use_params: true,
+        as_json: false,
         params: null,
         body: null,
         headers: null,

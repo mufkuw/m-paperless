@@ -9,7 +9,11 @@ import {
   ViewChildren,
 } from '@angular/core'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { NgbDropdown, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap'
+import {
+  NgbDatepickerModule,
+  NgbDropdown,
+  NgbDropdownModule,
+} from '@ng-bootstrap/ng-bootstrap'
 import { NgSelectComponent, NgSelectModule } from '@ng-select/ng-select'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { first, Subject, takeUntil } from 'rxjs'
@@ -33,6 +37,7 @@ import {
 import { popperOptionsReenablePreventOverflow } from 'src/app/utils/popper-options'
 import { LoadingComponentWithPermissions } from '../../loading-component/loading.component'
 import { ClearableBadgeComponent } from '../clearable-badge/clearable-badge.component'
+import { DocumentLinkComponent } from '../input/document-link/document-link.component'
 
 export class CustomFieldQueriesModel {
   public queries: CustomFieldQueryElement[] = []
@@ -163,7 +168,9 @@ export class CustomFieldQueriesModel {
   imports: [
     ClearableBadgeComponent,
     FormsModule,
+    DocumentLinkComponent,
     ReactiveFormsModule,
+    NgbDatepickerModule,
     NgTemplateOutlet,
     NgSelectModule,
     NgxBootstrapIconsModule,
@@ -235,6 +242,8 @@ export class CustomFieldsQueryDropdownComponent extends LoadingComponentWithPerm
   selectionModelChange = new EventEmitter<CustomFieldQueriesModel>()
 
   customFields: CustomField[] = []
+
+  public readonly today: string = new Date().toISOString().split('T')[0]
 
   constructor(protected customFieldsService: CustomFieldsService) {
     super()

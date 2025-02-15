@@ -214,6 +214,7 @@ class RasterisedDocumentParser(DocumentParser):
         mime_type,
         output_file,
         sidecar_file,
+        *,
         safe_fallback=False,
     ):
         if TYPE_CHECKING:
@@ -455,8 +456,7 @@ class RasterisedDocumentParser(DocumentParser):
                 self.text = text_original
             else:
                 self.log.warning(
-                    f"No text was found in {document_path}, the content will "
-                    f"be empty.",
+                    f"No text was found in {document_path}, the content will be empty.",
                 )
                 self.text = ""
 

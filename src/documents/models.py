@@ -337,7 +337,7 @@ class Document(SoftDeleteModel, ModelWithOwner):
     def archive_file(self):
         return open(self.archive_path, "rb")
 
-    def get_public_filename(self, archive=False, counter=0, suffix=None) -> str:
+    def get_public_filename(self, *, archive=False, counter=0, suffix=None) -> str:
         """
         Returns a sanitized filename for the document, not including any paths.
         """
@@ -522,6 +522,11 @@ class SavedViewFilterRule(models.Model):
         (40, _("does not have custom field in")),
         (41, _("does not have custom field")),
         (42, _("custom fields query")),
+        (43, _("created to")),
+        (44, _("created from")),
+        (45, _("added to")),
+        (46, _("added from")),
+        (47, _("mime type is")),
     ]
 
     saved_view = models.ForeignKey(
@@ -1207,6 +1212,11 @@ class WorkflowActionWebhook(models.Model):
     use_params = models.BooleanField(
         default=True,
         verbose_name=_("use parameters"),
+    )
+
+    as_json = models.BooleanField(
+        default=False,
+        verbose_name=_("send as JSON"),
     )
 
     params = models.JSONField(

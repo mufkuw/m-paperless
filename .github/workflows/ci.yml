@@ -16,7 +16,7 @@ on:
 env:
   # This is the version of pipenv all the steps will use
   # If changing this, change Dockerfile
-  DEFAULT_PIP_ENV_VERSION: "2024.4.0"
+  DEFAULT_PIP_ENV_VERSION: "2024.4.1"
   # This is the default version of Python to use in most steps which aren't specific
   DEFAULT_PYTHON_VERSION: "3.11"
 
@@ -131,7 +131,7 @@ jobs:
       -
         name: Configure ImageMagick
         run: |
-          sudo cp docker/imagemagick-policy.xml /etc/ImageMagick-6/policy.xml
+          sudo cp docker/rootfs/etc/ImageMagick-6/paperless-policy.xml /etc/ImageMagick-6/policy.xml
       -
         name: Install Python dependencies
         run: |

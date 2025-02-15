@@ -328,6 +328,8 @@ INSTALLED_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "allauth.mfa",
+    "drf_spectacular",
+    "drf_spectacular_sidecar",
     *env_apps,
 ]
 
@@ -336,15 +338,34 @@ if DEBUG:
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        "rest_framework.authentication.BasicAuthentication",
+        "paperless.auth.PaperlessBasicAuthentication",
         "rest_framework.authentication.TokenAuthentication",
         "rest_framework.authentication.SessionAuthentication",
     ],
     "DEFAULT_VERSIONING_CLASS": "rest_framework.versioning.AcceptHeaderVersioning",
-    "DEFAULT_VERSION": "1",
+    "DEFAULT_VERSION": "7",
     # Make sure these are ordered and that the most recent version appears
-    # last
-    "ALLOWED_VERSIONS": ["1", "2", "3", "4", "5", "6"],
+    # last. See api.md#api-versioning when adding new versions.
+    "ALLOWED_VERSIONS": ["1", "2", "3", "4", "5", "6", "7"],
+    # DRF Spectacular default schema
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+# DRF Spectacular settings
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Paperless-ngx REST API",
+    "DESCRIPTION": "OpenAPI Spec for Paperless-ngx",
+    "VERSION": "6.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+    "SWAGGER_UI_DIST": "SIDECAR",
+    "COMPONENT_SPLIT_REQUEST": True,
+    "EXTERNAL_DOCS": {
+        "description": "Paperless-ngx API Documentation",
+        "url": "https://docs.paperless-ngx.com/api/",
+    },
+    "ENUM_NAME_OVERRIDES": {
+        "MatchingAlgorithm": "documents.models.MatchingModel.MATCHING_ALGORITHMS",
+    },
 }
 
 if DEBUG:
@@ -489,6 +510,8 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = not ACCOUNT_SESSION_REMEMBER
 SESSION_COOKIE_AGE = int(
     os.getenv("PAPERLESS_SESSION_COOKIE_AGE", 60 * 60 * 24 * 7 * 3),
 )
+# https://docs.djangoproject.com/en/5.1/ref/settings/#std-setting-SESSION_ENGINE
+SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
 
 if AUTO_LOGIN_USERNAME:
     _index = MIDDLEWARE.index("django.contrib.auth.middleware.AuthenticationMiddleware")
@@ -728,6 +751,7 @@ LANGUAGES = [
     ("tr-tr", _("Turkish")),
     ("uk-ua", _("Ukrainian")),
     ("zh-cn", _("Chinese Simplified")),
+    ("zh-tw", _("Chinese Traditional")),
 ]
 
 LOCALE_PATHS = [os.path.join(BASE_DIR, "locale")]
@@ -1030,6 +1054,11 @@ CONVERT_MEMORY_LIMIT = os.getenv("PAPERLESS_CONVERT_MEMORY_LIMIT")
 
 GS_BINARY = os.getenv("PAPERLESS_GS_BINARY", "gs")
 
+# Fallback layout for .eml consumption
+EMAIL_PARSE_DEFAULT_LAYOUT = __get_int(
+    "PAPERLESS_EMAIL_PARSE_DEFAULT_LAYOUT",
+    1,  # MailRule.PdfLayout.TEXT_HTML but that can't be imported here
+)
 
 # Pre-2.x versions of Paperless stored your documents locally with GPG
 # encryption, but that is no longer the default.  This behaviour is still
@@ -1195,6 +1224,7 @@ DEFAULT_FROM_EMAIL: Final[str] = os.getenv("PAPERLESS_EMAIL_FROM", EMAIL_HOST_US
 EMAIL_USE_TLS: Final[bool] = __get_boolean("PAPERLESS_EMAIL_USE_TLS")
 EMAIL_USE_SSL: Final[bool] = __get_boolean("PAPERLESS_EMAIL_USE_SSL")
 EMAIL_SUBJECT_PREFIX: Final[str] = "[Paperless-ngx] "
+EMAIL_TIMEOUT = 30.0
 EMAIL_ENABLED = EMAIL_HOST != "localhost" or EMAIL_HOST_USER != ""
 if DEBUG:  # pragma: no cover
     EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"

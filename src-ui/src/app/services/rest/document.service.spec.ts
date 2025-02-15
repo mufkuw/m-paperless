@@ -251,32 +251,12 @@ describe(`DocumentService`, () => {
     )
   })
 
-  it('should add observables to document', () => {
-    subscription = service
-      .listFiltered(1, 25, 'title', false, [])
-      .subscribe((result) => {
-        expect(result.results).toHaveLength(3)
-        const doc = result.results[0]
-        expect(doc.correspondent$).not.toBeNull()
-        expect(doc.document_type$).not.toBeNull()
-        expect(doc.tags$).not.toBeNull()
-        expect(doc.storage_path$).not.toBeNull()
-      })
-    httpTestingController
-      .expectOne(
-        `${environment.apiBaseUrl}${endpoint}/?page=1&page_size=25&ordering=title`
-      )
-      .flush({
-        results: documents,
-      })
-  })
-
   it('should set search query', () => {
     const searchQuery = 'hello'
     service.searchQuery = searchQuery
     let url = service.getPreviewUrl(documents[0].id)
     expect(url).toEqual(
-      `${environment.apiBaseUrl}${endpoint}/${documents[0].id}/preview/#search="${searchQuery}"`
+      `${environment.apiBaseUrl}${endpoint}/${documents[0].id}/preview/#search=%22${searchQuery}%22`
     )
   })
 

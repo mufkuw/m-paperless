@@ -37,10 +37,12 @@ import {
   SortableDirective,
   SortEvent,
 } from 'src/app/directives/sortable.directive'
+import { CorrespondentNamePipe } from 'src/app/pipes/correspondent-name.pipe'
 import { CustomDatePipe } from 'src/app/pipes/custom-date.pipe'
 import { DocumentTitlePipe } from 'src/app/pipes/document-title.pipe'
+import { DocumentTypeNamePipe } from 'src/app/pipes/document-type-name.pipe'
+import { StoragePathNamePipe } from 'src/app/pipes/storage-path-name.pipe'
 import { UsernamePipe } from 'src/app/pipes/username.pipe'
-import { ConsumerStatusService } from 'src/app/services/consumer-status.service'
 import { DocumentListViewService } from 'src/app/services/document-list-view.service'
 import { HotKeyService } from 'src/app/services/hot-key.service'
 import { OpenDocumentsService } from 'src/app/services/open-documents.service'
@@ -48,6 +50,7 @@ import { PermissionsService } from 'src/app/services/permissions.service'
 import { SavedViewService } from 'src/app/services/rest/saved-view.service'
 import { SettingsService } from 'src/app/services/settings.service'
 import { ToastService } from 'src/app/services/toast.service'
+import { WebsocketStatusService } from 'src/app/services/websocket-status.service'
 import {
   filterRulesDiffer,
   isFullTextFilterRule,
@@ -55,6 +58,7 @@ import {
 import { CustomFieldDisplayComponent } from '../common/custom-field-display/custom-field-display.component'
 import { PageHeaderComponent } from '../common/page-header/page-header.component'
 import { PreviewPopupComponent } from '../common/preview-popup/preview-popup.component'
+import { TagComponent } from '../common/tag/tag.component'
 import { ComponentWithPermissions } from '../with-permissions/with-permissions.component'
 import { BulkEditorComponent } from './bulk-editor/bulk-editor.component'
 import { DocumentCardLargeComponent } from './document-card-large/document-card-large.component'
@@ -74,11 +78,15 @@ import { SaveViewConfigDialogComponent } from './save-view-config-dialog/save-vi
     DocumentCardSmallComponent,
     DocumentCardLargeComponent,
     PreviewPopupComponent,
+    TagComponent,
     CustomDatePipe,
     DocumentTitlePipe,
     IfPermissionsDirective,
     SortableDirective,
     UsernamePipe,
+    CorrespondentNamePipe,
+    DocumentTypeNamePipe,
+    StoragePathNamePipe,
     NgxBootstrapIconsModule,
     AsyncPipe,
     FormsModule,
@@ -105,7 +113,7 @@ export class DocumentListComponent
     private router: Router,
     private toastService: ToastService,
     private modalService: NgbModal,
-    private consumerStatusService: ConsumerStatusService,
+    private websocketStatusService: WebsocketStatusService,
     public openDocumentsService: OpenDocumentsService,
     public settingsService: SettingsService,
     private hotKeyService: HotKeyService,
@@ -226,12 +234,16 @@ export class DocumentListComponent
   }
 
   ngOnInit(): void {
-    this.consumerStatusService
+    this.websocketStatusService
       .onDocumentConsumptionFinished()
       .pipe(takeUntil(this.unsubscribeNotifier))
       .subscribe(() => {
         this.list.reload()
       })
+
+    this.websocketStatusService.onDocumentDeleted().subscribe(() => {
+      this.list.reload()
+    })
 
     this.route.paramMap
       .pipe(

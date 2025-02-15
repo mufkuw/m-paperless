@@ -22,6 +22,7 @@ from django.utils.translation import gettext_lazy as _
 from django_filters.rest_framework import BooleanFilter
 from django_filters.rest_framework import Filter
 from django_filters.rest_framework import FilterSet
+from drf_spectacular.utils import extend_schema_field
 from guardian.utils import get_group_obj_perms_model
 from guardian.utils import get_user_obj_perms_model
 from rest_framework import serializers
@@ -41,7 +42,19 @@ from documents.models import Tag
 CHAR_KWARGS = ["istartswith", "iendswith", "icontains", "iexact"]
 ID_KWARGS = ["in", "exact"]
 INT_KWARGS = ["exact", "gt", "gte", "lt", "lte", "isnull"]
-DATE_KWARGS = ["year", "month", "day", "date__gt", "gt", "date__lt", "lt"]
+DATE_KWARGS = [
+    "year",
+    "month",
+    "day",
+    "date__gt",
+    "date__gte",
+    "gt",
+    "gte",
+    "date__lt",
+    "date__lte",
+    "lt",
+    "lte",
+]
 
 CUSTOM_FIELD_QUERY_MAX_DEPTH = 10
 CUSTOM_FIELD_QUERY_MAX_ATOMS = 20
@@ -85,7 +98,7 @@ class StoragePathFilterSet(FilterSet):
 
 
 class ObjectFilter(Filter):
-    def __init__(self, exclude=False, in_list=False, field_name=""):
+    def __init__(self, *, exclude=False, in_list=False, field_name=""):
         super().__init__()
         self.exclude = exclude
         self.in_list = in_list
@@ -112,6 +125,7 @@ class ObjectFilter(Filter):
         return qs
 
 
+@extend_schema_field(serializers.BooleanField)
 class InboxFilter(Filter):
     def filter(self, qs, value):
         if value == "true":
@@ -122,6 +136,7 @@ class InboxFilter(Filter):
             return qs
 
 
+@extend_schema_field(serializers.CharField)
 class TitleContentFilter(Filter):
     def filter(self, qs, value):
         if value:
@@ -130,6 +145,7 @@ class TitleContentFilter(Filter):
             return qs
 
 
+@extend_schema_field(serializers.BooleanField)
 class SharedByUser(Filter):
     def filter(self, qs, value):
         ctype = ContentType.objects.get_for_model(self.model)
@@ -174,6 +190,7 @@ class CustomFieldFilterSet(FilterSet):
         }
 
 
+@extend_schema_field(serializers.CharField)
 class CustomFieldsFilter(Filter):
     def filter(self, qs, value):
         if value:
@@ -199,6 +216,14 @@ class CustomFieldsFilter(Filter):
                 | qs.filter(custom_fields__value_document_ids__icontains=value)
                 | qs.filter(custom_fields__value_select__in=option_ids)
             )
+        else:
+            return qs
+
+
+class MimeTypeFilter(Filter):
+    def filter(self, qs, value):
+        if value:
+            return qs.filter(mime_type__icontains=value)
         else:
             return qs
 
@@ -622,6 +647,7 @@ class CustomFieldQueryParser:
             self._current_depth -= 1
 
 
+@extend_schema_field(serializers.CharField)
 class CustomFieldQueryFilter(Filter):
     def __init__(self, validation_prefix):
         """
@@ -697,6 +723,8 @@ class DocumentFilterSet(FilterSet):
     custom_field_query = CustomFieldQueryFilter("custom_field_query")
 
     shared_by__id = SharedByUser()
+
+    mime_type = MimeTypeFilter()
 
     class Meta:
         model = Document
