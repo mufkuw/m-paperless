@@ -106,3 +106,10 @@ celerybeat-schedule*
 /.devcontainer/data/
 /.devcontainer/media/
 /.devcontainer/redisdata/
+
+.dotnet
+.npm
+.pyenv
+.github
+.devcontainer
+nltk_data
