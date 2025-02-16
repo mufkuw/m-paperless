@@ -1,0 +1,14 @@
+[Unit]
+Description=M-Paperless Consumer
+Requires=redis.service
+
+[Service]
+User=paperless
+Group=paperless
+Environment = "PATH=/opt/paperless/.pyenv/shims:/opt/paperless/.pyenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+WorkingDirectory=/opt/paperless/src/
+#ExecStart=/opt/paperless/.pyenv/shims/gunicorn -c /opt/paperless/gunicorn.conf.py paperless.asgi:application
+ExecStart=/opt/paperless/.pyenv/shims/python3 manage.py document_consumer
+
+[Install]
+WantedBy=multi-user.target
