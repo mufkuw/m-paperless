@@ -17,10 +17,10 @@
       @if (customAppTitle?.length) {
         <div class="d-flex flex-column align-items-start">
           <span class="title">{{customAppTitle}}</span>
-          <span class="byline text-uppercase font-monospace" i18n>by Paperless-ngx</span>
+          <span class="byline text-uppercase font-monospace" i18n>by M-Paperless</span>
         </div>
       } @else {
-        Paperless-ngx
+        M-Paperless
       }
     </div>
   </a>
@@ -305,12 +305,12 @@
                 @if (!settingsService.updateCheckingIsSet || appRemoteVersion) {
                   <div class="version-check">
                     <ng-template #updateAvailablePopContent>
-                      <span class="small">Paperless-ngx {{ appRemoteVersion.version }} <ng-container i18n>is
+                      <span class="small">M-Paperless {{ appRemoteVersion.version }} <ng-container i18n>is
                           available.</ng-container><br /><ng-container i18n>Click to view.</ng-container></span>
                     </ng-template>
                     <ng-template #updateCheckingNotEnabledPopContent>
                       <p class="small mb-2">
-                        <ng-container i18n>Paperless-ngx can automatically check for updates</ng-container>
+                        <ng-container i18n>M-Paperless can automatically check for updates</ng-container>
                       </p>
                       <div class="btn-group btn-group-xs flex-fill w-100">
                         <button class="btn btn-outline-primary" (click)="setUpdateChecking(true)">Enable</button>

@@ -1,8 +1,8 @@
 # Frequently Asked Questions
 
-## _What's the general plan for Paperless-ngx?_
+## _What's the general plan for M-Paperless?_
 
-**A:** While Paperless-ngx is already considered largely
+**A:** While M-Paperless is already considered largely
 "feature-complete", it is a community-driven project and development
 will be guided in this way. New features can be submitted via
 [GitHub discussions](https://github.com/paperless-ngx/paperless-ngx/discussions)
@@ -40,7 +40,7 @@ system. On Linux, chances are high that this location is
 You can always drag those files out of that folder to use them
 elsewhere. Here are a couple notes about that.
 
--   Paperless-ngx never modifies your original documents. It keeps
+-   M-Paperless never modifies your original documents. It keeps
     checksums of all documents and uses a scheduled sanity checker to
     check that they remain the same.
 -   By default, paperless uses the internal ID of each document as its
@@ -63,7 +63,7 @@ elsewhere. Here are a couple notes about that.
     Paperless also supports various Office documents (.docx, .doc, odt,
     .ppt, .pptx, .odp, .xls, .xlsx, .ods).
 
-Paperless-ngx determines the type of a file by inspecting its content.
+M-Paperless determines the type of a file by inspecting its content.
 The file extensions do not matter.
 
 ## _Will paperless-ngx run on Raspberry Pi?_
@@ -101,7 +101,7 @@ libraries and compilation will take a long time.
 
 ## _How do I run this on Unraid?_
 
-**A:** Paperless-ngx is available as [community
+**A:** M-Paperless is available as [community
 app](https://unraid.net/community/apps?q=paperless-ngx) in Unraid. [Uli
 Fahrer](https://github.com/Tooa) created a container template for that.
 
@@ -114,7 +114,7 @@ installs.
 
 ## _How do I proxy this with NGINX?_
 
-**A:** See [the wiki](https://github.com/paperless-ngx/paperless-ngx/wiki/Using-a-Reverse-Proxy-with-Paperless-ngx#nginx).
+**A:** See [the wiki](https://github.com/paperless-ngx/paperless-ngx/wiki/Using-a-Reverse-Proxy-with-M-Paperless#nginx).
 
 ## _How do I get WebSocket support with Apache mod_wsgi_?
 

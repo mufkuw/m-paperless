@@ -1,4 +1,4 @@
-site_name: Paperless-ngx
+site_name: M-Paperless
 theme:
   name: material
   logo: assets/logo.svg
@@ -71,7 +71,7 @@ nav:
     - 'FAQs': faq.md
     - troubleshooting.md
     - changelog.md
-copyright: Copyright &copy; 2016 - 2023 Daniel Quinn, Jonas Winkler, and the Paperless-ngx team
+copyright: Copyright &copy; 2016 - 2023 Daniel Quinn, Jonas Winkler, and the M-Paperless team
 extra:
   social:
     - icon: fontawesome/brands/github

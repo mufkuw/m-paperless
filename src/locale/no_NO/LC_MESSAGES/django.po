@@ -1166,8 +1166,8 @@ msgid "Thank you for using %(site_name)s!\n"
 msgstr ""
 
 #: documents/templates/account/login.html:5
-msgid "Paperless-ngx sign in"
-msgstr "Paperless-ngx-tegn inn"
+msgid "M-Paperless sign in"
+msgstr "M-Paperless-tegn inn"
 
 #: documents/templates/account/login.html:10
 msgid "Please sign in."
@@ -1204,8 +1204,8 @@ msgid "or sign in via"
 msgstr ""
 
 #: documents/templates/account/password_reset.html:5
-msgid "Paperless-ngx reset password request"
-msgstr "Paperless-ngx forespørsel om tilbakestilling av passord"
+msgid "M-Paperless reset password request"
+msgstr "M-Paperless forespørsel om tilbakestilling av passord"
 
 #: documents/templates/account/password_reset.html:9
 msgid "Enter your email address below, and we'll email instructions for setting a new one."
@@ -1220,7 +1220,7 @@ msgid "Send me instructions!"
 msgstr "Send meg instruksjoner!"
 
 #: documents/templates/account/password_reset_done.html:5
-msgid "Paperless-ngx reset password sent"
+msgid "M-Paperless reset password sent"
 msgstr ""
 
 #: documents/templates/account/password_reset_done.html:9
@@ -1232,8 +1232,8 @@ msgid "We've emailed you instructions for setting your password. You should rece
 msgstr "Vi har sendt deg instruksjoner for å sette ditt passord. Du burde snart motta en e-post!"
 
 #: documents/templates/account/password_reset_from_key.html:5
-msgid "Paperless-ngx reset password confirmation"
-msgstr "Paperless-ngx tilbakestilling av passord bekreftet"
+msgid "M-Paperless reset password confirmation"
+msgstr "M-Paperless tilbakestilling av passord bekreftet"
 
 #: documents/templates/account/password_reset_from_key.html:9
 msgid "Set a new password."
@@ -1256,8 +1256,8 @@ msgid "Change my password"
 msgstr "Endre passord"
 
 #: documents/templates/account/password_reset_from_key_done.html:5
-msgid "Paperless-ngx reset password complete"
-msgstr "Paperless-ngx tilbakestilling passord fullført"
+msgid "M-Paperless reset password complete"
+msgstr "M-Paperless tilbakestilling passord fullført"
 
 #: documents/templates/account/password_reset_from_key_done.html:9
 msgid "Password reset complete."
@@ -1269,7 +1269,7 @@ msgid "Your new password has been set. You can now <a href=\"%(login_url)s\">log
 msgstr "Ditt nye passord er satt. Du kan nå <a href=\"%(login_url)s\">logge inn</a>"
 
 #: documents/templates/account/signup.html:5
-msgid "Paperless-ngx sign up"
+msgid "M-Paperless sign up"
 msgstr ""
 
 #: documents/templates/account/signup.html:10
@@ -1292,8 +1292,8 @@ msgid "Sign up"
 msgstr ""
 
 #: documents/templates/index.html:61
-msgid "Paperless-ngx is loading..."
-msgstr "Paperless-ngx laster..."
+msgid "M-Paperless is loading..."
+msgstr "M-Paperless laster..."
 
 #: documents/templates/index.html:62
 msgid "Still here?! Hmm, something might be wrong."
@@ -1304,7 +1304,7 @@ msgid "Here's a link to the docs."
 msgstr "Her er en lenke til dokkene."
 
 #: documents/templates/mfa/authenticate.html:7
-msgid "Paperless-ngx Two-Factor Authentication"
+msgid "M-Paperless Two-Factor Authentication"
 msgstr ""
 
 #: documents/templates/mfa/authenticate.html:12
@@ -1329,7 +1329,7 @@ msgstr "Linken er utløpt."
 
 #: documents/templates/socialaccount/authentication_error.html:5
 #: documents/templates/socialaccount/login.html:5
-msgid "Paperless-ngx social account sign in"
+msgid "M-Paperless social account sign in"
 msgstr ""
 
 #: documents/templates/socialaccount/authentication_error.html:10
@@ -1347,7 +1347,7 @@ msgid "Continue"
 msgstr ""
 
 #: documents/templates/socialaccount/signup.html:5
-msgid "Paperless-ngx social account sign up"
+msgid "M-Paperless social account sign up"
 msgstr ""
 
 #: documents/templates/socialaccount/signup.html:10
@@ -1655,8 +1655,8 @@ msgid "Chinese Simplified"
 msgstr "Kinesisk forenklet"
 
 #: paperless/urls.py:341
-msgid "Paperless-ngx administration"
-msgstr "Paperless-ngx-administrasjon"
+msgid "M-Paperless administration"
+msgstr "M-Paperless-administrasjon"
 
 #: paperless_mail/admin.py:39
 msgid "Authentication"

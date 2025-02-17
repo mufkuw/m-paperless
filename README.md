@@ -15,11 +15,11 @@
 
 <!-- omit in toc -->
 
-# Paperless-ngx
+# M-Paperless
 
-Paperless-ngx is a document management system that transforms your physical documents into a searchable online archive so you can keep, well, _less paper_.
+M-Paperless is a document management system that transforms your physical documents into a searchable online archive so you can keep, well, _less paper_.
 
-Paperless-ngx is the official successor to the original [Paperless](https://github.com/the-paperless-project/paperless) & [Paperless-ng](https://github.com/jonaswinkler/paperless-ng) projects and is designed to distribute the responsibility of advancing and supporting the project among a team of people. [Consider joining us!](#community-support)
+M-Paperless is the official successor to the original [Paperless](https://github.com/the-paperless-project/paperless) & [Paperless-ng](https://github.com/jonaswinkler/paperless-ng) projects and is designed to distribute the responsibility of advancing and supporting the project among a team of people. [Consider joining us!](#community-support)
 
 Thanks to the generous folks at [DigitalOcean](https://m.do.co/c/8d70b916d462), a demo is available at [demo.paperless-ngx.com](https://demo.paperless-ngx.com) using login `demo` / `demo`. _Note: demo content is reset frequently and confidential information should not be uploaded._
 
@@ -71,7 +71,7 @@ Migrating from Paperless-ng is easy, just drop in the new docker image! See the 
 
 ### Documentation
 
-The documentation for Paperless-ngx is available at [https://docs.paperless-ngx.com](https://docs.paperless-ngx.com/).
+The documentation for M-Paperless is available at [https://docs.paperless-ngx.com](https://docs.paperless-ngx.com/).
 
 # Contributing
 
@@ -83,7 +83,7 @@ People interested in continuing the work on paperless-ngx are encouraged to reac
 
 ## Translation
 
-Paperless-ngx is available in many languages that are coordinated on Crowdin. If you want to help out by translating paperless-ngx into your language, please head over to https://crwd.in/paperless-ngx, and thank you! More details can be found in [CONTRIBUTING.md](https://github.com/paperless-ngx/paperless-ngx/blob/main/CONTRIBUTING.md#translating-paperless-ngx).
+M-Paperless is available in many languages that are coordinated on Crowdin. If you want to help out by translating paperless-ngx into your language, please head over to https://crwd.in/paperless-ngx, and thank you! More details can be found in [CONTRIBUTING.md](https://github.com/paperless-ngx/paperless-ngx/blob/main/CONTRIBUTING.md#translating-paperless-ngx).
 
 ## Feature Requests
 
@@ -95,9 +95,9 @@ For bugs please [open an issue](https://github.com/paperless-ngx/paperless-ngx/i
 
 # Related Projects
 
-Please see [the wiki](https://github.com/paperless-ngx/paperless-ngx/wiki/Related-Projects) for a user-maintained list of related projects and software that is compatible with Paperless-ngx.
+Please see [the wiki](https://github.com/paperless-ngx/paperless-ngx/wiki/Related-Projects) for a user-maintained list of related projects and software that is compatible with M-Paperless.
 
 # Important Note
 
-> Document scanners are typically used to scan sensitive documents like your social insurance number, tax records, invoices, etc. **Paperless-ngx should never be run on an untrusted host** because information is stored in clear text without encryption. No guarantees are made regarding security (but we do try!) and you use the app at your own risk.
-> **The safest way to run Paperless-ngx is on a local server in your own home with backups in place**.
+> Document scanners are typically used to scan sensitive documents like your social insurance number, tax records, invoices, etc. **M-Paperless should never be run on an untrusted host** because information is stored in clear text without encryption. No guarantees are made regarding security (but we do try!) and you use the app at your own risk.
+> **The safest way to run M-Paperless is on a local server in your own home with backups in place**.

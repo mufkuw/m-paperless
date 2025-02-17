@@ -2,7 +2,7 @@
 ![image](assets/logo_full_black.svg#only-light){.index-logo}
 ![image](assets/logo_full_white.svg#only-dark){.index-logo}
 
-**Paperless-ngx** is a _community-supported_ open-source document management system that transforms your
+**M-Paperless** is a _community-supported_ open-source document management system that transforms your
 physical documents into a searchable online archive so you can keep, well, _less paper_.
 
 [Get started](setup.md){ .md-button .md-button--primary .index-callout }
@@ -50,21 +50,21 @@ physical documents into a searchable online archive so you can keep, well, _less
     -   After processing, paperless can perform actions on the messages such as marking as read, deleting and more.
 -   A built-in robust **multi-user permissions** system that supports 'global' permissions as well as per document or object.
 -   A powerful workflow system that gives you even more control.
--   **Optimized** for multi core systems: Paperless-ngx consumes multiple documents in parallel.
+-   **Optimized** for multi core systems: M-Paperless consumes multiple documents in parallel.
 -   The integrated sanity checker makes sure that your document archive is in good health.
 
 [^1]: Office document and email consumption support is optional and provided by Apache Tika (see [configuration](https://docs.paperless-ngx.com/configuration/#tika))
 
 ## Paperless, a history
 
-Paperless-ngx is the official successor to the original [Paperless](https://github.com/the-paperless-project/paperless) & [Paperless-ng](https://github.com/jonaswinkler/paperless-ng) projects and is designed to distribute the responsibility of advancing and supporting the project among a team of people. [Consider joining us!](https://github.com/paperless-ngx/paperless-ngx#community-support)
+M-Paperless is the official successor to the original [Paperless](https://github.com/the-paperless-project/paperless) & [Paperless-ng](https://github.com/jonaswinkler/paperless-ng) projects and is designed to distribute the responsibility of advancing and supporting the project among a team of people. [Consider joining us!](https://github.com/paperless-ngx/paperless-ngx#community-support)
 
 Further discussion of the transition between these projects can be found at
 [ng#1599](https://github.com/jonaswinkler/paperless-ng/issues/1599) and [ng#1632](https://github.com/jonaswinkler/paperless-ng/issues/1632).
 
 ## Screenshots
 
-Paperless-ngx aims to be as nice to use as it is useful. Check out some screenshots below.
+M-Paperless aims to be as nice to use as it is useful. Check out some screenshots below.
 
 <div class="grid-flipped-left" markdown>
   ![image](assets/screenshots/dashboard.png)
@@ -90,7 +90,7 @@ The document list provides three different styles to browse your documents.
 </div>
 <div class="clear"></div>
 
-Of course, Paperless-ngx also supports dark mode:
+Of course, M-Paperless also supports dark mode:
 
 ![image](assets/screenshots/documents-smallcards-dark.png)
 
@@ -197,8 +197,8 @@ People interested in continuing the work on paperless-ngx are encouraged to reac
 
 ### Translation
 
-Paperless-ngx is available in many languages that are coordinated on [Crowdin](https://crwd.in/paperless-ngx). If you want to help out by translating paperless-ngx into your language, please head over to the [Paperless-ngx project at Crowdin](https://crwd.in/paperless-ngx), and thank you!
+M-Paperless is available in many languages that are coordinated on [Crowdin](https://crwd.in/paperless-ngx). If you want to help out by translating paperless-ngx into your language, please head over to the [M-Paperless project at Crowdin](https://crwd.in/paperless-ngx), and thank you!
 
 ## Scanners & Software
 
-Paperless-ngx is compatible with many different scanners and scanning tools. A user-maintained list of scanners and other software is available on [the wiki](https://github.com/paperless-ngx/paperless-ngx/wiki/Scanner-&-Software-Recommendations).
+M-Paperless is compatible with many different scanners and scanning tools. A user-maintained list of scanners and other software is available on [the wiki](https://github.com/paperless-ngx/paperless-ngx/wiki/Scanner-&-Software-Recommendations).

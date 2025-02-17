@@ -1166,8 +1166,8 @@ msgid "Thank you for using %(site_name)s!\n"
 msgstr ""
 
 #: documents/templates/account/login.html:5
-msgid "Paperless-ngx sign in"
-msgstr "Войти в Paperless-ngx"
+msgid "M-Paperless sign in"
+msgstr "Войти в M-Paperless"
 
 #: documents/templates/account/login.html:10
 msgid "Please sign in."
@@ -1204,8 +1204,8 @@ msgid "or sign in via"
 msgstr "или войдите в систему через"
 
 #: documents/templates/account/password_reset.html:5
-msgid "Paperless-ngx reset password request"
-msgstr "Запрос на сброс пароля Paperless-ngx"
+msgid "M-Paperless reset password request"
+msgstr "Запрос на сброс пароля M-Paperless"
 
 #: documents/templates/account/password_reset.html:9
 msgid "Enter your email address below, and we'll email instructions for setting a new one."
@@ -1220,8 +1220,8 @@ msgid "Send me instructions!"
 msgstr "Отправьте мне инструкции!"
 
 #: documents/templates/account/password_reset_done.html:5
-msgid "Paperless-ngx reset password sent"
-msgstr "Пароль сброса Paperless-ngx отправлен"
+msgid "M-Paperless reset password sent"
+msgstr "Пароль сброса M-Paperless отправлен"
 
 #: documents/templates/account/password_reset_done.html:9
 msgid "Check your inbox."
@@ -1232,8 +1232,8 @@ msgid "We've emailed you instructions for setting your password. You should rece
 msgstr "Мы отправили вам инструкции по установке нового пароля. Вы должны получить письмо в ближайшее время!"
 
 #: documents/templates/account/password_reset_from_key.html:5
-msgid "Paperless-ngx reset password confirmation"
-msgstr "Подтверждение сброса пароля Paperless-ngx"
+msgid "M-Paperless reset password confirmation"
+msgstr "Подтверждение сброса пароля M-Paperless"
 
 #: documents/templates/account/password_reset_from_key.html:9
 msgid "Set a new password."
@@ -1256,8 +1256,8 @@ msgid "Change my password"
 msgstr "Сменить пароль"
 
 #: documents/templates/account/password_reset_from_key_done.html:5
-msgid "Paperless-ngx reset password complete"
-msgstr "Сброс пароля Paperless-ngx завершен"
+msgid "M-Paperless reset password complete"
+msgstr "Сброс пароля M-Paperless завершен"
 
 #: documents/templates/account/password_reset_from_key_done.html:9
 msgid "Password reset complete."
@@ -1269,8 +1269,8 @@ msgid "Your new password has been set. You can now <a href=\"%(login_url)s\">log
 msgstr "Ваш новый пароль был установлен. Теперь вы можете <a href=\"%(login_url)s\">войти</a>"
 
 #: documents/templates/account/signup.html:5
-msgid "Paperless-ngx sign up"
-msgstr "Войти в Paperless-ngx"
+msgid "M-Paperless sign up"
+msgstr "Войти в M-Paperless"
 
 #: documents/templates/account/signup.html:10
 #, python-format
@@ -1292,8 +1292,8 @@ msgid "Sign up"
 msgstr "Зарегистрироваться"
 
 #: documents/templates/index.html:61
-msgid "Paperless-ngx is loading..."
-msgstr "Paperless-ngx загружается..."
+msgid "M-Paperless is loading..."
+msgstr "M-Paperless загружается..."
 
 #: documents/templates/index.html:62
 msgid "Still here?! Hmm, something might be wrong."
@@ -1304,7 +1304,7 @@ msgid "Here's a link to the docs."
 msgstr "Вот ссылка на документацию."
 
 #: documents/templates/mfa/authenticate.html:7
-msgid "Paperless-ngx Two-Factor Authentication"
+msgid "M-Paperless Two-Factor Authentication"
 msgstr ""
 
 #: documents/templates/mfa/authenticate.html:12
@@ -1329,8 +1329,8 @@ msgstr "Срок действия ссылки для обмена истёк."
 
 #: documents/templates/socialaccount/authentication_error.html:5
 #: documents/templates/socialaccount/login.html:5
-msgid "Paperless-ngx social account sign in"
-msgstr "Paperless-ngx вход через сторонние сервисы"
+msgid "M-Paperless social account sign in"
+msgstr "M-Paperless вход через сторонние сервисы"
 
 #: documents/templates/socialaccount/authentication_error.html:10
 #, python-format
@@ -1347,8 +1347,8 @@ msgid "Continue"
 msgstr "Продолжить"
 
 #: documents/templates/socialaccount/signup.html:5
-msgid "Paperless-ngx social account sign up"
-msgstr "Paperless-ngx регистрация через сторонний сервис"
+msgid "M-Paperless social account sign up"
+msgstr "M-Paperless регистрация через сторонний сервис"
 
 #: documents/templates/socialaccount/signup.html:10
 #, python-format
@@ -1655,8 +1655,8 @@ msgid "Chinese Simplified"
 msgstr "Китайский упрощенный"
 
 #: paperless/urls.py:341
-msgid "Paperless-ngx administration"
-msgstr "Администрирование Paperless-ngx"
+msgid "M-Paperless administration"
+msgstr "Администрирование M-Paperless"
 
 #: paperless_mail/admin.py:39
 msgid "Authentication"

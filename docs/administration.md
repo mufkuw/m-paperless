@@ -54,7 +54,7 @@ Options available to bare-metal and non-docker installations:
 
 ### Restoring {#migrating-restoring}
 
-If you've backed-up Paperless-ngx using the [document exporter](#exporter),
+If you've backed-up M-Paperless using the [document exporter](#exporter),
 restoring can simply be done with the [document importer](#importer).
 
 Of course, other backup strategies require restoring any volumes, folders and database
@@ -361,7 +361,7 @@ the target directory first.
 
 !!! warning
 
-    The importer should be run against a completely empty installation (database and directories) of Paperless-ngx.
+    The importer should be run against a completely empty installation (database and directories) of M-Paperless.
     If using a data only import, only the database must be empty.
 
 ### Document retagger {#retagger}
@@ -627,7 +627,7 @@ document_fuzzy_match [--ratio] [--processes N]
 
 ### Prune history (audit log) entries {#prune-history}
 
-If the audit log is enabled Paperless-ngx keeps an audit log of all changes made to documents. Functionality to automatically remove entries for deleted documents was added but
+If the audit log is enabled M-Paperless keeps an audit log of all changes made to documents. Functionality to automatically remove entries for deleted documents was added but
 entries created prior to this are not removed. This command allows you to prune the audit log of entries that are no longer needed.
 
 ```shell

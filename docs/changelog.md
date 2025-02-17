@@ -1734,7 +1734,7 @@
 ### Documentation
 
 -   Documentation: add detail about consumer polling behavior [@silmaril42](https://github.com/silmaril42) ([#5674](https://github.com/paperless-ngx/paperless-ngx/pull/5674))
--   Paperless-ngx Demo: new and improved [@shamoon](https://github.com/shamoon) ([#5639](https://github.com/paperless-ngx/paperless-ngx/pull/5639))
+-   M-Paperless Demo: new and improved [@shamoon](https://github.com/shamoon) ([#5639](https://github.com/paperless-ngx/paperless-ngx/pull/5639))
 -   Documentation: Add docs about missing timezones in MySQL/MariaDB [@Programie](https://github.com/Programie) ([#5583](https://github.com/paperless-ngx/paperless-ngx/pull/5583))
 
 ### Maintenance
@@ -2304,7 +2304,7 @@
 
 ### Please Note
 
-Exports generated in Paperless-ngx v2.0.0–2.0.1 will **not** contain consumption templates or custom fields, we recommend users upgrade to at least v2.1.
+Exports generated in M-Paperless v2.0.0–2.0.1 will **not** contain consumption templates or custom fields, we recommend users upgrade to at least v2.1.
 
 ### Bug Fixes
 
@@ -2328,7 +2328,7 @@ Exports generated in Paperless-ngx v2.0.0–2.0.1 will **not** contain consumpti
 
 ### Please Note
 
-Exports generated in Paperless-ngx v2.0.0–2.0.1 will **not** contain consumption templates or custom fields, we recommend users upgrade to at least v2.1.
+Exports generated in M-Paperless v2.0.0–2.0.1 will **not** contain consumption templates or custom fields, we recommend users upgrade to at least v2.1.
 
 ### Breaking Changes
 
@@ -2421,7 +2421,7 @@ Exports generated in Paperless-ngx v2.0.0–2.0.1 will **not** contain consumpti
 -   Documentation: fix typo, add to features list [@tooomm](https://github.com/tooomm) ([#4624](https://github.com/paperless-ngx/paperless-ngx/pull/4624))
 -   Documentation: Add note that trash dir must exist [@shamoon](https://github.com/shamoon) ([#4608](https://github.com/paperless-ngx/paperless-ngx/pull/4608))
 -   Documentation: Structure backup sections more clearly [@quantenProjects](https://github.com/quantenProjects) ([#4559](https://github.com/paperless-ngx/paperless-ngx/pull/4559))
--   Documentation: update docs, screenshots ahead of Paperless-ngx v2.0 [@shamoon](https://github.com/shamoon) ([#4542](https://github.com/paperless-ngx/paperless-ngx/pull/4542))
+-   Documentation: update docs, screenshots ahead of M-Paperless v2.0 [@shamoon](https://github.com/shamoon) ([#4542](https://github.com/paperless-ngx/paperless-ngx/pull/4542))
 -   Chore: Cleanup command arguments and standardize process count handling [@stumpylog](https://github.com/stumpylog) ([#4541](https://github.com/paperless-ngx/paperless-ngx/pull/4541))
 -   Add section for SELinux troubleshooting [@nachtjasmin](https://github.com/nachtjasmin) ([#4528](https://github.com/paperless-ngx/paperless-ngx/pull/4528))
 -   Documentation: clarify document_exporter includes settings [@coaxial](https://github.com/coaxial) ([#4533](https://github.com/paperless-ngx/paperless-ngx/pull/4533))
@@ -4001,7 +4001,7 @@ Versions 1.11.1 and 1.11.2 contain bug fixes from v1.11.0 that prevented use of 
 
 ### Documentation
 
--   [Beta] Paperless-ngx v1.9.0 Release Candidate [@stumpylog](https://github.com/stumpylog) ([#1560](https://github.com/paperless-ngx/paperless-ngx/pull/1560))
+-   [Beta] M-Paperless v1.9.0 Release Candidate [@stumpylog](https://github.com/stumpylog) ([#1560](https://github.com/paperless-ngx/paperless-ngx/pull/1560))
 -   docs/configuration: Fix binary variable defaults [@erikarvstedt](https://github.com/erikarvstedt) ([#1528](https://github.com/paperless-ngx/paperless-ngx/pull/1528))
 -   Info about installing on subpath [@viktor-c](https://github.com/viktor-c) ([#1350](https://github.com/paperless-ngx/paperless-ngx/pull/1350))
 -   Docs: move scanner \& software recs to GH wiki [@shamoon](https://github.com/shamoon) ([#1482](https://github.com/paperless-ngx/paperless-ngx/pull/1482))
@@ -4018,7 +4018,7 @@ Versions 1.11.1 and 1.11.2 contain bug fixes from v1.11.0 that prevented use of 
 
 ### Maintenance
 
--   [Beta] Paperless-ngx v1.9.0 Release Candidate [@stumpylog](https://github.com/stumpylog) ([#1560](https://github.com/paperless-ngx/paperless-ngx/pull/1560))
+-   [Beta] M-Paperless v1.9.0 Release Candidate [@stumpylog](https://github.com/stumpylog) ([#1560](https://github.com/paperless-ngx/paperless-ngx/pull/1560))
 -   paperless_cmd.sh: use exec to run supervisord [@lemmi](https://github.com/lemmi) ([#1617](https://github.com/paperless-ngx/paperless-ngx/pull/1617))
 -   Chore: Extended container image cleanup [@stumpylog](https://github.com/stumpylog) ([#1556](https://github.com/paperless-ngx/paperless-ngx/pull/1556))
 -   Chore: Smaller library images [@stumpylog](https://github.com/stumpylog) ([#1546](https://github.com/paperless-ngx/paperless-ngx/pull/1546))
@@ -4077,7 +4077,7 @@ Versions 1.11.1 and 1.11.2 contain bug fixes from v1.11.0 that prevented use of 
 
 ### All App Changes
 
--   [Beta] Paperless-ngx v1.9.0 Release Candidate [@stumpylog](https://github.com/stumpylog) ([#1560](https://github.com/paperless-ngx/paperless-ngx/pull/1560))
+-   [Beta] M-Paperless v1.9.0 Release Candidate [@stumpylog](https://github.com/stumpylog) ([#1560](https://github.com/paperless-ngx/paperless-ngx/pull/1560))
 -   Feature: Faster, less memory barcode handling [@stumpylog](https://github.com/stumpylog) ([#1594](https://github.com/paperless-ngx/paperless-ngx/pull/1594))
 -   Fix: Consume directory permissions were not updated [@stumpylog](https://github.com/stumpylog) ([#1605](https://github.com/paperless-ngx/paperless-ngx/pull/1605))
 -   Fix: Double barcode separation creates empty file [@stumpylog](https://github.com/stumpylog) ([#1596](https://github.com/paperless-ngx/paperless-ngx/pull/1596))

@@ -1167,8 +1167,8 @@ msgstr " %(site_name)s!\n"
 "%(site_domain)s을 이용해 주셔서 감사합니다!"
 
 #: documents/templates/account/login.html:5
-msgid "Paperless-ngx sign in"
-msgstr "Paperless-ngx 로그인"
+msgid "M-Paperless sign in"
+msgstr "M-Paperless 로그인"
 
 #: documents/templates/account/login.html:10
 msgid "Please sign in."
@@ -1205,8 +1205,8 @@ msgid "or sign in via"
 msgstr "또는 다음에서 로그인하세요"
 
 #: documents/templates/account/password_reset.html:5
-msgid "Paperless-ngx reset password request"
-msgstr "Paperless-ngx 비밀번호 초기화 요청"
+msgid "M-Paperless reset password request"
+msgstr "M-Paperless 비밀번호 초기화 요청"
 
 #: documents/templates/account/password_reset.html:9
 msgid "Enter your email address below, and we'll email instructions for setting a new one."
@@ -1221,8 +1221,8 @@ msgid "Send me instructions!"
 msgstr "방법 받기!"
 
 #: documents/templates/account/password_reset_done.html:5
-msgid "Paperless-ngx reset password sent"
-msgstr "Paperless-ngx 비밀번호 초기화 요청이 발송되었습니다"
+msgid "M-Paperless reset password sent"
+msgstr "M-Paperless 비밀번호 초기화 요청이 발송되었습니다"
 
 #: documents/templates/account/password_reset_done.html:9
 msgid "Check your inbox."
@@ -1233,8 +1233,8 @@ msgid "We've emailed you instructions for setting your password. You should rece
 msgstr "또는 다음에서 로그인하세요"
 
 #: documents/templates/account/password_reset_from_key.html:5
-msgid "Paperless-ngx reset password confirmation"
-msgstr "Paperless-ngx 비밀번호 초기화 확인"
+msgid "M-Paperless reset password confirmation"
+msgstr "M-Paperless 비밀번호 초기화 확인"
 
 #: documents/templates/account/password_reset_from_key.html:9
 msgid "Set a new password."
@@ -1257,8 +1257,8 @@ msgid "Change my password"
 msgstr "비밀번호 변경"
 
 #: documents/templates/account/password_reset_from_key_done.html:5
-msgid "Paperless-ngx reset password complete"
-msgstr "Paperless-ngx 비밀번호 초기화 완료"
+msgid "M-Paperless reset password complete"
+msgstr "M-Paperless 비밀번호 초기화 완료"
 
 #: documents/templates/account/password_reset_from_key_done.html:9
 msgid "Password reset complete."
@@ -1270,8 +1270,8 @@ msgid "Your new password has been set. You can now <a href=\"%(login_url)s\">log
 msgstr "새로운 비밀번호로 변경되었습니다. <a href=\"%(login_url)s\">여기</a>에서 로그인하세요"
 
 #: documents/templates/account/signup.html:5
-msgid "Paperless-ngx sign up"
-msgstr "Paperless-ngx 로그인"
+msgid "M-Paperless sign up"
+msgstr "M-Paperless 로그인"
 
 #: documents/templates/account/signup.html:10
 #, python-format
@@ -1293,7 +1293,7 @@ msgid "Sign up"
 msgstr "가입하기"
 
 #: documents/templates/index.html:61
-msgid "Paperless-ngx is loading..."
+msgid "M-Paperless is loading..."
 msgstr "Papeless-ngx가 작동중입니다..."
 
 #: documents/templates/index.html:62
@@ -1305,8 +1305,8 @@ msgid "Here's a link to the docs."
 msgstr "다음은 문서 링크입니다."
 
 #: documents/templates/mfa/authenticate.html:7
-msgid "Paperless-ngx Two-Factor Authentication"
-msgstr "Paperless-ngx 2단계 인증"
+msgid "M-Paperless Two-Factor Authentication"
+msgstr "M-Paperless 2단계 인증"
 
 #: documents/templates/mfa/authenticate.html:12
 msgid "Your account is protected by two-factor authentication. Please enter an authenticator code:"
@@ -1330,8 +1330,8 @@ msgstr "공유링크가 만료되었습니다."
 
 #: documents/templates/socialaccount/authentication_error.html:5
 #: documents/templates/socialaccount/login.html:5
-msgid "Paperless-ngx social account sign in"
-msgstr "Paperless-ngx 소셜 계정 로그인"
+msgid "M-Paperless social account sign in"
+msgstr "M-Paperless 소셜 계정 로그인"
 
 #: documents/templates/socialaccount/authentication_error.html:10
 #, python-format
@@ -1348,8 +1348,8 @@ msgid "Continue"
 msgstr "계속하기"
 
 #: documents/templates/socialaccount/signup.html:5
-msgid "Paperless-ngx social account sign up"
-msgstr "Paperless-ngx 소셜 계정 가입"
+msgid "M-Paperless social account sign up"
+msgstr "M-Paperless 소셜 계정 가입"
 
 #: documents/templates/socialaccount/signup.html:10
 #, python-format
@@ -1656,8 +1656,8 @@ msgid "Chinese Simplified"
 msgstr "중국어 간체"
 
 #: paperless/urls.py:341
-msgid "Paperless-ngx administration"
-msgstr "Paperless-ngx 관리"
+msgid "M-Paperless administration"
+msgstr "M-Paperless 관리"
 
 #: paperless_mail/admin.py:39
 msgid "Authentication"

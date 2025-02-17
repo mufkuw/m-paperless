@@ -1,6 +1,6 @@
 # The REST API
 
-Paperless-ngx now ships with a fully-documented REST API and a browsable
+M-Paperless now ships with a fully-documented REST API and a browsable
 web interface to explore it. The API browsable interface is available at
 `/api/schema/view/`.
 
@@ -327,7 +327,7 @@ operations, using the endpoint: `/api/bulk_edit_objects/`, which requires a json
 
 ## API Versioning
 
-The REST API is versioned since Paperless-ngx 1.3.0.
+The REST API is versioned since M-Paperless 1.3.0.
 
 -   Versioning ensures that changes to the API don't break older
     clients.

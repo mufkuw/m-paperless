@@ -271,7 +271,7 @@
         <target state="final"><x id="INTERPOLATION" equiv-text="barConfig);  pu"/></target>
       </trans-unit>
       <trans-unit id="3527354815023530656" datatype="html" approved="yes">
-        <source>Document <x id="PH" equiv-text="status.filename"/> was added to Paperless-ngx.</source>
+        <source>Document <x id="PH" equiv-text="status.filename"/> was added to M-Paperless.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.component.ts</context>
           <context context-type="linenumber">93</context>
@@ -280,7 +280,7 @@
           <context context-type="sourcefile">src/app/app.component.ts</context>
           <context context-type="linenumber">102</context>
         </context-group>
-        <target state="final">Dokument <x id="PH" equiv-text="status.filename"/> wurde zu Paperless-ngx hinzugefügt.</target>
+        <target state="final">Dokument <x id="PH" equiv-text="status.filename"/> wurde zu M-Paperless hinzugefügt.</target>
       </trans-unit>
       <trans-unit id="1931214133925051574" datatype="html" approved="yes">
         <source>Open document</source>
@@ -319,12 +319,12 @@
         <target state="final">Konnte <x id="PH" equiv-text="status.filename"/> nicht hinzufügen: <x id="PH_1" equiv-text="status.message"/></target>
       </trans-unit>
       <trans-unit id="1218124467712564468" datatype="html" approved="yes">
-        <source>Document <x id="PH" equiv-text="status.filename"/> is being processed by Paperless-ngx.</source>
+        <source>Document <x id="PH" equiv-text="status.filename"/> is being processed by M-Paperless.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.component.ts</context>
           <context context-type="linenumber">132</context>
         </context-group>
-        <target state="final">Dokument <x id="PH" equiv-text="status.filename"/> wird von Paperless-ngx verarbeitet.</target>
+        <target state="final">Dokument <x id="PH" equiv-text="status.filename"/> wird von M-Paperless verarbeitet.</target>
       </trans-unit>
       <trans-unit id="6570363013146073520" datatype="html" approved="yes">
         <source>Dashboard</source>
@@ -447,12 +447,12 @@
         <target state="final">Die Startseite kann verwendet werden, um gespeicherte Ansichten (z. B. „Posteingang“) anzuzeigen. Ansichten befinden sich unter Verwaltung &gt; Gespeicherte Ansichten, nachdem sie erstellt wurden.</target>
       </trans-unit>
       <trans-unit id="9075755296812854717" datatype="html" approved="yes">
-        <source>Drag-and-drop documents here to start uploading or place them in the consume folder. You can also drag-and-drop documents anywhere on all other pages of the web app. Once you do, Paperless-ngx will start training its machine learning algorithms.</source>
+        <source>Drag-and-drop documents here to start uploading or place them in the consume folder. You can also drag-and-drop documents anywhere on all other pages of the web app. Once you do, M-Paperless will start training its machine learning algorithms.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.component.ts</context>
           <context context-type="linenumber">183</context>
         </context-group>
-        <target state="final">Ziehen Sie Dokumente hier hinein, um mit dem Hochladen zu beginnen oder kopieren Sie Dateien in den Importordner („consume“). Sie können auch Dokumente per drag-and-drop auf alle anderen Seiten der Anwendung ziehen. Wenn Sie dies tun, beginnt Paperless-ngx seine Algorithmen für maschinelles Lernen zu trainieren.</target>
+        <target state="final">Ziehen Sie Dokumente hier hinein, um mit dem Hochladen zu beginnen oder kopieren Sie Dateien in den Importordner („consume“). Sie können auch Dokumente per drag-and-drop auf alle anderen Seiten der Anwendung ziehen. Wenn Sie dies tun, beginnt M-Paperless seine Algorithmen für maschinelles Lernen zu trainieren.</target>
       </trans-unit>
       <trans-unit id="7495498057594070122" datatype="html" approved="yes">
         <source>The documents list shows all of your documents and allows for filtering as well as bulk-editing. There are three different view styles: list, small cards and large cards. A list of documents currently opened for editing is shown in the sidebar.</source>
@@ -543,12 +543,12 @@
         <target state="final">Es gibt noch &lt;em&gt;erheblich&lt;/em&gt; mehr Funktionen und Informationen, die mit der Tour nicht abgedeckt wurden. Nach der Tour sollten Sie jedoch direkt loslegen können. Schauen Sie sich die Dokumentation an oder besuchen Sie das Projekt auf GitHub, um mehr zu erfahren oder Probleme zu melden.</target>
       </trans-unit>
       <trans-unit id="4270528545616947218" datatype="html" approved="yes">
-        <source>Lastly, on behalf of every contributor to this community-supported project, thank you for using Paperless-ngx!</source>
+        <source>Lastly, on behalf of every contributor to this community-supported project, thank you for using M-Paperless!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.component.ts</context>
           <context context-type="linenumber">250</context>
         </context-group>
-        <target state="final">Wir bedanken uns im Namen aller Mitwirkenden dieses gemeinschaftlich unterstützten Projekts, dass Sie Paperless-ngx verwenden!</target>
+        <target state="final">Wir bedanken uns im Namen aller Mitwirkenden dieses gemeinschaftlich unterstützten Projekts, dass Sie M-Paperless verwenden!</target>
       </trans-unit>
       <trans-unit id="9063918187161876141" datatype="html" approved="yes">
         <source>Application Configuration</source>
@@ -559,12 +559,12 @@
         <target state="final">Anwendungskonfiguration</target>
       </trans-unit>
       <trans-unit id="8528041182664173532" datatype="html" approved="yes">
-        <source>Global app configuration options which apply to &lt;strong&gt;every&lt;/strong&gt; user of this install of Paperless-ngx. Options can also be set using environment variables or the configuration file but the value here will always take precedence.</source>
+        <source>Global app configuration options which apply to &lt;strong&gt;every&lt;/strong&gt; user of this install of M-Paperless. Options can also be set using environment variables or the configuration file but the value here will always take precedence.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/admin/config/config.component.html</context>
           <context context-type="linenumber">4</context>
         </context-group>
-        <target state="final">Globale Anwendungskonfigurationsoptionen, welche für &lt;strong&gt;jeden&lt;/strong&gt; Benutzer dieser Paperless-ngx-Instanz gelten. Optionen können auch mithilfe von Umgebungsvariablen oder der Konfigurationsdatei gesetzt werden, jedoch haben die Werte auf dieser Seite immer Vorrang.</target>
+        <target state="final">Globale Anwendungskonfigurationsoptionen, welche für &lt;strong&gt;jeden&lt;/strong&gt; Benutzer dieser M-Paperless-Instanz gelten. Optionen können auch mithilfe von Umgebungsvariablen oder der Konfigurationsdatei gesetzt werden, jedoch haben die Werte auf dieser Seite immer Vorrang.</target>
       </trans-unit>
       <trans-unit id="7991430199894172363" datatype="html" approved="yes">
         <source>Read the documentation about this setting</source>
@@ -2827,12 +2827,12 @@
         <target state="final">Fehler beim Löschen der Gruppe.</target>
       </trans-unit>
       <trans-unit id="7931334600001636863" datatype="html" approved="yes">
-        <source>by Paperless-ngx</source>
+        <source>by M-Paperless</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/app-frame/app-frame.component.html</context>
           <context context-type="linenumber">20</context>
         </context-group>
-        <target state="final">von Paperless-ngx</target>
+        <target state="final">von M-Paperless</target>
       </trans-unit>
       <trans-unit id="2448391510242468907" datatype="html" approved="yes">
         <source>Logged in as <x id="INTERPOLATION" equiv-text="{{this.settingsService.displayName}}"/></source>
@@ -3091,12 +3091,12 @@
         <target state="final">Zum Anzeigen klicken.</target>
       </trans-unit>
       <trans-unit id="9811291095862612" datatype="html" approved="yes">
-        <source>Paperless-ngx can automatically check for updates</source>
+        <source>M-Paperless can automatically check for updates</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/app-frame/app-frame.component.html</context>
           <context context-type="linenumber">312</context>
         </context-group>
-        <target state="final">Paperless-ngx kann automatisch auf Aktualisierungen überprüfen</target>
+        <target state="final">M-Paperless kann automatisch auf Aktualisierungen überprüfen</target>
       </trans-unit>
       <trans-unit id="894819944961861800" datatype="html" approved="yes">
         <source> How does this work? </source>
@@ -6293,12 +6293,12 @@
         <target state="final">Umgebung</target>
       </trans-unit>
       <trans-unit id="5973078531069712831" datatype="html" approved="yes">
-        <source>Paperless-ngx Version</source>
+        <source>M-Paperless Version</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/common/system-status-dialog/system-status-dialog.component.html</context>
           <context context-type="linenumber">22</context>
         </context-group>
-        <target state="final">Paperless-ngx-Version</target>
+        <target state="final">M-Paperless-Version</target>
       </trans-unit>
       <trans-unit id="6269705781013540301" datatype="html" approved="yes">
         <source>Install Type</source>
@@ -6740,12 +6740,12 @@
         <target state="final">, </target>
       </trans-unit>
       <trans-unit id="7915903586014997661" datatype="html" approved="yes">
-        <source>Paperless-ngx is running!</source>
+        <source>M-Paperless is running!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/dashboard/widgets/welcome-widget/welcome-widget.component.html</context>
           <context context-type="linenumber">2</context>
         </context-group>
-        <target state="final">Paperless-ngx wurde erfolgreich gestartet!</target>
+        <target state="final">M-Paperless wurde erfolgreich gestartet!</target>
       </trans-unit>
       <trans-unit id="3326049540711826572" datatype="html" approved="yes">
         <source>You&apos;re ready to start uploading documents! Explore the various features of this web app on your own, or start a quick tour using the button below.</source>
@@ -6756,20 +6756,20 @@
         <target state="final">Sie sind bereit, Dokumente hochzuladen! Entdecken Sie die verschiedenen Funktionen dieser Webanwendung auf eigene Faust oder starten Sie eine kurze Tour mit der folgenden Schaltfläche.</target>
       </trans-unit>
       <trans-unit id="4474647174688421179" datatype="html" approved="yes">
-        <source>More detail on how to use and configure Paperless-ngx is always available in the <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://docs.paperless-ngx.com&quot; target=&quot;_blank&quot;&gt;"/>documentation<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>.</source>
+        <source>More detail on how to use and configure M-Paperless is always available in the <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://docs.paperless-ngx.com&quot; target=&quot;_blank&quot;&gt;"/>documentation<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/dashboard/widgets/welcome-widget/welcome-widget.component.html</context>
           <context context-type="linenumber">4</context>
         </context-group>
-        <target state="final">Mehr Details zur Verwendung und Konfiguration von Paperless-ngx sind immer in der <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://docs.paperless-ngx.com&quot; target=&quot;_blank&quot;&gt;"/>Dokumentation<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> verfügbar.</target>
+        <target state="final">Mehr Details zur Verwendung und Konfiguration von M-Paperless sind immer in der <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://docs.paperless-ngx.com&quot; target=&quot;_blank&quot;&gt;"/>Dokumentation<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> verfügbar.</target>
       </trans-unit>
       <trans-unit id="4294899532887357745" datatype="html" approved="yes">
-        <source>Thanks for being a part of the Paperless-ngx community!</source>
+        <source>Thanks for being a part of the M-Paperless community!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/dashboard/widgets/welcome-widget/welcome-widget.component.html</context>
           <context context-type="linenumber">7</context>
         </context-group>
-        <target state="final">Vielen Dank, dass Sie Teil der Paperless-ngx-Community sind!</target>
+        <target state="final">Vielen Dank, dass Sie Teil der M-Paperless-Community sind!</target>
       </trans-unit>
       <trans-unit id="1415832194529539652" datatype="html" approved="yes">
         <source>Start the tour</source>
@@ -9495,12 +9495,12 @@
         <target state="final">Möchten Sie das Tag „<x id="PH" equiv-text="object.name"/>“ wirklich löschen?</target>
       </trans-unit>
       <trans-unit id="1229748338333965418" datatype="html" approved="yes">
-        <source>Use workflows to customize the behavior of Paperless-ngx when events &apos;trigger&apos; a workflow.</source>
+        <source>Use workflows to customize the behavior of M-Paperless when events &apos;trigger&apos; a workflow.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/manage/workflows/workflows.component.html</context>
           <context context-type="linenumber">4</context>
         </context-group>
-        <target state="final">Verwenden Sie Arbeitsabläufe, um das Verhalten von Paperless-ngx bei bestimmten Ereignissen zu personalisieren.</target>
+        <target state="final">Verwenden Sie Arbeitsabläufe, um das Verhalten von M-Paperless bei bestimmten Ereignissen zu personalisieren.</target>
       </trans-unit>
       <trans-unit id="2437630016855517844" datatype="html" approved="yes">
         <source>Add Workflow</source>

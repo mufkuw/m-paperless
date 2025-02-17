@@ -1167,8 +1167,8 @@ msgstr "شكراً لكم على استعمالكم %(site_name)s!\n"
 "%(site_domain)s"
 
 #: documents/templates/account/login.html:5
-msgid "Paperless-ngx sign in"
-msgstr "تسجيل الدخول Paperless-ngx"
+msgid "M-Paperless sign in"
+msgstr "تسجيل الدخول M-Paperless"
 
 #: documents/templates/account/login.html:10
 msgid "Please sign in."
@@ -1205,8 +1205,8 @@ msgid "or sign in via"
 msgstr "أو تسجيل الدخول عبر"
 
 #: documents/templates/account/password_reset.html:5
-msgid "Paperless-ngx reset password request"
-msgstr "طلب إعادة تعيين كلمة مرور Paperless-ngx"
+msgid "M-Paperless reset password request"
+msgstr "طلب إعادة تعيين كلمة مرور M-Paperless"
 
 #: documents/templates/account/password_reset.html:9
 msgid "Enter your email address below, and we'll email instructions for setting a new one."
@@ -1221,8 +1221,8 @@ msgid "Send me instructions!"
 msgstr "أرسل لي التعليمات!"
 
 #: documents/templates/account/password_reset_done.html:5
-msgid "Paperless-ngx reset password sent"
-msgstr "‏تم إرسال رابط إعادة تعيين كلمة المرور لPaperless-ngx"
+msgid "M-Paperless reset password sent"
+msgstr "‏تم إرسال رابط إعادة تعيين كلمة المرور لM-Paperless"
 
 #: documents/templates/account/password_reset_done.html:9
 msgid "Check your inbox."
@@ -1233,8 +1233,8 @@ msgid "We've emailed you instructions for setting your password. You should rece
 msgstr "لقد أرسلنا إليك تعليمات لإعداد كلمة المرور الخاصة بك. يجب أن تتلقى البريد الإلكتروني قريباً!"
 
 #: documents/templates/account/password_reset_from_key.html:5
-msgid "Paperless-ngx reset password confirmation"
-msgstr "تأكيد إعادة تعيين كلمة المرور لPaperless-ngx"
+msgid "M-Paperless reset password confirmation"
+msgstr "تأكيد إعادة تعيين كلمة المرور لM-Paperless"
 
 #: documents/templates/account/password_reset_from_key.html:9
 msgid "Set a new password."
@@ -1257,8 +1257,8 @@ msgid "Change my password"
 msgstr "تغيير كلمة المرور الخاصة بي"
 
 #: documents/templates/account/password_reset_from_key_done.html:5
-msgid "Paperless-ngx reset password complete"
-msgstr "تم إعادة تعيين كلمة المرور لPaperless-ngx"
+msgid "M-Paperless reset password complete"
+msgstr "تم إعادة تعيين كلمة المرور لM-Paperless"
 
 #: documents/templates/account/password_reset_from_key_done.html:9
 msgid "Password reset complete."
@@ -1270,8 +1270,8 @@ msgid "Your new password has been set. You can now <a href=\"%(login_url)s\">log
 msgstr "تم تعيين كلمة المرور الجديدة الخاصة بك. يمكنك الآن <a href=\"%(login_url)s\">تسجيل الدخول</a>"
 
 #: documents/templates/account/signup.html:5
-msgid "Paperless-ngx sign up"
-msgstr "التسجيل في Paperless-ngx"
+msgid "M-Paperless sign up"
+msgstr "التسجيل في M-Paperless"
 
 #: documents/templates/account/signup.html:10
 #, python-format
@@ -1293,8 +1293,8 @@ msgid "Sign up"
 msgstr "إنشاء حساب"
 
 #: documents/templates/index.html:61
-msgid "Paperless-ngx is loading..."
-msgstr "تحميل Paperless-ngx..."
+msgid "M-Paperless is loading..."
+msgstr "تحميل M-Paperless..."
 
 #: documents/templates/index.html:62
 msgid "Still here?! Hmm, something might be wrong."
@@ -1305,7 +1305,7 @@ msgid "Here's a link to the docs."
 msgstr "إليك رابط المستندات."
 
 #: documents/templates/mfa/authenticate.html:7
-msgid "Paperless-ngx Two-Factor Authentication"
+msgid "M-Paperless Two-Factor Authentication"
 msgstr ""
 
 #: documents/templates/mfa/authenticate.html:12
@@ -1330,8 +1330,8 @@ msgstr "انتهت صلاحية رابط المشاركة."
 
 #: documents/templates/socialaccount/authentication_error.html:5
 #: documents/templates/socialaccount/login.html:5
-msgid "Paperless-ngx social account sign in"
-msgstr "الدخول عن طريق الحسابات الاجتماعية إلى Paperless-ngx"
+msgid "M-Paperless social account sign in"
+msgstr "الدخول عن طريق الحسابات الاجتماعية إلى M-Paperless"
 
 #: documents/templates/socialaccount/authentication_error.html:10
 #, python-format
@@ -1348,8 +1348,8 @@ msgid "Continue"
 msgstr "استمر"
 
 #: documents/templates/socialaccount/signup.html:5
-msgid "Paperless-ngx social account sign up"
-msgstr "التسجيل في Paperless-ngx عبر حساب اجتماعي"
+msgid "M-Paperless social account sign up"
+msgstr "التسجيل في M-Paperless عبر حساب اجتماعي"
 
 #: documents/templates/socialaccount/signup.html:10
 #, python-format
@@ -1656,8 +1656,8 @@ msgid "Chinese Simplified"
 msgstr "الصينية المبسطة"
 
 #: paperless/urls.py:341
-msgid "Paperless-ngx administration"
-msgstr "Paperless-ngx الإدارة"
+msgid "M-Paperless administration"
+msgstr "M-Paperless الإدارة"
 
 #: paperless_mail/admin.py:39
 msgid "Authentication"

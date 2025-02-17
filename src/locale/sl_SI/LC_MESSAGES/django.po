@@ -1167,8 +1167,8 @@ msgstr "Hvala, ker uporabljate %(site_name)s!\n"
 "%(site_domain)s"
 
 #: documents/templates/account/login.html:5
-msgid "Paperless-ngx sign in"
-msgstr "Paperless-ngx prijava"
+msgid "M-Paperless sign in"
+msgstr "M-Paperless prijava"
 
 #: documents/templates/account/login.html:10
 msgid "Please sign in."
@@ -1205,8 +1205,8 @@ msgid "or sign in via"
 msgstr "ali se prijavite preko"
 
 #: documents/templates/account/password_reset.html:5
-msgid "Paperless-ngx reset password request"
-msgstr "Zahteva za ponastavitev gesla Paperless-ngx"
+msgid "M-Paperless reset password request"
+msgstr "Zahteva za ponastavitev gesla M-Paperless"
 
 #: documents/templates/account/password_reset.html:9
 msgid "Enter your email address below, and we'll email instructions for setting a new one."
@@ -1221,8 +1221,8 @@ msgid "Send me instructions!"
 msgstr "Pošljite mi navodila!"
 
 #: documents/templates/account/password_reset_done.html:5
-msgid "Paperless-ngx reset password sent"
-msgstr "Paperless-ngx ponastavitev gesla je bila poslana"
+msgid "M-Paperless reset password sent"
+msgstr "M-Paperless ponastavitev gesla je bila poslana"
 
 #: documents/templates/account/password_reset_done.html:9
 msgid "Check your inbox."
@@ -1233,8 +1233,8 @@ msgid "We've emailed you instructions for setting your password. You should rece
 msgstr "Poslali smo vam navodila za nastavitev gesla. Kmalu boste prejeli e-poštno sporočilo!"
 
 #: documents/templates/account/password_reset_from_key.html:5
-msgid "Paperless-ngx reset password confirmation"
-msgstr "Potrditev ponastavitve gesla Paperless-ngx"
+msgid "M-Paperless reset password confirmation"
+msgstr "Potrditev ponastavitve gesla M-Paperless"
 
 #: documents/templates/account/password_reset_from_key.html:9
 msgid "Set a new password."
@@ -1257,8 +1257,8 @@ msgid "Change my password"
 msgstr "Spremeni moje geslo"
 
 #: documents/templates/account/password_reset_from_key_done.html:5
-msgid "Paperless-ngx reset password complete"
-msgstr "Paperless-ngx ponastavitev gesla dokončana"
+msgid "M-Paperless reset password complete"
+msgstr "M-Paperless ponastavitev gesla dokončana"
 
 #: documents/templates/account/password_reset_from_key_done.html:9
 msgid "Password reset complete."
@@ -1270,8 +1270,8 @@ msgid "Your new password has been set. You can now <a href=\"%(login_url)s\">log
 msgstr "Vaše novo geslo je bilo nastavljeno. Zdaj se lahko <a href=\"%(login_url)s\">prijavite</a>"
 
 #: documents/templates/account/signup.html:5
-msgid "Paperless-ngx sign up"
-msgstr "Paperless-ngx registracija"
+msgid "M-Paperless sign up"
+msgstr "M-Paperless registracija"
 
 #: documents/templates/account/signup.html:10
 #, python-format
@@ -1293,8 +1293,8 @@ msgid "Sign up"
 msgstr "Registracija"
 
 #: documents/templates/index.html:61
-msgid "Paperless-ngx is loading..."
-msgstr "Paperless-ngx se nalaga..."
+msgid "M-Paperless is loading..."
+msgstr "M-Paperless se nalaga..."
 
 #: documents/templates/index.html:62
 msgid "Still here?! Hmm, something might be wrong."
@@ -1305,7 +1305,7 @@ msgid "Here's a link to the docs."
 msgstr "Tu je povezava do dokumentacije."
 
 #: documents/templates/mfa/authenticate.html:7
-msgid "Paperless-ngx Two-Factor Authentication"
+msgid "M-Paperless Two-Factor Authentication"
 msgstr ""
 
 #: documents/templates/mfa/authenticate.html:12
@@ -1330,8 +1330,8 @@ msgstr "Deljena povezava je potekla."
 
 #: documents/templates/socialaccount/authentication_error.html:5
 #: documents/templates/socialaccount/login.html:5
-msgid "Paperless-ngx social account sign in"
-msgstr "Prijava v Paperless-ngx preko družabnega omrežja"
+msgid "M-Paperless social account sign in"
+msgstr "Prijava v M-Paperless preko družabnega omrežja"
 
 #: documents/templates/socialaccount/authentication_error.html:10
 #, python-format
@@ -1348,8 +1348,8 @@ msgid "Continue"
 msgstr "Nadaljuj"
 
 #: documents/templates/socialaccount/signup.html:5
-msgid "Paperless-ngx social account sign up"
-msgstr "Registracija v Paperless-ngx preko družabnega omrežja"
+msgid "M-Paperless social account sign up"
+msgstr "Registracija v M-Paperless preko družabnega omrežja"
 
 #: documents/templates/socialaccount/signup.html:10
 #, python-format
@@ -1656,8 +1656,8 @@ msgid "Chinese Simplified"
 msgstr "Poenostavljena kitajščina"
 
 #: paperless/urls.py:341
-msgid "Paperless-ngx administration"
-msgstr "Paperless-ngx administracija"
+msgid "M-Paperless administration"
+msgstr "M-Paperless administracija"
 
 #: paperless_mail/admin.py:39
 msgid "Authentication"

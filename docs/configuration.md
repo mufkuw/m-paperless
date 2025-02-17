@@ -576,13 +576,13 @@ system. See the corresponding
 
 #### [`PAPERLESS_SOCIALACCOUNT_ALLOW_SIGNUPS=<bool>`](#PAPERLESS_SOCIALACCOUNT_ALLOW_SIGNUPS) {#PAPERLESS_SOCIALACCOUNT_ALLOW_SIGNUPS}
 
-: Allow users to signup for a new Paperless-ngx account using any setup third party authentication systems.
+: Allow users to signup for a new M-Paperless account using any setup third party authentication systems.
 
     Defaults to True
 
 #### [`PAPERLESS_ACCOUNT_ALLOW_SIGNUPS=<bool>`](#PAPERLESS_ACCOUNT_ALLOW_SIGNUPS) {#PAPERLESS_ACCOUNT_ALLOW_SIGNUPS}
 
-: Allow users to signup for a new Paperless-ngx account.
+: Allow users to signup for a new M-Paperless account.
 
     Defaults to False
 
@@ -606,7 +606,7 @@ system. See the corresponding
 
 #### [`PAPERLESS_DISABLE_REGULAR_LOGIN=<bool>`](#PAPERLESS_DISABLE_REGULAR_LOGIN) {#PAPERLESS_DISABLE_REGULAR_LOGIN}
 
-: Disables the regular frontend username / password login, i.e. once you have setup SSO. Note that this setting does not disable the Django admin login nor logging in with local credentials via the API. To prevent access to the Django admin, consider blocking `/admin/` in your [web server or reverse proxy configuration](https://github.com/paperless-ngx/paperless-ngx/wiki/Using-a-Reverse-Proxy-with-Paperless-ngx).
+: Disables the regular frontend username / password login, i.e. once you have setup SSO. Note that this setting does not disable the Django admin login nor logging in with local credentials via the API. To prevent access to the Django admin, consider blocking `/admin/` in your [web server or reverse proxy configuration](https://github.com/paperless-ngx/paperless-ngx/wiki/Using-a-Reverse-Proxy-with-M-Paperless).
 
     You can optionally also automatically redirect users to the SSO login with [PAPERLESS_REDIRECT_LOGIN_TO_SSO](#PAPERLESS_REDIRECT_LOGIN_TO_SSO)
 
@@ -1606,7 +1606,7 @@ started by the container.
 
 #### [`PAPERLESS_APP_TITLE=<str>`](#PAPERLESS_APP_TITLE) {#PAPERLESS_APP_TITLE}
 
-: If set, overrides the default name "Paperless-ngx"
+: If set, overrides the default name "M-Paperless"
 
 #### [`PAPERLESS_APP_LOGO=<path>`](#PAPERLESS_APP_LOGO) {#PAPERLESS_APP_LOGO}
 

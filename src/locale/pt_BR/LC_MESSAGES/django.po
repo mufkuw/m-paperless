@@ -1168,8 +1168,8 @@ msgstr "Obrigado por usar  %(site_name)s!\n"
 "%(site_domain)s"
 
 #: documents/templates/account/login.html:5
-msgid "Paperless-ngx sign in"
-msgstr "Entrar no Paperless-ngx"
+msgid "M-Paperless sign in"
+msgstr "Entrar no M-Paperless"
 
 #: documents/templates/account/login.html:10
 msgid "Please sign in."
@@ -1206,8 +1206,8 @@ msgid "or sign in via"
 msgstr "ou conecte-se com"
 
 #: documents/templates/account/password_reset.html:5
-msgid "Paperless-ngx reset password request"
-msgstr "Redefinição de senha Paperless-ngx"
+msgid "M-Paperless reset password request"
+msgstr "Redefinição de senha M-Paperless"
 
 #: documents/templates/account/password_reset.html:9
 msgid "Enter your email address below, and we'll email instructions for setting a new one."
@@ -1222,8 +1222,8 @@ msgid "Send me instructions!"
 msgstr "Envie-me instruções!"
 
 #: documents/templates/account/password_reset_done.html:5
-msgid "Paperless-ngx reset password sent"
-msgstr "Paperless-ngx enviou uma redefinição de senha"
+msgid "M-Paperless reset password sent"
+msgstr "M-Paperless enviou uma redefinição de senha"
 
 #: documents/templates/account/password_reset_done.html:9
 msgid "Check your inbox."
@@ -1234,8 +1234,8 @@ msgid "We've emailed you instructions for setting your password. You should rece
 msgstr "Nós enviamos as instruções para definir sua senha. Você receberá o e-mail em breve!"
 
 #: documents/templates/account/password_reset_from_key.html:5
-msgid "Paperless-ngx reset password confirmation"
-msgstr "Confirmação de redefinição de senha para Paperless-ngx"
+msgid "M-Paperless reset password confirmation"
+msgstr "Confirmação de redefinição de senha para M-Paperless"
 
 #: documents/templates/account/password_reset_from_key.html:9
 msgid "Set a new password."
@@ -1258,8 +1258,8 @@ msgid "Change my password"
 msgstr "Alterar minha senha"
 
 #: documents/templates/account/password_reset_from_key_done.html:5
-msgid "Paperless-ngx reset password complete"
-msgstr "Redefinição de senha completada para Paperless-ngx"
+msgid "M-Paperless reset password complete"
+msgstr "Redefinição de senha completada para M-Paperless"
 
 #: documents/templates/account/password_reset_from_key_done.html:9
 msgid "Password reset complete."
@@ -1271,8 +1271,8 @@ msgid "Your new password has been set. You can now <a href=\"%(login_url)s\">log
 msgstr "Sua nova senha foi definida. Agora você pode <a href=\"%(login_url)s\">entrar em</a>"
 
 #: documents/templates/account/signup.html:5
-msgid "Paperless-ngx sign up"
-msgstr "Registrar-se no Paperless-ngx"
+msgid "M-Paperless sign up"
+msgstr "Registrar-se no M-Paperless"
 
 #: documents/templates/account/signup.html:10
 #, python-format
@@ -1294,8 +1294,8 @@ msgid "Sign up"
 msgstr "Cadastre-se"
 
 #: documents/templates/index.html:61
-msgid "Paperless-ngx is loading..."
-msgstr "Paperless-ngx está carregando..."
+msgid "M-Paperless is loading..."
+msgstr "M-Paperless está carregando..."
 
 #: documents/templates/index.html:62
 msgid "Still here?! Hmm, something might be wrong."
@@ -1306,8 +1306,8 @@ msgid "Here's a link to the docs."
 msgstr "Aqui está um link para a documentação."
 
 #: documents/templates/mfa/authenticate.html:7
-msgid "Paperless-ngx Two-Factor Authentication"
-msgstr "Autenticação dois-fatores Paperless-ngx"
+msgid "M-Paperless Two-Factor Authentication"
+msgstr "Autenticação dois-fatores M-Paperless"
 
 #: documents/templates/mfa/authenticate.html:12
 msgid "Your account is protected by two-factor authentication. Please enter an authenticator code:"
@@ -1331,8 +1331,8 @@ msgstr "O link de compartilhamento expirou."
 
 #: documents/templates/socialaccount/authentication_error.html:5
 #: documents/templates/socialaccount/login.html:5
-msgid "Paperless-ngx social account sign in"
-msgstr "Login de conta social Paperless-ngx"
+msgid "M-Paperless social account sign in"
+msgstr "Login de conta social M-Paperless"
 
 #: documents/templates/socialaccount/authentication_error.html:10
 #, python-format
@@ -1349,8 +1349,8 @@ msgid "Continue"
 msgstr "Continuar"
 
 #: documents/templates/socialaccount/signup.html:5
-msgid "Paperless-ngx social account sign up"
-msgstr "Inscrição em conta social Paperless-ngx"
+msgid "M-Paperless social account sign up"
+msgstr "Inscrição em conta social M-Paperless"
 
 #: documents/templates/socialaccount/signup.html:10
 #, python-format
@@ -1657,8 +1657,8 @@ msgid "Chinese Simplified"
 msgstr "Chinês Simplificado"
 
 #: paperless/urls.py:341
-msgid "Paperless-ngx administration"
-msgstr "Administração do Paperless-ngx"
+msgid "M-Paperless administration"
+msgstr "Administração do M-Paperless"
 
 #: paperless_mail/admin.py:39
 msgid "Authentication"

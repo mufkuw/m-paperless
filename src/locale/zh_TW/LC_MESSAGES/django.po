@@ -1167,8 +1167,8 @@ msgstr "感謝您使用 %(site_name)s！\n"
 "%(site_domain)s"
 
 #: documents/templates/account/login.html:5
-msgid "Paperless-ngx sign in"
-msgstr "登入 Paperless-ngx"
+msgid "M-Paperless sign in"
+msgstr "登入 M-Paperless"
 
 #: documents/templates/account/login.html:10
 msgid "Please sign in."
@@ -1205,8 +1205,8 @@ msgid "or sign in via"
 msgstr "或通過以下方式登入"
 
 #: documents/templates/account/password_reset.html:5
-msgid "Paperless-ngx reset password request"
-msgstr "Paperless-ngx 重設密碼要求"
+msgid "M-Paperless reset password request"
+msgstr "M-Paperless 重設密碼要求"
 
 #: documents/templates/account/password_reset.html:9
 msgid "Enter your email address below, and we'll email instructions for setting a new one."
@@ -1221,8 +1221,8 @@ msgid "Send me instructions!"
 msgstr "寄送說明給我！"
 
 #: documents/templates/account/password_reset_done.html:5
-msgid "Paperless-ngx reset password sent"
-msgstr "Paperless-ngx 已寄送重設密碼"
+msgid "M-Paperless reset password sent"
+msgstr "M-Paperless 已寄送重設密碼"
 
 #: documents/templates/account/password_reset_done.html:9
 msgid "Check your inbox."
@@ -1233,8 +1233,8 @@ msgid "We've emailed you instructions for setting your password. You should rece
 msgstr "我們已寄送密碼設定說明至您的信箱。您將很快收到這封郵件！"
 
 #: documents/templates/account/password_reset_from_key.html:5
-msgid "Paperless-ngx reset password confirmation"
-msgstr "Paperless-ngx 重設密碼確認"
+msgid "M-Paperless reset password confirmation"
+msgstr "M-Paperless 重設密碼確認"
 
 #: documents/templates/account/password_reset_from_key.html:9
 msgid "Set a new password."
@@ -1257,8 +1257,8 @@ msgid "Change my password"
 msgstr "變更我的密碼"
 
 #: documents/templates/account/password_reset_from_key_done.html:5
-msgid "Paperless-ngx reset password complete"
-msgstr "Paperless-ngx 重設密碼完成"
+msgid "M-Paperless reset password complete"
+msgstr "M-Paperless 重設密碼完成"
 
 #: documents/templates/account/password_reset_from_key_done.html:9
 msgid "Password reset complete."
@@ -1270,8 +1270,8 @@ msgid "Your new password has been set. You can now <a href=\"%(login_url)s\">log
 msgstr "您的新密碼已設定完成。您現在可以<a href=\"%(login_url)s\">登入</a>"
 
 #: documents/templates/account/signup.html:5
-msgid "Paperless-ngx sign up"
-msgstr "Paperless-ngx 註冊"
+msgid "M-Paperless sign up"
+msgstr "M-Paperless 註冊"
 
 #: documents/templates/account/signup.html:10
 #, python-format
@@ -1293,8 +1293,8 @@ msgid "Sign up"
 msgstr "註冊"
 
 #: documents/templates/index.html:61
-msgid "Paperless-ngx is loading..."
-msgstr "Paperless-ngx 載入中..."
+msgid "M-Paperless is loading..."
+msgstr "M-Paperless 載入中..."
 
 #: documents/templates/index.html:62
 msgid "Still here?! Hmm, something might be wrong."
@@ -1305,8 +1305,8 @@ msgid "Here's a link to the docs."
 msgstr "這裡是說明文件連結"
 
 #: documents/templates/mfa/authenticate.html:7
-msgid "Paperless-ngx Two-Factor Authentication"
-msgstr "Paperless-ngx 雙重要素驗證"
+msgid "M-Paperless Two-Factor Authentication"
+msgstr "M-Paperless 雙重要素驗證"
 
 #: documents/templates/mfa/authenticate.html:12
 msgid "Your account is protected by two-factor authentication. Please enter an authenticator code:"
@@ -1330,8 +1330,8 @@ msgstr "分享連結已失效"
 
 #: documents/templates/socialaccount/authentication_error.html:5
 #: documents/templates/socialaccount/login.html:5
-msgid "Paperless-ngx social account sign in"
-msgstr "Paperless-ngx 社群帳號登入"
+msgid "M-Paperless social account sign in"
+msgstr "M-Paperless 社群帳號登入"
 
 #: documents/templates/socialaccount/authentication_error.html:10
 #, python-format
@@ -1348,8 +1348,8 @@ msgid "Continue"
 msgstr "繼續"
 
 #: documents/templates/socialaccount/signup.html:5
-msgid "Paperless-ngx social account sign up"
-msgstr "Paperless-ngx 社群帳號註冊"
+msgid "M-Paperless social account sign up"
+msgstr "M-Paperless 社群帳號註冊"
 
 #: documents/templates/socialaccount/signup.html:10
 #, python-format
@@ -1656,8 +1656,8 @@ msgid "Chinese Simplified"
 msgstr "簡體中文"
 
 #: paperless/urls.py:341
-msgid "Paperless-ngx administration"
-msgstr "Paperless-ngx 管理"
+msgid "M-Paperless administration"
+msgstr "M-Paperless 管理"
 
 #: paperless_mail/admin.py:39
 msgid "Authentication"
