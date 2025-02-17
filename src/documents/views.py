@@ -2147,7 +2147,7 @@ class UiSettingsView(GenericAPIView):
 
 @extend_schema_view(
     get=extend_schema(
-        description="Get the current version of the Paperless-NGX server",
+        description="Get the current version of the M-Paperless server",
         responses={
             (200, "application/json"): OpenApiTypes.OBJECT,
         },
@@ -2503,7 +2503,7 @@ class CustomFieldViewSet(ModelViewSet):
 
 @extend_schema_view(
     get=extend_schema(
-        description="Get the current system status of the Paperless-NGX server",
+        description="Get the current system status of the M-Paperless server",
         responses={
             (200, "application/json"): inline_serializer(
                 name="SystemStatus",

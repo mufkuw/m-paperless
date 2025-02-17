@@ -1,8 +1,13 @@
 @use "sass:color";
+
 @mixin paperless-green {
   // base color e.g. #17541f = hsl(128, 57%, 21%)
-  --pngx-primary: 128, 57%;
+  --pngx-primary: 160, 70%;
   --pngx-primary-lightness: 21%;
+  // --pngx-primary: #177F5C;
+  --pngx-primary-hover: #0f3614;
+  --pngx-primary-active: #0c2c10;
+
 }
 
 :root {
@@ -25,6 +30,7 @@
   --pngx-bg-disabled: #f7f7f7;
   --pngx-focus-alpha: 0.3;
   --pngx-toast-max-width: 360px;
+
   @media screen and (min-width: 1024px) {
     --pngx-toast-max-width: 450px;
   }
@@ -67,7 +73,7 @@ $form-check-radio-checked-bg-image-dark: url("data:image/svg+xml,<svg xmlns='htt
 // Dark mode
 @mixin paperless-green-dark-mode {
   --pngx-primary-lightness: 31%;
-  --bs-primary: hsl(var(--pngx-primary),var(--pngx-primary-lightness));
+  --bs-primary: hsl(var(--pngx-primary), var(--pngx-primary-lightness));
 }
 
 @mixin dark-mode {
@@ -92,25 +98,35 @@ $form-check-radio-checked-bg-image-dark: url("data:image/svg+xml,<svg xmlns='htt
   --bs-dark-border-subtle: var(--pngx-bg-darker);
   --bs-border-color-translucent: rgba(0, 0, 0, .175); // override bs
 
-  .text-dark, .text-light {
+  .text-dark,
+  .text-light {
     color: var(--bs-body-color) !important;
   }
 
   .btn {
     --bs-btn-disabled-opacity: 0.35;
   }
+
   .btn.btn-link {
     --bs-btn-disabled-opacity: 0.85;
   }
 
   .btn-primary {
-    &:hover, &:focus, &.active, &:active {
+
+    &:hover,
+    &:focus,
+    &.active,
+    &:active {
       color: var(--bs-body-color) !important;
     }
   }
 
   &.primary-light .btn-primary {
-    &:hover, &:focus, &.active, &:active {
+
+    &:hover,
+    &:focus,
+    &.active,
+    &:active {
       color: var(--pngx-bg-darker) !important;
     }
   }
@@ -125,13 +141,21 @@ $form-check-radio-checked-bg-image-dark: url("data:image/svg+xml,<svg xmlns='htt
   }
 
   .btn-outline-primary {
-    &:hover, &:focus, &.active, &:active {
+
+    &:hover,
+    &:focus,
+    &.active,
+    &:active {
       color: var(--bs-light) !important;
     }
   }
 
   .btn-outline-secondary {
-    &:hover, &:focus, &.active, &:active {
+
+    &:hover,
+    &:focus,
+    &.active,
+    &:active {
       background-color: var(--pngx-bg-darker);
       color: var(--pngx-body-color-accent) !important;
     }
@@ -146,7 +170,11 @@ $form-check-radio-checked-bg-image-dark: url("data:image/svg+xml,<svg xmlns='htt
   }
 
   .search-container {
-    input, input:focus, i-bs[name="search"] , ::placeholder {
+
+    input,
+    input:focus,
+    i-bs[name="search"],
+    ::placeholder {
       color: var(--pngx-primary-text-contrast) !important;
     }
   }
@@ -160,11 +188,15 @@ $form-check-radio-checked-bg-image-dark: url("data:image/svg+xml,<svg xmlns='htt
     }
   }
 
-  .row-cols-paperless-cards .card, pngx-document-card-large .card {
+  .row-cols-paperless-cards .card,
+  pngx-document-card-large .card {
     --bs-border-color-translucent: rgba(0, 0, 0, .3);
   }
 
-  .modal-content, .modal-header, .modal-body, .modal-footer {
+  .modal-content,
+  .modal-header,
+  .modal-body,
+  .modal-footer {
     background-color: var(--bs-body-bg);
     border-color: var(--bs-border-color);
   }
@@ -174,7 +206,7 @@ $form-check-radio-checked-bg-image-dark: url("data:image/svg+xml,<svg xmlns='htt
   }
 
   .badge.bg-light.border {
-    border-color: rgba(0,0,0,0) !important;
+    border-color: rgba(0, 0, 0, 0) !important;
   }
 
   .badge.bg-body {
@@ -205,6 +237,7 @@ $form-check-radio-checked-bg-image-dark: url("data:image/svg+xml,<svg xmlns='htt
   }
 
   @supports (hanging-punctuation: first) and (font: -apple-system-body) and (-webkit-appearance: none) {
+
     // Safari does not like the filters on the image, see https://github.com/paperless-ngx/paperless-ngx/pull/8121
     .document-card:not(.placeholder-glow),
     .document-card-large:not(.placeholder-glow) {
@@ -215,7 +248,7 @@ $form-check-radio-checked-bg-image-dark: url("data:image/svg+xml,<svg xmlns='htt
 
       .doc-img {
         filter: none !important;
-        box-shadow: inset 0px 0px 0px 10px rgba(0,0,0,1);
+        box-shadow: inset 0px 0px 0px 10px rgba(0, 0, 0, 1);
       }
 
       .doc-img.inverted {
@@ -245,21 +278,25 @@ $form-check-radio-checked-bg-image-dark: url("data:image/svg+xml,<svg xmlns='htt
   }
 
   table {
+
     .des,
     .asc {
       &::after {
-        filter: invert(0.8); /* arrow is a black inline png bkgd image (!) so use filter */
+        filter: invert(0.8);
+        /* arrow is a black inline png bkgd image (!) so use filter */
       }
     }
 
-    &.table-hover > tbody > tr:hover > * {
+    &.table-hover>tbody>tr:hover>* {
       background-color: var(--bs-light);
       color: var(--pngx-body-color-accent);
     }
   }
 
   .table-row-selected {
-    td, a:not(.badge) {
+
+    td,
+    a:not(.badge) {
       color: var(--pngx-primary-text-contrast) !important;
     }
   }
@@ -286,15 +323,19 @@ $form-check-radio-checked-bg-image-dark: url("data:image/svg+xml,<svg xmlns='htt
     --bs-alert-border-color: var(--pngx-bg-darker);
   }
 
-  .table-striped > tbody > tr:nth-of-type(odd) > * {
+  .table-striped>tbody>tr:nth-of-type(odd)>* {
     color: var(--pngx-body-color-accent);
   }
 
-  .close, .modal .btn-close, .alert .btn-close {
+  .close,
+  .modal .btn-close,
+  .alert .btn-close {
     text-shadow: 0 1px 0 #666;
   }
 
-  .modal .btn-close, .alert .btn-close, .toast .btn-close {
+  .modal .btn-close,
+  .alert .btn-close,
+  .toast .btn-close {
     filter: invert(1) grayscale(100%) brightness(200%);
   }
 
@@ -351,6 +392,7 @@ $form-check-radio-checked-bg-image-dark: url("data:image/svg+xml,<svg xmlns='htt
 [data-bs-theme="auto"] {
   @media (prefers-color-scheme: dark) {
     body {
+
       // no custom theme color
       &:not(.primary-light):not(.primary-dark) {
         @include paperless-green-dark-mode;

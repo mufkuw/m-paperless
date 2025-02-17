@@ -59,7 +59,7 @@ elsewhere. Here are a couple notes about that.
     WebP images are processed with OCR and converted into PDF documents.
 -   Plain text documents are supported as well and are added verbatim to
     paperless.
--   With the optional Tika integration enabled (see [Tika configuration](https://docs.paperless-ngx.com/configuration#tika)),
+-   With the optional Tika integration enabled (see [Tika configuration]),
     Paperless also supports various Office documents (.docx, .doc, odt,
     .ppt, .pptx, .odp, .xls, .xlsx, .ods).
 
@@ -83,7 +83,7 @@ has to do much less work to serve the data.
 ## _How do I install paperless-ngx on Raspberry Pi?_
 
 **A:** Docker images are available for arm64 hardware, so just
-follow the [Docker Compose instructions](https://docs.paperless-ngx.com/setup/#installation). Apart from more required disk
+follow the [Docker Compose instructions]. Apart from more required disk
 space compared to a bare metal installation, docker comes with close to
 zero overhead, even on Raspberry Pi.
 

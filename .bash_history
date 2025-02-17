@@ -240,3 +240,66 @@ sudo systemctl restart m-*
 sudo systemctl status m-*
 sudo systemctl restart m-*
 sudo systemctl status m-*
+git rm --cached -r .local
+git rm --cached -r .local
+clear
+sudo systemctl restarr m-*
+sudo systemctl restart m-*
+sudo systemctl status m-*
+sudo journalctl -f
+
+ls
+clear
+cd src-ui
+./make
+chmod 777 make
+./make
+cd ..
+clear
+sudo systemctl restart m-*
+sudo systemctl status  m-*
+sudo systemctl status  m-*
+sudo systemctl restart m-*
+sudo systemctl status  m-*
+sudo systemctl restart m-*
+sudo systemctl status  m-*
+sudo systemctl status  m-*
+./make
+cd src-ui
+./make
+/bin/python3 /opt/paperless/.vscode-server/extensions/ms-python.python-2025.0.0-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2025.0.0-linux-x64/python_files/deactivate/bash/envVars.txt
+sudo systemctl restart m-webserver
+sudo systemctl daemon-reload
+sudo systemctl restart m-webserver
+sudo systemctl restart m-*
+sudo systemctl status m-*
+sudo systemctl restart m-*
+sudo systemctl restart m-*
+cd src-ui
+ls
+./make
+clear
+./make
+clear
+ls
+cd scripts
+ls
+cd
+cd scripts
+ls
+cd installer
+ls
+./update-gs.sh
+chmod 777 *
+./update-gs.sh
+./update-gs.sh
+chmod 777 gs.sh 
+./gs.sh
+gs
+cldar
+clear
+clear
+clear
+cd
+sudo systemctl restart m-*
+sudo systemctl restart m-*

@@ -3440,7 +3440,7 @@ Exports generated in M-Paperless v2.0.0–2.0.1 will **not** contain consumption
 ## paperless-ngx 1.12.2
 
 _Note: Version 1.12.x introduced searching of comments which will work for comments added after the upgrade but a reindex of the search index is required in order to be able to search
-older comments. The Docker image will automatically perform this reindex, bare metal installations will have to perform this manually, see [the docs](https://docs.paperless-ngx.com/administration/#index)._
+older comments. The Docker image will automatically perform this reindex, bare metal installations will have to perform this manually, see [the docs]._
 
 ### Bug Fixes
 

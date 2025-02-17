@@ -53,7 +53,7 @@ physical documents into a searchable online archive so you can keep, well, _less
 -   **Optimized** for multi core systems: M-Paperless consumes multiple documents in parallel.
 -   The integrated sanity checker makes sure that your document archive is in good health.
 
-[^1]: Office document and email consumption support is optional and provided by Apache Tika (see [configuration](https://docs.paperless-ngx.com/configuration/#tika))
+[^1]: Office document and email consumption support is optional and provided by Apache Tika (see [configuration])
 
 ## Paperless, a history
 

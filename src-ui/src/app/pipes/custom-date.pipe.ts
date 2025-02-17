@@ -4,9 +4,9 @@ import { SETTINGS_KEYS } from '../data/ui-settings'
 import { SettingsService } from '../services/settings.service'
 
 const FORMAT_TO_ISO_FORMAT = {
-  longDate: 'y-MM-dd',
-  mediumDate: 'y-MM-dd',
-  shortDate: 'y-MM-dd',
+  longDate: 'yyyy-MM-dd',
+  mediumDate: 'yyyy-MM-dd',
+  shortDate: 'yyyy-MM-dd',
 }
 
 const INTERVALS = {
@@ -67,6 +67,7 @@ export class CustomDatePipe implements PipeTransform {
       this.settings.get(SETTINGS_KEYS.DATE_LOCALE) ||
       this.defaultLocale
     let f = format || this.settings.get(SETTINGS_KEYS.DATE_FORMAT)
+    // console.log({ value: value, format: format, locale: locale, timezone: timezone });
     if (format === 'relative') {
       const seconds = Math.floor((+new Date() - +new Date(value)) / 1000)
       if (seconds < 60) return $localize`Just now`
