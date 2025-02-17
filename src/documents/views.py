@@ -593,7 +593,7 @@ class DocumentViewSet(
         except Exception as e:
             if "Data too long for column" in str(e):
                 logger.warning(
-                    "Detected a possible incompatible database column. See https://docs.paperless-ngx.com/troubleshooting/#convert-uuid-field",
+                    "Detected a possible incompatible database column.",
                 )
             logger.error(f"Error deleting document: {e!s}")
             return HttpResponseBadRequest(
@@ -1194,7 +1194,7 @@ class SavedViewViewSet(ModelViewSet, PassUserMixin):
         description="Perform a bulk edit operation on a list of documents",
         external_docs={
             "description": "Further documentation",
-            "url": "https://docs.paperless-ngx.com/api/#bulk-editing",
+            "url": "",
         },
         responses={
             200: inline_serializer(
@@ -1360,7 +1360,7 @@ class BulkEditView(PassUserMixin):
         description="Upload a document via the API",
         external_docs={
             "description": "Further documentation",
-            "url": "https://docs.paperless-ngx.com/api/#file-uploads",
+            "url": "",
         },
         responses={
             (200, "application/json"): OpenApiTypes.STR,
@@ -2331,7 +2331,7 @@ def serve_file(*, doc: Document, use_archive: bool, disposition: str):
         description="Perform a bulk edit operation on a list of objects",
         external_docs={
             "description": "Further documentation",
-            "url": "https://docs.paperless-ngx.com/api/#objects",
+            "url": "",
         },
         responses={
             200: inline_serializer(

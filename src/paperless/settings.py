@@ -361,7 +361,7 @@ SPECTACULAR_SETTINGS = {
     "COMPONENT_SPLIT_REQUEST": True,
     "EXTERNAL_DOCS": {
         "description": "M-Paperless API Documentation",
-        "url": "https://docs.paperless-ngx.com/api/",
+        "url": "",
     },
     "ENUM_NAME_OVERRIDES": {
         "MatchingAlgorithm": "documents.models.MatchingModel.MATCHING_ALGORITHMS",
