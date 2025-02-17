@@ -223,3 +223,20 @@ exit
  . /opt/paperless/.local/share/virtualenvs/paperless-wOIlnKo-/bin/activate
 pip install drf_spectacular 
 exit
+clear
+pyenv
+pyenv versions
+pyenv virtualenvs
+clear
+ls
+exit
+clear
+systemctl status m-*
+cd src
+python3 manage.py createsuperuser
+clear
+exit
+sudo systemctl restart m-*
+sudo systemctl status m-*
+sudo systemctl restart m-*
+sudo systemctl status m-*

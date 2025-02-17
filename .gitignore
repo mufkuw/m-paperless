@@ -113,3 +113,5 @@ celerybeat-schedule*
 .github
 .devcontainer
 nltk_data
+.local
+
