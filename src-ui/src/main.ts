@@ -185,6 +185,7 @@ import localeZhHant from '@angular/common/locales/zh-Hant'
 import { CorrespondentNamePipe } from './app/pipes/correspondent-name.pipe'
 import { DocumentTypeNamePipe } from './app/pipes/document-type-name.pipe'
 import { StoragePathNamePipe } from './app/pipes/storage-path-name.pipe'
+import { HookModule } from './app/modules/hooks/hook.module'
 
 registerLocaleData(localeAf)
 registerLocaleData(localeAr)
@@ -343,6 +344,7 @@ if (environment.production) {
 bootstrapApplication(AppComponent, {
   providers: [
     importProvidersFrom(
+      HookModule,
       BrowserModule,
       AppRoutingModule,
       NgbModule,
