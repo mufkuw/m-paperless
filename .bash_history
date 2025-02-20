@@ -303,3 +303,103 @@ clear
 cd
 sudo systemctl restart m-*
 sudo systemctl restart m-*
+hostname
+systemctl status systemd-resolved
+journalctl -u systemd-resolved
+sudo systemctl status systemd-resolved
+sudo apt install systemd
+sudo apt autoremove
+sudo systemctl enable systemd-resolved
+sudo systemctl status resolved
+sudo systemctl status 
+sudo systemctl status | grep systemd
+sudo systemctl list-unit-files --type=service | grep resolved
+sudo apt update
+sudo apt install --reinstall systemd
+sudo systemctl list-unit-files --type=service | grep resolved
+sudo systemctl status | grep systemd
+sudo systemctl enable systemd-resolved
+systemctl status NetworkManager
+netstat
+netstat -plnt
+clear
+apt isntall net-tools
+apt install net-tools
+sudo apt install net-tools
+clear
+netstat -plnt
+resolvectl status
+dpkg -l | grep systemd
+sudo systemctl start systemd-resolved
+cd /etc/systemc
+cd /etc/systemd
+ls
+cd system
+ls
+cd ..
+ls
+cd networked.conf
+cd network
+ls
+cd ..
+ls
+clear
+ls
+cd
+clear
+ls
+sudo apt install systemd-resolve
+sudo apt install systemd-resolved
+hostname
+cledar
+ls
+clear
+ls
+sudo systemctl enable systemd-resolved
+sudo systemctl status systemd-resolved
+nano /etc/resolv.conf
+clear
+cd etc
+nano /etc/resolv.conf
+hostname
+ping pl-dev-temp
+ping pl-dev-temp.local
+hostnae
+sudo service m-webserver restart
+sudo systemctl daemon-reload
+clear
+sudo service m-webserver restart
+hostname
+hostname -f
+sudo service m-webserver restart
+sudo service m-webserver restart
+hostname -f
+hostname
+clear
+clear
+cd scripts
+cd installser
+cd installer
+ls
+clear
+./update-ip
+./update-ip.sh
+chmod 777 update-ip.sh
+./update-ip.sh
+clear
+./update-ip.sh
+./update-ip.sh
+./update-ip.sh
+./update-ip.sh
+./update-ip.sh
+./update-ip.sh
+./update-ip.sh
+clear
+cd
+clear
+systemctl restart m-webserver
+sudo systemctl restart m-webserver
+sudo journalctl -f
+reboot
+sudo reboot
+/bin/python3 /opt/paperless/.vscode-server/extensions/ms-python.python-2025.0.0-linux-x64/python_files/printEnvVariablesToFile.py /opt/paperless/.vscode-server/extensions/ms-python.python-2025.0.0-linux-x64/python_files/deactivate/bash/envVars.txt

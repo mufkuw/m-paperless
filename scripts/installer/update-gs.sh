@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Define the Ghostscript version and URL
-GS_VERSION="10.03.1"
-GS_URL="https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs10031/ghostscript-10.03.1.tar.gz"
+GS_VERSION="10.04.0"
+GS_URL="https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs10040/ghostscript-10.04.0.tar.gz"
 
 # Step 1: Remove the existing version of Ghostscript
 echo "Removing existing Ghostscript..."

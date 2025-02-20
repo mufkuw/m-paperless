@@ -115,3 +115,4 @@ celerybeat-schedule*
 nltk_data
 .local
 
+.bash_history

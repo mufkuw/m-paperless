@@ -69,7 +69,7 @@
 					wrong." %}</p>
 			</div>
 		</div>
-		<script type="text/javascript">{# Pass Django messages to Angular frontend # }
+		<script type="text/javascript">
 			window.DJANGO_MESSAGES = [
 				{% for message in messages %}
 			{ level: "{{ message.level_tag | escapejs }}", message: "{{ message | escapejs }}" },
