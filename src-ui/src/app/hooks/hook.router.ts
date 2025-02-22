@@ -3,7 +3,7 @@ import { Hooks, HookService } from "./hook.service";
 
 export function hookRouter(routes: Routes, hookService: HookService): Routes {
 
-    hookService.triggerHook(Hooks.AppRoute, routes);
+    hookService.triggerHook(Hooks.ExtendAppRoute, routes);
 
     return [
         ...routes

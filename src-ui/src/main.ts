@@ -349,7 +349,6 @@ if (environment.production) {
 bootstrapApplication(AppComponent, {
   providers: [
     importProvidersFrom(
-      HookModule,
       BrowserModule,
       AppRoutingModule,
       NgbModule,
@@ -362,6 +361,7 @@ bootstrapApplication(AppComponent, {
       TourNgBootstrapModule,
       DragDropModule,
       NgxBootstrapIconsModule.pick(icons),
+      HookModule,
     ),
     {
       provide: APP_INITIALIZER,

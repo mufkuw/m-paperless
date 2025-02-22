@@ -1,19 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Route, Routes } from '@angular/router';
 import { OnHookRegistration } from 'src/app/hooks/hook.registrar';
-import { Hooks, HookService, SidebarManageMenuItemHookResult } from 'src/app/hooks/hook.service';
+import { Hooks, HookService } from 'src/app/hooks/hook.service';
 import { AppFrameComponent } from '../app-frame/app-frame.component';
+import { PageHeaderComponent } from "../common/page-header/page-header.component";
+import {
+  PermissionAction,
+  PermissionsService,
+} from 'src/app/services/permissions.service'
+import { ComponentWithPermissions } from '../with-permissions/with-permissions.component';
+import { IfOwnerDirective } from 'src/app/directives/if-owner.directive'
+import { IfPermissionsDirective } from 'src/app/directives/if-permissions.directive'
+
+
 
 
 @Component({
   selector: 'pngx-signature',
-  imports: [],
+  imports: [PageHeaderComponent, IfPermissionsDirective],
   templateUrl: './signature.component.html',
   styleUrl: './signature.component.scss'
 })
-export class SignatureComponent implements OnHookRegistration {
+export class SignatureComponent extends ComponentWithPermissions
+  implements OnInit, OnDestroy, OnHookRegistration {
 
-  constructor(private hookService: HookService) { }
+  constructor(private hookService: HookService) {
+    super();
+  }
+  ngOnDestroy(): void {
+  }
+
+  ngOnInit(): void {
+  }
+
   name: string = "SignatureComponent";
 
   pngxHookRegistration(): void {
@@ -29,7 +48,7 @@ export class SignatureComponent implements OnHookRegistration {
       ]
     })
 
-    this.hookService.registerHook(Hooks.AppRoute, this, (routes: Routes) => {
+    this.hookService.registerHook(Hooks.ExtendAppRoute, this, (routes: Routes) => {
       var r = routes.find(r => r.component == AppFrameComponent);
 
       if (!r) return [];
