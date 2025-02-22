@@ -16,6 +16,7 @@ import { SettingsService } from './services/settings.service'
 import { TasksService } from './services/tasks.service'
 import { ToastService } from './services/toast.service'
 import { WebsocketStatusService } from './services/websocket-status.service'
+import { HookService } from './hooks/hook.service'
 
 @Component({
   selector: 'pngx-root',
@@ -43,7 +44,8 @@ export class AppComponent implements OnInit, OnDestroy {
     private renderer: Renderer2,
     private permissionsService: PermissionsService,
     private hotKeyService: HotKeyService,
-    private componentRouterService: ComponentRouterService
+    private componentRouterService: ComponentRouterService,
+    private hookService: HookService
   ) {
     let anyWindow = window as any
     anyWindow.pdfWorkerSrc = 'assets/js/pdf.worker.min.mjs'
@@ -76,6 +78,9 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+
+    this.hookService.bootstrapRegistrars();
+
     this.websocketStatusService.connect()
 
     this.successSubscription = this.websocketStatusService

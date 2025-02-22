@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core'
-import { RouterModule, Routes } from '@angular/router'
+import { RouterModule, ROUTES, Routes } from '@angular/router'
 import { ConfigComponent } from './components/admin/config/config.component'
 import { LogsComponent } from './components/admin/logs/logs.component'
 import { SettingsComponent } from './components/admin/settings/settings.component'
@@ -28,6 +28,8 @@ import {
   PermissionAction,
   PermissionType,
 } from './services/permissions.service'
+import { HookService } from './hooks/hook.service'
+import { hookRouter } from './hooks/hook.router'
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -279,7 +281,15 @@ export const routes: Routes = [
 ]
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot([])],
   exports: [RouterModule],
+  providers: [{
+    provide: ROUTES,
+    useFactory: (hookService: HookService) => {
+      hookRouter(routes, hookService)
+      return routes;
+    },
+    deps: [HookService]
+  }]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

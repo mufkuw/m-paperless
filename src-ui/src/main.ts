@@ -1,4 +1,6 @@
 import {
+  APP_BOOTSTRAP_LISTENER,
+  APP_ID,
   APP_INITIALIZER,
   enableProdMode,
   importProvidersFrom,
@@ -126,6 +128,7 @@ import {
   trash,
   uiRadios,
   upcScan,
+  vectorPen,
   windowStack,
   x,
   xCircle,
@@ -185,7 +188,8 @@ import localeZhHant from '@angular/common/locales/zh-Hant'
 import { CorrespondentNamePipe } from './app/pipes/correspondent-name.pipe'
 import { DocumentTypeNamePipe } from './app/pipes/document-type-name.pipe'
 import { StoragePathNamePipe } from './app/pipes/storage-path-name.pipe'
-import { HookModule } from './app/modules/hooks/hook.module'
+import { HookModule } from './app/hooks/hook.module'
+import { HookService } from './app/hooks/hook.service'
 
 registerLocaleData(localeAf)
 registerLocaleData(localeAr)
@@ -335,6 +339,7 @@ const icons = {
   x,
   xCircle,
   xLg,
+  vectorPen
 }
 
 if (environment.production) {
@@ -356,7 +361,7 @@ bootstrapApplication(AppComponent, {
       ColorSliderModule,
       TourNgBootstrapModule,
       DragDropModule,
-      NgxBootstrapIconsModule.pick(icons)
+      NgxBootstrapIconsModule.pick(icons),
     ),
     {
       provide: APP_INITIALIZER,

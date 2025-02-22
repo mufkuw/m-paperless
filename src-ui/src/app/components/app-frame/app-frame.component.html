@@ -225,6 +225,20 @@
                 <i-bs class="me-1" name="boxes"></i-bs><span>&nbsp;<ng-container i18n>Workflows</ng-container></span>
               </a>
             </li>
+
+            <ng-container *pngxHook="Hooks.SidebarManageMenuItems let output">
+              <li class="nav-item app-link"
+                *pngxIfPermissions="{ action: PermissionAction.View, type: PermissionType.MailAccount }"
+                [tourAnchor]="output.tour">
+                <a class="nav-link" [routerLink]="output.routerLink" routerLinkActive="active" (click)="closeMenu()"
+                  [ngbPopover]="output.ngbPopover" i18n-ngbPopover [disablePopover]="!slimSidebarEnabled"
+                  placement="end" container="body" triggers="mouseenter:mouseleave" popoverClass="popover-slim">
+                  <i-bs class="me-1" [name]="output.icon"></i-bs><span>&nbsp;<ng-container
+                      i18n>{{output.menuTitle}}</ng-container></span>
+                </a>
+              </li>
+            </ng-container>
+
             <li class="nav-item app-link"
               *pngxIfPermissions="{ action: PermissionAction.View, type: PermissionType.MailAccount }"
               tourAnchor="tour.mail">

@@ -5,8 +5,8 @@ import {
   DragDropModule,
   moveItemInArray,
 } from '@angular/cdk/drag-drop'
-import { NgClass } from '@angular/common'
-import { Component, HostListener, OnInit } from '@angular/core'
+import { CommonModule, NgClass } from '@angular/common'
+import { Component, CUSTOM_ELEMENTS_SCHEMA, HostListener, OnInit } from '@angular/core'
 import { ActivatedRoute, Router, RouterModule } from '@angular/router'
 import {
   NgbCollapseModule,
@@ -49,12 +49,14 @@ import { DocumentDetailComponent } from '../document-detail/document-detail.comp
 import { ComponentWithPermissions } from '../with-permissions/with-permissions.component'
 import { GlobalSearchComponent } from './global-search/global-search.component'
 import { ToastsDropdownComponent } from './toasts-dropdown/toasts-dropdown.component'
+import { HookComponent, Hooks } from 'src/app/hooks/hook.service'
 
 @Component({
   selector: 'pngx-app-frame',
   templateUrl: './app-frame.component.html',
   styleUrls: ['./app-frame.component.scss'],
   imports: [
+    CommonModule,
     GlobalSearchComponent,
     DocumentTitlePipe,
     IfPermissionsDirective,
@@ -68,18 +70,23 @@ import { ToastsDropdownComponent } from './toasts-dropdown/toasts-dropdown.compo
     NgxBootstrapIconsModule,
     DragDropModule,
     TourNgBootstrapModule,
+    HookComponent,
   ],
+  schemas: []
 })
 export class AppFrameComponent
   extends ComponentWithPermissions
-  implements OnInit, ComponentCanDeactivate
-{
+  implements OnInit, ComponentCanDeactivate {
   versionString = `${environment.appTitle} ${environment.version}`
   appRemoteVersion: AppRemoteVersion
+
 
   isMenuCollapsed: boolean = true
 
   slimSidebarAnimating: boolean = false
+
+  Hooks = Hooks
+
 
   constructor(
     public router: Router,
