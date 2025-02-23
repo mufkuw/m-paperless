@@ -3,59 +3,124 @@
 
 
 <ng-container *pngxIfPermissions="{ action: PermissionAction.View, type: PermissionType.MailAccount }">
-    <div class="container">
+    <div class="container-fluid">
         <div class="row g-4 mt-4">
-            <div class="col col-md-6 col-sm-6">
+            <div class="col col-md-6 col-sm-6 col-xs-6">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the
-                            card's content.</p>
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
+                        <h5 class="card-title" class="mb-4"><i-bs name="vector-pen" width="1.5em"
+                                height="1.5em"></i-bs>&nbsp;<ng-container i18n>Personalize</ng-container>
+                        </h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Customize Your Signature and Initials</h6>
+                        <p class="card-text">Easily create and personalize your signature and initials. Click to start
+                            designing your signature.</p>
+
+                        <div class="btn-group" role="group" aria-label="Basic example">
+
+                            <button type="button" class="btn btn-sm btn-outline-primary">
+                                <ng-container i18n>Set Signature</ng-container>
+                            </button>
+
+                            <button type="button" class="btn btn-sm btn-outline-primary">
+                                <ng-container i18n>Set Initials</ng-container>
+                            </button>
+
+                        </div>
+
                     </div>
                 </div>
             </div>
             <div class="col col-md-6 col-sm-6">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the
-                            card's content.</p>
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
+                        <h5 class="card-title" class="mb-4"><i-bs name="file-earmark-richtext" width="1.5em"
+                                height="1.5em"></i-bs>&nbsp;Templates
+                        </h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Create a Customizable PDF Template</h6>
+                        <p class="card-text">Generate a PDF document with placeholders for signature and details.
+                            Customize it to fit your needs</p>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+
+                            <button type="button" class="btn btn-sm btn-outline-primary">
+                                <ng-container i18n>Create</ng-container>
+                            </button>
+
+                            <button type="button" class="btn btn-sm btn-outline-primary">
+                                <ng-container i18n>Manage</ng-container>
+                            </button>
+
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col col-md-6 col-sm-6">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the
-                            card's content.</p>
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
+                        <h5 class="card-title" class="mb-4"><i-bs name="send-plus" width="1.5em"
+                                height="1.5em"></i-bs>&nbsp;Submission
+                        </h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Submit Documents for Signature</h6>
+                        <p class="card-text">Submit documents to be signed. Upload your files, track progress, and
+                            receive signed copies.</p>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-sm btn-outline-primary">
+                                <ng-container i18n>Submit</ng-container>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-primary">
+                                <ng-container i18n>Track</ng-container>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col col-md-6 col-sm-6">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the
-                            card's content.</p>
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
+                        <h5 class="card-title" class="mb-4"><i-bs name="speedometer2" width="1.5em"
+                                height="1.5em"></i-bs>&nbsp;Tracking
+                        </h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Track the Status of Your Documents</h6>
+                        <p class="card-text">Monitor the status of your documents. Check if they are waiting for your
+                            action, others' action, or already signed.</p>
+                        <div class="btn-group" role="group" aria-label="Status tracking">
+                            <button type="button" class="btn btn-sm btn-outline-primary">
+                                <ng-container i18n>Waiting for Me</ng-container>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-primary">
+                                <ng-container i18n>Waiting for Others</ng-container>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-primary">
+                                <ng-container i18n>Signed</ng-container>
+                            </button>
+                        </div>
                     </div>
                 </div>
+            </div>
+            <div class="col col-md-6 col-sm-6 col-xs-6" style="min-height: 250px;">
+                <pngx-signature-pad #pad title="Signature Play Area">
+                    <!-- Clear button with Bootstrap icon -->
+                    <button class="btn btn-sm" (click)="pad.clearSignature()" ngbPopover="Clear Signature"
+                        popoverClass="shadow small mobile" triggers="mouseenter:mouseleave" popoverTitle="Clear">
+                        <i-bs name="x-circle" width="1.5em" height="1.5em"></i-bs>
+                    </button>
+
+                    <!-- Save button with Bootstrap icon -->
+                    <button (click)="pad.saveSignature()" class="btn btn-sm  " ngbPopover="Save Signature"
+                        popoverClass="shadow small mobile" triggers="mouseenter:mouseleave" popoverTitle="Save">
+                        <i-bs name="check2-all" width="1.5em" height="1.5em"></i-bs>
+                    </button>
+
+                    <!-- Upload button with Bootstrap icon -->
+                    <button (click)="fileInput.click()" class="btn btn-sm" ngbPopover="Upload Signature"
+                        popoverClass="shadow small mobile" triggers="mouseenter:mouseleave" popoverTitle="Upload">
+                        <i-bs name="upload" width="1.5em" height="1.5em"></i-bs>
+                    </button>
+
+                    <!-- Hidden file input -->
+                    <input #fileInput type="file" accept="image/png" style="display: none;"
+                        (change)="pad.onFileSelected($event)" />
+                </pngx-signature-pad>
+
             </div>
         </div>
     </div>

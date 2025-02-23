@@ -114,10 +114,12 @@ import {
   questionCircle,
   scissors,
   search,
+  sendPlus,
   slashCircle,
   sliders2Vertical,
   sortAlphaDown,
   sortAlphaUpAlt,
+  speedometer2,
   tag,
   tagFill,
   tags,
@@ -128,6 +130,7 @@ import {
   trash,
   uiRadios,
   upcScan,
+  upload,
   vectorPen,
   windowStack,
   x,
@@ -339,7 +342,7 @@ const icons = {
   x,
   xCircle,
   xLg,
-  vectorPen
+  vectorPen, sendPlus, speedometer2, upload
 }
 
 if (environment.production) {

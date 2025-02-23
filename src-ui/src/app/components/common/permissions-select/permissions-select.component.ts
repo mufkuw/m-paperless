@@ -1,5 +1,5 @@
 import { KeyValuePipe } from '@angular/common'
-import { Component, forwardRef, Input, OnInit } from '@angular/core'
+import { Component, forwardRef, Injector, Input, OnInit } from '@angular/core'
 import {
   AbstractControl,
   ControlValueAccessor,
@@ -19,6 +19,8 @@ import {
 } from 'src/app/services/permissions.service'
 import { SettingsService } from 'src/app/services/settings.service'
 import { ComponentWithPermissions } from '../../with-permissions/with-permissions.component'
+import { Hooks, HookService } from 'src/app/hooks/hook.service'
+import { HookModule } from 'src/app/hooks/hook.module'
 
 @Component({
   providers: [
@@ -41,8 +43,7 @@ import { ComponentWithPermissions } from '../../with-permissions/with-permission
 })
 export class PermissionsSelectComponent
   extends ComponentWithPermissions
-  implements OnInit, ControlValueAccessor
-{
+  implements OnInit, ControlValueAccessor {
   @Input()
   title: string = 'Permissions'
 
@@ -78,12 +79,15 @@ export class PermissionsSelectComponent
 
   constructor(
     private readonly permissionsService: PermissionsService,
-    private readonly settingsService: SettingsService
+    private readonly settingsService: SettingsService,
   ) {
     super()
+
     if (!this.settingsService.get(SETTINGS_KEYS.AUDITLOG_ENABLED)) {
       this.allowedTypes.splice(this.allowedTypes.indexOf('History'), 1)
     }
+
+
     this.allowedTypes.forEach((type) => {
       const control = new FormGroup({})
       for (const action in PermissionAction) {
@@ -91,6 +95,7 @@ export class PermissionsSelectComponent
       }
       this.form.addControl(type, control)
     })
+
   }
 
   writeValue(permissions: string[]): void {
@@ -127,9 +132,9 @@ export class PermissionsSelectComponent
     this.updateDisabledStates()
   }
 
-  onChange = (newValue: string[]) => {}
+  onChange = (newValue: string[]) => { }
 
-  onTouched = () => {}
+  onTouched = () => { }
 
   disabled: boolean = false
 
@@ -146,7 +151,13 @@ export class PermissionsSelectComponent
   }
 
   ngOnInit(): void {
+
+
+
     this.form.valueChanges.subscribe((newValue) => {
+
+
+
       let permissions = []
       Object.entries(newValue).forEach(([typeKey, typeValue]) => {
         // e.g. [Document, { Add: true, View: true ... }]

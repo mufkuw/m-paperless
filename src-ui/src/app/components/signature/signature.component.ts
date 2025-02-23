@@ -9,15 +9,17 @@ import {
   PermissionsService,
 } from 'src/app/services/permissions.service'
 import { ComponentWithPermissions } from '../with-permissions/with-permissions.component';
-import { IfOwnerDirective } from 'src/app/directives/if-owner.directive'
 import { IfPermissionsDirective } from 'src/app/directives/if-permissions.directive'
+import { CommonModule } from '@angular/common';
+import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons';
+import { SignaturePadComponent } from './signature-pad/signature-pad.component';
 
 
 
 
 @Component({
   selector: 'pngx-signature',
-  imports: [PageHeaderComponent, IfPermissionsDirective],
+  imports: [CommonModule, PageHeaderComponent, IfPermissionsDirective, NgxBootstrapIconsModule, SignaturePadComponent],
   templateUrl: './signature.component.html',
   styleUrl: './signature.component.scss'
 })
