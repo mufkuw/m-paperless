@@ -4,12 +4,14 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { IconName, NgxBootstrapIconsModule } from 'ngx-bootstrap-icons';
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
+import { Color } from 'ngx-color';
+import { ColorComponent } from '../../common/input/color/color.component';
 
 @Component({
   selector: 'pngx-signature-pad',
   templateUrl: './signature-pad.component.html',
   styleUrls: ['./signature-pad.component.scss'],
-  imports: [NgxBootstrapIconsModule, NgbPopoverModule, CommonModule],
+  imports: [NgxBootstrapIconsModule, NgbPopoverModule, CommonModule, ColorComponent],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
