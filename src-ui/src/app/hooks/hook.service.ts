@@ -68,7 +68,7 @@ export class HookService {
 
         // Collect the output from all closures and associate it with their registrar
         var result = this.hooks[hookName].map(({ registrar, closure }) => {
-            console.log("triggering " + hookName)
+            // console.log("triggering " + hookName)
             const output = closure(input);
             return { registrar, output };
         });

@@ -5,13 +5,14 @@ import { IconName, NgxBootstrapIconsModule } from 'ngx-bootstrap-icons';
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
 import { Color } from 'ngx-color';
-import { ColorComponent } from '../../common/input/color/color.component';
+import { ColorChromeModule } from 'ngx-color/chrome';
+import { NgbPopover, NgbPopoverWindow } from '@ng-bootstrap/ng-bootstrap/popover/popover';
 
 @Component({
   selector: 'pngx-signature-pad',
   templateUrl: './signature-pad.component.html',
   styleUrls: ['./signature-pad.component.scss'],
-  imports: [NgxBootstrapIconsModule, NgbPopoverModule, CommonModule, ColorComponent],
+  imports: [NgxBootstrapIconsModule, NgbPopoverModule, CommonModule, ColorChromeModule],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -21,19 +22,30 @@ import { ColorComponent } from '../../common/input/color/color.component';
   ]
 })
 export class SignaturePadComponent implements AfterViewInit, ControlValueAccessor, OnChanges {
-  @ViewChild('canvas') canvasRef: ElementRef;
-  @ViewChild('fileInput') fileInput: ElementRef;
+  @ViewChild('canvas') canvasRef!: ElementRef<HTMLCanvasElement>;
+  @ViewChild('popOver') popover!: NgbPopover;
+
+  // const options = {
+  //   minWidth: 0.5,             // Minimum pen width (slow strokes)
+  //   maxWidth: 4,               // Maximum pen width (fast strokes)
+  //   velocityFilterWeight: 0.8, // Smoothing weight
+  //   dotSize: 2,                // Dot size for smoothness
+  //   throttle: 16,              // Update rate (fps)
+  //   minDistance: 4,            // Minimum distance between points
+  //   backgroundColor: 'rgba(0, 0, 0, 0)', // Transparent background
+  //   penColor: 'black'          // Pen color
+  // };
 
   @Input() title: string = "Signature Pad"; // Default value
   @Input() icon: IconName = "vector-pen"; // Default value
   @Input() dotSize: number = 2; // Default value
   @Input() minWidth: number = 0.5; // Default value
-  @Input() maxWidth: number = 2.5; // Default value
+  @Input() maxWidth: number = 4; // Default value
   @Input() throttle: number = 16; // Default value (ms) for throttling
-  @Input() minDistance: number = 5; // Default value (pixels) for minDistance
+  @Input() minDistance: number = 4; // Default value (pixels) for minDistance
   @Input() backgroundColor: string = 'rgba(0,0,0,0)'; // Default transparent background
   @Input() penColor: string = 'black'; // Default black pen
-  @Input() velocityFilterWeight: number = 0.7; // Default value
+  @Input() velocityFilterWeight: number = 0.9; // Default value
   @Input() canvasContextOptions: CanvasRenderingContext2DSettings = {}; // Default options
 
 
@@ -66,7 +78,9 @@ export class SignaturePadComponent implements AfterViewInit, ControlValueAccesso
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.signaturePad) {
+
+    if (!this.canvasRef) return;
+    if (!this.signaturePad) {
       const options = {
         dotSize: this.dotSize,
         minWidth: this.minWidth,
@@ -78,9 +92,17 @@ export class SignaturePadComponent implements AfterViewInit, ControlValueAccesso
         velocityFilterWeight: this.velocityFilterWeight,
         canvasContextOptions: this.canvasContextOptions
       };
-
-      this.signaturePad.clear();
       this.signaturePad = new SignaturePad(this.canvasRef.nativeElement, options);
+    }
+    else {
+      this.signaturePad.dotSize = this.dotSize;
+      this.signaturePad.minWidth = this.minWidth;
+      this.signaturePad.maxWidth = this.maxWidth;
+      this.signaturePad.throttle = this.throttle;
+      this.signaturePad.minDistance = this.minDistance;
+      this.signaturePad.backgroundColor = this.backgroundColor;
+      this.signaturePad.penColor = this.penColor;
+      this.signaturePad.velocityFilterWeight = this.velocityFilterWeight;
     }
   }
 
@@ -89,9 +111,11 @@ export class SignaturePadComponent implements AfterViewInit, ControlValueAccesso
     this.onChange!('');
   }
 
+  signature: string = ""
+
   saveSignature(): void {
-    const signature = this.signaturePad.toDataURL();
-    this.onChange!(signature);
+    this.signature = this.signaturePad.toDataURL();
+    this.onChange!(this.signature);
   }
 
   writeValue(value: string): void {
@@ -159,4 +183,25 @@ export class SignaturePadComponent implements AfterViewInit, ControlValueAccesso
       alert('Please upload a valid PNG file.');
     }
   }
+
+  penColorChanged($event) {
+
+
+    this.penColor = $event.color.hex;
+
+    this.ngOnChanges({
+      penColor: {
+        currentValue: this.penColor,
+        previousValue: null,
+        firstChange: true,
+        isFirstChange: () => true
+      }
+    });
+
+    if ($event.$event.type == "mousedown") {
+      this.popover.close()
+    }
+
+  }
+
 }

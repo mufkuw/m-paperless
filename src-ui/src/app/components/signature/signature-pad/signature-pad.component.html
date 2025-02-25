@@ -4,8 +4,38 @@
         <i-bs [name]="icon" width="1.5em" height="1.5em"></i-bs>&nbsp;{{title}}
     </h5>
     <div class="signature-overlay">
-        <ng-content></ng-content>
-        <pngx-input-color></pngx-input-color>
-    </div>
+        <ng-template #popContent>
+            <div style="min-width: 200px;" class="pb-3">
+                <color-chrome [value]="penColor" (onChangeComplete)="penColorChanged($event)"></color-chrome>
+            </div>
+        </ng-template>
 
+        <!-- Clear button with Bootstrap icon -->
+        <button class="btn btn-sm" [style.color]="penColor" #popOver="ngbPopover" [ngbPopover]="popContent"
+            popoverClass="shadow small mobile" [autoClose]="'outside'" placement="right">
+            <i-bs name="pen-fill" width="1.5em" height="1.5em"></i-bs>
+        </button>
+
+        <!-- Clear button with Bootstrap icon -->
+        <button class="btn btn-sm" (click)="clearSignature()" ngbPopover="Save Signature"
+            popoverClass="shadow small mobile" triggers="mouseenter:mouseleave" popoverTitle="Save">
+            <i-bs name="x-circle" width="1.5em" height="1.5em"></i-bs>
+        </button>
+
+        <!-- Save button with Bootstrap icon -->
+        <button (click)="saveSignature()" class="btn btn-sm" ngbPopover="Save Signature"
+            popoverClass="shadow small mobile" triggers="mouseenter:mouseleave" popoverTitle="Save">
+            <i-bs name="check2-all" width="1.5em" height="1.5em"></i-bs>
+        </button>
+
+        <!-- Upload button with Bootstrap icon -->
+        <button (click)="fileInput.click()" class="btn btn-sm" ngbPopover="Upload Signature"
+            popoverClass="shadow small mobile" triggers="mouseenter:mouseleave" popoverTitle="Upload">
+            <i-bs name="upload" width="1.5em" height="1.5em"></i-bs>
+        </button>
+
+        <!-- Hidden file input -->
+        <input #fileInput type="file" accept="image/png" style="display: none;" (change)="onFileSelected($event)" />
+        <ng-content></ng-content>
+    </div>
 </div>

@@ -6,7 +6,7 @@ import {
 } from '@angular/forms'
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
-import { ColorSliderModule } from 'ngx-color/slider'
+import { ColorPhotoshopModule } from 'ngx-color/photoshop'
 import { randomColor } from 'src/app/utils/color'
 import { AbstractInputComponent } from '../abstract-input'
 
@@ -26,7 +26,7 @@ import { AbstractInputComponent } from '../abstract-input'
     NgbPopoverModule,
     FormsModule,
     ReactiveFormsModule,
-    ColorSliderModule,
+    ColorPhotoshopModule,
   ],
 })
 export class ColorComponent extends AbstractInputComponent<string> {

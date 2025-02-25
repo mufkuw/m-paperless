@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Route, Routes } from '@angular/router';
 import { OnHookRegistration } from 'src/app/hooks/hook.registrar';
 import { Hooks, HookService } from 'src/app/hooks/hook.service';
@@ -13,20 +13,32 @@ import { IfPermissionsDirective } from 'src/app/directives/if-permissions.direct
 import { CommonModule } from '@angular/common';
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons';
 import { SignaturePadComponent } from './signature-pad/signature-pad.component';
+import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
+import { ColorChromeModule } from 'ngx-color/chrome';
+import { Color } from 'ngx-color';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { isConditionalExpression } from 'typescript';
+
 
 
 
 
 @Component({
   selector: 'pngx-signature',
-  imports: [CommonModule, PageHeaderComponent, IfPermissionsDirective, NgxBootstrapIconsModule, SignaturePadComponent],
+  imports: [CommonModule,
+    PageHeaderComponent,
+    IfPermissionsDirective,
+    NgxBootstrapIconsModule,
+    SignaturePadComponent,
+    NgbPopoverModule,
+    ColorChromeModule],
   templateUrl: './signature.component.html',
   styleUrl: './signature.component.scss'
 })
 export class SignatureComponent extends ComponentWithPermissions
   implements OnInit, OnDestroy, OnHookRegistration {
 
-  constructor(private hookService: HookService) {
+  constructor(private hookService: HookService, private modalService: NgbModal) {
     super();
   }
   ngOnDestroy(): void {
@@ -34,6 +46,10 @@ export class SignatureComponent extends ComponentWithPermissions
 
   ngOnInit(): void {
   }
+
+  @ViewChild(SignaturePadComponent) signaturePad: SignaturePadComponent;
+  @ViewChild('signaturePadModal') signaturePadModal!: TemplateRef<any>;
+  @ViewChild('signatureImg') signatureImg!: ElementRef<HTMLImageElement>;
 
   name: string = "SignatureComponent";
 
@@ -61,6 +77,31 @@ export class SignatureComponent extends ComponentWithPermissions
       });
 
       return routes
+    })
+
+  }
+
+  penColor: string = 'red'
+  signature: string = ''
+  initials: string = '';
+
+  penColorChanged(color: Color) {
+    this.penColor = color.hex;
+  }
+
+
+  setSignatureClicked() {
+    var modalRef = this.modalService.open(this.signaturePadModal, { size: "lg" });
+    modalRef.result.then(x => {
+      this.signature = x;
+    })
+
+  }
+
+  setInitialsClicked() {
+    var modalRef = this.modalService.open(this.signaturePadModal, { size: "lg" });
+    modalRef.result.then(x => {
+      this.initials = x;
     })
 
   }

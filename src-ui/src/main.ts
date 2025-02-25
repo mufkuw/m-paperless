@@ -100,6 +100,8 @@ import {
   listUl,
   microsoft,
   nodePlus,
+  pen,
+  penFill,
   pencil,
   people,
   peopleFill,
@@ -342,7 +344,7 @@ const icons = {
   x,
   xCircle,
   xLg,
-  vectorPen, sendPlus, speedometer2, upload
+  vectorPen, sendPlus, speedometer2, upload, penFill
 }
 
 if (environment.production) {

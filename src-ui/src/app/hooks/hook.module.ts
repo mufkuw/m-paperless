@@ -23,7 +23,7 @@ export class HookModule implements OnInit {
 
     bootstrapRegistrars() {
         // Dynamically create component instances
-        console.log("bootstrapRegistrars");
+        // console.log("bootstrapRegistrars");
         hookRegistrars.forEach((component) => {
             const componentInstance = this.injector.get(component) as OnHookRegistration;
             if (componentInstance && typeof componentInstance.pngxHookRegistration === 'function') {
